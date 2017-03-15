@@ -4,8 +4,35 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/main_red"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/layout_bar_fragment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:id="@+id/layout_message"
+            style="@style/message_width"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/meixiaoxi" />
+        </LinearLayout>
+    </LinearLayout>
+
+
     <FrameLayout
-        android:id="@+id/layout_fragment"
+        android:id="@+id/layout_tab_fragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
@@ -19,28 +46,34 @@
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/rdoBtn_shouye"
+            android:id="@+id/rdoBtn_home"
             style="@style/tab_menu_item"
             android:checked="true"
             android:drawableTop="@drawable/radio_shouye"
             android:text="首页" />
 
         <RadioButton
-            android:id="@+id/rdoBtn_fenlei"
+            android:id="@+id/rdoBtn_classify"
             style="@style/tab_menu_item"
-            android:drawableTop="@drawable/radio_shouye"
+            android:drawableTop="@drawable/radio_fenlei"
             android:text="分类" />
 
         <RadioButton
-            android:id="@+id/rdoBtn_gouwuche"
+            android:id="@+id/rdoBtn_forum"
             style="@style/tab_menu_item"
-            android:drawableTop="@drawable/radio_shouye"
+            android:drawableTop="@drawable/radio_luntan"
+            android:text="论坛" />
+
+        <RadioButton
+            android:id="@+id/rdoBtn_shopping_cart"
+            style="@style/tab_menu_item"
+            android:drawableTop="@drawable/radio_gouwuche"
             android:text="购物车" />
 
         <RadioButton
-            android:id="@+id/rdoBtn_wode"
+            android:id="@+id/rdoBtn_me"
             style="@style/tab_menu_item"
-            android:drawableTop="@drawable/radio_shouye"
+            android:drawableTop="@drawable/radio_wode"
             android:text="我的" />
     </RadioGroup>
 </LinearLayout>

@@ -30,7 +30,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         initData();
         loadData();
-        Other();
     }
 
     // 初始化UI，setContentView等
@@ -40,10 +39,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected void loadData() {
-    }
-
-    protected void Other() {
-
     }
 
     protected void OnBack() {
