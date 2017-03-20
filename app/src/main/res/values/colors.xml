@@ -9,4 +9,10 @@
     <color name="white">#ffffff</color>
     <color name="sousuo_red">#ce2339</color>
     <color name="white_l">#55ffffff</color>
+    <color name="bg_hui">#f4f4f4</color>
+    <color name="text_hui">#aaaaaa</color>
+
+    <color name="button_rad">#fc6276</color>
+
+    <color name="yellow">#eab82c</color>
 </resources>
