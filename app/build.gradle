@@ -44,4 +44,6 @@ dependencies {
     compile 'com.zhy:base-rvadapter:3.0.3'
     //okhttp的封装
     compile 'com.zhy:okhttputils:2.6.2'
+    //eventbus
+    compile 'org.greenrobot:eventbus:3.0.0'
 }

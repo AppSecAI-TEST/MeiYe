@@ -15,4 +15,6 @@
     <color name="button_rad">#fc6276</color>
 
     <color name="yellow">#eab82c</color>
+
+    <color name="transparent">#7b000000</color>
 </resources>

@@ -2,6 +2,7 @@ package com.duma.liudong.meiye.presenter;
 
 import com.duma.liudong.meiye.base.MyStringCallback;
 import com.duma.liudong.meiye.utils.Api;
+import com.duma.liudong.meiye.utils.Ts;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 /**
@@ -33,6 +34,7 @@ public class PublicPresenter {
                 .execute(new MyStringCallback() {
                     @Override
                     public void onMySuccess(String result) {
+                        Ts.setText("发送成功!");
                         getCodeListener.GetCodeSuccess();
                     }
                 });

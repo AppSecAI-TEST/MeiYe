@@ -61,6 +61,7 @@
             android:hint="请输入手机号码"
             android:inputType="phone"
             android:paddingLeft="10dp"
+            android:text="18772397060"
             android:textColor="@color/texthei"
             android:textColorHint="@color/text_hui"
             android:textSize="14sp" />

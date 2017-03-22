@@ -10,9 +10,14 @@ import android.widget.TextView;
 
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
+import com.duma.liudong.meiye.model.SlideBus;
 import com.duma.liudong.meiye.presenter.PublicPresenter;
 import com.duma.liudong.meiye.utils.CodeTimeUtil;
 import com.duma.liudong.meiye.utils.DialogUtil;
+import com.duma.liudong.meiye.view.start.main.SlideActivity;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -43,6 +48,7 @@ public class ForgetPassword extends BaseActivity implements PublicPresenter.GetC
     @Override
     protected void initContentView(Bundle savedInstanceState) {
         setContentView(R.layout.activity_forget_password);
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -51,6 +57,12 @@ public class ForgetPassword extends BaseActivity implements PublicPresenter.GetC
         codeTimeUtil = new CodeTimeUtil(tvCode);
         publicPresenter = new PublicPresenter();
         publicPresenter.setGetCodeListener(this);
+    }
+
+    @Subscribe
+    public void sendCode(SlideBus slideBus) {
+        DialogUtil.show(mActivity);
+        publicPresenter.getCode(editPhone.getText().toString());
     }
 
     @OnClick({R.id.layout_back, R.id.tv_code, R.id.btn_next, R.id.tv_issue})
@@ -63,8 +75,7 @@ public class ForgetPassword extends BaseActivity implements PublicPresenter.GetC
                 //发送验证码
                 if (isPhone(editPhone)) return;
                 if (tvCode.getText().toString().equals(this.getString(R.string.code))) {
-                    DialogUtil.show(mActivity);
-                    publicPresenter.getCode(editPhone.getText().toString());
+                    startActivity(new Intent(this, SlideActivity.class));
                 }
                 break;
             case R.id.btn_next:
@@ -84,5 +95,13 @@ public class ForgetPassword extends BaseActivity implements PublicPresenter.GetC
     public void GetCodeSuccess() {
         DialogUtil.hide();
         codeTimeUtil.startTime();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        codeTimeUtil.cancel();
+        EventBus.getDefault().unregister(this);
     }
 }

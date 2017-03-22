@@ -1,5 +1,6 @@
 package com.duma.liudong.meiye.view.start.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,14 +14,19 @@ import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.base.MyStringCallback;
 import com.duma.liudong.meiye.model.LoginBean;
+import com.duma.liudong.meiye.model.SlideBus;
 import com.duma.liudong.meiye.presenter.PublicPresenter;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.CodeTimeUtil;
 import com.duma.liudong.meiye.utils.DialogUtil;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.utils.Ts;
+import com.duma.liudong.meiye.view.start.main.SlideActivity;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -66,6 +72,7 @@ public class RigisterActivity extends BaseActivity implements PublicPresenter.Ge
     @Override
     protected void initContentView(Bundle savedInstanceState) {
         setContentView(R.layout.activity_rigister);
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -75,6 +82,12 @@ public class RigisterActivity extends BaseActivity implements PublicPresenter.Ge
         publicPresenter = new PublicPresenter();
         publicPresenter.setGetCodeListener(this);
         StartUtil.tvHui(btnRigister);
+    }
+
+    @Subscribe
+    public void sendCode(SlideBus slideBus) {
+        DialogUtil.show(mActivity);
+        publicPresenter.getCode(editPhone.getText().toString());
     }
 
     @OnClick({R.id.layout_back, R.id.tv_code, R.id.layout_hide_password, R.id.checkbox_agreement, R.id.tv_agreement, R.id.btn_rigister, R.id.tv_login, R.id.tv_issue})
@@ -87,8 +100,7 @@ public class RigisterActivity extends BaseActivity implements PublicPresenter.Ge
                 //发送验证码
                 if (isPhone(editPhone)) return;
                 if (tvCode.getText().toString().equals(this.getString(R.string.code))) {
-                    DialogUtil.show(mActivity);
-                    publicPresenter.getCode(editPhone.getText().toString());
+                    startActivity(new Intent(this, SlideActivity.class));
                 }
                 break;
             case R.id.layout_hide_password:
@@ -154,17 +166,17 @@ public class RigisterActivity extends BaseActivity implements PublicPresenter.Ge
                 });
     }
 
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        codeTimeUtil.cancel();
-    }
-
     //获取验证码成功
     @Override
     public void GetCodeSuccess() {
         DialogUtil.hide();
         codeTimeUtil.startTime();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        codeTimeUtil.cancel();
+        EventBus.getDefault().unregister(this);
     }
 }

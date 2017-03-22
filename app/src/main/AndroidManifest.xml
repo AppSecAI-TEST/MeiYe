@@ -17,11 +17,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.start.home.CouponsActivity" />
+        <activity android:name=".view.home.CouponsActivity" />
         <activity android:name=".view.start.login.LoginActivity" />
         <activity android:name=".view.start.login.RigisterActivity" />
         <activity android:name=".view.start.login.ForgetPassword" />
         <activity android:name=".view.start.login.ConfirmForgetPasswordActivity" />
+        <activity
+            android:name=".view.start.main.SlideActivity"
+            android:theme="@style/AppTheme_Translucent" />
     </application>
 
 </manifest>

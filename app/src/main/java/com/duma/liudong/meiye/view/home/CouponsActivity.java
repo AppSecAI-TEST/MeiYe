@@ -1,4 +1,4 @@
-package com.duma.liudong.meiye.view.start.home;
+package com.duma.liudong.meiye.view.home;
 
 import android.os.Bundle;
 
