@@ -3,6 +3,7 @@ package com.duma.liudong.meiye.base;
 
 import android.app.Application;
 
+import com.duma.liudong.meiye.utils.SPUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.log.LoggerInterceptor;
 
@@ -16,6 +17,7 @@ public class MyApplication extends Application {
         return instance;
     }
 
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -26,8 +28,13 @@ public class MyApplication extends Application {
                 //其他配置
                 .build();
         OkHttpUtils.initClient(okHttpClient);
-
     }
 
+    private static class LazyHolder {
+        private static final SPUtils INSTANCE = new SPUtils("MeiYe");
+    }
 
+    public static SPUtils getSpUtils() {
+        return LazyHolder.INSTANCE;
+    }
 }

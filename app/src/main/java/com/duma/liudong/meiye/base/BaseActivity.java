@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.duma.liudong.meiye.R;
+import com.duma.liudong.meiye.utils.Ts;
 
 import butterknife.ButterKnife;
 
@@ -78,5 +79,29 @@ public abstract class BaseActivity extends AppCompatActivity {
             editText.setSelection(editText.getText().length());
             imageView.setImageDrawable(MyApplication.getInstance().getResources().getDrawable(R.drawable.img_126));
         }
+    }
+
+    public boolean isPhone(EditText editPhone) {
+        if (editPhone.getText().toString().isEmpty() || editPhone.getText().toString().length() != 11) {
+            Ts.setText("电话号码不正确!");
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isPassword(EditText editPhone) {
+        if (editPhone.getText().toString().isEmpty()) {
+            Ts.setText("密码不能为空!");
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isCode(EditText editPhone) {
+        if (editPhone.getText().toString().isEmpty()) {
+            Ts.setText("验证码不能为空!");
+            return true;
+        }
+        return false;
     }
 }

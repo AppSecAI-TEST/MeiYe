@@ -12,6 +12,13 @@ import android.widget.TextView;
 
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
+import com.duma.liudong.meiye.base.MyStringCallback;
+import com.duma.liudong.meiye.model.LoginBean;
+import com.duma.liudong.meiye.utils.Api;
+import com.duma.liudong.meiye.utils.DialogUtil;
+import com.duma.liudong.meiye.utils.StartUtil;
+import com.google.gson.Gson;
+import com.zhy.http.okhttp.OkHttpUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -68,6 +75,9 @@ public class LoginActivity extends BaseActivity {
                 }
                 break;
             case R.id.btn_login:
+                if (isPhone(editPhone)) return;
+                if (isPassword(editPassword)) return;
+                loginHttp();
                 break;
             case R.id.tv_rigister:
                 startActivity(new Intent(mActivity, RigisterActivity.class));
@@ -75,6 +85,24 @@ public class LoginActivity extends BaseActivity {
             case R.id.tv_forget_password:
                 break;
         }
+    }
+
+    private void loginHttp() {
+        DialogUtil.show(mActivity);
+        OkHttpUtils
+                .post()
+                .url(Api.login)
+                .addParams("phone", editPhone.getText().toString())
+                .addParams("password", editPassword.getText().toString())
+                .build()
+                .execute(new MyStringCallback() {
+                    @Override
+                    public void onMySuccess(String result) {
+                        DialogUtil.hide();
+                        LoginBean loginBean = new Gson().fromJson(result, LoginBean.class);
+                        StartUtil.saveLogin(loginBean);
+                    }
+                });
     }
 
 

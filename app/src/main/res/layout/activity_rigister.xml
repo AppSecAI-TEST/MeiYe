@@ -92,7 +92,6 @@
             android:hint="请输入验证码"
             android:inputType="phone"
             android:paddingLeft="10dp"
-            android:text="18772397060"
             android:textColor="@color/texthei"
             android:textColorHint="@color/text_hui"
             android:textSize="14sp" />
@@ -108,7 +107,7 @@
                 android:layout_height="30dp"
                 android:background="@color/button_rad"
                 android:gravity="center"
-                android:text="获取验证码"
+                android:text="@string/code"
                 android:textColor="@color/white" />
         </LinearLayout>
 
@@ -168,8 +167,8 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp">
 
-        <RadioButton
-            android:id="@+id/radio_agreement"
+        <CheckBox
+            android:id="@+id/checkbox_agreement"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="我已阅读并同意"

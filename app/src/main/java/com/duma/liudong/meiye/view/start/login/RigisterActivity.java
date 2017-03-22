@@ -3,15 +3,24 @@ package com.duma.liudong.meiye.view.start.login;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
+import com.duma.liudong.meiye.base.MyStringCallback;
+import com.duma.liudong.meiye.model.LoginBean;
+import com.duma.liudong.meiye.presenter.PublicPresenter;
+import com.duma.liudong.meiye.utils.Api;
+import com.duma.liudong.meiye.utils.CodeTimeUtil;
+import com.duma.liudong.meiye.utils.DialogUtil;
 import com.duma.liudong.meiye.utils.StartUtil;
+import com.duma.liudong.meiye.utils.Ts;
+import com.google.gson.Gson;
+import com.zhy.http.okhttp.OkHttpUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -20,7 +29,7 @@ import butterknife.OnClick;
  * Created by liudong on 17/3/20.
  */
 
-public class RigisterActivity extends BaseActivity {
+public class RigisterActivity extends BaseActivity implements PublicPresenter.GetCodeListener {
     @BindView(R.id.layout_back)
     LinearLayout layoutBack;
     @BindView(R.id.tv_title)
@@ -39,8 +48,8 @@ public class RigisterActivity extends BaseActivity {
     ImageView imgPassword;
     @BindView(R.id.layout_hide_password)
     LinearLayout layoutHidePassword;
-    @BindView(R.id.radio_agreement)
-    RadioButton radioAgreement;
+    @BindView(R.id.checkbox_agreement)
+    CheckBox checkboxAgreement;
     @BindView(R.id.tv_agreement)
     TextView tvAgreement;
     @BindView(R.id.btn_rigister)
@@ -51,6 +60,9 @@ public class RigisterActivity extends BaseActivity {
     TextView tvIssue;
 
     private boolean hideOrShowPassword = false;//默认隐藏
+    private int codeTime = 60;
+    private CodeTimeUtil codeTimeUtil;
+    private PublicPresenter publicPresenter;
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -60,17 +72,28 @@ public class RigisterActivity extends BaseActivity {
     @Override
     protected void initData() {
         tvTitle.setText("注册");
+        codeTimeUtil = new CodeTimeUtil(codeTime, tvCode);
+        publicPresenter = new PublicPresenter();
+        publicPresenter.setGetCodeListener(this);
+        StartUtil.tvHui(btnRigister);
     }
 
-    @OnClick({R.id.layout_back, R.id.tv_code, R.id.layout_hide_password, R.id.radio_agreement, R.id.tv_agreement, R.id.btn_rigister, R.id.tv_login, R.id.tv_issue})
+    @OnClick({R.id.layout_back, R.id.tv_code, R.id.layout_hide_password, R.id.checkbox_agreement, R.id.tv_agreement, R.id.btn_rigister, R.id.tv_login, R.id.tv_issue})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.layout_back:
                 finish();
                 break;
             case R.id.tv_code:
+                //发送验证码
+                if (isPhone(editPhone)) return;
+                if (tvCode.getText().toString().equals(this.getString(R.string.code))) {
+                    DialogUtil.show(mActivity);
+                    publicPresenter.getCode(editPhone.getText().toString());
+                }
                 break;
             case R.id.layout_hide_password:
+                //显示隐藏密码
                 if (hideOrShowPassword) {
                     //显示
                     hideOrShowPassword = false;
@@ -80,17 +103,68 @@ public class RigisterActivity extends BaseActivity {
                     showPassword(hideOrShowPassword, editPassword, imgPassword);
                 }
                 break;
-            case R.id.radio_agreement:
+            case R.id.checkbox_agreement:
+                if (checkboxAgreement.isChecked()) {
+                    StartUtil.tvRed(btnRigister);
+                } else {
+                    StartUtil.tvHui(btnRigister);
+                }
                 break;
             case R.id.tv_agreement:
+                // TODO: 17/3/22 跳转到美业协议
                 break;
             case R.id.btn_rigister:
+                if (!checkboxAgreement.isChecked()) {
+                    Ts.setText("请同意美业协议!");
+                    return;
+                }
+
+                //注册
+                if (isPhone(editPhone)) return;
+                if (isPassword(editPassword)) return;
+                if (isCode(editCode)) return;
+                rigisterHttp();
                 break;
             case R.id.tv_login:
                 StartUtil.toLogin(mActivity);
                 break;
             case R.id.tv_issue:
+                // TODO: 17/3/22  跳转到遇到问题页面
                 break;
         }
+    }
+
+    private void rigisterHttp() {
+        DialogUtil.show(mActivity);
+        OkHttpUtils
+                .post()
+                .url(Api.register)
+                .addParams("phone", editPhone.getText().toString())
+                .addParams("code", editCode.getText().toString())
+                .addParams("password", editPassword.getText().toString())
+                .addParams("ref_phone", editInvitation.getText().toString())
+                .build()
+                .execute(new MyStringCallback() {
+                    @Override
+                    public void onMySuccess(String result) {
+                        DialogUtil.hide();
+                        LoginBean loginBean = new Gson().fromJson(result, LoginBean.class);
+                        StartUtil.saveLogin(loginBean);
+                    }
+                });
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        codeTimeUtil.cancel();
+    }
+
+    //获取验证码成功
+    @Override
+    public void GetCodeSuccess() {
+        DialogUtil.hide();
+        codeTimeUtil.startTime();
     }
 }
