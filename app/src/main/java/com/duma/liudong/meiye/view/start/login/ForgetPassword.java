@@ -14,6 +14,7 @@ import com.duma.liudong.meiye.model.SlideBus;
 import com.duma.liudong.meiye.presenter.PublicPresenter;
 import com.duma.liudong.meiye.utils.CodeTimeUtil;
 import com.duma.liudong.meiye.utils.DialogUtil;
+import com.duma.liudong.meiye.view.dialog.ServiceDialog;
 import com.duma.liudong.meiye.view.start.main.SlideActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -44,6 +45,7 @@ public class ForgetPassword extends BaseActivity implements PublicPresenter.GetC
 
     private CodeTimeUtil codeTimeUtil;
     private PublicPresenter publicPresenter;
+    private ServiceDialog serviceDialog;
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -57,6 +59,7 @@ public class ForgetPassword extends BaseActivity implements PublicPresenter.GetC
         codeTimeUtil = new CodeTimeUtil(tvCode);
         publicPresenter = new PublicPresenter();
         publicPresenter.setGetCodeListener(this);
+        serviceDialog = new ServiceDialog(mActivity);
     }
 
     @Subscribe
@@ -87,6 +90,7 @@ public class ForgetPassword extends BaseActivity implements PublicPresenter.GetC
                 startActivity(intent);
                 break;
             case R.id.tv_issue:
+                serviceDialog.Show();
                 break;
         }
     }

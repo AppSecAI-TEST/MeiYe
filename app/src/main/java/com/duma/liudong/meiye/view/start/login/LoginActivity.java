@@ -20,6 +20,7 @@ import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.DialogUtil;
 import com.duma.liudong.meiye.utils.Lg;
 import com.duma.liudong.meiye.utils.StartUtil;
+import com.duma.liudong.meiye.view.dialog.ServiceDialog;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 
@@ -53,10 +54,16 @@ public class LoginActivity extends BaseActivity {
     TextView tvForgetPassword;
 
     private boolean hideOrShowPassword = false;//默认隐藏
+    private ServiceDialog serviceDialog;
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
         setContentView(R.layout.activity_login);
+    }
+
+    @Override
+    protected void initData() {
+        serviceDialog = new ServiceDialog(mActivity);
     }
 
     @Override
@@ -72,6 +79,7 @@ public class LoginActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.layout_issue:
+                serviceDialog.Show();
                 break;
             case R.id.layout_back:
                 finish();
@@ -119,5 +127,9 @@ public class LoginActivity extends BaseActivity {
                 });
     }
 
-
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+    }
 }

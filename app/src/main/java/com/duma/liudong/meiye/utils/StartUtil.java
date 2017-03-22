@@ -20,6 +20,7 @@ public class StartUtil {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         activity.startActivity(intent);
+        activity.overridePendingTransition(R.anim.out_to_left2, R.anim.in_from_right);
     }
 
     //保存登录状态

@@ -21,6 +21,7 @@ import com.duma.liudong.meiye.utils.CodeTimeUtil;
 import com.duma.liudong.meiye.utils.DialogUtil;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.utils.Ts;
+import com.duma.liudong.meiye.view.dialog.ServiceDialog;
 import com.duma.liudong.meiye.view.start.main.SlideActivity;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -68,6 +69,7 @@ public class RigisterActivity extends BaseActivity implements PublicPresenter.Ge
     private boolean hideOrShowPassword = false;//默认隐藏
     private CodeTimeUtil codeTimeUtil;
     private PublicPresenter publicPresenter;
+    private ServiceDialog serviceDialog;
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -78,6 +80,7 @@ public class RigisterActivity extends BaseActivity implements PublicPresenter.Ge
     @Override
     protected void initData() {
         tvTitle.setText("注册");
+        serviceDialog = new ServiceDialog(mActivity);
         codeTimeUtil = new CodeTimeUtil(tvCode);
         publicPresenter = new PublicPresenter();
         publicPresenter.setGetCodeListener(this);
@@ -140,7 +143,7 @@ public class RigisterActivity extends BaseActivity implements PublicPresenter.Ge
                 StartUtil.toLogin(mActivity);
                 break;
             case R.id.tv_issue:
-                // TODO: 17/3/22  跳转到遇到问题页面
+                serviceDialog.Show();
                 break;
         }
     }

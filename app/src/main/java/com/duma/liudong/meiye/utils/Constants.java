@@ -11,4 +11,6 @@ public class Constants {
     public static final String token = "token";
 
     public static final int codeTime = 60;//短信验证码倒计时
+    public static final String service = "18772397060";//客服电话
+
 }
