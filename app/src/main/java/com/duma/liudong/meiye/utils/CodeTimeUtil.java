@@ -14,13 +14,8 @@ public class CodeTimeUtil extends CountDownTimer {
 
     private TextView tv_code;
 
-    /**
-     * @param millisInFuture The number of millis in the future from the call
-     *                       to {@link #start()} until the countdown is done and {@link #onFinish()}
-     *                       is called.
-     */
-    public CodeTimeUtil(long millisInFuture, TextView textView) {
-        super(millisInFuture * 1000, 100);
+    public CodeTimeUtil(TextView textView) {
+        super(Constants.codeTime * 1000, 100);
         this.tv_code = textView;
     }
 

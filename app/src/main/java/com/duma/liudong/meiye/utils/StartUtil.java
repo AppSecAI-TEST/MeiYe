@@ -31,6 +31,14 @@ public class StartUtil {
         Lg.e(bean.toString());
     }
 
+    public static boolean isLogin() {
+        return MyApplication.getSpUtils().getString(Constants.user_id) == null || MyApplication.getSpUtils().getString(Constants.user_id).equals("") ? false : true;
+    }
+
+    public static void cancleLogin() {
+        MyApplication.getSpUtils().clear();
+    }
+
     //textView变颜色
     public static void tvHui(TextView textView) {
         textView.setTextColor(MyApplication.getInstance().getResources().getColor(R.color.text_hui));

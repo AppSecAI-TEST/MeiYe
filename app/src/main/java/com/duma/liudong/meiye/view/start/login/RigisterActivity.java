@@ -60,7 +60,6 @@ public class RigisterActivity extends BaseActivity implements PublicPresenter.Ge
     TextView tvIssue;
 
     private boolean hideOrShowPassword = false;//默认隐藏
-    private int codeTime = 60;
     private CodeTimeUtil codeTimeUtil;
     private PublicPresenter publicPresenter;
 
@@ -72,7 +71,7 @@ public class RigisterActivity extends BaseActivity implements PublicPresenter.Ge
     @Override
     protected void initData() {
         tvTitle.setText("注册");
-        codeTimeUtil = new CodeTimeUtil(codeTime, tvCode);
+        codeTimeUtil = new CodeTimeUtil(tvCode);
         publicPresenter = new PublicPresenter();
         publicPresenter.setGetCodeListener(this);
         StartUtil.tvHui(btnRigister);
@@ -150,6 +149,7 @@ public class RigisterActivity extends BaseActivity implements PublicPresenter.Ge
                         DialogUtil.hide();
                         LoginBean loginBean = new Gson().fromJson(result, LoginBean.class);
                         StartUtil.saveLogin(loginBean);
+                        StartUtil.toLogin(RigisterActivity.this);
                     }
                 });
     }

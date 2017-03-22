@@ -20,6 +20,8 @@
         <activity android:name=".view.start.home.CouponsActivity" />
         <activity android:name=".view.start.login.LoginActivity" />
         <activity android:name=".view.start.login.RigisterActivity" />
+        <activity android:name=".view.start.login.ForgetPassword" />
+        <activity android:name=".view.start.login.ConfirmForgetPasswordActivity" />
     </application>
 
 </manifest>
