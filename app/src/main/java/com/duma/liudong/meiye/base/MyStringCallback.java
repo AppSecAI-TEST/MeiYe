@@ -38,6 +38,7 @@ public abstract class MyStringCallback extends StringCallback {
 
     @Override
     public void onResponse(String response, int id) {
+        Lg.d("json: " + response);
         try {
             JSONObject jsonObject = new JSONObject(response);
             String status = jsonObject.getString("status");

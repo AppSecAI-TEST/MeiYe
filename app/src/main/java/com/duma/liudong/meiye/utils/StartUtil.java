@@ -51,4 +51,11 @@ public class StartUtil {
         textView.setBackgroundColor(MyApplication.getInstance().getResources().getColor(R.color.button_rad));
     }
 
+    //判断为空
+    public static boolean isEmpty(String s) {
+        if (s == null || s.equals("")) {
+            return true;
+        }
+        return false;
+    }
 }

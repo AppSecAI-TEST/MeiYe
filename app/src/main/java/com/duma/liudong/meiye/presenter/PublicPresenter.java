@@ -1,8 +1,12 @@
 package com.duma.liudong.meiye.presenter;
 
+import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.base.MyStringCallback;
+import com.duma.liudong.meiye.model.MeBean;
 import com.duma.liudong.meiye.utils.Api;
+import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.Ts;
+import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 /**
@@ -39,4 +43,42 @@ public class PublicPresenter {
                     }
                 });
     }
+
+    /**
+     * 获取我的页面的信息
+     */
+    public interface GetMeListener {
+        void GetMeSuccess(MeBean meBean);
+
+        void GetMeError();
+    }
+
+    private GetMeListener getMeListener;
+
+    public void setGetMeListener(GetMeListener getMeListener) {
+        this.getMeListener = getMeListener;
+    }
+
+    public void getMe() {
+        OkHttpUtils.getInstance().cancelTag("getMe");
+        OkHttpUtils
+                .post()
+                .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
+                .url(Api.index)
+                .build()
+                .execute(new MyStringCallback() {
+                    @Override
+                    public void onMySuccess(String result) {
+                        getMeListener.GetMeSuccess(new Gson().fromJson(result, MeBean.class));
+                    }
+
+                    @Override
+                    protected void onError(String result) {
+                        getMeListener.GetMeError();
+                        super.onError(result);
+                    }
+                });
+    }
+
 }

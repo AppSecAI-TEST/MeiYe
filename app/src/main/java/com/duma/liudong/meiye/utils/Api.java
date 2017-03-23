@@ -14,4 +14,5 @@ public class Api {
     public static final String login = url + "/App/user/login";
     public static final String sendCode = url + "/App/user/sendCode";
     public static final String alterPwd = url + "/App/user/alterPwd";
+    public static final String index = url + "/App/user/index";
 }

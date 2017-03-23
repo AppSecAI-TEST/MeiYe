@@ -27,6 +27,7 @@
         <activity
             android:name=".view.start.main.SlideActivity"
             android:theme="@style/AppTheme_Translucent" />
+        <activity android:name=".view.me.UserDataActivity" />
     </application>
 
 </manifest>

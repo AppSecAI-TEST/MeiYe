@@ -48,6 +48,18 @@ public class MainActivity extends BaseActivity {
         showFramgment(getHomeFragment(), getSearch_BarFragment());
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        //去掉activit被杀死后保存的回调
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (getMeFragment().isVisible()) {
+            getMeFragment().refresh();
+        }
+    }
 
     @OnClick({R.id.rdoBtn_home, R.id.rdoBtn_classify, R.id.rdoBtn_forum, R.id.rdoBtn_shopping_cart, R.id.rdoBtn_me})
     public void onClick(View view) {
