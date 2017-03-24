@@ -6,12 +6,19 @@ package com.duma.liudong.meiye.model;
 
 public class LoginBean {
     /**
-     * user_id : 2
-     * phone : 15088653868
-     * token : mrknoc1489542142
+     * user_id : 9
+     * nickname : null
+     * birthday : 0
+     * head_pic : null
+     * sex : 0
+     * phone : 18772397060
+     * token : pszufo1490322209
      */
-
     private String user_id;
+    private String nickname;
+    private String birthday;
+    private String head_pic;
+    private String sex;
     private String phone;
     private String token;
 
@@ -21,6 +28,38 @@ public class LoginBean {
 
     public void setUser_id(String user_id) {
         this.user_id = user_id;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getHead_pic() {
+        return head_pic;
+    }
+
+    public void setHead_pic(String head_pic) {
+        this.head_pic = head_pic;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     public String getPhone() {
@@ -37,14 +76,5 @@ public class LoginBean {
 
     public void setToken(String token) {
         this.token = token;
-    }
-
-    @Override
-    public String toString() {
-        return "LoginBean{" +
-                "user_id='" + user_id + '\'' +
-                ", phone='" + phone + '\'' +
-                ", token='" + token + '\'' +
-                '}';
     }
 }

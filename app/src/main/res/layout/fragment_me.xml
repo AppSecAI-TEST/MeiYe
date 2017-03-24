@@ -30,6 +30,7 @@
                         android:id="@+id/img_head_pic"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
+                        android:scaleType="centerCrop"
                         android:src="@drawable/touxiang" />
                 </LinearLayout>
 

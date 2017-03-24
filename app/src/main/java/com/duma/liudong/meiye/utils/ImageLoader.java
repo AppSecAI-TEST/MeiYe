@@ -24,14 +24,14 @@ public class ImageLoader {
                 .into(imageView);
     }
 
-//    public static void withYuan(Object url, ImageView imageView) {
-//        Glide.with(MyApplication.getInstance())
-//                .load(url)
+    public static void withYuan(Object url, ImageView imageView) {
+        Glide.with(MyApplication.getInstance())
+                .load(url)
 //                .error(R.drawable.xiaotouxiang)//load失敗的Drawable
 //                .placeholder(R.drawable.xiaotouxiang)//loading時候的Drawable
-//                .transform(new GlideCircleTransform(MyApplication.getInstance()))
-//                .into(imageView);
-//    }
+                .transform(new GlideCircleTransform(MyApplication.getInstance()))
+                .into(imageView);
+    }
 
     public static void noErrorWith(Object url, ImageView imageView) {
         Glide.with(MyApplication.getInstance())

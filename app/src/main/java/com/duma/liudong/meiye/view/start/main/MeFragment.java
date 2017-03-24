@@ -12,7 +12,9 @@ import com.duma.liudong.meiye.base.BaseFragment;
 import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.model.MeBean;
 import com.duma.liudong.meiye.presenter.PublicPresenter;
+import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
+import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.view.me.UserDataActivity;
 
@@ -137,7 +139,6 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
     @Override
     public void GetMeSuccess(MeBean meBean) {
         setData(meBean);
-
     }
 
     //数据请求错误的回调
@@ -150,6 +151,7 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
     private void setData(MeBean meBean) {
         swLoading.setRefreshing(false);
         if (meBean == null) {
+            ImageLoader.withYuan(R.drawable.touxiang, imgHeadPic);
             tvNickName.setText("登录/注册");
             tvRefNum.setText("我的推广码:...");//推广码
             tvBalance.setText("...");//余额
@@ -161,10 +163,15 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
             tvTotalClient.setText("我的客户:...");
             tvRedPacket.setText("...");//红包
         } else {
-            if (StartUtil.isEmpty(meBean.getNick_name())) {
+            if (StartUtil.isEmpty(meBean.getNickname())) {
                 tvNickName.setText("用户" + MyApplication.getSpUtils().getString(Constants.phone));
             } else {
-                tvNickName.setText(meBean.getNick_name());
+                tvNickName.setText(meBean.getNickname());
+            }
+            if (StartUtil.isEmpty(meBean.getHead_pic())) {
+                ImageLoader.withYuan(R.drawable.touxiang, imgHeadPic);
+            } else {
+                ImageLoader.withYuan(Api.url + meBean.getHead_pic(), imgHeadPic);
             }
             tvRefNum.setText("我的推广码:" + meBean.getRef_num());
             tvBalance.setText(meBean.getUser_money());//余额

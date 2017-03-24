@@ -24,8 +24,9 @@
 
             <ImageView
                 android:id="@+id/img_touxiang"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/touxiang" />
 
             <LinearLayout
@@ -53,7 +54,6 @@
         <View style="@style/henxian" />
 
         <LinearLayout
-            android:id="@+id/layout_ShouJi"
             style="@style/gerenziliao_m"
             android:layout_width="match_parent"
             android:orientation="horizontal">
@@ -63,8 +63,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="8dp"
                 android:gravity="center"
-                android:text="用户名"
-                android:textColor="@color/texthei" />
+                android:text="用户名" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -85,7 +84,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
-                    android:src="@drawable/r" />
+                    android:src="@drawable/r"
+                    android:visibility="invisible" />
             </LinearLayout>
         </LinearLayout>
 
@@ -102,8 +102,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="8dp"
                 android:gravity="center"
-                android:text="昵称"
-                android:textColor="@color/texthei" />
+                android:text="昵称" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -141,8 +140,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="8dp"
                 android:gravity="center"
-                android:text="性别"
-                android:textColor="@color/texthei" />
+                android:text="性别" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -180,8 +178,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="8dp"
                 android:gravity="center"
-                android:text="生日"
-                android:textColor="@color/texthei" />
+                android:text="生日" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -209,6 +206,7 @@
         <View style="@style/henxian" />
 
         <LinearLayout
+            android:id="@+id/layout_dizhi"
             style="@style/gerenziliao_m"
             android:layout_width="match_parent"
             android:orientation="horizontal">
@@ -218,8 +216,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="8dp"
                 android:gravity="center"
-                android:text="地址管理"
-                android:textColor="@color/texthei" />
+                android:text="地址管理" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -228,10 +225,6 @@
                 android:gravity="center|right"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/texthei" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -244,6 +237,7 @@
         <View style="@style/henxian" />
 
         <LinearLayout
+            android:id="@+id/layout_password"
             style="@style/gerenziliao_m"
             android:layout_width="match_parent"
             android:orientation="horizontal">
@@ -253,8 +247,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="8dp"
                 android:gravity="center"
-                android:text="密码修改"
-                android:textColor="@color/texthei" />
+                android:text="密码修改" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -263,10 +256,6 @@
                 android:gravity="center|right"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/texthei" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -279,6 +268,7 @@
         <View style="@style/henxian" />
 
         <LinearLayout
+            android:id="@+id/layout_anquan"
             style="@style/gerenziliao_m"
             android:layout_width="match_parent"
             android:orientation="horizontal">
@@ -288,8 +278,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="8dp"
                 android:gravity="center"
-                android:text="安全设置"
-                android:textColor="@color/texthei" />
+                android:text="安全设置" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -297,11 +286,6 @@
                 android:layout_weight="1"
                 android:gravity="center|right"
                 android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/texthei" />
 
                 <ImageView
                     android:layout_width="wrap_content"

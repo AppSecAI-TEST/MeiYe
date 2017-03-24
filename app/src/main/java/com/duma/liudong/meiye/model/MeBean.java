@@ -21,7 +21,7 @@ public class MeBean {
 
 
     private String head_pic;
-    private String nick_name;
+    private String nickname;
     private String level;
     private String ref_num;
     private String distribut_money;
@@ -39,12 +39,12 @@ public class MeBean {
         this.head_pic = head_pic;
     }
 
-    public String getNick_name() {
-        return nick_name;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setNick_name(String nick_name) {
-        this.nick_name = nick_name;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getLevel() {
@@ -114,12 +114,12 @@ public class MeBean {
     @Override
     public String toString() {
         return "MeBean{" +
-                "head_pic=" + head_pic +
-                ", nick_name=" + nick_name +
+                "head_pic='" + head_pic + '\'' +
+                ", nickname='" + nickname + '\'' +
                 ", level='" + level + '\'' +
                 ", ref_num='" + ref_num + '\'' +
                 ", distribut_money='" + distribut_money + '\'' +
-                ", new_money=" + new_money +
+                ", new_money='" + new_money + '\'' +
                 ", total_client='" + total_client + '\'' +
                 ", new_client='" + new_client + '\'' +
                 ", user_money='" + user_money + '\'' +
