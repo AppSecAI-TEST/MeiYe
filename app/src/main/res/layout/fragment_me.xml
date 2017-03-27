@@ -194,6 +194,7 @@
                 <View style="@style/shuxian" />
 
                 <LinearLayout
+                    android:id="@+id/layout_wode_kehu"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -365,6 +366,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/layout_shiwu_dindan"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -388,6 +390,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/layout_tuangou_dindan"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -411,6 +414,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/layout_dinzhi_dindan"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -434,6 +438,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/layout_wode_dinzhi"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -459,6 +464,7 @@
                 <View style="@style/shuxian" />
 
                 <LinearLayout
+                    android:id="@+id/layout_wode_dindan"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -487,6 +493,7 @@
                 android:layout_height="10dp" />
 
             <ImageView
+                android:id="@+id/img_ad"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:src="@mipmap/ic_launcher" />
@@ -501,6 +508,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/layout_qiandao"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -524,6 +532,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/layout_guanzhuan"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -547,6 +556,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/layout_tiezi"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -570,6 +580,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/layout_fensi"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -595,6 +606,7 @@
                 <View style="@style/shuxian" />
 
                 <LinearLayout
+                    android:id="@+id/layout_luntan"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -629,6 +641,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/layout_tequan"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -652,6 +665,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/layout_fankui"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -675,6 +689,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/layout_zuji"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -698,6 +713,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/layout_shoucang"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"

@@ -30,6 +30,24 @@ public class MeBean {
     private String new_client;
     private String user_money;
     private String reward_points;
+    private String coupon;
+    private String packet;
+
+    public String getCoupon() {
+        return coupon;
+    }
+
+    public void setCoupon(String coupon) {
+        this.coupon = coupon;
+    }
+
+    public String getPacket() {
+        return packet;
+    }
+
+    public void setPacket(String packet) {
+        this.packet = packet;
+    }
 
     public String getHead_pic() {
         return head_pic;
@@ -72,6 +90,9 @@ public class MeBean {
     }
 
     public String getNew_money() {
+        if (new_money == null) {
+            return "0";
+        }
         return new_money;
     }
 

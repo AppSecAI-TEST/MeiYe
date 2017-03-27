@@ -2,12 +2,14 @@ package com.duma.liudong.meiye.utils;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.widget.TextView;
 
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.model.LoginBean;
 import com.duma.liudong.meiye.view.start.login.LoginActivity;
+import com.duma.liudong.meiye.view.start.main.MainActivity;
 
 import java.text.SimpleDateFormat;
 
@@ -36,9 +38,23 @@ public class StartUtil {
         setSex(bean.getSex());
     }
 
+    //跳转首页
+    public static void toMain(Activity activity) {
+        Intent intent = new Intent(activity, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        activity.startActivity(intent);
+    }
+
+    public static void setSw(SwipeRefreshLayout swLoading, SwipeRefreshLayout.OnRefreshListener onRefreshListener) {
+        swLoading.setOnRefreshListener(onRefreshListener);
+        swLoading.setColorSchemeColors(MyApplication.getInstance().getResources().getColor(R.color.main_red));
+    }
+
     public static void setBirthday(String Birthday) {
         MyApplication.getSpUtils().put(Constants.birthday, getTime(Long.parseLong(Birthday) * 1000));
     }
+
 
     public static void setNickName(String nickName) {
         //如果昵称为空的话 给个默认的

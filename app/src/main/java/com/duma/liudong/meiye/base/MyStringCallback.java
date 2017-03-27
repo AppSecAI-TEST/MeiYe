@@ -43,6 +43,10 @@ public abstract class MyStringCallback extends StringCallback {
             JSONObject jsonObject = new JSONObject(response);
             String status = jsonObject.getString("status");
             if (status.equals("1")) {
+                if (jsonObject.getString("result").equals("null")) {
+                    onMySuccess("");
+                    return;
+                }
                 onMySuccess(jsonObject.getString("result"));
             } else if (status.equals("100")) {
                 onMySuccess("-1");
@@ -52,7 +56,8 @@ public abstract class MyStringCallback extends StringCallback {
                 onError(status);
             }
         } catch (JSONException e) {
-            Ts.erroy();
+            Ts.JsonErroy();
+            DialogUtil.hide();
         }
 
     }

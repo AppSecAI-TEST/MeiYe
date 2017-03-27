@@ -16,7 +16,9 @@ import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
+import com.duma.liudong.meiye.view.me.FanKuiActivity;
 import com.duma.liudong.meiye.view.me.UserDataActivity;
+import com.duma.liudong.meiye.view.me.WoDekeHuActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -70,6 +72,38 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
     SwipeRefreshLayout swLoading;
 
     PublicPresenter publicPresenter;
+    @BindView(R.id.layout_shiwu_dindan)
+    LinearLayout layoutShiwuDindan;
+    @BindView(R.id.layout_tuangou_dindan)
+    LinearLayout layoutTuangouDindan;
+    @BindView(R.id.layout_dinzhi_dindan)
+    LinearLayout layoutDinzhiDindan;
+    @BindView(R.id.layout_wode_dinzhi)
+    LinearLayout layoutWodeDinzhi;
+    @BindView(R.id.layout_wode_dindan)
+    LinearLayout layoutWodeDindan;
+    @BindView(R.id.img_ad)
+    ImageView imgAd;
+    @BindView(R.id.layout_qiandao)
+    LinearLayout layoutQiandao;
+    @BindView(R.id.layout_guanzhuan)
+    LinearLayout layoutGuanzhuan;
+    @BindView(R.id.layout_tiezi)
+    LinearLayout layoutTiezi;
+    @BindView(R.id.layout_fensi)
+    LinearLayout layoutFensi;
+    @BindView(R.id.layout_luntan)
+    LinearLayout layoutLuntan;
+    @BindView(R.id.layout_tequan)
+    LinearLayout layoutTequan;
+    @BindView(R.id.layout_fankui)
+    LinearLayout layoutFankui;
+    @BindView(R.id.layout_zuji)
+    LinearLayout layoutZuji;
+    @BindView(R.id.layout_shoucang)
+    LinearLayout layoutShoucang;
+    @BindView(R.id.layout_wode_kehu)
+    LinearLayout layoutWodeKehu;
 
     @Override
     protected int setLayoutResouceId() {
@@ -98,7 +132,7 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
         refresh();
     }
 
-    @OnClick({R.id.img_head_pic, R.id.layout_account, R.id.layout_ref_num, R.id.layout_red_packet, R.id.layout_integral, R.id.layout_balance, R.id.layout_discount_coupon, R.id.layout_asset})
+    @OnClick({R.id.layout_wode_kehu, R.id.img_head_pic, R.id.layout_account, R.id.layout_ref_num, R.id.layout_red_packet, R.id.layout_integral, R.id.layout_balance, R.id.layout_discount_coupon, R.id.layout_asset, R.id.layout_shiwu_dindan, R.id.layout_tuangou_dindan, R.id.layout_dinzhi_dindan, R.id.layout_wode_dinzhi, R.id.layout_wode_dindan, R.id.img_ad, R.id.layout_qiandao, R.id.layout_guanzhuan, R.id.layout_tiezi, R.id.layout_fensi, R.id.layout_luntan, R.id.layout_tequan, R.id.layout_fankui, R.id.layout_zuji, R.id.layout_shoucang})
     public void onClick(View view) {
         if (!StartUtil.isLogin()) {
             StartUtil.toLogin(mActivity);
@@ -122,6 +156,40 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
             case R.id.layout_discount_coupon:
                 break;
             case R.id.layout_asset:
+                break;
+            case R.id.layout_shiwu_dindan:
+                break;
+            case R.id.layout_tuangou_dindan:
+                break;
+            case R.id.layout_dinzhi_dindan:
+                break;
+            case R.id.layout_wode_dinzhi:
+                break;
+            case R.id.layout_wode_dindan:
+                break;
+            case R.id.img_ad:
+                break;
+            case R.id.layout_qiandao:
+                break;
+            case R.id.layout_guanzhuan:
+                break;
+            case R.id.layout_tiezi:
+                break;
+            case R.id.layout_fensi:
+                break;
+            case R.id.layout_luntan:
+                break;
+            case R.id.layout_tequan:
+                break;
+            case R.id.layout_fankui:
+                startActivity(new Intent(mActivity, FanKuiActivity.class));
+                break;
+            case R.id.layout_zuji:
+                break;
+            case R.id.layout_shoucang:
+                break;
+            case R.id.layout_wode_kehu:
+                startActivity(new Intent(mActivity, WoDekeHuActivity.class));
                 break;
         }
     }
@@ -180,9 +248,9 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
             tvNewClient.setText("今日新增:" + meBean.getNew_client());
             tvNewMoney.setText("今日收益:" + meBean.getNew_money());
             tvTotalClient.setText("我的客户:" + meBean.getTotal_client());
-            // TODO: 17/3/23 这里有些字段服务器没有给出
-            tvRedPacket.setText("0");//红包
-            tvDiscountCoupon.setText("0");//优惠券
+            tvRedPacket.setText(meBean.getCoupon());//红包
+            tvDiscountCoupon.setText(meBean.getPacket());//优惠券
         }
     }
+
 }

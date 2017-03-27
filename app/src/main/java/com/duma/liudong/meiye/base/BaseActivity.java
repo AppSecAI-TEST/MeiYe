@@ -104,4 +104,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
         return false;
     }
+
+    public boolean isText(EditText editPhone, String text) {
+        if (editPhone.getText().toString().isEmpty()) {
+            Ts.setText(text);
+            return true;
+        }
+        return false;
+    }
 }
