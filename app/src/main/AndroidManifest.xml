@@ -70,6 +70,8 @@
         <activity android:name=".view.me.ChangePasswordActivity" />
         <activity android:name=".view.me.FanKuiActivity" />
         <activity android:name=".view.me.WoDekeHuActivity" />
+        <activity android:name=".view.home.MessageActivity" />
+        <activity android:name=".view.home.MessageContentActivity" />
     </application>
 
 </manifest>

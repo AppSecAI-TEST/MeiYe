@@ -9,8 +9,6 @@ import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseBannaer;
 import com.duma.liudong.meiye.base.BaseFragment;
 import com.duma.liudong.meiye.model.AdDemo;
-import com.duma.liudong.meiye.utils.StartUtil;
-import com.duma.liudong.meiye.utils.Ts;
 import com.duma.liudong.meiye.widget.SampleAdapter;
 import com.duma.liudong.meiye.widget.VerticalBannerView;
 
@@ -85,12 +83,9 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener {
             case R.id.layout_train:
                 break;
             case R.id.layout_sign:
-                StartUtil.toLogin(mActivity);
                 break;
             case R.id.layout_coupons:
                 //领卷
-                StartUtil.cancleLogin();
-                Ts.setText("已注销登录!");
                 break;
             case R.id.layout_makeMoney:
                 break;

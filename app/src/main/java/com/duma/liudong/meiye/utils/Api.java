@@ -20,4 +20,6 @@ public class Api {
     public static final String changePwd = url + "/App/user/changePwd";
     public static final String feedback = url + "/App/user/feedback";
     public static final String myClient = url + "/App/user/myClient";
+    public static final String message = url + "/App/user/message";
+    public static final String messageAction = url + "/App/user/messageAction";
 }

@@ -1,16 +1,23 @@
 package com.duma.liudong.meiye.view.start.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.base.BaseFragment;
+import com.duma.liudong.meiye.utils.StartUtil;
+import com.duma.liudong.meiye.view.home.MessageActivity;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
@@ -25,6 +32,14 @@ public class MainActivity extends BaseActivity {
     RadioButton rdoBtnShoppingCart;
     @BindView(R.id.rdoBtn_me)
     RadioButton rdoBtnMe;
+    @BindView(R.id.layout_bar_fragment)
+    FrameLayout layoutBarFragment;
+    @BindView(R.id.layout_message)
+    LinearLayout layoutMessage;
+    @BindView(R.id.layout_tab_fragment)
+    FrameLayout layoutTabFragment;
+    @BindView(R.id.radioGroup_p)
+    RadioGroup radioGroupP;
 
     HomeFragment homeFragment;
     ClassifyFragment classifyFragment;
@@ -35,7 +50,6 @@ public class MainActivity extends BaseActivity {
     ForumBarFragment forumBarFragment;
     ShoppingCartBarFragment shoppingCartBarFragment;
     MeBarFragment meBarFragment;
-
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -61,7 +75,7 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    @OnClick({R.id.rdoBtn_home, R.id.rdoBtn_classify, R.id.rdoBtn_forum, R.id.rdoBtn_shopping_cart, R.id.rdoBtn_me})
+    @OnClick({R.id.layout_message, R.id.rdoBtn_home, R.id.rdoBtn_classify, R.id.rdoBtn_forum, R.id.rdoBtn_shopping_cart, R.id.rdoBtn_me})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rdoBtn_home:
@@ -78,6 +92,13 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.rdoBtn_me:
                 showFramgment(getMeFragment(), getMe_BarFragment());
+                break;
+            case R.id.layout_message:
+                if (!StartUtil.isLogin()) {
+                    StartUtil.toLogin(mActivity);
+                    return;
+                }
+                startActivity(new Intent(MainActivity.this, MessageActivity.class));
                 break;
         }
     }
@@ -201,4 +222,14 @@ public class MainActivity extends BaseActivity {
         return meBarFragment;
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
+
+    @OnClick(R.id.layout_message)
+    public void onClick() {
+    }
 }
