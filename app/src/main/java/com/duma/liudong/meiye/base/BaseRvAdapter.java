@@ -5,8 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.duma.liudong.meiye.utils.Lg;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
@@ -24,28 +24,16 @@ import java.util.List;
 public abstract class BaseRvAdapter<T> {
     public List<T> mList;
     private CommonAdapter<T> commonAdapter;
-    private RvAdapterListener rvAdapterListener;
+//    private RvAdapterListener rvAdapterListener;
 
-    public interface RvAdapterListener {
-        void hide_Kong();
+    private View layoutView;
 
-        void show_kong();
-
-        void hide_loading();
-
-        void show_loading();
-
-        void convert(ViewHolder holder, Object object, int position);
-    }
-
-
-    public BaseRvAdapter(final Context context, final int layoutId, RecyclerView rv, final RvAdapterListener rvAdapterListener) {
+    public BaseRvAdapter(final Context context, final int layoutId, RecyclerView rv) {
         mList = new ArrayList<>();
-        this.rvAdapterListener = rvAdapterListener;
         commonAdapter = new CommonAdapter<T>(context, layoutId, mList) {
             @Override
             protected void convert(ViewHolder holder, T t, int position) {
-                rvAdapterListener.convert(holder, t, position);
+                BaseRvAdapter.this.getView(holder, t, position);
             }
         };
         rv.setAdapter(commonAdapter);
@@ -63,6 +51,28 @@ public abstract class BaseRvAdapter<T> {
         });
     }
 
+    protected abstract void getView(ViewHolder holder, T t, int position);
+
+    protected abstract void hide_loading();
+
+    protected abstract void show_loading();
+
+    public void setKongView(View layoutView) {
+        this.layoutView = layoutView;
+    }
+
+    public void hide_Kong() {
+        if (layoutView != null) {
+            layoutView.setVisibility(View.GONE);
+        }
+    }
+
+    public void show_kong() {
+        if (layoutView != null) {
+            layoutView.setVisibility(View.VISIBLE);
+        }
+    }
+
     protected void onitemClick(View view, RecyclerView.ViewHolder holder, int position) {
     }
 
@@ -70,14 +80,14 @@ public abstract class BaseRvAdapter<T> {
     }
 
     public void QueryHttp(RequestCall build) {
-        rvAdapterListener.show_loading();
-        rvAdapterListener.hide_Kong();
-        OkHttpUtils.getInstance().cancelTag(this);
+        show_loading();
+        hide_Kong();
+        OkHttpUtils.getInstance().cancelTag("base");
         build.execute(new MyStringCallback() {
             @Override
             public void onMySuccess(String result) {
-                rvAdapterListener.hide_loading();
-                ArrayList<T> list = getTs(result);
+                hide_loading();
+                List<T> list = getTs(result);
                 if (list == null || list.size() == 0) {
                     onError("");
                     return;
@@ -90,17 +100,24 @@ public abstract class BaseRvAdapter<T> {
             @Override
             protected void onError(String result) {
                 super.onError(result);
-                rvAdapterListener.hide_loading();
-                rvAdapterListener.show_kong();
+                hide_loading();
+                show_kong();
             }
         });
 
     }
 
+    private Type type;
+
     @Nullable
-    protected ArrayList<T> getTs(String result) {
-        Type type = new TypeToken<ArrayList<T>>() {
-        }.getType();
+    protected List<T> getTs(String result) {
+        if (type == null) {
+            Lg.e("没有设置type");
+        }
         return new Gson().fromJson(result, type);
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 }

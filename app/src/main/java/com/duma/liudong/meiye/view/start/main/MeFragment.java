@@ -17,8 +17,12 @@ import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.view.me.FanKuiActivity;
+import com.duma.liudong.meiye.view.me.HongBaoActivity;
+import com.duma.liudong.meiye.view.me.JiFenActivity;
 import com.duma.liudong.meiye.view.me.UserDataActivity;
 import com.duma.liudong.meiye.view.me.WoDekeHuActivity;
+import com.duma.liudong.meiye.view.me.YouHuiJuanActivity;
+import com.duma.liudong.meiye.view.me.YuEActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -148,12 +152,20 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
             case R.id.layout_ref_num:
                 break;
             case R.id.layout_red_packet:
+                //红包
+                startActivity(new Intent(mActivity, HongBaoActivity.class));
                 break;
             case R.id.layout_integral:
+                //积分
+                startActivity(new Intent(mActivity, JiFenActivity.class));
                 break;
             case R.id.layout_balance:
+                //余额
+                startActivity(new Intent(mActivity, YuEActivity.class));
                 break;
             case R.id.layout_discount_coupon:
+                //优惠券
+                startActivity(new Intent(mActivity, YouHuiJuanActivity.class));
                 break;
             case R.id.layout_asset:
                 break;

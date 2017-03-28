@@ -39,7 +39,7 @@ import butterknife.OnClick;
  * Created by liudong on 17/3/27.
  */
 
-public class MessageActivity extends BaseActivity implements BaseRvAdapter.RvAdapterListener, SwipeRefreshLayout.OnRefreshListener {
+public class MessageActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
     @BindView(R.id.layout_back)
     LinearLayout layoutBack;
     @BindView(R.id.tv_title)
@@ -78,11 +78,11 @@ public class MessageActivity extends BaseActivity implements BaseRvAdapter.RvAda
                 .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
                 .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
                 .build();
-        adapter = new BaseRvAdapter<MessageBean>(mActivity, R.layout.rv_message, rvShangping, this) {
+        adapter = new BaseRvAdapter<MessageBean>(mActivity, R.layout.rv_message, rvShangping) {
             @Nullable
             @Override
-            protected ArrayList<MessageBean> getTs(String result) {
-                ArrayList<MessageBean> list = new ArrayList<>();
+            protected List<MessageBean> getTs(String result) {
+                List<MessageBean> list = new ArrayList<>();
                 try {
                     JSONObject jsonObject = new JSONObject(result);
                     MessageBean bean;
@@ -106,6 +106,45 @@ public class MessageActivity extends BaseActivity implements BaseRvAdapter.RvAda
             }
 
             @Override
+            protected void getView(ViewHolder holder, MessageBean bean, int position) {
+                ImageView imageView = holder.getView(R.id.img_head_pic);
+                switch (bean.getMessage_type()) {
+                    case "0":
+                        ImageLoader.with(R.drawable.img_24, imageView);
+                        holder.setText(R.id.tv_title, "系统消息");
+                        break;
+                    case "1":
+                        ImageLoader.with(R.drawable.img_23, imageView);
+                        holder.setText(R.id.tv_title, "我的资产");
+                        break;
+                    case "2":
+                        ImageLoader.with(R.drawable.img_25, imageView);
+                        holder.setText(R.id.tv_title, "物流通知");
+                        break;
+                }
+                holder.setText(R.id.tv_content, bean.getMessage_body());
+                holder.setText(R.id.tv_time, bean.getMessage_time());
+
+                TextView textView = holder.getView(R.id.tv_number);
+                textView.setText(bean.getNo_read());
+                if (bean.getNo_read().equals("")) {
+                    textView.setVisibility(View.GONE);
+                } else {
+                    textView.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            protected void hide_loading() {
+                swLoading.setRefreshing(false);
+            }
+
+            @Override
+            protected void show_loading() {
+                swLoading.setRefreshing(true);
+            }
+
+            @Override
             protected void onitemClick(View view, RecyclerView.ViewHolder holder, int position) {
                 Intent intent = new Intent(MessageActivity.this, MessageContentActivity.class);
                 intent.putExtra("type", mList.get(position).getMessage_type());
@@ -125,6 +164,7 @@ public class MessageActivity extends BaseActivity implements BaseRvAdapter.RvAda
             }
         };
 
+        adapter.setKongView(layoutKong);
     }
 
     @OnClick(R.id.layout_back)
@@ -132,48 +172,6 @@ public class MessageActivity extends BaseActivity implements BaseRvAdapter.RvAda
         finish();
     }
 
-    @Override
-    public void hide_Kong() {
-        layoutKong.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void show_kong() {
-        layoutKong.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void hide_loading() {
-        swLoading.setRefreshing(false);
-    }
-
-    @Override
-    public void show_loading() {
-        swLoading.setRefreshing(true);
-    }
-
-    @Override
-    public void convert(ViewHolder holder, Object object, int position) {
-        MessageBean bean = (MessageBean) object;
-        ImageView imageView = holder.getView(R.id.img_head_pic);
-        switch (bean.getMessage_type()) {
-            case "0":
-                ImageLoader.with(R.drawable.img_24, imageView);
-                holder.setText(R.id.tv_title, "系统消息");
-                break;
-            case "1":
-                ImageLoader.with(R.drawable.img_23, imageView);
-                holder.setText(R.id.tv_title, "我的资产");
-                break;
-            case "2":
-                ImageLoader.with(R.drawable.img_25, imageView);
-                holder.setText(R.id.tv_title, "物流通知");
-                break;
-        }
-        holder.setText(R.id.tv_content, bean.getMessage_body());
-        holder.setText(R.id.tv_number, bean.getNo_read());
-        holder.setText(R.id.tv_time, bean.getMessage_time());
-    }
 
     @Override
     public void onRefresh() {

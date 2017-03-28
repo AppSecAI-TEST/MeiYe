@@ -72,6 +72,10 @@
         <activity android:name=".view.me.WoDekeHuActivity" />
         <activity android:name=".view.home.MessageActivity" />
         <activity android:name=".view.home.MessageContentActivity" />
+        <activity android:name=".view.me.JiFenActivity" />
+        <activity android:name=".view.me.YuEActivity" />
+        <activity android:name=".view.me.YouHuiJuanActivity" />
+        <activity android:name=".view.me.HongBaoActivity" />
     </application>
 
 </manifest>

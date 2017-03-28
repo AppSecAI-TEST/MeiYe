@@ -22,4 +22,8 @@ public class Api {
     public static final String myClient = url + "/App/user/myClient";
     public static final String message = url + "/App/user/message";
     public static final String messageAction = url + "/App/user/messageAction";
+    public static final String moneyDetail = url + "/App/user/moneyDetail";
+    public static final String pointsDetail = url + "/App/user/pointsDetail";
+    public static final String coupon = url + "/App/user/coupon";
+    public static final String packet = url + "/App/user/packet";
 }

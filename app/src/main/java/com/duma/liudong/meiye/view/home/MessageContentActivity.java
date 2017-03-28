@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.base.BaseRvAdapter;
-import com.duma.liudong.meiye.base.MessageBean;
 import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.base.MyStringCallback;
 import com.duma.liudong.meiye.model.MessageContentBean;
@@ -22,9 +21,12 @@ import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.utils.Ts;
 import com.duma.liudong.meiye.view.dialog.QueRenUtilDialog;
+import com.google.gson.reflect.TypeToken;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.request.RequestCall;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -33,7 +35,7 @@ import butterknife.OnClick;
  * Created by liudong on 17/3/27.
  */
 
-public class MessageContentActivity extends BaseActivity implements BaseRvAdapter.RvAdapterListener, SwipeRefreshLayout.OnRefreshListener {
+public class MessageContentActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
     @BindView(R.id.layout_back)
     LinearLayout layoutBack;
     @BindView(R.id.tv_title)
@@ -48,7 +50,7 @@ public class MessageContentActivity extends BaseActivity implements BaseRvAdapte
     SwipeRefreshLayout swLoading;
     private String type, title;
 
-    private BaseRvAdapter<MessageBean> adapter;
+    private BaseRvAdapter<MessageContentBean> adapter;
     private RequestCall build;
     private RequestCall canleBulod;
     private QueRenUtilDialog dialog;
@@ -66,8 +68,25 @@ public class MessageContentActivity extends BaseActivity implements BaseRvAdapte
         tvTitle.setText(title);
         StartUtil.setSw(swLoading, this);
         rvShangping.setLayoutManager(new LinearLayoutManager(mActivity));
-        adapter = new BaseRvAdapter<MessageBean>(mActivity, R.layout.rv_message_content, rvShangping, this) {
+        adapter = new BaseRvAdapter<MessageContentBean>(mActivity, R.layout.rv_message_content, rvShangping) {
+            @Override
+            protected void getView(ViewHolder holder, MessageContentBean messageContentBean, int position) {
+                holder.setText(R.id.tv_date, messageContentBean.getDate());
+                holder.setText(R.id.tv_head, messageContentBean.getHead());
+                holder.setText(R.id.tv_body, messageContentBean.getBody());
+            }
+
+            @Override
+            protected void hide_loading() {
+                swLoading.setRefreshing(false);
+            }
+
+            @Override
+            protected void show_loading() {
+                swLoading.setRefreshing(true);
+            }
         };
+
         build = OkHttpUtils.get()
                 .url(Api.messageAction)
                 .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
@@ -79,6 +98,8 @@ public class MessageContentActivity extends BaseActivity implements BaseRvAdapte
                 .addParams("type", type)
                 .addParams("is_del", "1")
                 .addParams("token", MyApplication.getSpUtils().getString(Constants.token)).build();
+        adapter.setType(new TypeToken<ArrayList<MessageContentBean>>() {
+        }.getType());
         adapter.QueryHttp(build);
         dialog = new QueRenUtilDialog(mActivity, "", "是否清空消息", "否", "是");
         dialog.setYesClicklistener(new QueRenUtilDialog.OnYesClickListener() {
@@ -105,34 +126,6 @@ public class MessageContentActivity extends BaseActivity implements BaseRvAdapte
                 dialog.show();
                 break;
         }
-    }
-
-    @Override
-    public void hide_Kong() {
-
-    }
-
-    @Override
-    public void show_kong() {
-
-    }
-
-    @Override
-    public void hide_loading() {
-        swLoading.setRefreshing(false);
-    }
-
-    @Override
-    public void show_loading() {
-        swLoading.setRefreshing(true);
-    }
-
-    @Override
-    public void convert(ViewHolder holder, Object object, int position) {
-        MessageContentBean bean = (MessageContentBean) object;
-        holder.setText(R.id.tv_date, bean.getDate());
-        holder.setText(R.id.tv_head, bean.getHead());
-        holder.setText(R.id.tv_body, bean.getBody());
     }
 
     @Override
