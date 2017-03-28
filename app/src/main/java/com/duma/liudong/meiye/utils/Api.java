@@ -26,4 +26,9 @@ public class Api {
     public static final String pointsDetail = url + "/App/user/pointsDetail";
     public static final String coupon = url + "/App/user/coupon";
     public static final String packet = url + "/App/user/packet";
+
+    /**
+     * Index
+     */
+    public static final String cate = url + "/App/Index/cate";
 }

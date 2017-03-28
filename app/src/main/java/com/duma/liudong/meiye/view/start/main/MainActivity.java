@@ -17,7 +17,6 @@ import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.view.home.MessageActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
@@ -220,16 +219,5 @@ public class MainActivity extends BaseActivity {
             meBarFragment = new MeBarFragment();
         }
         return meBarFragment;
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
-
-    @OnClick(R.id.layout_message)
-    public void onClick() {
     }
 }

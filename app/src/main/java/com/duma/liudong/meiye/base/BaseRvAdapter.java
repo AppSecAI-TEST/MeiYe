@@ -23,7 +23,7 @@ import java.util.List;
 
 public abstract class BaseRvAdapter<T> {
     public List<T> mList;
-    private CommonAdapter<T> commonAdapter;
+    public CommonAdapter<T> commonAdapter;
 //    private RvAdapterListener rvAdapterListener;
 
     private View layoutView;
@@ -79,6 +79,9 @@ public abstract class BaseRvAdapter<T> {
     protected void onitemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
     }
 
+    protected void HttpSuccess() {
+    }
+
     public void QueryHttp(RequestCall build) {
         show_loading();
         hide_Kong();
@@ -94,6 +97,7 @@ public abstract class BaseRvAdapter<T> {
                 }
                 mList.clear();
                 mList.addAll(list);
+                HttpSuccess();
                 commonAdapter.notifyDataSetChanged();
             }
 
