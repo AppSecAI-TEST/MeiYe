@@ -5,14 +5,14 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bigkoo.convenientbanner.holder.Holder;
-import com.duma.liudong.meiye.R;
+import com.duma.liudong.meiye.model.IndexBean;
 import com.duma.liudong.meiye.utils.ImageLoader;
 
 /**
  * Created by Sai on 15/8/4.
  * 网络图片加载例子
  */
-public class NetworkImageHolderView implements Holder<String> {
+public class NetworkImageHolderView implements Holder<IndexBean.FriendLinkBean> {
     private ImageView imageView;
 
     @Override
@@ -24,8 +24,7 @@ public class NetworkImageHolderView implements Holder<String> {
     }
 
     @Override
-    public void UpdateUI(Context context, int position, String data) {
-        imageView.setImageResource(R.mipmap.ic_launcher);
-        ImageLoader.with(data, imageView);
+    public void UpdateUI(Context context, int position, IndexBean.FriendLinkBean data) {
+        ImageLoader.with(data.getLink_logo(), imageView);
     }
 }

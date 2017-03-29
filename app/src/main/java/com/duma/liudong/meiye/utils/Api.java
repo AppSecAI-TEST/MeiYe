@@ -31,4 +31,5 @@ public class Api {
      * Index
      */
     public static final String cate = url + "/App/Index/cate";
+    public static final String mainindex = url + "/App/Index/index";
 }

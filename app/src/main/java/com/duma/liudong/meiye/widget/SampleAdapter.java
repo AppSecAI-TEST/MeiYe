@@ -2,10 +2,9 @@ package com.duma.liudong.meiye.widget;
 
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 
 import com.duma.liudong.meiye.R;
-import com.duma.liudong.meiye.model.AdDemo;
+import com.duma.liudong.meiye.model.IndexBean;
 
 import java.util.List;
 
@@ -16,10 +15,10 @@ import java.util.List;
  * Date: 16/1/7<br/>
  * Time: 下午2:05<br/>
  */
-public class SampleAdapter extends BaseBannerAdapter<AdDemo> {
+public class SampleAdapter extends BaseBannerAdapter<IndexBean.ArticleBean> {
 
 
-    public SampleAdapter(List<AdDemo> datas) {
+    public SampleAdapter(List<IndexBean.ArticleBean> datas) {
         super(datas);
     }
 
@@ -29,12 +28,12 @@ public class SampleAdapter extends BaseBannerAdapter<AdDemo> {
     }
 
     @Override
-    public void setItem(View view, AdDemo data) {
-        TextView tvTop = (TextView) view.findViewById(R.id.tv_top);
-        TextView tvBottom = (TextView) view.findViewById(R.id.tv_bottom);
-
-        tvTop.setText(data.getTopData());
-        tvBottom.setText(data.getBottomData());
+    public void setItem(View view, IndexBean.ArticleBean data) {
+//        TextView tvTop = (TextView) view.findViewById(R.id.tv_top);
+//        TextView tvBottom = (TextView) view.findViewById(R.id.tv_bottom);
+//
+//        tvTop.setText(data.getTopData());
+//        tvBottom.setText(data.getBottomData());
     }
 
 

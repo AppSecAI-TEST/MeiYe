@@ -122,7 +122,7 @@ public class ClassifyFragment extends BaseFragment {
                 RecyclerView recyclerView = holder.getView(R.id.rv_three);
                 recyclerView.setFocusable(false);
                 recyclerView.setNestedScrollingEnabled(false);
-                recyclerView.setLayoutManager(new GridLayoutManager(mActivity, 4));
+                recyclerView.setLayoutManager(new GridLayoutManager(mActivity, 3));
                 recyclerView.setAdapter(ThreeAdapter);
             }
         };

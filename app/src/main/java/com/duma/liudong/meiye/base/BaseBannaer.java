@@ -4,6 +4,7 @@ import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.duma.liudong.meiye.R;
+import com.duma.liudong.meiye.model.IndexBean;
 import com.duma.liudong.meiye.widget.NetworkImageHolderView;
 
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
 public class BaseBannaer {
     public static final int time = 3500;
 
-    public void setBanner(ConvenientBanner banner, List<String> imageURL, OnItemClickListener jiantin) {
+    public void setBanner(ConvenientBanner banner, List<IndexBean.FriendLinkBean> imageURL, OnItemClickListener jiantin) {
         //给viewpager加的切换动画 现在取消了
 //        try {
 //            banner.getViewPager().setPageTransformer(true, DefaultTransformer.class.newInstance());

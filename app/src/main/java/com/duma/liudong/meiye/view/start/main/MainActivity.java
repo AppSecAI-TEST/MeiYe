@@ -72,6 +72,9 @@ public class MainActivity extends BaseActivity {
         if (getMeFragment().isVisible()) {
             getMeFragment().refresh();
         }
+        if (getHomeFragment().isVisible()) {
+            getHomeFragment().onLazyLoad();
+        }
     }
 
     @OnClick({R.id.layout_message, R.id.rdoBtn_home, R.id.rdoBtn_classify, R.id.rdoBtn_forum, R.id.rdoBtn_shopping_cart, R.id.rdoBtn_me})

@@ -4,11 +4,11 @@ package com.duma.liudong.meiye.model;
  * Created by liudong on 17/3/16.
  */
 
-public class AdDemo {
+public class IndexAd {
     String topData;
     String bottomData;
 
-    public AdDemo(String topData, String bottomData) {
+    public IndexAd(String topData, String bottomData) {
         this.topData = topData;
         this.bottomData = bottomData;
     }

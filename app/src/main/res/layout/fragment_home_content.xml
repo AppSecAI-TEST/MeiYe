@@ -224,6 +224,7 @@
             android:layout_height="4dp" />
 
         <ImageView
+            android:id="@+id/img_ad"
             android:layout_width="match_parent"
             android:layout_height="140dp"
             android:src="@drawable/ic_launcher" />
@@ -234,10 +235,11 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="90dp"
+            android:layout_height="100dp"
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/img_miaosha"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -246,6 +248,7 @@
             <View style="@style/shuxian" />
 
             <ImageView
+                android:id="@+id/img_xinpin"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -254,14 +257,15 @@
 
         <View
             style="@style/henxian"
-            android:layout_height="4dp" />
+            android:layout_height="1dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="90dp"
+            android:layout_height="100dp"
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/img_weihuo"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -270,6 +274,7 @@
             <View style="@style/shuxian" />
 
             <ImageView
+                android:id="@+id/img_youpin"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -278,6 +283,7 @@
             <View style="@style/shuxian" />
 
             <ImageView
+                android:id="@+id/img_rexiao"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -286,12 +292,208 @@
             <View style="@style/shuxian" />
 
             <ImageView
+                android:id="@+id/img_haohuo"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@mipmap/ic_launcher" />
-
 
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_shangping"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/bg_hui"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/im_1" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/img_1"
+                android:text="更多" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_shangping"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_hui" />
+
+        <LinearLayout
+            android:id="@+id/layout_tuangou"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/bg_hui"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/im_2" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/img_1"
+                android:text="更多" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_tuangou"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_hui" />
+
+        <LinearLayout
+            android:id="@+id/layout_dingzhi"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/bg_hui"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/im_3" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/img_1"
+                android:text="更多" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_dingzhi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_hui" />
+
+        <LinearLayout
+            android:id="@+id/layout_tuijian"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/bg_hui"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/im_4" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/img_1"
+                android:text="更多" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_tuijian"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_hui" />
+
+        <LinearLayout
+            android:id="@+id/layout_guanlian"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/bg_hui"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/im_5" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/img_1"
+                android:text="更多" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_guanlian"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_hui" />
+
     </LinearLayout>
 </ScrollView>

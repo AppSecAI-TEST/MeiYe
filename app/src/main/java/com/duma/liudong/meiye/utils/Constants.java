@@ -17,4 +17,8 @@ public class Constants {
     public static final int codeTime = 60;//短信验证码倒计时
     public static final String service = "18772397060";//客服电话
 
+    //广告的样式
+    public static final int default_AD = 0;
+    public static final int dianPu_AD = 1;
+    public static final int dingZhi_AD = 2;
 }
