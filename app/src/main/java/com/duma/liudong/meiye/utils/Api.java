@@ -39,4 +39,9 @@ public class Api {
      */
     public static final String couponindex = url + "/App/coupon/index";
     public static final String getCoupon = url + "/App/coupon/getCoupon";
+
+    /**
+     * order
+     */
+    public static final String cartList = url + "/App/order/cartList";
 }

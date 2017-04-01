@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center|left"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/cb_dianpu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/tv_store_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:drawableLeft="@drawable/page_1"
+            android:drawablePadding="8dp"
+            android:text="京东自营" />
+    </LinearLayout>
+
+    <View style="@style/henxian" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:gravity="center|left"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="6dp"
+            android:background="@drawable/bianxian_red_shape"
+            android:gravity="center"
+            android:text="满减"
+            android:textColor="@color/main_red"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:text="购物已满1元,减了3元"
+            android:textColor="@color/text_hui"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_shangping"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center|left"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:drawableLeft="@drawable/you"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:text="还差6元可享受包邮," />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="8dp"
+            android:drawableRight="@drawable/fill_1"
+            android:gravity="center"
+            android:text=" 去凑单"
+            android:textColor="@color/main_red" />
+    </LinearLayout>
+</LinearLayout>

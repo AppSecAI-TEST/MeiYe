@@ -24,7 +24,6 @@ import java.util.List;
 public abstract class BaseRvAdapter<T> {
     public List<T> mList;
     public CommonAdapter<T> commonAdapter;
-//    private RvAdapterListener rvAdapterListener;
 
     private View layoutView;
 
