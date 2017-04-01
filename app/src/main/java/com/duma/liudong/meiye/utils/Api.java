@@ -32,4 +32,11 @@ public class Api {
      */
     public static final String cate = url + "/App/Index/cate";
     public static final String mainindex = url + "/App/Index/index";
+    public static final String goodindex = url + "/App/Goods/index";
+
+    /**
+     * coupon - 领取优惠券
+     */
+    public static final String couponindex = url + "/App/coupon/index";
+    public static final String getCoupon = url + "/App/coupon/getCoupon";
 }

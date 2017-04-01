@@ -76,6 +76,9 @@
         <activity android:name=".view.me.YuEActivity" />
         <activity android:name=".view.me.YouHuiJuanActivity" />
         <activity android:name=".view.me.HongBaoActivity" />
+        <activity android:name=".view.home.LinJuanActivity" />
+        <activity android:name=".view.classift.ShangPingLieBiaoActivity" />
+        <activity android:name=".view.classift.ShangPingXiangQinWeb" />
     </application>
 
 </manifest>

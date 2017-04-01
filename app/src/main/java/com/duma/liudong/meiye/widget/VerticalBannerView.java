@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.duma.liudong.meiye.R;
+import com.duma.liudong.meiye.base.BaseBannerAdapter;
 
 
 /**
@@ -84,7 +85,7 @@ public class VerticalBannerView extends LinearLayout implements BaseBannerAdapte
             throw new RuntimeException("adapter must not be null");
         }
         if (mAdapter != null) {
-            throw new RuntimeException("you have already set an Adapter");
+            return;
         }
         this.mAdapter = adapter;
         mAdapter.setOnDataChangedListener(this);

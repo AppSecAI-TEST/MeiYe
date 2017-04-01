@@ -43,7 +43,7 @@ public class SPUtils {
      * @return 存在返回对应值，不存在返回默认值{@code null}
      */
     public String getString(String key) {
-        return getString(key, null);
+        return getString(key, "");
     }
 
     /**

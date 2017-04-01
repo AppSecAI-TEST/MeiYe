@@ -95,10 +95,7 @@ public abstract class BaseRvAdapter<T> {
                     onError("");
                     return;
                 }
-                mList.clear();
-                mList.addAll(list);
-                HttpSuccess();
-                commonAdapter.notifyDataSetChanged();
+                refresh(list);
             }
 
             @Override
@@ -108,7 +105,13 @@ public abstract class BaseRvAdapter<T> {
                 show_kong();
             }
         });
+    }
 
+    public void refresh(List<T> list) {
+        mList.clear();
+        mList.addAll(list);
+        HttpSuccess();
+        commonAdapter.notifyDataSetChanged();
     }
 
     private Type type;

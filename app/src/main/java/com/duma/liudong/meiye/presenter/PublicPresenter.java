@@ -5,6 +5,7 @@ import com.duma.liudong.meiye.base.MyStringCallback;
 import com.duma.liudong.meiye.model.MeBean;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
+import com.duma.liudong.meiye.utils.DialogUtil;
 import com.duma.liudong.meiye.utils.Ts;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -81,4 +82,24 @@ public class PublicPresenter {
                 });
     }
 
+
+    //领取优惠券
+    public void getYouHuiJuan(String id) {
+        OkHttpUtils.getInstance().cancelTag("getYouHuiJuan");
+        OkHttpUtils
+                .post()
+                .tag("getYouHuiJuan")
+                .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
+                .addParams("id", id)
+                .url(Api.getCoupon)
+                .build()
+                .execute(new MyStringCallback() {
+                    @Override
+                    public void onMySuccess(String result) {
+                        DialogUtil.hide();
+                        Ts.setText("领卷成功!");
+                    }
+                });
+    }
 }

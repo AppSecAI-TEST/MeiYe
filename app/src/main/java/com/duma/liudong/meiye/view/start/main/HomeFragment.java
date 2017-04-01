@@ -1,5 +1,6 @@
 package com.duma.liudong.meiye.view.start.main;
 
+import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -19,6 +20,8 @@ import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
+import com.duma.liudong.meiye.view.home.LinJuanActivity;
+import com.duma.liudong.meiye.widget.SampleAdapter;
 import com.duma.liudong.meiye.widget.VerticalBannerView;
 import com.google.gson.Gson;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
@@ -224,9 +227,9 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
 
     private void initIndex() {
         // TODO: 17/3/29 头条数据有问题
-//        SampleAdapter sampleAdapter = new SampleAdapter(bean.getArticle());
-//        bannerAd.setAdapter(sampleAdapter);
-//        bannerAd.start();
+        SampleAdapter sampleAdapter = new SampleAdapter(bean.getArticle());
+        bannerAd.setAdapter(sampleAdapter);
+        bannerAd.start();
         new BaseBannaer().setBanner(bannerHome, bean.getFriend_link(), this);
         bannerHome.startTurning(BaseBannaer.time);
         ImageLoader.with(bean.getAd().getAd_code(), imgAd);
@@ -268,6 +271,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
                 break;
             case R.id.layout_coupons:
                 //领卷
+                startActivity(new Intent(mActivity, LinJuanActivity.class));
                 break;
             case R.id.layout_makeMoney:
                 break;

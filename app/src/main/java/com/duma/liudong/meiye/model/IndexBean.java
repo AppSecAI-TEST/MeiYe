@@ -10,19 +10,19 @@ public class IndexBean {
 
     /**
      * friend_link : [{"link_name":"轮播图","link_url":"http://www.meiye.com","link_logo":"http://meiye.duma-ivy.cn/Public/upload/link/2017/03-29/58db72b51f5e0.jpg"},{"link_name":"轮播图","link_url":"http://meiye.duma-ivy.cn","link_logo":"http://meiye.duma-ivy.cn/Public/upload/link/2017/03-29/58db72a9da07c.jpg"},{"link_name":"测试轮图","link_url":"http://meiye.duma-ivy.cn","link_logo":"http://meiye.duma-ivy.cn/Public/upload/link/2017/03-29/58db72fb472c2.jpg"}]
-     * article : [{"cat_name":"分类一","title":"123","article_id":"1","url":"http://www.meiye.com/article.html?id=1"},{"cat_name":"分类一","title":"1231","article_id":"2","url":"http://www.meiye.com/article.html?id=2"}]
+     * article : [[{"cat_name":"分类一","title":"123","article_id":"1","url":"http://www.meiye.com/article.html?id=1"},{"cat_name":"分类一","title":"1231","article_id":"2","url":"http://www.meiye.com/article.html?id=2"}],[{"cat_name":"分类一","title":"我是文章","article_id":"3","url":"http://www.meiye.com/article.html?id=3"},{"cat_name":"分类二","title":"我是文章1111","article_id":"4","url":"http://www.meiye.com/article.html?id=4"}]]
      * goods_cat : [{"name":"周日秒杀","pic_url":"http://meiye.duma-ivy.cn/Public/images/meiye/img_01.png"},{"name":"新品拿样","pic_url":"http://meiye.duma-ivy.cn/Public/images/meiye/img_02.png"},{"name":"尾货清仓","pic_url":"http://meiye.duma-ivy.cn/Public/images/meiye/img_03.png"},{"name":"优品推荐","pic_url":"http://meiye.duma-ivy.cn/Public/images/meiye/img_04.png"},{"name":"热销爆款","pic_url":"http://meiye.duma-ivy.cn/Public/images/meiye/img_05.png"},{"name":"附近好货","pic_url":"http://meiye.duma-ivy.cn/Public/images/meiye/img_06.png"}]
      * ad : {"ad_link":"123","ad_name":"自定义广告名称","ad_code":"http://meiye.duma-ivy.cn/Public/upload/ad/2017/03-27/58d8c0eaa984d.jpeg"}
-     * store : [{"store_logo":"http://meiye.duma-ivy.cn/Public/upload/seller/2017/03-29/58db71dd20473.jpg","store_banner":"http://meiye.duma-ivy.cn/Public/upload/seller/2017/03-29/58db720a09f30.jpg","store_name":"逍遥当铺","store_id":"3","grade_id":"1"},{"store_logo":"http://meiye.duma-ivy.cn/Public/upload/seller/2017/03-29/58db723588613.jpg","store_banner":"http://meiye.duma-ivy.cn/Public/upload/seller/2017/03-28/58da0863b7ac1.jpg","store_name":"旗舰店","store_id":"1","grade_id":"0"},{"store_logo":"http://meiye.duma-ivy.cn/Public/upload/seller/2017/03-29/58db71ac7b12c.jpg","store_banner":"http://meiye.duma-ivy.cn/Public/upload/seller/2017/03-29/58db71ba25027.jpg","store_name":" 透真旗舰店","store_id":"2","grade_id":"1"}]
-     * shiwu : [{"goods_id":"22","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","shop_price":"89.00","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"},{"goods_id":"24","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","shop_price":"89.00","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"},{"goods_id":"23","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","shop_price":"89.00","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"},{"goods_id":"19","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","shop_price":"89.00","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"}]
-     * tuangou : [{"goods_id":"37","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","goods_remark":"送2个替换装 轻透服帖 无瑕美肌","shop_price":"","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"},{"goods_id":"36","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","goods_remark":"送2个替换装 轻透服帖 无瑕美肌","shop_price":"","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"},{"goods_id":"31","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","goods_remark":"送2个替换装 轻透服帖 无瑕美肌","shop_price":"","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"},{"goods_id":"35","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","goods_remark":"送2个替换装 轻透服帖 无瑕美肌","shop_price":"","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"}]
-     * dingzhi : [{"goods_id":"46","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","sell_up":"20","shop_price":"","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"},{"goods_id":"43","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","sell_up":"20","shop_price":"","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"},{"goods_id":"39","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","sell_up":"20","shop_price":"","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"},{"goods_id":"45","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","sell_up":"20","shop_price":"","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"}]
-     * tuijian : [{"goods_id":"44","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","shop_price":"","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"},{"goods_id":"30","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","shop_price":"","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"},{"goods_id":"37","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","shop_price":"","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"},{"goods_id":"31","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","shop_price":"","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"}]
+     * store : [{"store_logo":"http://meiye.duma-ivy.cn/Public/upload/seller/2017/03-29/58db723588613.jpg","store_banner":"http://meiye.duma-ivy.cn/Public/upload/seller/2017/03-28/58da0863b7ac1.jpg","store_name":"旗舰店","store_id":"1","grade_id":"0"},{"store_logo":"http://meiye.duma-ivy.cn/Public/upload/seller/2017/03-29/58db71dd20473.jpg","store_banner":"http://meiye.duma-ivy.cn/Public/upload/seller/2017/03-29/58db720a09f30.jpg","store_name":"逍遥当铺","store_id":"3","grade_id":"1"},{"store_logo":"http://meiye.duma-ivy.cn/Public/upload/seller/2017/03-29/58db71ac7b12c.jpg","store_banner":"http://meiye.duma-ivy.cn/Public/upload/seller/2017/03-29/58db71ba25027.jpg","store_name":" 透真旗舰店","store_id":"2","grade_id":"1"}]
+     * shiwu : [{"goods_id":"27","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","shop_price":"89.00","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"},{"goods_id":"22","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","shop_price":"89.00","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"},{"goods_id":"23","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","shop_price":"89.00","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"},{"goods_id":"26","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","shop_price":"89.00","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"}]
+     * tuangou : [{"goods_id":"34","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","goods_remark":"送2个替换装 轻透服帖 无瑕美肌","shop_price":"","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"},{"goods_id":"36","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","goods_remark":"送2个替换装 轻透服帖 无瑕美肌","shop_price":"","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"},{"goods_id":"37","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","goods_remark":"送2个替换装 轻透服帖 无瑕美肌","shop_price":"","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"},{"goods_id":"31","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","goods_remark":"送2个替换装 轻透服帖 无瑕美肌","shop_price":"","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"}]
+     * dingzhi : [{"goods_id":"45","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","sell_up":"20","shop_price":"","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"},{"goods_id":"42","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","sell_up":"20","shop_price":"","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"},{"goods_id":"46","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","sell_up":"20","shop_price":"","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"},{"goods_id":"44","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","sell_up":"20","shop_price":"","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"}]
+     * tuijian : [{"goods_id":"42","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","shop_price":"","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"},{"goods_id":"36","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","shop_price":"","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"},{"goods_id":"31","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","shop_price":"","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"},{"goods_id":"46","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"219.00","shop_price":"","original_img":"http://meiye.duma-ivy.cn/Public/upload/goods/2017/03-29/58db6ede94228.jpg","sales_sum":"0"}]
      */
 
     private AdBean ad;
     private List<FriendLinkBean> friend_link;
-    private List<ArticleBean> article;
+    private List<List<ArticleBean>> article;
     private List<GoodsCatBean> goods_cat;
     private List<StoreBean> store;
     private List<ShiwuBean> shiwu;
@@ -46,11 +46,11 @@ public class IndexBean {
         this.friend_link = friend_link;
     }
 
-    public List<ArticleBean> getArticle() {
+    public List<List<ArticleBean>> getArticle() {
         return article;
     }
 
-    public void setArticle(List<ArticleBean> article) {
+    public void setArticle(List<List<ArticleBean>> article) {
         this.article = article;
     }
 
@@ -248,11 +248,11 @@ public class IndexBean {
 
     public static class StoreBean {
         /**
-         * store_logo : http://meiye.duma-ivy.cn/Public/upload/seller/2017/03-29/58db71dd20473.jpg
-         * store_banner : http://meiye.duma-ivy.cn/Public/upload/seller/2017/03-29/58db720a09f30.jpg
-         * store_name : 逍遥当铺
-         * store_id : 3
-         * grade_id : 1
+         * store_logo : http://meiye.duma-ivy.cn/Public/upload/seller/2017/03-29/58db723588613.jpg
+         * store_banner : http://meiye.duma-ivy.cn/Public/upload/seller/2017/03-28/58da0863b7ac1.jpg
+         * store_name : 旗舰店
+         * store_id : 1
+         * grade_id : 0
          */
 
         private String store_logo;
@@ -304,7 +304,7 @@ public class IndexBean {
 
     public static class ShiwuBean {
         /**
-         * goods_id : 22
+         * goods_id : 27
          * goods_name : 【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液
          * market_price : 219.00
          * shop_price : 89.00
@@ -370,7 +370,7 @@ public class IndexBean {
 
     public static class TuangouBean {
         /**
-         * goods_id : 37
+         * goods_id : 34
          * goods_name : 【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液
          * market_price : 219.00
          * goods_remark : 送2个替换装 轻透服帖 无瑕美肌
@@ -446,7 +446,7 @@ public class IndexBean {
 
     public static class DingzhiBean {
         /**
-         * goods_id : 46
+         * goods_id : 45
          * goods_name : 【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液
          * market_price : 219.00
          * sell_up : 20
@@ -522,7 +522,7 @@ public class IndexBean {
 
     public static class TuijianBean {
         /**
-         * goods_id : 44
+         * goods_id : 42
          * goods_name : 【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液
          * market_price : 219.00
          * shop_price :

@@ -14,6 +14,7 @@ import com.duma.liudong.meiye.model.ClassifyBean;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.DialogUtil;
 import com.duma.liudong.meiye.utils.ImageLoader;
+import com.duma.liudong.meiye.utils.StartUtil;
 import com.google.gson.reflect.TypeToken;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
@@ -113,10 +114,16 @@ public class ClassifyFragment extends BaseFragment {
                 CommonAdapter<ClassifyBean.SecondBean.ThreeBean> ThreeAdapter;
                 ThreeAdapter = new CommonAdapter<ClassifyBean.SecondBean.ThreeBean>(mActivity, R.layout.rv_zi_grid, secondBean.getThree()) {
                     @Override
-                    protected void convert(ViewHolder holder, ClassifyBean.SecondBean.ThreeBean threeBean, int position) {
+                    protected void convert(ViewHolder holder, final ClassifyBean.SecondBean.ThreeBean threeBean, int position) {
                         ImageView imageView = holder.getView(R.id.img_fengmian);
                         ImageLoader.with(threeBean.getImage(), imageView);
                         holder.setText(R.id.tv_name, threeBean.getName());
+                        holder.setOnClickListener(R.id.layout_click, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                StartUtil.toShangPingLieBiao(mActivity, threeBean.getId(), "", threeBean.getName());
+                            }
+                        });
                     }
                 };
                 RecyclerView recyclerView = holder.getView(R.id.rv_three);

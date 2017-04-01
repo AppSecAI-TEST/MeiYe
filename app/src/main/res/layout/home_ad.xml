@@ -11,12 +11,17 @@
         android:gravity="start|center">
 
         <TextView
-            android:layout_width="40dp"
-            android:layout_height="20dp"
+            android:id="@+id/tv_cat_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="@drawable/bianxian_red_shape"
             android:gravity="center"
+            android:paddingBottom="1dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:paddingTop="1dp"
             android:text="标签"
             android:textColor="@color/main_red" />
 
@@ -37,12 +42,17 @@
         android:gravity="start|center">
 
         <TextView
-            android:layout_width="40dp"
-            android:layout_height="20dp"
+            android:id="@+id/tv_cat_name2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="@drawable/bianxian_red_shape"
             android:gravity="center"
+            android:paddingBottom="1dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:paddingTop="1dp"
             android:text="标签"
             android:textColor="@color/main_red" />
 

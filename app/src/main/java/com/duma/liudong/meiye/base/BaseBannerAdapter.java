@@ -1,6 +1,8 @@
-package com.duma.liudong.meiye.widget;
+package com.duma.liudong.meiye.base;
 
 import android.view.View;
+
+import com.duma.liudong.meiye.widget.VerticalBannerView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,7 +39,7 @@ public abstract class BaseBannerAdapter<T> {
         notifyDataChanged();
     }
 
-    void setOnDataChangedListener(OnDataChangedListener listener) {
+    public void setOnDataChangedListener(OnDataChangedListener listener) {
         mOnDataChangedListener = listener;
     }
 
@@ -64,7 +66,7 @@ public abstract class BaseBannerAdapter<T> {
     public abstract void setItem(View view, T data);
 
 
-    interface OnDataChangedListener {
+    public interface OnDataChangedListener {
         void onChanged();
     }
 }

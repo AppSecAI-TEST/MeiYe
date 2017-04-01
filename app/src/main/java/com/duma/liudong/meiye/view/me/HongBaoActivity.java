@@ -46,6 +46,7 @@ public class HongBaoActivity extends BaseActivity {
         viewPagerAdapter.addFragment(new HongBaoFragment(), "未使用");
         viewPagerAdapter.addFragment(new HongBaoFragment(), "已使用");
         viewPagerAdapter.addFragment(new HongBaoFragment(), "已过期");
+        viewPaterBar.setOffscreenPageLimit(3);
         viewPaterBar.setAdapter(viewPagerAdapter);
         tabLayoutBar.setupWithViewPager(viewPaterBar);
     }

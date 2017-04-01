@@ -8,6 +8,8 @@ import android.widget.TextView;
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.model.LoginBean;
+import com.duma.liudong.meiye.view.classift.ShangPingLieBiaoActivity;
+import com.duma.liudong.meiye.view.classift.ShangPingXiangQinWeb;
 import com.duma.liudong.meiye.view.start.login.LoginActivity;
 import com.duma.liudong.meiye.view.start.main.MainActivity;
 
@@ -43,6 +45,22 @@ public class StartUtil {
         Intent intent = new Intent(activity, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        activity.startActivity(intent);
+    }
+
+    //跳转商品列表
+    public static void toShangPingLieBiao(Activity activity, String id, String keyword, String title) {
+        Intent intent = new Intent(activity, ShangPingLieBiaoActivity.class);
+        intent.putExtra("id", id);
+        intent.putExtra("keyword", keyword);
+        intent.putExtra("title", title);
+        activity.startActivity(intent);
+    }
+
+    //跳转商品详情页
+    public static void toShangPingWeb(Activity activity, String url) {
+        Intent intent = new Intent(activity, ShangPingXiangQinWeb.class);
+        intent.putExtra("url", url);
         activity.startActivity(intent);
     }
 

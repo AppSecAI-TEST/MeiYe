@@ -21,4 +21,11 @@ public class Constants {
     public static final int default_AD = 0;
     public static final int dianPu_AD = 1;
     public static final int dingZhi_AD = 2;
+
+    //商品列表也得排序条件
+    public static final String xiaoLiang = "sales_sort";
+    public static final String jiaGe = "filter_price";
+    public static final String juLi = "distance";
+    public static final String daoXu = "desc";
+    public static final String zhenXu = "asc";
 }

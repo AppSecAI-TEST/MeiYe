@@ -46,6 +46,7 @@ public class YouHuiJuanActivity extends BaseActivity {
         viewPagerAdapter.addFragment(new YouHuiJuanFragment(), "未使用");
         viewPagerAdapter.addFragment(new YouHuiJuanFragment(), "已使用");
         viewPagerAdapter.addFragment(new YouHuiJuanFragment(), "已过期");
+        viewPaterBar.setOffscreenPageLimit(3);
         viewPaterBar.setAdapter(viewPagerAdapter);
         tabLayoutBar.setupWithViewPager(viewPaterBar);
     }
