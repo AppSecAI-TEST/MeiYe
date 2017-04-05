@@ -103,6 +103,7 @@ public abstract class BaseXiaLaRvPresenter<T> implements LoadMoreWrapper.OnLoadM
                     mlist.addAll(list);
                     mAdapter.notifyDataSetChanged();
                 }
+                onSuccess();
             }
 
             @Override
@@ -176,6 +177,9 @@ public abstract class BaseXiaLaRvPresenter<T> implements LoadMoreWrapper.OnLoadM
     }
 
     protected void onitemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
+    }
+
+    protected void onSuccess() {
     }
 
     /**

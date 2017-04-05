@@ -28,4 +28,8 @@ public class Constants {
     public static final String juLi = "distance";
     public static final String daoXu = "desc";
     public static final String zhenXu = "asc";
+
+    //购物车
+    public static final int jiesuan = 0;
+    public static final int shanchu = 1;
 }

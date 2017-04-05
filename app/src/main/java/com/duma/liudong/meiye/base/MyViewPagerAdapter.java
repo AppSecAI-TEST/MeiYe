@@ -1,8 +1,14 @@
 package com.duma.liudong.meiye.base;
 
+import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
+
+import com.duma.liudong.meiye.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +50,16 @@ public class MyViewPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         //得到对应position的Fragment的title
         return mFragmentsTitles.get(position);
+//        return null;
+    }
+
+    public View getTabView(int position, Activity activity) {
+        View view = LayoutInflater.from(activity).inflate(R.layout.tab_iem, null);
+        TextView tv = (TextView) view.findViewById(R.id.tv_title);
+        tv.setText(mFragmentsTitles.get(position));
+//        ImageView img = (ImageView) view.findViewById(R.id.img_head_pic);
+//        img.setImageResource(imageResId[position]);
+        return view;
     }
 
 

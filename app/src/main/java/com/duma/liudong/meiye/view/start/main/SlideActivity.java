@@ -9,7 +9,6 @@ import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.model.SlideBus;
-import com.duma.liudong.meiye.utils.Lg;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -38,7 +37,6 @@ public class SlideActivity extends BaseActivity implements SeekBar.OnSeekBarChan
 
     @OnClick(R.id.sb_bar)
     public void onClick() {
-        Lg.e("111");
     }
 
     @Override

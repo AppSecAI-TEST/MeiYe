@@ -79,6 +79,9 @@
         <activity android:name=".view.home.LinJuanActivity" />
         <activity android:name=".view.classift.ShangPingLieBiaoActivity" />
         <activity android:name=".view.classift.ShangPingXiangQinWeb" />
+        <activity android:name=".view.home.TouTiaoActivity" />
+        <activity android:name=".view.me.ShouCangActivity" />
+        <activity android:name=".view.classift.DianPuActivity" />
     </application>
 
 </manifest>

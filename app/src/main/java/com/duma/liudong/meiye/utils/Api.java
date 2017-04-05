@@ -26,7 +26,7 @@ public class Api {
     public static final String pointsDetail = url + "/App/user/pointsDetail";
     public static final String coupon = url + "/App/user/coupon";
     public static final String packet = url + "/App/user/packet";
-
+    public static final String collectList = url + "/App/user/collectList";
     /**
      * Index
      */
@@ -44,4 +44,14 @@ public class Api {
      * order
      */
     public static final String cartList = url + "/App/order/cartList";
+
+    /**
+     * 头条
+     */
+    public static final String Toutiaoindex = url + "/App/Toutiao/index";
+
+    /**
+     * store
+     */
+    public static final String Storeindex = url + "/App/Store/index";
 }

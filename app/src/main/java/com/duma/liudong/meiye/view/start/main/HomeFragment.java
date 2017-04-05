@@ -21,6 +21,7 @@ import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.view.home.LinJuanActivity;
+import com.duma.liudong.meiye.view.home.TouTiaoActivity;
 import com.duma.liudong.meiye.widget.SampleAdapter;
 import com.duma.liudong.meiye.widget.VerticalBannerView;
 import com.google.gson.Gson;
@@ -92,6 +93,8 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
     LinearLayout layoutGuanlian;
     @BindView(R.id.rv_guanlian)
     RecyclerView rvTuijian;
+    @BindView(R.id.layout_toutiao)
+    LinearLayout layoutToutiao;
 
     private IndexBean bean;
     private boolean one = true;
@@ -112,12 +115,18 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
         StartUtil.setSw(swLoading, this);
         dianPuAdapter = new BaseAdAdapter<IndexBean.StoreBean>(mActivity, rvDianpu, Constants.dianPu_AD) {
             @Override
-            protected void getView(ViewHolder holder, IndexBean.StoreBean storeBean, int position) {
+            protected void getView(ViewHolder holder, final IndexBean.StoreBean storeBean, int position) {
                 holder.setText(R.id.tv_store_name, storeBean.getStore_name());
                 ImageView img_store_banner = holder.getView(R.id.img_store_banner);
                 ImageView img_store_logo = holder.getView(R.id.img_store_logo);
                 ImageLoader.with(storeBean.getStore_banner(), img_store_banner);
                 ImageLoader.with(storeBean.getStore_logo(), img_store_logo);
+                holder.setOnClickListener(R.id.layout_dianpu, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        StartUtil.toDianPu(mActivity, storeBean.getStore_id());
+                    }
+                });
             }
         };
         dingzhiAdapter = new BaseAdAdapter<IndexBean.DingzhiBean>(mActivity, rvDingzhi, Constants.dingZhi_AD) {
@@ -246,10 +255,13 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
         tuijianAdapter.setmList(bean.getTuijian());
     }
 
-    @OnClick({R.id.layout_shangping, R.id.layout_tuangou, R.id.layout_dingzhi, R.id.layout_tuijian, R.id.layout_guanlian, R.id.img_ad, R.id.img_miaosha, R.id.img_xinpin, R.id.img_weihuo, R.id.img_youpin, R.id.img_rexiao, R.id.img_haohuo, R.id.layout_seckill, R.id.layout_group, R.id.layout_customization, R.id.layout_train, R.id.layout_sign, R.id.layout_coupons, R.id.layout_makeMoney, R.id.layout_enter})
+    @OnClick({R.id.layout_toutiao, R.id.layout_shangping, R.id.layout_tuangou, R.id.layout_dingzhi, R.id.layout_tuijian, R.id.layout_guanlian, R.id.img_ad, R.id.img_miaosha, R.id.img_xinpin, R.id.img_weihuo, R.id.img_youpin, R.id.img_rexiao, R.id.img_haohuo, R.id.layout_seckill, R.id.layout_group, R.id.layout_customization, R.id.layout_train, R.id.layout_sign, R.id.layout_coupons, R.id.layout_makeMoney, R.id.layout_enter})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.layout_shangping:
+                break;
+            case R.id.layout_toutiao:
+                startActivity(new Intent(mActivity, TouTiaoActivity.class));
                 break;
             case R.id.layout_tuangou:
                 break;

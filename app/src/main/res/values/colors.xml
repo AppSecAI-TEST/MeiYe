@@ -13,7 +13,8 @@
     <color name="text_hui">#aaaaaa</color>
     <color name="bg_text_hui">#e0e0e0</color>
     <color name="button_rad">#fc6276</color>
-
+    <color name="button_rad2">#fc6c4e</color>
+    <color name="button_rad3">#fa8a34</color>
     <color name="yellow">#eab82c</color>
 
     <color name="transparent">#7b000000</color>

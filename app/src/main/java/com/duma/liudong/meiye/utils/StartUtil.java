@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.model.LoginBean;
+import com.duma.liudong.meiye.view.classift.DianPuActivity;
 import com.duma.liudong.meiye.view.classift.ShangPingLieBiaoActivity;
 import com.duma.liudong.meiye.view.classift.ShangPingXiangQinWeb;
 import com.duma.liudong.meiye.view.start.login.LoginActivity;
@@ -54,6 +55,13 @@ public class StartUtil {
         intent.putExtra("id", id);
         intent.putExtra("keyword", keyword);
         intent.putExtra("title", title);
+        activity.startActivity(intent);
+    }
+
+    //跳转商品详情页
+    public static void toDianPu(Activity activity, String id) {
+        Intent intent = new Intent(activity, DianPuActivity.class);
+        intent.putExtra("id", id);
         activity.startActivity(intent);
     }
 

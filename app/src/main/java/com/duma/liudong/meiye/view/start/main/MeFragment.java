@@ -19,6 +19,7 @@ import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.view.me.FanKuiActivity;
 import com.duma.liudong.meiye.view.me.HongBaoActivity;
 import com.duma.liudong.meiye.view.me.JiFenActivity;
+import com.duma.liudong.meiye.view.me.ShouCangActivity;
 import com.duma.liudong.meiye.view.me.UserDataActivity;
 import com.duma.liudong.meiye.view.me.WoDekeHuActivity;
 import com.duma.liudong.meiye.view.me.YouHuiJuanActivity;
@@ -199,6 +200,8 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
             case R.id.layout_zuji:
                 break;
             case R.id.layout_shoucang:
+                //收藏
+                startActivity(new Intent(mActivity, ShouCangActivity.class));
                 break;
             case R.id.layout_wode_kehu:
                 startActivity(new Intent(mActivity, WoDekeHuActivity.class));

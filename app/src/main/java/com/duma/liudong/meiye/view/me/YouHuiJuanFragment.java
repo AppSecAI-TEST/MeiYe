@@ -27,7 +27,7 @@ import butterknife.BindView;
  * Created by 79953 on 2016/11/2.
  */
 
-public class YouHuiJuanFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
+public class    YouHuiJuanFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
     @BindView(R.id.layout_kong)
     LinearLayout layoutKong;
     @BindView(R.id.rv_youhuijuan)
