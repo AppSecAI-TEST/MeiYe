@@ -7,6 +7,7 @@ package com.duma.liudong.meiye.utils;
 public class Api {
     public static final String url = "http://meiye.duma-ivy.cn";
 
+    public static final String H5Url = Api.url + "/index.php/Mobile/Goods/goodsdetail?goods_id=";
     /**
      * 个人用户
      */
@@ -54,4 +55,6 @@ public class Api {
      * store
      */
     public static final String Storeindex = url + "/App/Store/index";
+    public static final String Storegoods = url + "/App/Store/goods";
+    public static final String dynamic = url + "/App/Store/dynamic";
 }

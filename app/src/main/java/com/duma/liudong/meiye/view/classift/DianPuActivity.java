@@ -16,6 +16,7 @@ import com.duma.liudong.meiye.model.DianPubean;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.ImageLoader;
 import com.google.gson.Gson;
+import com.gxz.library.StickyNavLayout;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 import butterknife.BindView;
@@ -42,44 +43,40 @@ public class DianPuActivity extends BaseActivity {
     TextView tvOrderNum;
     @BindView(R.id.tv_store_collect)
     TextView tvStoreCollect;
-    @BindView(R.id.tabLayout_bar)
-    TabLayout tabLayoutBar;
-    @BindView(R.id.viewPater_bar)
-    ViewPager viewPaterBar;
     @BindView(R.id.img_store_banner)
     ImageView imgStoreBanner;
 
-    private String store_id;
-    private DianPubean dianPubean;
+
+    @BindView(R.id.id_stickynavlayout_topview)
+    LinearLayout idStickynavlayoutTopview;
+    @BindView(R.id.id_stickynavlayout_indicator)
+    TabLayout tabLayoutBar;
+    @BindView(R.id.id_stickynavlayout_viewpager)
+    ViewPager viewPaterBar;
+    @BindView(R.id.snLayout_bar)
+    StickyNavLayout snLayoutBar;
+    private DianPuShouYeFragment dianPuShouYeFragment;
+
+    public String store_id;
+    public DianPubean dianPubean;
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
         setContentView(R.layout.activity_dianpu);
     }
 
+
     @Override
     protected void initData() {
         store_id = getIntent().getStringExtra("id");
-        OkHttpUtils
-                .get()
-                .tag("this")
-                .url(Api.Storeindex)
-                .addParams("store_id", store_id)
-                .build()
-                .execute(new MyStringCallback() {
-                    @Override
-                    public void onMySuccess(String result) {
-                        dianPubean = new Gson().fromJson(result, DianPubean.class);
-                        initRes();
-                    }
-                });
         final int[] huiDrawable = {R.drawable.img_68, R.drawable.img_69, R.drawable.img_73};
         final int[] radDrawable = {R.drawable.img_67, R.drawable.img_70, R.drawable.img_72};
-
+        dianPuShouYeFragment = new DianPuShouYeFragment();
         MyViewPagerAdapter viewPagerAdapter = new MyViewPagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFragment(new DianPuShouYeFragment(), "首页");
-        viewPagerAdapter.addFragment(new DianPuShouYeFragment(), "全部商品");
-        viewPagerAdapter.addFragment(new DianPuShouYeFragment(), "活动动态");
+
+        viewPagerAdapter.addFragment(dianPuShouYeFragment, "首页");
+        viewPagerAdapter.addFragment(new DianPuShangPingFragment(), "全部商品");
+        viewPagerAdapter.addFragment(new DianPuHuoDongFragment(), "活动动态");
         viewPaterBar.setOffscreenPageLimit(3);
         viewPaterBar.setAdapter(viewPagerAdapter);
         tabLayoutBar.setupWithViewPager(viewPaterBar);
@@ -104,9 +101,22 @@ public class DianPuActivity extends BaseActivity {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
             }
         });
+
+        OkHttpUtils
+                .get()
+                .tag("this")
+                .url(Api.Storeindex)
+                .addParams("store_id", store_id)
+                .build()
+                .execute(new MyStringCallback() {
+                    @Override
+                    public void onMySuccess(String result) {
+                        dianPubean = new Gson().fromJson(result, DianPubean.class);
+                        initRes();
+                    }
+                });
     }
 
     private void initRes() {
@@ -116,6 +126,7 @@ public class DianPuActivity extends BaseActivity {
         tvStoreTimeY.setText(dianPubean.getStore_time_y());
         tvOrderNum.setText(dianPubean.getOrder_num());
         tvStoreCollect.setText(dianPubean.getStore_collect());
+        dianPuShouYeFragment.setBannerShangping();
     }
 
     @OnClick({R.id.layout_back, R.id.layout_sousuo})
@@ -128,4 +139,5 @@ public class DianPuActivity extends BaseActivity {
                 break;
         }
     }
+
 }

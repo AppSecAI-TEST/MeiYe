@@ -15,6 +15,8 @@ import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.google.gson.reflect.TypeToken;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.builder.GetBuilder;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -23,7 +25,7 @@ import java.util.List;
  * Created by liudong on 17/3/30.
  */
 
-public class ShangPinPresenter extends BaseXiaLaRvPresenter<ShangPinBean> {
+public class ShangPinLieBiaoPresenter extends BaseXiaLaRvPresenter<ShangPinBean> {
 
     private OnShangPinListener shangPinListener;
 
@@ -35,11 +37,23 @@ public class ShangPinPresenter extends BaseXiaLaRvPresenter<ShangPinBean> {
         void onLoadMore();
     }
 
+    //商品列表页的固定参数
+    public GetBuilder getBuild() {
+        p++;
+        GetBuilder getBuilder = OkHttpUtils
+                .get()
+                .tag("base")
+                .url(Api.goodindex)
+                .addParams("p", p + "");
+
+        return getBuilder;
+    }
+
     public void setShangPinListener(OnShangPinListener shangPinListener) {
         this.shangPinListener = shangPinListener;
     }
 
-    public ShangPinPresenter(Activity context, RecyclerView rv) {
+    public ShangPinLieBiaoPresenter(Activity context, RecyclerView rv) {
         super(context, R.layout.rv_shangping, rv);
         setType(new TypeToken<List<ShangPinBean>>() {
         }.getType());
@@ -68,7 +82,7 @@ public class ShangPinPresenter extends BaseXiaLaRvPresenter<ShangPinBean> {
 
     @Override
     protected void onitemClick(View view, RecyclerView.ViewHolder holder, int position) {
-        StartUtil.toShangPingWeb(mActivity, Api.url + "/index.php/Mobile/Goods/goodsdetail?goods_id=" + mlist.get(position).getGoods_id());
+        StartUtil.toShangPingWeb(mActivity, Api.H5Url + mlist.get(position).getGoods_id());
     }
 
     @Override
@@ -94,6 +108,7 @@ public class ShangPinPresenter extends BaseXiaLaRvPresenter<ShangPinBean> {
     protected void loadMore() {
         shangPinListener.onLoadMore();
     }
+
 
     @Override
     public RecyclerView.LayoutManager initLayoutManager() {

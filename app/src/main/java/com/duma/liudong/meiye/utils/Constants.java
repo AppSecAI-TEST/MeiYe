@@ -26,6 +26,8 @@ public class Constants {
     public static final String xiaoLiang = "sales_sort";
     public static final String jiaGe = "filter_price";
     public static final String juLi = "distance";
+    public static final String zonghe = "sort_index";
+    public static final String xinpin = "sort_new_goods";
     public static final String daoXu = "desc";
     public static final String zhenXu = "asc";
 

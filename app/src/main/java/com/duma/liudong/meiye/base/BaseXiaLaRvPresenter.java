@@ -32,6 +32,11 @@ public abstract class BaseXiaLaRvPresenter<T> implements LoadMoreWrapper.OnLoadM
     public int p = 0;//当前页数
     private View layoutView;//空页面的布局
     private Type type;
+    /**
+     * 是否第一次请求数据
+     * 只要请求一次成功的数据 并且数据不为空 就会变成true
+     */
+    public boolean isOne = false;
 
     public BaseXiaLaRvPresenter(Activity activity, final int layoutId, RecyclerView recyclerView) {
         this.mRecyclerView = recyclerView;
@@ -42,18 +47,19 @@ public abstract class BaseXiaLaRvPresenter<T> implements LoadMoreWrapper.OnLoadM
 
     public void setLayoutManagerByType(final int layoutId) {
         mRecyclerView.setLayoutManager(initLayoutManager());
-        baseLoadingUtil = new BaseLoadingUtil(initAdapter(layoutId), mActivity);
-        mAdapter = baseLoadingUtil.getLoadAdapter(this);
-        mRecyclerView.setAdapter(mAdapter);
+        initAdapterByRv(layoutId);
     }
 
     public void setLayoutManagerByType(final int layoutId, RecyclerView.LayoutManager layoutManager) {
         mRecyclerView.setLayoutManager(layoutManager);
+        initAdapterByRv(layoutId);
+    }
+
+    private void initAdapterByRv(int layoutId) {
         baseLoadingUtil = new BaseLoadingUtil(initAdapter(layoutId), mActivity);
         mAdapter = baseLoadingUtil.getLoadAdapter(this);
         mRecyclerView.setAdapter(mAdapter);
     }
-
 
     public CommonAdapter<T> initAdapter(final int layoutId) {
         CommonAdapter<T> adapter = new CommonAdapter<T>(mActivity, layoutId, mlist) {
@@ -100,6 +106,7 @@ public abstract class BaseXiaLaRvPresenter<T> implements LoadMoreWrapper.OnLoadM
                 if (list.size() == 0) {
                     IsKong();
                 } else {
+                    isOne = true;
                     mlist.addAll(list);
                     mAdapter.notifyDataSetChanged();
                 }

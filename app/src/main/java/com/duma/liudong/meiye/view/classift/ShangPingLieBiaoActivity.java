@@ -18,11 +18,9 @@ import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.model.ShaiXuanBean;
 import com.duma.liudong.meiye.model.SlideBus;
-import com.duma.liudong.meiye.presenter.ShangPinPresenter;
-import com.duma.liudong.meiye.utils.Api;
+import com.duma.liudong.meiye.presenter.ShangPinLieBiaoPresenter;
 import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.StartUtil;
-import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.builder.GetBuilder;
 import com.zhy.http.okhttp.request.RequestCall;
 import com.zhy.view.flowlayout.FlowLayout;
@@ -75,7 +73,7 @@ public class ShangPingLieBiaoActivity extends BaseActivity implements SwipeRefre
 
     private String id, keyword, title;
     private PaiXuFragment paiXuFragment;
-    private ShangPinPresenter shangPinPresenter;
+    private ShangPinLieBiaoPresenter shangPinPresenter;
     private int type = 0;//当前试图类型
 
     private List<ShaiXuanBean> list_shaixuan;
@@ -104,9 +102,9 @@ public class ShangPingLieBiaoActivity extends BaseActivity implements SwipeRefre
         imgOther.setImageDrawable(mActivity.getResources().getDrawable(R.drawable.l4q));
 
         StartUtil.setSw(swLoading, this);
-        shangPinPresenter = new ShangPinPresenter(mActivity, rvShangping);
+        shangPinPresenter = new ShangPinLieBiaoPresenter(mActivity, rvShangping);
         shangPinPresenter.setKongView(layoutKong);
-        shangPinPresenter.setShangPinListener(new ShangPinPresenter.OnShangPinListener() {
+        shangPinPresenter.setShangPinListener(new ShangPinLieBiaoPresenter.OnShangPinListener() {
             @Override
             public void loading_hide() {
                 swLoading.setRefreshing(false);
@@ -213,12 +211,8 @@ public class ShangPingLieBiaoActivity extends BaseActivity implements SwipeRefre
     }
 
     private RequestCall getBuild() {
-        shangPinPresenter.p++;
-        GetBuilder getBuilder = OkHttpUtils
-                .get()
-                .tag("bean")
-                .url(Api.goodindex)
-                .addParams("p", shangPinPresenter.p + "")
+        GetBuilder getBuilder = shangPinPresenter.getBuild();
+        getBuilder
                 .addParams("keyword", keyword)
                 .addParams("cat_id", id)
                 .addParams(paiXuFragment.paixuName, paiXuFragment.paixu);

@@ -1,40 +1,42 @@
 package com.duma.liudong.meiye.model;
 
+import java.util.List;
+
 /**
  * Created by liudong on 17/4/5.
  */
 
 public class DianPubean {
-
     /**
      * store_collect : 0
-     * store_slide : null
-     * store_name : 逍遥当铺
+     * store_slide : /Public/upload/seller/2017/04-01/58df6756c5b33.jpg,/Public/upload/seller/2017/04-01/58df675f37e70.jpg,/Public/upload/seller/2017/04-01/58df6765942d3.jpg,,
+     * store_name : 旗舰店
      * turn_back_rate : 0
      * store_desccredit : 0.00
      * store_servicecredit : 0.00
      * store_deliverycredit : 0.00
-     * store_logo : http://meiye.duma-ivy.cn/Public/upload/seller/2017/03-29/58db71dd20473.jpg
-     * store_banner : http://meiye.duma-ivy.cn/Public/upload/seller/2017/03-29/58db720a09f30.jpg
-     * store_avatar : null
-     * store_phone : 15157421784
-     * store_time : 2017-03-24
-     * business_licence_number : 浙江软件
-     * business_licence_cert : /Public/upload/store/cert/2017-03-24/58d4e87d20234.jpeg
-     * business_scope : 浙江软件
-     * reg_capital : 浙江软件
-     * legal_person : 浙江软件
+     * store_logo : http://meiye.duma-ivy.cn/Public/upload/seller/2017/03-29/58db723588613.jpg
+     * store_banner : http://meiye.duma-ivy.cn/Public/upload/seller/2017/03-28/58da0863b7ac1.jpg
+     * store_avatar :
+     * store_phone : 123123123
+     * store_time : 2017-03-14
+     * business_licence_number : null
+     * business_licence_cert : null
+     * business_scope : null
+     * reg_capital : null
+     * legal_person : null
      * business_date_start : null
-     * business_date_end : =&gt;浙江软件
-     * company_name : 浙江软件
-     * company_type : 0
+     * business_date_end : null
+     * company_name : null
+     * company_type : null
+     * store_slide_url : ["http://meiye.duma-ivy.cn/Public/upload/seller/2017/04-01/58df6756c5b33.jpg","http://meiye.duma-ivy.cn/Public/upload/seller/2017/04-01/58df675f37e70.jpg","http://meiye.duma-ivy.cn/Public/upload/seller/2017/04-01/58df6765942d3.jpg"]
      * store_time_y : 1
-     * goods_num : 0
+     * goods_num : 30
      * order_num : 0
      */
 
     private String store_collect;
-    private Object store_slide;
+    private String store_slide;
     private String store_name;
     private String turn_back_rate;
     private String store_desccredit;
@@ -42,7 +44,7 @@ public class DianPubean {
     private String store_deliverycredit;
     private String store_logo;
     private String store_banner;
-    private Object store_avatar;
+    private String store_avatar;
     private String store_phone;
     private String store_time;
     private String business_licence_number;
@@ -50,13 +52,14 @@ public class DianPubean {
     private String business_scope;
     private String reg_capital;
     private String legal_person;
-    private Object business_date_start;
+    private String business_date_start;
     private String business_date_end;
     private String company_name;
     private String company_type;
     private String store_time_y;
     private String goods_num;
     private String order_num;
+    private List<String> store_slide_url;
 
     public String getStore_collect() {
         return store_collect;
@@ -66,11 +69,11 @@ public class DianPubean {
         this.store_collect = store_collect;
     }
 
-    public Object getStore_slide() {
+    public String getStore_slide() {
         return store_slide;
     }
 
-    public void setStore_slide(Object store_slide) {
+    public void setStore_slide(String store_slide) {
         this.store_slide = store_slide;
     }
 
@@ -130,11 +133,11 @@ public class DianPubean {
         this.store_banner = store_banner;
     }
 
-    public Object getStore_avatar() {
+    public String getStore_avatar() {
         return store_avatar;
     }
 
-    public void setStore_avatar(Object store_avatar) {
+    public void setStore_avatar(String store_avatar) {
         this.store_avatar = store_avatar;
     }
 
@@ -194,11 +197,11 @@ public class DianPubean {
         this.legal_person = legal_person;
     }
 
-    public Object getBusiness_date_start() {
+    public String getBusiness_date_start() {
         return business_date_start;
     }
 
-    public void setBusiness_date_start(Object business_date_start) {
+    public void setBusiness_date_start(String business_date_start) {
         this.business_date_start = business_date_start;
     }
 
@@ -248,5 +251,13 @@ public class DianPubean {
 
     public void setOrder_num(String order_num) {
         this.order_num = order_num;
+    }
+
+    public List<String> getStore_slide_url() {
+        return store_slide_url;
+    }
+
+    public void setStore_slide_url(List<String> store_slide_url) {
+        this.store_slide_url = store_slide_url;
     }
 }

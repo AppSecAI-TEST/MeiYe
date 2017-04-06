@@ -1,8 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/bg_hui"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
+    <com.duma.liudong.meiye.widget.VerticalSwipeRefreshLayout
+        android:id="@+id/sw_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/id_stickynavlayout_innerscrollview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_hui">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.bigkoo.convenientbanner.ConvenientBanner
+                    android:id="@+id/banner_shangping"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    app:canLoop="true" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <include layout="@layout/include_img_kong" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_shangping"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </com.duma.liudong.meiye.widget.VerticalSwipeRefreshLayout>
 </LinearLayout>

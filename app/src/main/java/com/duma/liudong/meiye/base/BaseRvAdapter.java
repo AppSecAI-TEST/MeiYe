@@ -81,6 +81,9 @@ public abstract class BaseRvAdapter<T> {
     protected void HttpSuccess() {
     }
 
+    protected void HttpError() {
+    }
+
     public void QueryHttp(RequestCall build) {
         show_loading();
         hide_Kong();
