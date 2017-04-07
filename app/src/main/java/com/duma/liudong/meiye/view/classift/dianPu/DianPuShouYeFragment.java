@@ -1,12 +1,8 @@
-package com.duma.liudong.meiye.view.classift;
+package com.duma.liudong.meiye.view.classift.dianPu;
 
-import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
@@ -15,6 +11,7 @@ import com.duma.liudong.meiye.base.BaseBannaer;
 import com.duma.liudong.meiye.base.BaseFragment;
 import com.duma.liudong.meiye.base.BaseRvAdapter;
 import com.duma.liudong.meiye.model.DianPuMainBean;
+import com.duma.liudong.meiye.model.SlideBus;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.ShangPinAdapter;
 import com.duma.liudong.meiye.utils.StartUtil;
@@ -23,10 +20,12 @@ import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.request.RequestCall;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.ArrayList;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by liudong on 17/4/5.
@@ -54,11 +53,14 @@ public class DianPuShouYeFragment extends BaseFragment implements SwipeRefreshLa
         return R.layout.fragment_dianpushouye;
     }
 
+
     @Override
     protected void initData() {
+        EventBus.getDefault().register(this);
         dianPuActivity = (DianPuActivity) mActivity;
         initBuild();
         StartUtil.setSw(swLoading, this);
+        swLoading.setEnabled(false);
         rvShangping.setLayoutManager(new LinearLayoutManager(mActivity));
         rvShangping.setFocusable(false);
         rvShangping.setNestedScrollingEnabled(false);
@@ -67,7 +69,15 @@ public class DianPuShouYeFragment extends BaseFragment implements SwipeRefreshLa
         }.getType());
         adapter.setKongView(layoutKong);
         onRefresh();
+    }
 
+    @Subscribe
+    public void typeXiala(SlideBus slideBus) {
+        if (slideBus.getRes() == 0) {
+            swLoading.setEnabled(true);
+        } else {
+            swLoading.setEnabled(false);
+        }
     }
 
     public void setBannerShangping() {
@@ -129,10 +139,8 @@ public class DianPuShouYeFragment extends BaseFragment implements SwipeRefreshLa
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

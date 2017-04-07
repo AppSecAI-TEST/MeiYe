@@ -93,6 +93,11 @@ public class ShangPingXiangQinWeb extends BaseActivity {
             StartUtil.toLogin(mActivity);
         }
 
+        //跳转登录
+        @JavascriptInterface
+        public void goDianPu(String id) {
+            StartUtil.toDianPu(mActivity, id);
+        }
 
     }
 }

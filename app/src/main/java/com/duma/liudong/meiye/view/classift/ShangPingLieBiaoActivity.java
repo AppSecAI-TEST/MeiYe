@@ -71,7 +71,7 @@ public class ShangPingLieBiaoActivity extends BaseActivity implements SwipeRefre
     @BindView(R.id.btn_queding)
     Button btnQueding;
 
-    private String id, keyword, title;
+    private String key, Value, title;
     private PaiXuFragment paiXuFragment;
     private ShangPinLieBiaoPresenter shangPinPresenter;
     private int type = 0;//当前试图类型
@@ -95,8 +95,8 @@ public class ShangPingLieBiaoActivity extends BaseActivity implements SwipeRefre
         FragmentTransaction transaction = fm.beginTransaction();
         transaction.replace(R.id.layout_fragment, getPaixuFragment());
         transaction.commit();
-        id = getIntent().getStringExtra("id");
-        keyword = getIntent().getStringExtra("keyword");
+        key = getIntent().getStringExtra("key");
+        Value = getIntent().getStringExtra("Value");
         title = getIntent().getStringExtra("title");
         tvTitle.setText(title);
         imgOther.setImageDrawable(mActivity.getResources().getDrawable(R.drawable.l4q));
@@ -213,8 +213,7 @@ public class ShangPingLieBiaoActivity extends BaseActivity implements SwipeRefre
     private RequestCall getBuild() {
         GetBuilder getBuilder = shangPinPresenter.getBuild();
         getBuilder
-                .addParams("keyword", keyword)
-                .addParams("cat_id", id)
+                .addParams("key", Value)
                 .addParams(paiXuFragment.paixuName, paiXuFragment.paixu);
         for (Integer integer : layoutTagFlow.getSelectedList()) {
             getBuilder.addParams(list_shaixuan.get(integer).getName(), "1");
@@ -230,4 +229,12 @@ public class ShangPingLieBiaoActivity extends BaseActivity implements SwipeRefre
                 .build();
     }
 
+    @Override
+    protected void OnBack() {
+        if (layoutDrawerLayout.isDrawerOpen(layoutRight)) {
+            layoutDrawerLayout.closeDrawer(layoutRight);
+        } else {
+            finish();
+        }
+    }
 }

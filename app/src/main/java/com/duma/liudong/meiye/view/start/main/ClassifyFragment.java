@@ -12,6 +12,7 @@ import com.duma.liudong.meiye.base.BaseFragment;
 import com.duma.liudong.meiye.base.BaseRvAdapter;
 import com.duma.liudong.meiye.model.ClassifyBean;
 import com.duma.liudong.meiye.utils.Api;
+import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.DialogUtil;
 import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
@@ -121,7 +122,7 @@ public class ClassifyFragment extends BaseFragment {
                         holder.setOnClickListener(R.id.layout_click, new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                StartUtil.toShangPingLieBiao(mActivity, threeBean.getId(), "", threeBean.getName());
+                                StartUtil.toShangPingLieBiao(mActivity, Constants.cat_id, threeBean.getId(), threeBean.getName());
                             }
                         });
                     }

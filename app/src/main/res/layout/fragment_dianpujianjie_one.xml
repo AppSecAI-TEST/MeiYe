@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:hedgehog="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/layout"
+                android:layout_width="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="公司名称:" />
+
+                <TextView
+                    android:id="@+id/tv_company_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:text="猥琐点公司" />
+            </LinearLayout>
+
+            <View style="@style/henxian" />
+
+            <LinearLayout
+                style="@style/layout"
+                android:layout_width="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="开店时间:" />
+
+                <TextView
+                    android:id="@+id/tv_store_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:text="2007-1-1" />
+            </LinearLayout>
+
+            <View style="@style/henxian" />
+
+            <LinearLayout
+                style="@style/layout"
+                android:layout_width="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="经营模式:" />
+
+                <TextView
+                    android:id="@+id/tv_business_scope"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:text="厂家商家店家" />
+            </LinearLayout>
+
+            <View style="@style/henxian" />
+
+            <LinearLayout
+                style="@style/layout"
+                android:layout_width="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="所在地区:" />
+
+                <TextView
+                    android:id="@+id/tv_district_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:text="浙江拱墅区" />
+            </LinearLayout>
+
+            <View style="@style/henxian" />
+
+            <LinearLayout
+                style="@style/layout"
+                android:layout_width="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="主营产品:" />
+
+                <TextView
+                    android:id="@+id/tv_store_zy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:text="沐浴露 ps4" />
+            </LinearLayout>
+
+            <View style="@style/henxian" />
+
+            <LinearLayout
+                style="@style/layout"
+                android:layout_width="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="产品数量:" />
+
+                <TextView
+                    android:id="@+id/tv_goods_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:text="1000" />
+            </LinearLayout>
+
+            <View style="@style/henxian" />
+
+            <LinearLayout
+                style="@style/layout"
+                android:layout_width="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="成交数量:" />
+
+                <TextView
+                    android:id="@+id/tv_order_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:text="9999笔" />
+            </LinearLayout>
+
+            <View style="@style/henxian" />
+
+            <LinearLayout
+                style="@style/layout"
+                android:layout_width="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="满意度:" />
+
+                <com.hedgehog.ratingbar.RatingBar
+                    android:id="@+id/xx_store_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    hedgehog:clickable="false"
+                    hedgehog:starCount="5"
+                    hedgehog:starEmpty="@drawable/img_36"
+                    hedgehog:starFill="@drawable/img_32"
+                    hedgehog:starImageHeight="15dp"
+                    hedgehog:starImagePadding="2dp"
+                    hedgehog:starImageWidth="20dp" />
+            </LinearLayout>
+
+            <View
+                style="@style/henxian"
+                android:layout_height="10dp"
+                android:layout_marginBottom="10dp" />
+
+            <LinearLayout
+                style="@style/layout"
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="产品描述:" />
+
+                <com.hedgehog.ratingbar.RatingBar
+                    android:id="@+id/xx_store_desccredit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="right"
+                    android:paddingRight="10dp"
+                    hedgehog:clickable="false"
+                    hedgehog:starCount="5"
+                    hedgehog:starEmpty="@drawable/img_36"
+                    hedgehog:starFill="@drawable/img_32"
+                    hedgehog:starImageHeight="15dp"
+                    hedgehog:starImagePadding="2dp"
+                    hedgehog:starImageWidth="20dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/layout"
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="接单速度:" />
+
+                <com.hedgehog.ratingbar.RatingBar
+                    android:id="@+id/xx_store_servicecredit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="right"
+                    android:paddingRight="10dp"
+                    hedgehog:clickable="false"
+                    hedgehog:starCount="5"
+                    hedgehog:starEmpty="@drawable/img_36"
+                    hedgehog:starFill="@drawable/img_32"
+                    hedgehog:starImageHeight="15dp"
+                    hedgehog:starImagePadding="2dp"
+                    hedgehog:starImageWidth="20dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/layout"
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="发货速度:" />
+
+                <com.hedgehog.ratingbar.RatingBar
+                    android:id="@+id/xx_store_deliverycredit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="right"
+                    android:paddingRight="10dp"
+                    hedgehog:clickable="false"
+                    hedgehog:starCount="5"
+                    hedgehog:starEmpty="@drawable/img_36"
+                    hedgehog:starFill="@drawable/img_32"
+                    hedgehog:starImageHeight="15dp"
+                    hedgehog:starImagePadding="2dp"
+                    hedgehog:starImageWidth="20dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/layout"
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="回头率:" />
+
+                <TextView
+                    android:id="@+id/xx_turn_back_rate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:paddingRight="10dp"
+                    android:text="93%" />
+            </LinearLayout>
+
+            <View
+                style="@style/henxian"
+                android:layout_height="10dp"
+                android:layout_marginTop="10dp" />
+
+            <LinearLayout
+                style="@style/layout"
+                android:layout_width="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="联系人:" />
+
+                <TextView
+                    android:id="@+id/tv_contacts_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:text="张三三" />
+            </LinearLayout>
+
+            <View style="@style/henxian" />
+
+            <LinearLayout
+                style="@style/layout"
+                android:layout_width="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="联系电话:" />
+
+                <TextView
+                    android:id="@+id/tv_contacts_mobile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:text="1777777777" />
+            </LinearLayout>
+
+            <View style="@style/henxian" />
+
+            <LinearLayout
+                style="@style/layout"
+                android:layout_width="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="联系地址:" />
+
+                <TextView
+                    android:id="@+id/tv_addres"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:text="浙江省杭州市2号" />
+            </LinearLayout>
+
+            <View style="@style/henxian" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

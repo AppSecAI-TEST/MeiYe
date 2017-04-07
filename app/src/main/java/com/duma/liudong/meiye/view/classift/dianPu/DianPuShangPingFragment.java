@@ -1,4 +1,4 @@
-package com.duma.liudong.meiye.view.classift;
+package com.duma.liudong.meiye.view.classift.dianPu;
 
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
@@ -8,11 +8,15 @@ import android.widget.RadioButton;
 
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseFragment;
+import com.duma.liudong.meiye.model.SlideBus;
 import com.duma.liudong.meiye.presenter.ShangPinLieBiaoPresenter;
 import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.zhy.http.okhttp.builder.GetBuilder;
 import com.zhy.http.okhttp.request.RequestCall;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -50,10 +54,12 @@ public class DianPuShangPingFragment extends BaseFragment implements SwipeRefres
 
     @Override
     protected void initData() {
+        EventBus.getDefault().register(this);
         paixuName = Constants.zonghe;
         paixu = Constants.zhenXu;
         activity = (DianPuActivity) mActivity;
         StartUtil.setSw(swLoading, this);
+        swLoading.setEnabled(false);
         shangPinPresenter = new ShangPinLieBiaoPresenter(mActivity, rvShangping);
         shangPinPresenter.setKongView(layoutKong);
         shangPinPresenter.setShangPinListener(new ShangPinLieBiaoPresenter.OnShangPinListener() {
@@ -73,6 +79,15 @@ public class DianPuShangPingFragment extends BaseFragment implements SwipeRefres
                     shangPinPresenter.QueryHttp(getBuild());
             }
         });
+    }
+
+    @Subscribe
+    public void typeXiala(SlideBus slideBus) {
+        if (slideBus.getRes() == 0) {
+            swLoading.setEnabled(true);
+        } else {
+            swLoading.setEnabled(false);
+        }
     }
 
     @OnClick({R.id.btn_zonghe, R.id.btn_xinpin, R.id.btn_xiaoliang, R.id.btn_jiage})
@@ -120,4 +135,9 @@ public class DianPuShangPingFragment extends BaseFragment implements SwipeRefres
                 .build();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }

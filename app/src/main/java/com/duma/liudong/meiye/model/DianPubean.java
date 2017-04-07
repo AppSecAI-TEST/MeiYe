@@ -1,20 +1,28 @@
 package com.duma.liudong.meiye.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by liudong on 17/4/5.
  */
 
-public class DianPubean {
+public class DianPubean implements Serializable {
+
     /**
      * store_collect : 0
+     * store_zy : 店铺一店铺一店铺一
+     * sc_name : 店家(服务卖家)
      * store_slide : /Public/upload/seller/2017/04-01/58df6756c5b33.jpg,/Public/upload/seller/2017/04-01/58df675f37e70.jpg,/Public/upload/seller/2017/04-01/58df6765942d3.jpg,,
+     * province_name : 北京市
+     * city_name : 北京市
+     * district_name : 北京市
+     * store_address : 12323
      * store_name : 旗舰店
      * turn_back_rate : 0
-     * store_desccredit : 0.00
-     * store_servicecredit : 0.00
-     * store_deliverycredit : 0.00
+     * store_desccredit : 0
+     * store_servicecredit : 0
+     * store_deliverycredit : 0
      * store_logo : http://meiye.duma-ivy.cn/Public/upload/seller/2017/03-29/58db723588613.jpg
      * store_banner : http://meiye.duma-ivy.cn/Public/upload/seller/2017/03-28/58da0863b7ac1.jpg
      * store_avatar :
@@ -28,7 +36,10 @@ public class DianPubean {
      * business_date_start : null
      * business_date_end : null
      * company_name : null
+     * contacts_name : null
+     * contacts_mobile : null
      * company_type : null
+     * store_score : 0
      * store_slide_url : ["http://meiye.duma-ivy.cn/Public/upload/seller/2017/04-01/58df6756c5b33.jpg","http://meiye.duma-ivy.cn/Public/upload/seller/2017/04-01/58df675f37e70.jpg","http://meiye.duma-ivy.cn/Public/upload/seller/2017/04-01/58df6765942d3.jpg"]
      * store_time_y : 1
      * goods_num : 30
@@ -36,12 +47,18 @@ public class DianPubean {
      */
 
     private String store_collect;
+    private String store_zy;
+    private String sc_name;
     private String store_slide;
+    private String province_name;
+    private String city_name;
+    private String district_name;
+    private String store_address;
     private String store_name;
     private String turn_back_rate;
-    private String store_desccredit;
-    private String store_servicecredit;
-    private String store_deliverycredit;
+    private int store_desccredit;
+    private int store_servicecredit;
+    private int store_deliverycredit;
     private String store_logo;
     private String store_banner;
     private String store_avatar;
@@ -55,7 +72,10 @@ public class DianPubean {
     private String business_date_start;
     private String business_date_end;
     private String company_name;
+    private String contacts_name;
+    private String contacts_mobile;
     private String company_type;
+    private int store_score;
     private String store_time_y;
     private String goods_num;
     private String order_num;
@@ -69,12 +89,60 @@ public class DianPubean {
         this.store_collect = store_collect;
     }
 
+    public String getStore_zy() {
+        return store_zy;
+    }
+
+    public void setStore_zy(String store_zy) {
+        this.store_zy = store_zy;
+    }
+
+    public String getSc_name() {
+        return sc_name;
+    }
+
+    public void setSc_name(String sc_name) {
+        this.sc_name = sc_name;
+    }
+
     public String getStore_slide() {
         return store_slide;
     }
 
     public void setStore_slide(String store_slide) {
         this.store_slide = store_slide;
+    }
+
+    public String getProvince_name() {
+        return province_name;
+    }
+
+    public void setProvince_name(String province_name) {
+        this.province_name = province_name;
+    }
+
+    public String getCity_name() {
+        return city_name;
+    }
+
+    public void setCity_name(String city_name) {
+        this.city_name = city_name;
+    }
+
+    public String getDistrict_name() {
+        return district_name;
+    }
+
+    public void setDistrict_name(String district_name) {
+        this.district_name = district_name;
+    }
+
+    public String getStore_address() {
+        return store_address;
+    }
+
+    public void setStore_address(String store_address) {
+        this.store_address = store_address;
     }
 
     public String getStore_name() {
@@ -93,27 +161,27 @@ public class DianPubean {
         this.turn_back_rate = turn_back_rate;
     }
 
-    public String getStore_desccredit() {
+    public int getStore_desccredit() {
         return store_desccredit;
     }
 
-    public void setStore_desccredit(String store_desccredit) {
+    public void setStore_desccredit(int store_desccredit) {
         this.store_desccredit = store_desccredit;
     }
 
-    public String getStore_servicecredit() {
+    public int getStore_servicecredit() {
         return store_servicecredit;
     }
 
-    public void setStore_servicecredit(String store_servicecredit) {
+    public void setStore_servicecredit(int store_servicecredit) {
         this.store_servicecredit = store_servicecredit;
     }
 
-    public String getStore_deliverycredit() {
+    public int getStore_deliverycredit() {
         return store_deliverycredit;
     }
 
-    public void setStore_deliverycredit(String store_deliverycredit) {
+    public void setStore_deliverycredit(int store_deliverycredit) {
         this.store_deliverycredit = store_deliverycredit;
     }
 
@@ -221,12 +289,36 @@ public class DianPubean {
         this.company_name = company_name;
     }
 
+    public String getContacts_name() {
+        return contacts_name;
+    }
+
+    public void setContacts_name(String contacts_name) {
+        this.contacts_name = contacts_name;
+    }
+
+    public String getContacts_mobile() {
+        return contacts_mobile;
+    }
+
+    public void setContacts_mobile(String contacts_mobile) {
+        this.contacts_mobile = contacts_mobile;
+    }
+
     public String getCompany_type() {
         return company_type;
     }
 
     public void setCompany_type(String company_type) {
         this.company_type = company_type;
+    }
+
+    public int getStore_score() {
+        return store_score;
+    }
+
+    public void setStore_score(int store_score) {
+        this.store_score = store_score;
     }
 
     public String getStore_time_y() {

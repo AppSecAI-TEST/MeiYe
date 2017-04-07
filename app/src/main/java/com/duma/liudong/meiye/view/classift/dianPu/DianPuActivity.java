@@ -1,11 +1,15 @@
-package com.duma.liudong.meiye.view.classift;
+package com.duma.liudong.meiye.view.classift.dianPu;
 
+import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.duma.liudong.meiye.R;
@@ -13,11 +17,15 @@ import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.base.MyStringCallback;
 import com.duma.liudong.meiye.base.MyViewPagerAdapter;
 import com.duma.liudong.meiye.model.DianPubean;
+import com.duma.liudong.meiye.model.SlideBus;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.ImageLoader;
+import com.duma.liudong.meiye.view.dialog.ServiceDialog;
+import com.duma.liudong.meiye.widget.ScrollableLayout;
 import com.google.gson.Gson;
-import com.gxz.library.StickyNavLayout;
 import com.zhy.http.okhttp.OkHttpUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -26,7 +34,7 @@ import butterknife.OnClick;
  * Created by liudong on 17/4/5.
  */
 
-public class DianPuActivity extends BaseActivity {
+public class DianPuActivity extends BaseActivity implements ScrollableLayout.OnScrollListener {
     @BindView(R.id.layout_back)
     LinearLayout layoutBack;
     @BindView(R.id.textView5)
@@ -45,20 +53,24 @@ public class DianPuActivity extends BaseActivity {
     TextView tvStoreCollect;
     @BindView(R.id.img_store_banner)
     ImageView imgStoreBanner;
-
-
-    @BindView(R.id.id_stickynavlayout_topview)
-    LinearLayout idStickynavlayoutTopview;
-    @BindView(R.id.id_stickynavlayout_indicator)
+    @BindView(R.id.TabLayout)
     TabLayout tabLayoutBar;
-    @BindView(R.id.id_stickynavlayout_viewpager)
+    @BindView(R.id.viewPager)
     ViewPager viewPaterBar;
-    @BindView(R.id.snLayout_bar)
-    StickyNavLayout snLayoutBar;
+    @BindView(R.id.ScrollableLayout)
+    com.duma.liudong.meiye.widget.ScrollableLayout ScrollableLayout;
+    @BindView(R.id.btn_feilei)
+    RadioButton btnFeilei;
+    @BindView(R.id.btn_jianjie)
+    RadioButton btnJianjie;
+    @BindView(R.id.btn_maijia)
+    RadioButton btnMaijia;
+    @BindView(R.id.group_btn)
+    RadioGroup groupBtn;
     private DianPuShouYeFragment dianPuShouYeFragment;
-
     public String store_id;
     public DianPubean dianPubean;
+    private ServiceDialog serviceDialog;
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -68,6 +80,8 @@ public class DianPuActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        groupBtn.setVisibility(View.GONE);
+        serviceDialog = new ServiceDialog(mActivity);
         store_id = getIntent().getStringExtra("id");
         final int[] huiDrawable = {R.drawable.img_68, R.drawable.img_69, R.drawable.img_73};
         final int[] radDrawable = {R.drawable.img_67, R.drawable.img_70, R.drawable.img_72};
@@ -117,6 +131,32 @@ public class DianPuActivity extends BaseActivity {
                         initRes();
                     }
                 });
+
+        ScrollableLayout.setOnScrollListener(this);
+    }
+
+    @Override
+    protected void OnBack() {
+        if (isSticked()) {
+            int y = ScrollableLayout.mCurY;
+            ValueAnimator anim = ValueAnimator.ofFloat(y, 0f);
+            anim.setDuration(300);
+            anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    float currentValue = (float) animation.getAnimatedValue();
+                    ScrollableLayout.scrollTo(0, (int) currentValue - 1);
+                }
+            });
+            anim.start();
+            EventBus.getDefault().post(new SlideBus(1));
+        } else {
+            finish();
+        }
+    }
+
+    public boolean isSticked() {
+        return ScrollableLayout.isSticked();
     }
 
     private void initRes() {
@@ -127,9 +167,10 @@ public class DianPuActivity extends BaseActivity {
         tvOrderNum.setText(dianPubean.getOrder_num());
         tvStoreCollect.setText(dianPubean.getStore_collect());
         dianPuShouYeFragment.setBannerShangping();
+        groupBtn.setVisibility(View.VISIBLE);
     }
 
-    @OnClick({R.id.layout_back, R.id.layout_sousuo})
+    @OnClick({R.id.layout_back, R.id.layout_sousuo, R.id.btn_feilei, R.id.btn_jianjie, R.id.btn_maijia})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.layout_back:
@@ -137,7 +178,33 @@ public class DianPuActivity extends BaseActivity {
                 break;
             case R.id.layout_sousuo:
                 break;
+            case R.id.btn_feilei:
+                Intent intent = new Intent(mActivity, DianPuClassiftActivity.class);
+                intent.putExtra("id", store_id);
+                startActivity(intent);
+                break;
+            case R.id.btn_jianjie:
+                Intent intent1 = new Intent(mActivity, DianPuJianJieActivity.class);
+                intent1.putExtra("bean", dianPubean);
+                startActivity(intent1);
+                break;
+            case R.id.btn_maijia:
+                serviceDialog.Show();
+                break;
         }
+    }
+
+    @Override
+    public void onScroll(int currentY, int maxY) {
+        if (currentY == maxY) {
+            //打开下拉刷新
+            EventBus.getDefault().post(new SlideBus(0));
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
 }

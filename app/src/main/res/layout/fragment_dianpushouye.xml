@@ -26,7 +26,6 @@
                     android:layout_height="160dp"
                     app:canLoop="true" />
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

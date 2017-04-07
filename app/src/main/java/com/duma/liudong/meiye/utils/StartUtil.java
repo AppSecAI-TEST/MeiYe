@@ -8,9 +8,9 @@ import android.widget.TextView;
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.model.LoginBean;
-import com.duma.liudong.meiye.view.classift.DianPuActivity;
 import com.duma.liudong.meiye.view.classift.ShangPingLieBiaoActivity;
 import com.duma.liudong.meiye.view.classift.ShangPingXiangQinWeb;
+import com.duma.liudong.meiye.view.classift.dianPu.DianPuActivity;
 import com.duma.liudong.meiye.view.start.login.LoginActivity;
 import com.duma.liudong.meiye.view.start.main.MainActivity;
 
@@ -50,10 +50,10 @@ public class StartUtil {
     }
 
     //跳转商品列表
-    public static void toShangPingLieBiao(Activity activity, String id, String keyword, String title) {
+    public static void toShangPingLieBiao(Activity activity, String key, String Value, String title) {
         Intent intent = new Intent(activity, ShangPingLieBiaoActivity.class);
-        intent.putExtra("id", id);
-        intent.putExtra("keyword", keyword);
+        intent.putExtra("key", key);
+        intent.putExtra("Value", Value);
         intent.putExtra("title", title);
         activity.startActivity(intent);
     }

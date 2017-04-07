@@ -1,4 +1,4 @@
-package com.duma.liudong.meiye.view.classift;
+package com.duma.liudong.meiye.view.classift.dianPu;
 
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
@@ -8,12 +8,16 @@ import android.widget.RadioButton;
 
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseFragment;
+import com.duma.liudong.meiye.model.SlideBus;
 import com.duma.liudong.meiye.presenter.ShangPinLieBiaoPresenter;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.builder.GetBuilder;
 import com.zhy.http.okhttp.request.RequestCall;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -45,10 +49,21 @@ public class DianPuHuoDongFragment extends BaseFragment implements SwipeRefreshL
         return R.layout.fragment_dianpuhuodong;
     }
 
+    @Subscribe
+    public void typeXiala(SlideBus slideBus) {
+        if (slideBus.getRes() == 0) {
+            swLoading.setEnabled(true);
+        } else {
+            swLoading.setEnabled(false);
+        }
+    }
+
     @Override
     protected void initData() {
+        EventBus.getDefault().register(this);
         activity = (DianPuActivity) mActivity;
         StartUtil.setSw(swLoading, this);
+        swLoading.setEnabled(false);
         shangPinPresenter = new ShangPinLieBiaoPresenter(mActivity, rvShangping);
         shangPinPresenter.setKongView(layoutKong);
         shangPinPresenter.setShangPinListener(new ShangPinLieBiaoPresenter.OnShangPinListener() {
@@ -107,5 +122,11 @@ public class DianPuHuoDongFragment extends BaseFragment implements SwipeRefreshL
                 .addParams("type", type);
         return getBuilder
                 .build();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

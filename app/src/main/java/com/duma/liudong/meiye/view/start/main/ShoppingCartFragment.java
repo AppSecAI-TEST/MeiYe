@@ -15,6 +15,7 @@ import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseFragment;
 import com.duma.liudong.meiye.base.BaseRvAdapter;
 import com.duma.liudong.meiye.base.MyApplication;
+import com.duma.liudong.meiye.base.MyStringCallback;
 import com.duma.liudong.meiye.model.GouWuCheBean;
 import com.duma.liudong.meiye.model.GouWuCheTypeBean;
 import com.duma.liudong.meiye.utils.Api;
@@ -59,6 +60,8 @@ public class ShoppingCartFragment extends BaseFragment implements SwipeRefreshLa
     TextView tvBtn;
     @BindView(R.id.sw_loading)
     SwipeRefreshLayout swLoading;
+    @BindView(R.id.layout_bar)
+    LinearLayout layoutBar;
 
     private BaseRvAdapter<GouWuCheBean.CartListBean> adapter;
     private GouWuCheBean gouWuCheBean;
@@ -66,6 +69,7 @@ public class ShoppingCartFragment extends BaseFragment implements SwipeRefreshLa
     private List<String> goodsNumList;
 
     private int type = Constants.jiesuan;
+    private MainActivity activity;
 
     @Override
     protected int setLayoutResouceId() {
@@ -75,6 +79,7 @@ public class ShoppingCartFragment extends BaseFragment implements SwipeRefreshLa
     @Override
     protected void initData() {
         EventBus.getDefault().register(this);
+        activity = (MainActivity) mActivity;
         cartList = new ArrayList<>();
         goodsNumList = new ArrayList<>();
         StartUtil.setSw(swLoading, this);
@@ -126,6 +131,11 @@ public class ShoppingCartFragment extends BaseFragment implements SwipeRefreshLa
     @Subscribe
     public void setOnBianji(GouWuCheTypeBean bean) {
         type = bean.getType();
+        refreshType();
+        adapter.commonAdapter.notifyDataSetChanged();
+    }
+
+    private void refreshType() {
         if (type == Constants.jiesuan) {
             if (gouWuCheBean != null) {
                 tvBtn.setText("结算 (" + gouWuCheBean.getTotal_price().getNum() + ")");
@@ -137,7 +147,6 @@ public class ShoppingCartFragment extends BaseFragment implements SwipeRefreshLa
             tvBtn.setText("删除");
             layoutJisuan.setVisibility(View.INVISIBLE);
         }
-        adapter.commonAdapter.notifyDataSetChanged();
     }
 
     private void clearList() {
@@ -147,10 +156,7 @@ public class ShoppingCartFragment extends BaseFragment implements SwipeRefreshLa
 
     @Override
     protected void onLazyLoad() {
-        if (!StartUtil.isLogin()) {
-            StartUtil.toLogin(mActivity);
-            return;
-        }
+        layoutBar.setVisibility(View.GONE);
         clearList();
         ShuaXin("");
     }
@@ -165,9 +171,17 @@ public class ShoppingCartFragment extends BaseFragment implements SwipeRefreshLa
             case R.id.cb_quanXuan:
                 break;
             case R.id.tv_btn:
+                if (tvBtn.getText().toString().equals("删除")) {
+                    //删除
+                    delectHttp();
+                } else {
+                    // TODO: 17/4/7 分开结算 需要一个dialog
+
+                }
                 break;
         }
     }
+
 
     //从新获取购物车列表
     public RequestCall getBuild(String cart_select) {
@@ -333,9 +347,10 @@ public class ShoppingCartFragment extends BaseFragment implements SwipeRefreshLa
 
             @Override
             protected void HttpSuccess() {
+                layoutBar.setVisibility(View.VISIBLE);
                 tvHeji.setText("￥" + gouWuCheBean.getTotal_price().getTotal_fee());
                 tvYijian.setText("已减" + gouWuCheBean.getTotal_price().getCut_fee());
-                tvBtn.setText("结算 (" + gouWuCheBean.getTotal_price().getNum() + ")");
+                refreshType();
                 int c = 0;
                 for (int i = 0; i < gouWuCheBean.getCart_list().size(); i++) {
                     for (int j = 0; j < gouWuCheBean.getCart_list().get(i).getGoods_list().size(); j++) {
@@ -371,4 +386,23 @@ public class ShoppingCartFragment extends BaseFragment implements SwipeRefreshLa
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
+
+    //删除购物车接口
+    private void delectHttp() {
+        OkHttpUtils.getInstance().cancelTag("this");
+        OkHttpUtils
+                .post()
+                .tag("this")
+                .url(Api.delcart)
+                .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
+                .build()
+                .execute(new MyStringCallback() {
+                    @Override
+                    public void onMySuccess(String result) {
+                        onLazyLoad();
+                    }
+                });
+    }
+
 }

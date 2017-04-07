@@ -29,6 +29,7 @@
                     android:background="@color/bg_hui" />
 
                 <LinearLayout
+                    android:id="@+id/layout_bar"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:gravity="center|left"

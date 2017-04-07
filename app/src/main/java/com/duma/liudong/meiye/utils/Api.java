@@ -45,7 +45,7 @@ public class Api {
      * order
      */
     public static final String cartList = url + "/App/order/cartList";
-
+    public static final String delcart = url + "/App/order/delcart";
     /**
      * 头条
      */
@@ -57,4 +57,5 @@ public class Api {
     public static final String Storeindex = url + "/App/Store/index";
     public static final String Storegoods = url + "/App/Store/goods";
     public static final String dynamic = url + "/App/Store/dynamic";
+    public static final String store_class = url + "/App/Store/store_class";
 }

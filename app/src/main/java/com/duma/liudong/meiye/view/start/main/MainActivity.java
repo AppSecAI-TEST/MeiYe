@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -58,6 +59,23 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initData() {
         addAllFragment();
+        showHome();
+        rdoBtnShoppingCart.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_UP:
+                        if (!StartUtil.isLogin()) {
+                            StartUtil.toLogin(mActivity);
+                            return true;
+                        }
+                }
+                return false;
+            }
+        });
+    }
+
+    public void showHome() {
         showFramgment(getHomeFragment(), getSearch_BarFragment());
     }
 
@@ -81,7 +99,7 @@ public class MainActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rdoBtn_home:
-                showFramgment(getHomeFragment(), getSearch_BarFragment());
+                showHome();
                 break;
             case R.id.rdoBtn_classify:
                 showFramgment(getClassifyFragment(), getSearch_BarFragment());
