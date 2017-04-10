@@ -22,6 +22,7 @@ import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
+import com.duma.liudong.meiye.view.dialog.ShoppingCartDialog;
 import com.google.gson.Gson;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
@@ -70,6 +71,7 @@ public class ShoppingCartFragment extends BaseFragment implements SwipeRefreshLa
 
     private int type = Constants.jiesuan;
     private MainActivity activity;
+    private ShoppingCartDialog dialog;
 
     @Override
     protected int setLayoutResouceId() {
@@ -80,6 +82,7 @@ public class ShoppingCartFragment extends BaseFragment implements SwipeRefreshLa
     protected void initData() {
         EventBus.getDefault().register(this);
         activity = (MainActivity) mActivity;
+        dialog = new ShoppingCartDialog(mActivity);
         cartList = new ArrayList<>();
         goodsNumList = new ArrayList<>();
         StartUtil.setSw(swLoading, this);
@@ -175,8 +178,7 @@ public class ShoppingCartFragment extends BaseFragment implements SwipeRefreshLa
                     //删除
                     delectHttp();
                 } else {
-                    // TODO: 17/4/7 分开结算 需要一个dialog
-
+                    dialog.show();
                 }
                 break;
         }
@@ -206,6 +208,18 @@ public class ShoppingCartFragment extends BaseFragment implements SwipeRefreshLa
             @Override
             protected void getView(ViewHolder holder, final GouWuCheBean.CartListBean cartListBean, int position) {
                 holder.setText(R.id.tv_store_name, cartListBean.getMark().getStore_name());
+                holder.setText(R.id.tv_postage, cartListBean.getMark().getPostage());
+                holder.setText(R.id.tv_coupon, cartListBean.getMark().getCoupon());
+                LinearLayout layout_manjian = holder.getView(R.id.layout_manjian);
+                LinearLayout layout_baoyou = holder.getView(R.id.layout_baoyou);
+                layout_manjian.setVisibility(View.VISIBLE);
+                layout_baoyou.setVisibility(View.VISIBLE);
+                if (cartListBean.getMark().getPostage() == null || cartListBean.getMark().getPostage().equals("null")) {
+                    layout_baoyou.setVisibility(View.GONE);
+                }
+                if (cartListBean.getMark().getCoupon() == null || cartListBean.getMark().getCoupon().equals("null")) {
+                    layout_manjian.setVisibility(View.GONE);
+                }
                 RecyclerView recyclerView = holder.getView(R.id.rv_shangping);
                 recyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
                 recyclerView.setFocusable(false);
@@ -365,6 +379,8 @@ public class ShoppingCartFragment extends BaseFragment implements SwipeRefreshLa
                 } else {
                     cbQuanXuan.setChecked(false);
                 }
+
+                dialog.setList(adapter.mList);
             }
 
             @Nullable

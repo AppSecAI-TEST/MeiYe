@@ -21,6 +21,7 @@ import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.view.home.LinJuanActivity;
+import com.duma.liudong.meiye.view.home.MiaoShaActivity;
 import com.duma.liudong.meiye.view.home.TouTiaoActivity;
 import com.duma.liudong.meiye.widget.SampleAdapter;
 import com.duma.liudong.meiye.widget.VerticalBannerView;
@@ -272,6 +273,8 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
             case R.id.layout_guanlian:
                 break;
             case R.id.layout_seckill:
+                //秒杀
+                startActivity(new Intent(mActivity, MiaoShaActivity.class));
                 break;
             case R.id.layout_group:
                 break;

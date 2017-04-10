@@ -56,4 +56,6 @@ dependencies {
     compile 'com.github.w446108264:ScrollableLayout:1.0.3'
     //评价的星星
     compile 'com.hedgehog.ratingbar:app:1.1.2'
+    //倒计时
+    compile 'com.github.iwgang:countdownview:2.1.3'
 }

@@ -11,6 +11,7 @@ import com.duma.liudong.meiye.model.LoginBean;
 import com.duma.liudong.meiye.view.classift.ShangPingLieBiaoActivity;
 import com.duma.liudong.meiye.view.classift.ShangPingXiangQinWeb;
 import com.duma.liudong.meiye.view.classift.dianPu.DianPuActivity;
+import com.duma.liudong.meiye.view.shoppingCart.QueRenDinDanActivity;
 import com.duma.liudong.meiye.view.start.login.LoginActivity;
 import com.duma.liudong.meiye.view.start.main.MainActivity;
 
@@ -58,7 +59,7 @@ public class StartUtil {
         activity.startActivity(intent);
     }
 
-    //跳转商品详情页
+    //跳转店铺
     public static void toDianPu(Activity activity, String id) {
         Intent intent = new Intent(activity, DianPuActivity.class);
         intent.putExtra("id", id);
@@ -69,6 +70,13 @@ public class StartUtil {
     public static void toShangPingWeb(Activity activity, String url) {
         Intent intent = new Intent(activity, ShangPingXiangQinWeb.class);
         intent.putExtra("url", url);
+        activity.startActivity(intent);
+    }
+
+    //跳转确认订单
+    public static void toQueRenDinDan(Activity activity, String store_id) {
+        Intent intent = new Intent(activity, QueRenDinDanActivity.class);
+        intent.putExtra("store_id", store_id);
         activity.startActivity(intent);
     }
 

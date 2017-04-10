@@ -105,6 +105,15 @@ public class GouWuCheBean {
             private String store_id;
             private int total;
             private String postage;
+            private String coupon;
+
+            public String getCoupon() {
+                return coupon;
+            }
+
+            public void setCoupon(String coupon) {
+                this.coupon = coupon;
+            }
 
             public String getStore_name() {
                 return store_name;
