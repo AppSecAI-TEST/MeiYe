@@ -86,6 +86,15 @@
         <activity android:name=".view.classift.dianPu.DianPuJianJieActivity" />
         <activity android:name=".view.shoppingCart.QueRenDinDanActivity" />
         <activity android:name=".view.home.MiaoShaActivity" />
+        <activity android:name=".view.forum.FaTieActivity" />
+        <!--微信的选择器activity-->
+        <activity
+            android:name="me.iwf.photopicker.PhotoPickerActivity"
+            android:theme="@style/customTheme" />
+
+        <activity
+            android:name="me.iwf.photopicker.PhotoPagerActivity"
+            android:theme="@style/customTheme" />
     </application>
 
 </manifest>

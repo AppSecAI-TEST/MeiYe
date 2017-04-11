@@ -124,10 +124,14 @@ public abstract class BaseXiaLaRvPresenter<T> implements LoadMoreWrapper.OnLoadM
 
     //刷新就是清除 list 同时通知adapter,会自动触发更多,不要自动调用
     public void Shuaxin() {
+        clean();
+        mAdapter.notifyDataSetChanged();
+    }
+
+    public void clean() {
         hide_Kong();
         p = 0;
         mlist.clear();
-        mAdapter.notifyDataSetChanged();
     }
 
     //判断当前页数是否第一页,第一页 显示为空页面,不是第一页 显示加载完毕

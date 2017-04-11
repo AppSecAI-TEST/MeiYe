@@ -193,7 +193,7 @@ public class MainActivity extends BaseActivity {
         return classifyFragment;
     }
 
-    ForumFragment getForumFragment() {
+    public ForumFragment getForumFragment() {
         if (forumFragment == null) {
             forumFragment = new ForumFragment();
         }

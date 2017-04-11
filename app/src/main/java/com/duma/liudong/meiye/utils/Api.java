@@ -64,4 +64,13 @@ public class Api {
      * Market - 秒杀活动接口
      */
     public static final String miaosha = url + "/App/Market/miaosha";
+
+    /**
+     * Bbs - 论坛分类
+     */
+    public static final String cat = url + "/App/Bbs/cat";
+    public static final String top = url + "/App/Bbs/top";
+    public static final String Bbsindex = url + "/App/Bbs/index";
+    public static final String upload = url + "/App/Bbs/upload";
+    public static final String add = url + "/App/Bbs/add";
 }

@@ -103,7 +103,7 @@ public class QueRenDinDanActivity extends BaseActivity {
         DialogUtil.show(mActivity, false);
         OkHttpUtils.getInstance().cancelTag(this);
         OkHttpUtils
-                .post()
+                .get()
                 .url(Api.makeSure)
                 .tag(this)
                 .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))

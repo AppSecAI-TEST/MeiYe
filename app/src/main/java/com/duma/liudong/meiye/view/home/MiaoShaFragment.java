@@ -1,14 +1,16 @@
 package com.duma.liudong.meiye.view.home;
 
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseFragment;
-import com.duma.liudong.meiye.base.BaseRvAdapter;
-import com.duma.liudong.meiye.model.YouHuiJuanBean;
+import com.duma.liudong.meiye.base.BaseXiaLaRvPresenter;
+import com.duma.liudong.meiye.model.ShangPinBean;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.StartUtil;
+import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.request.RequestCall;
 
@@ -31,9 +33,10 @@ public class MiaoShaFragment extends BaseFragment implements SwipeRefreshLayout.
     @BindView(R.id.sw_loading)
     SwipeRefreshLayout swLoading;
 
-    private BaseRvAdapter<YouHuiJuanBean> adapter;
+    private BaseXiaLaRvPresenter<ShangPinBean> shangPinBeanBaseXiaLaRvPresenter;
     private MiaoShaActivity activity;
     private RequestCall build;
+    private String activity_time = "10";
 
     @Override
     protected int setLayoutResouceId() {
@@ -45,6 +48,36 @@ public class MiaoShaFragment extends BaseFragment implements SwipeRefreshLayout.
         activity = (MiaoShaActivity) mActivity;
         StartUtil.setSw(swLoading, this);
         timeDaojishi.start((getSundayOfThisWeek().getTime()) + getXiaoShi(10) - new Date().getTime());
+        initAdapter();
+    }
+
+    private void initAdapter() {
+        shangPinBeanBaseXiaLaRvPresenter = new BaseXiaLaRvPresenter<ShangPinBean>(mActivity, R.layout.rv_miaosha, rvShangping) {
+            @Override
+            protected void hide_loading() {
+                swLoading.setRefreshing(false);
+            }
+
+            @Override
+            protected void show_loading() {
+                swLoading.setRefreshing(true);
+            }
+
+            @Override
+            protected void loadMore() {
+
+            }
+
+            @Override
+            protected RecyclerView.LayoutManager initLayoutManager() {
+                return new LinearLayoutManager(mActivity);
+            }
+
+            @Override
+            protected void getView(ViewHolder holder, ShangPinBean shangPinBean, int position) {
+
+            }
+        };
     }
 
     private RequestCall getBuild() {
@@ -53,7 +86,7 @@ public class MiaoShaFragment extends BaseFragment implements SwipeRefreshLayout.
                 .tag("base")
                 .url(Api.miaosha)
                 .addParams("type", activity.getType())
-                .addParams("activity_time", "10")
+                .addParams("activity_time", activity_time)
                 .addParams("p", "1")
                 .build();
         return build;
@@ -85,7 +118,7 @@ public class MiaoShaFragment extends BaseFragment implements SwipeRefreshLayout.
 
     @Override
     public void onRefresh() {
-        adapter.QueryHttp(build);
+        shangPinBeanBaseXiaLaRvPresenter.Shuaxin();
     }
 
 }
