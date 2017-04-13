@@ -41,6 +41,7 @@ public class ShoppingCartDialog extends Dialog {
     }
 
     public void setList(List<GouWuCheBean.CartListBean> list) {
+        mList.clear();
         mList.addAll(list);
 //        adapter.notifyDataSetChanged();
     }
@@ -69,6 +70,8 @@ public class ShoppingCartDialog extends Dialog {
                 dismiss();
             }
         });
+        rv_jiesuan.setFocusable(false);
+        rv_jiesuan.setNestedScrollingEnabled(false);
         rv_jiesuan.setLayoutManager(new LinearLayoutManager(mActivity));
         adapter = new CommonAdapter<GouWuCheBean.CartListBean>(mActivity, R.layout.rv_shoppingcart_dialog, mList) {
             @Override

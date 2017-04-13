@@ -1,7 +1,9 @@
 package com.duma.liudong.meiye.view.shoppingCart;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -13,10 +15,18 @@ import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.base.MyStringCallback;
+import com.duma.liudong.meiye.model.QueRenDinDanBean;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.DialogUtil;
+import com.duma.liudong.meiye.utils.ImageLoader;
+import com.google.gson.Gson;
+import com.zhy.adapter.recyclerview.CommonAdapter;
+import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.http.okhttp.OkHttpUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -86,8 +96,15 @@ public class QueRenDinDanActivity extends BaseActivity {
     TextView tvTijiaodindan;
 
     private String store_id;
+    private boolean isOne = false;
+    private QueRenDinDanBean bean;
+    private int isJifen = 0;
+    private int isYue = 0;
+    private CommonAdapter<QueRenDinDanBean.CartListBean.GoodsListBean> adapter;
+    private List<QueRenDinDanBean.CartListBean.GoodsListBean> mlist;
 
     @Override
+
     protected void initContentView(Bundle savedInstanceState) {
         setContentView(R.layout.activity_querendindan);
     }
@@ -96,7 +113,60 @@ public class QueRenDinDanActivity extends BaseActivity {
     protected void initData() {
         tvTitle.setText("确认订单");
         store_id = getIntent().getStringExtra("store_id");
+        mlist = new ArrayList<>();
+        rvShangping.setLayoutManager(new LinearLayoutManager(mActivity));
+        rvShangping.setFocusable(false);
+        rvShangping.setNestedScrollingEnabled(false);
+        initAdApter();
         DinDanHttp();
+
+        swithYue.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_UP:
+                        isYue = initInt(isYue);
+                        DinDanHttp();
+                        break;
+                }
+                return true;
+            }
+        });
+        swithJifen.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_UP:
+                        isJifen = initInt(isJifen);
+                        DinDanHttp();
+                        break;
+                }
+                return true;
+            }
+        });
+    }
+
+    private int initInt(int i) {
+        if (i == 0) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    private void initAdApter() {
+        adapter = new CommonAdapter<QueRenDinDanBean.CartListBean.GoodsListBean>(mActivity, R.layout.rv_querendindan, mlist) {
+            @Override
+            protected void convert(ViewHolder holder, QueRenDinDanBean.CartListBean.GoodsListBean goodsListBean, int position) {
+                ImageView img_head_pic = holder.getView(R.id.img_head_pic);
+                ImageLoader.with(Api.url + goodsListBean.getOriginal_img(), img_head_pic);
+                holder.setText(R.id.tv_title, goodsListBean.getGoods_name());
+                holder.setText(R.id.tv_guige, goodsListBean.getSpec_key_name());
+                holder.setText(R.id.tv_jiage, "￥" + goodsListBean.getMember_goods_price());
+                holder.setText(R.id.tv_shuliang, "x" + goodsListBean.getGoods_num());
+            }
+        };
+        rvShangping.setAdapter(adapter);
     }
 
     private void DinDanHttp() {
@@ -109,27 +179,72 @@ public class QueRenDinDanActivity extends BaseActivity {
                 .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
                 .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
                 .addParams("store_id", store_id)
+                .addParams("use_points", isJifen + "")
+                .addParams("use_money", isYue + "")
                 .build()
                 .execute(new MyStringCallback() {
                     @Override
                     public void onMySuccess(String result) {
+                        isOne = true;
                         DialogUtil.hide();
+                        bean = new Gson().fromJson(result, QueRenDinDanBean.class);
                         initRes();
                     }
 
                     @Override
                     protected void onError(String result) {
                         super.onError(result);
-                        finish();
+                        if (!isOne) {
+                            finish();
+                        }
+
+                        if (swithJifen.isChecked()) {
+                            isJifen = 1;
+                        } else {
+                            isJifen = 0;
+                        }
+                        if (swithYue.isChecked()) {
+                            isYue = 1;
+                        } else {
+                            isYue = 0;
+                        }
                     }
                 });
     }
 
     private void initRes() {
+        tvZongji.setText(bean.getTotal_price().getTotal_fee() + "");
+        tvShifu.setText(bean.getTotal_price().getTotal_fee() + "");
+        tvJifen.setText(bean.getCart_list().get(0).getMark().getReward_points());
+        tvYue.setText(bean.getCart_list().get(0).getMark().getUser_money());
+        tvStoreName.setText(bean.getCart_list().get(0).getMark().getStore_name());
+        tvZonge.setText("￥" + bean.getCart_list().get(0).getMark().getGoods_total());
+        mlist.clear();
+        mlist.addAll(bean.getCart_list().get(0).getGoods_list());
+        adapter.notifyDataSetChanged();
+        layoutKuaiDiKong.setVisibility(View.GONE);
+        layoutKuaiDi.setVisibility(View.VISIBLE);
+        swithJifen.setChecked(getRes(isJifen));
+        swithYue.setChecked(getRes(isYue));
 
+        if (bean.getAddress() == null) {
+            layoutKuaiDiKong.setVisibility(View.VISIBLE);
+            layoutKuaiDi.setVisibility(View.GONE);
+        } else {
+
+        }
     }
 
-    @OnClick({R.id.layout_back, R.id.layout_xuanZeKuaiDi, R.id.layout_kefu, R.id.layout_youHuiJuan, R.id.layout_hongbao, R.id.swith_jifen, R.id.swith_yue})
+    public boolean getRes(int i) {
+        if (i == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
+    @OnClick({R.id.layout_back, R.id.layout_xuanZeKuaiDi, R.id.layout_kefu, R.id.layout_youHuiJuan, R.id.layout_hongbao})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.layout_back:
@@ -142,10 +257,6 @@ public class QueRenDinDanActivity extends BaseActivity {
             case R.id.layout_youHuiJuan:
                 break;
             case R.id.layout_hongbao:
-                break;
-            case R.id.swith_jifen:
-                break;
-            case R.id.swith_yue:
                 break;
         }
     }

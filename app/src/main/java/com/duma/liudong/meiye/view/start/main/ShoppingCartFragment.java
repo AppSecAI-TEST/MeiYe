@@ -403,6 +403,7 @@ public class ShoppingCartFragment extends BaseFragment implements SwipeRefreshLa
         EventBus.getDefault().unregister(this);
     }
 
+
     //删除购物车接口
     private void delectHttp() {
         OkHttpUtils.getInstance().cancelTag("this");

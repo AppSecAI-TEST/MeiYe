@@ -11,6 +11,7 @@ import com.duma.liudong.meiye.model.LoginBean;
 import com.duma.liudong.meiye.view.classift.ShangPingLieBiaoActivity;
 import com.duma.liudong.meiye.view.classift.ShangPingXiangQinWeb;
 import com.duma.liudong.meiye.view.classift.dianPu.DianPuActivity;
+import com.duma.liudong.meiye.view.forum.LunTanXiangQinWeb;
 import com.duma.liudong.meiye.view.shoppingCart.QueRenDinDanActivity;
 import com.duma.liudong.meiye.view.start.login.LoginActivity;
 import com.duma.liudong.meiye.view.start.main.MainActivity;
@@ -77,6 +78,13 @@ public class StartUtil {
     public static void toQueRenDinDan(Activity activity, String store_id) {
         Intent intent = new Intent(activity, QueRenDinDanActivity.class);
         intent.putExtra("store_id", store_id);
+        activity.startActivity(intent);
+    }
+
+    //跳转确认订单
+    public static void toLunTanWeb(Activity activity, String bbs_id) {
+        Intent intent = new Intent(activity, LunTanXiangQinWeb.class);
+        intent.putExtra("url", Api.LunTanH5Url + bbs_id);
         activity.startActivity(intent);
     }
 

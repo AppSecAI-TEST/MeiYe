@@ -102,11 +102,11 @@ public abstract class BaseXiaLaRvPresenter<T> implements LoadMoreWrapper.OnLoadM
                     onError("");
                     return;
                 }
+                isOne = true;
                 //查看是否空数据
                 if (list.size() == 0) {
                     IsKong();
                 } else {
-                    isOne = true;
                     mlist.addAll(list);
                     mAdapter.notifyDataSetChanged();
                 }
@@ -137,11 +137,15 @@ public abstract class BaseXiaLaRvPresenter<T> implements LoadMoreWrapper.OnLoadM
     //判断当前页数是否第一页,第一页 显示为空页面,不是第一页 显示加载完毕
     public void IsKong() {
         p--;
+//        if (p == 0) {
+//            show_kong();
+//        } else {
+//            baseLoadingUtil.hide();
+//        }
         if (p == 0) {
             show_kong();
-        } else {
-            baseLoadingUtil.hide();
         }
+        baseLoadingUtil.hide();
     }
 
     //直接用gson实现list困难的话 可以重写此方法

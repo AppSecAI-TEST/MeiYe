@@ -25,6 +25,7 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
+                        android:id="@+id/layout_10"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -32,6 +33,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tv_10"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="10:00"
@@ -39,6 +41,7 @@
                             android:textSize="16sp" />
 
                         <TextView
+                            android:id="@+id/tv_10_type"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="未开始"
@@ -47,6 +50,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/layout_12"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -54,6 +58,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tv_12"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="12:00"
@@ -61,6 +66,7 @@
                             android:textSize="16sp" />
 
                         <TextView
+                            android:id="@+id/tv_12_type"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="未开始"
@@ -69,6 +75,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/layout_14"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -76,6 +83,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tv_14"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="14:00"
@@ -83,6 +91,7 @@
                             android:textSize="16sp" />
 
                         <TextView
+                            android:id="@+id/tv_14_type"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="未开始"
@@ -91,6 +100,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/layout_16"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -98,6 +108,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tv_16"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="16:00"
@@ -105,6 +116,7 @@
                             android:textSize="16sp" />
 
                         <TextView
+                            android:id="@+id/tv_16_type"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="未开始"
@@ -113,6 +125,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/layout_18"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -120,6 +133,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tv_18"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="18:00"
@@ -127,6 +141,7 @@
                             android:textSize="16sp" />
 
                         <TextView
+                            android:id="@+id/tv_18_type"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="未开始"

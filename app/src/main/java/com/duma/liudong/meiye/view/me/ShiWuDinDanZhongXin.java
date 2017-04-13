@@ -1,4 +1,4 @@
-package com.duma.liudong.meiye.view.home;
+package com.duma.liudong.meiye.view.me;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -10,16 +10,15 @@ import android.widget.TextView;
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.base.MyViewPagerAdapter;
-import com.duma.liudong.meiye.utils.Lg;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * Created by liudong on 17/4/10.
+ * Created by liudong on 17/4/12.
  */
 
-public class MiaoShaActivity extends BaseActivity {
+public class ShiWuDinDanZhongXin extends BaseActivity {
     @BindView(R.id.layout_back)
     LinearLayout layoutBack;
     @BindView(R.id.tv_title)
@@ -33,21 +32,21 @@ public class MiaoShaActivity extends BaseActivity {
     @BindView(R.id.viewPater_bar)
     ViewPager viewPaterBar;
 
-    public boolean isOne = true;
-
     @Override
     protected void initContentView(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_miaosha);
+        setContentView(R.layout.activity_shiwudindan);
     }
 
     @Override
     protected void initData() {
-        tvTitle.setText("周日秒杀");
+        tvTitle.setText("优惠券");
         MyViewPagerAdapter viewPagerAdapter = new MyViewPagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFragment(new MiaoShaFragment(), "实物商品");
-        viewPagerAdapter.addFragment(new MiaoShaFragment(), "定制商品");
-        viewPagerAdapter.addFragment(new MiaoShaFragment(), "团购商品");
-        viewPaterBar.setOffscreenPageLimit(3);
+        viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "全部");
+        viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "待付款");
+        viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "待收货");
+        viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "待评价");
+        viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "退款");
+        viewPaterBar.setOffscreenPageLimit(5);
         viewPaterBar.setAdapter(viewPagerAdapter);
         tabLayoutBar.setupWithViewPager(viewPaterBar);
     }
@@ -55,18 +54,5 @@ public class MiaoShaActivity extends BaseActivity {
     @OnClick(R.id.layout_back)
     public void onClick() {
         finish();
-    }
-
-    public String getType() {
-        Lg.e(viewPaterBar.getCurrentItem() + "");
-        //0: 实物商品 1: 定制商品,2:团购商品
-        switch (viewPaterBar.getCurrentItem()) {
-            case 0:
-                return "1";
-            case 1:
-                return "2";
-            default:
-                return "3";
-        }
     }
 }

@@ -8,6 +8,8 @@ public class Api {
     public static final String url = "http://meiye.duma-ivy.cn";
 
     public static final String H5Url = Api.url + "/index.php/Mobile/Goods/goodsdetail?goods_id=";
+
+    public static final String LunTanH5Url = Api.url + "/index.php/Mobile/Forum/detail?bbs_id=";
     /**
      * 个人用户
      */
@@ -28,6 +30,9 @@ public class Api {
     public static final String coupon = url + "/App/user/coupon";
     public static final String packet = url + "/App/user/packet";
     public static final String collectList = url + "/App/user/collectList";
+    public static final String editAddress = url + "/App/user/editAddress";
+    public static final String addressList = url + "/App/user/addressList";
+    public static final String delAddress = url + "/App/user/delAddress";
     /**
      * Index
      */
@@ -73,4 +78,5 @@ public class Api {
     public static final String Bbsindex = url + "/App/Bbs/index";
     public static final String upload = url + "/App/Bbs/upload";
     public static final String add = url + "/App/Bbs/add";
+    public static final String like = url + "/App/Bbs/like";
 }

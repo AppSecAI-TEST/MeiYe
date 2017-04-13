@@ -34,6 +34,15 @@ public class ShangPinBean {
     private String lng;
     private String lat;
     private int distance;
+    private String store_count;
+
+    public String getStore_count() {
+        return store_count;
+    }
+
+    public void setStore_count(String store_count) {
+        this.store_count = store_count;
+    }
 
     public String getGoods_id() {
         return goods_id;

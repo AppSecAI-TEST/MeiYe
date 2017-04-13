@@ -1,12 +1,14 @@
 package com.duma.liudong.meiye.view.forum;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseFragment;
@@ -106,7 +108,7 @@ public class LunTanClassiftFragment extends BaseFragment implements SwipeRefresh
             }
 
             @Override
-            protected void getView(ViewHolder holder, TieziBean zhiDingBean, int position) {
+            protected void getView(ViewHolder holder, final TieziBean zhiDingBean, int position) {
                 holder.setText(R.id.tv_content, zhiDingBean.getContent());
                 holder.setText(R.id.tv_click_count, zhiDingBean.getClick_count());
                 holder.setText(R.id.tv_user_name, zhiDingBean.getUser_name());
@@ -121,10 +123,43 @@ public class LunTanClassiftFragment extends BaseFragment implements SwipeRefresh
                     img_img_json.setVisibility(View.VISIBLE);
                     ImageLoader.with(zhiDingBean.getImg_json().get(0), img_img_json);
                 }
+                final TextView tv_zan = holder.getView(R.id.tv_zan);
+                holder.setOnClickListener(R.id.layout_zan, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DianZanHttp(tv_zan, zhiDingBean.getBbs_id());
+                    }
+                });
+            }
+
+            @Override
+            protected void onitemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                StartUtil.toLunTanWeb(mActivity, mlist.get(position).getBbs_id());
             }
         };
         beanBaseXiaLaRvPresenter.setType(new TypeToken<ArrayList<TieziBean>>() {
         }.getType());
+    }
+
+    private void DianZanHttp(final TextView tv_zan, String Bbs_id) {
+        OkHttpUtils.getInstance().cancelTag("DianZanHttp");
+        OkHttpUtils
+                .get()
+                .tag("DianZanHttp")
+                .url(Api.like)
+                .addParams("bbs_id", Bbs_id)
+                .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
+                .build()
+                .execute(new MyStringCallback() {
+                    @Override
+                    public void onMySuccess(String result) {
+                        tv_zan.setTextColor(MyApplication.getInstance().getResources().getColor(R.color.main_red));
+                        Drawable drawable = getResources().getDrawable(R.drawable.img_79);
+                        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                        tv_zan.setCompoundDrawables(drawable, null, null, null);
+                    }
+                });
     }
 
     private RequestCall getBuild() {
@@ -142,14 +177,13 @@ public class LunTanClassiftFragment extends BaseFragment implements SwipeRefresh
         rvZhidin.setLayoutManager(new LinearLayoutManager(mActivity));
         adapter = new CommonAdapter<TieziBean>(mActivity, R.layout.rv_zhidin, mZhiDinList) {
             @Override
-            protected void convert(ViewHolder holder, TieziBean zhiDingBean, int position) {
+            protected void convert(ViewHolder holder, final TieziBean zhiDingBean, int position) {
                 holder.setText(R.id.tv_content, zhiDingBean.getContent());
                 holder.setText(R.id.tv_click_count, zhiDingBean.getClick_count());
                 holder.setOnClickListener(R.id.layout_onClick, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // TODO: 17/4/11 跳转详情页
-
+                        StartUtil.toLunTanWeb(mActivity, zhiDingBean.getBbs_id());
                     }
                 });
             }

@@ -146,6 +146,7 @@ public class UserDataActivity extends BaseActivity implements XiuGaiNiChengDialo
                 pvTime.show();
                 break;
             case R.id.layout_dizhi:
+                startActivity(new Intent(mActivity, ShouHuoDiZhiActivity.class));
                 break;
             case R.id.layout_password:
                 startActivity(new Intent(UserDataActivity.this, ChangePasswordActivity.class));
