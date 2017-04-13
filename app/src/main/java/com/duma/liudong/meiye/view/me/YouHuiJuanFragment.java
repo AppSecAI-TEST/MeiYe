@@ -3,6 +3,7 @@ package com.duma.liudong.meiye.view.me;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,6 +20,8 @@ import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.request.RequestCall;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -27,7 +30,7 @@ import butterknife.BindView;
  * Created by 79953 on 2016/11/2.
  */
 
-public class    YouHuiJuanFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
+public class YouHuiJuanFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
     @BindView(R.id.layout_kong)
     LinearLayout layoutKong;
     @BindView(R.id.rv_youhuijuan)
@@ -46,13 +49,18 @@ public class    YouHuiJuanFragment extends BaseFragment implements SwipeRefreshL
 
     @Override
     protected void initData() {
-        activity = (YouHuiJuanActivity) mActivity;
         StartUtil.setSw(swLoading, this);
         rvYouhuijuan.setLayoutManager(new LinearLayoutManager(mActivity));
         initAdapter();
-        if (activity.isOne) {
+        try {
+            activity = (YouHuiJuanActivity) mActivity;
+            if (activity.isOne) {
+                adapter.QueryHttp(getBuild());
+                activity.isOne = false;
+            }
+        } catch (Exception e) {
+            activity = null;
             adapter.QueryHttp(getBuild());
-            activity.isOne = false;
         }
     }
 
@@ -64,19 +72,34 @@ public class    YouHuiJuanFragment extends BaseFragment implements SwipeRefreshL
                 holder.setText(R.id.tv_condition, youHuiJuanBean.getCondition());
                 holder.setText(R.id.tv_time, "使用日期:" + StartUtil.getTime(Long.parseLong(youHuiJuanBean.getUse_start_time()) * 1000) + " - " + StartUtil.getTime(Long.parseLong(youHuiJuanBean.getUse_end_time()) * 1000));
                 TextView tv_type = holder.getView(R.id.tv_type);
-                switch (activity.getType()) {
-                    case "0":
-                        tv_type.setText("立即使用");
-                        tv_type.setTextColor(mActivity.getResources().getColor(R.color.main_red));
-                        break;
-                    case "1":
-                        tv_type.setText("已使用");
-                        tv_type.setTextColor(mActivity.getResources().getColor(R.color.text_hui));
-                        break;
-                    case "2":
-                        tv_type.setText("已过期");
-                        tv_type.setTextColor(mActivity.getResources().getColor(R.color.text_hui));
-                        break;
+                if (activity != null) {
+                    switch (activity.getType()) {
+                        case "0":
+                            tv_type.setText("立即使用");
+                            tv_type.setTextColor(mActivity.getResources().getColor(R.color.main_red));
+                            break;
+                        case "1":
+                            tv_type.setText("已使用");
+                            tv_type.setTextColor(mActivity.getResources().getColor(R.color.text_hui));
+                            break;
+                        case "2":
+                            tv_type.setText("已过期");
+                            tv_type.setTextColor(mActivity.getResources().getColor(R.color.text_hui));
+                            break;
+                    }
+                } else {
+                    tv_type.setText("立即使用");
+                    tv_type.setTextColor(mActivity.getResources().getColor(R.color.main_red));
+                }
+
+
+            }
+
+            @Override
+            protected void onitemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                if (activity == null) {
+                    mActivity.finish();
+                    EventBus.getDefault().post(mList.get(position));
                 }
             }
 
@@ -98,14 +121,27 @@ public class    YouHuiJuanFragment extends BaseFragment implements SwipeRefreshL
     }
 
     private RequestCall getBuild() {
-        build = OkHttpUtils
-                .get()
-                .tag("base")
-                .url(Api.coupon)
-                .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
-                .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
-                .addParams("type", activity.getType())
-                .build();
+        if (activity == null) {
+            build = OkHttpUtils
+                    .get()
+                    .tag("base")
+                    .url(Api.coupon)
+                    .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                    .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
+                    .addParams("type", "0")
+                    .addParams("store_id", mActivity.getIntent().getStringExtra("id"))
+                    .build();
+        } else {
+            build = OkHttpUtils
+                    .get()
+                    .tag("base")
+                    .url(Api.coupon)
+                    .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                    .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
+                    .addParams("type", activity.getType())
+                    .build();
+        }
+
         return build;
     }
 

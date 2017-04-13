@@ -52,6 +52,7 @@ public class Api {
     public static final String cartList = url + "/App/order/cartList";
     public static final String delcart = url + "/App/order/delcart";
     public static final String makeSure = url + "/App/order/makeSure";
+    public static final String makeOrder = url + "/App/order/makeOrder";
     /**
      * 头条
      */

@@ -13,15 +13,15 @@ public class QueRenDinDanBean {
      * total_price : {"total_fee":81,"cut_fee":872,"num":2}
      */
 
-    private AddressBean address;
+    private DiZhiBean address;
     private TotalPriceBean total_price;
     private List<CartListBean> cart_list;
 
-    public AddressBean getAddress() {
+    public DiZhiBean getAddress() {
         return address;
     }
 
-    public void setAddress(AddressBean address) {
+    public void setAddress(DiZhiBean address) {
         this.address = address;
     }
 
@@ -41,141 +41,6 @@ public class QueRenDinDanBean {
         this.cart_list = cart_list;
     }
 
-    public static class AddressBean {
-        /**
-         * address_id : 1
-         * user_id : 2
-         * consignee : 王的的
-         * email :
-         * country : 0
-         * province : 浙江省
-         * city : 杭州市
-         * district : 拱墅区
-         * twon : null
-         * address : 华丰新村
-         * zipcode :
-         * mobile : 13888888888
-         * is_default : 1
-         */
-
-        private String address_id;
-        private String user_id;
-        private String consignee;
-        private String email;
-        private String country;
-        private String province;
-        private String city;
-        private String district;
-        private Object twon;
-        private String address;
-        private String zipcode;
-        private String mobile;
-        private String is_default;
-
-        public String getAddress_id() {
-            return address_id;
-        }
-
-        public void setAddress_id(String address_id) {
-            this.address_id = address_id;
-        }
-
-        public String getUser_id() {
-            return user_id;
-        }
-
-        public void setUser_id(String user_id) {
-            this.user_id = user_id;
-        }
-
-        public String getConsignee() {
-            return consignee;
-        }
-
-        public void setConsignee(String consignee) {
-            this.consignee = consignee;
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public String getCountry() {
-            return country;
-        }
-
-        public void setCountry(String country) {
-            this.country = country;
-        }
-
-        public String getProvince() {
-            return province;
-        }
-
-        public void setProvince(String province) {
-            this.province = province;
-        }
-
-        public String getCity() {
-            return city;
-        }
-
-        public void setCity(String city) {
-            this.city = city;
-        }
-
-        public String getDistrict() {
-            return district;
-        }
-
-        public void setDistrict(String district) {
-            this.district = district;
-        }
-
-        public Object getTwon() {
-            return twon;
-        }
-
-        public void setTwon(Object twon) {
-            this.twon = twon;
-        }
-
-        public String getAddress() {
-            return address;
-        }
-
-        public void setAddress(String address) {
-            this.address = address;
-        }
-
-        public String getZipcode() {
-            return zipcode;
-        }
-
-        public void setZipcode(String zipcode) {
-            this.zipcode = zipcode;
-        }
-
-        public String getMobile() {
-            return mobile;
-        }
-
-        public void setMobile(String mobile) {
-            this.mobile = mobile;
-        }
-
-        public String getIs_default() {
-            return is_default;
-        }
-
-        public void setIs_default(String is_default) {
-            this.is_default = is_default;
-        }
-    }
 
     public static class TotalPriceBean {
         /**
@@ -380,6 +245,43 @@ public class QueRenDinDanBean {
             private String weight;
             private int goods_fee;
             private String store_count;
+
+            private String pickup_id;
+            private String pickup_name;
+            private String pickup_address;
+            private String pickup_phone;
+
+            public String getPickup_id() {
+                return pickup_id;
+            }
+
+            public void setPickup_id(String pickup_id) {
+                this.pickup_id = pickup_id;
+            }
+
+            public String getPickup_name() {
+                return pickup_name;
+            }
+
+            public void setPickup_name(String pickup_name) {
+                this.pickup_name = pickup_name;
+            }
+
+            public String getPickup_address() {
+                return pickup_address;
+            }
+
+            public void setPickup_address(String pickup_address) {
+                this.pickup_address = pickup_address;
+            }
+
+            public String getPickup_phone() {
+                return pickup_phone;
+            }
+
+            public void setPickup_phone(String pickup_phone) {
+                this.pickup_phone = pickup_phone;
+            }
 
             public String getId() {
                 return id;

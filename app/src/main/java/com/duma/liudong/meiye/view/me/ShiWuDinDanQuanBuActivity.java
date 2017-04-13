@@ -18,7 +18,7 @@ import butterknife.OnClick;
  * Created by liudong on 17/4/12.
  */
 
-public class ShiWuDinDanZhongXin extends BaseActivity {
+public class ShiWuDinDanQuanBuActivity extends BaseActivity {
     @BindView(R.id.layout_back)
     LinearLayout layoutBack;
     @BindView(R.id.tv_title)
@@ -39,7 +39,7 @@ public class ShiWuDinDanZhongXin extends BaseActivity {
 
     @Override
     protected void initData() {
-        tvTitle.setText("优惠券");
+        tvTitle.setText("订单中心");
         MyViewPagerAdapter viewPagerAdapter = new MyViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "全部");
         viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "待付款");

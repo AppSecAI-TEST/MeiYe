@@ -146,4 +146,24 @@
         <item name="android:layout_width">45dp</item>
         <item name="android:layout_height">match_parent</item>
     </style>
+
+    <style name="wodedindan_sty" parent="wodedindan">
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:textColor">@color/texthei</item>
+    </style>
+
+    <style name="bianxianhei" parent="wodedindan_sty">
+        <item name="android:background">@drawable/bianxian_btn_hei_shape</item>
+    </style>
+
+    <style name="bianxianhong" parent="wodedindan_sty">
+        <item name="android:background">@drawable/bianxian_red_shape</item>
+    </style>
+
+    <style name="wodedindan">
+        <item name="android:layout_width">70dp</item>
+        <item name="android:layout_height">26dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>

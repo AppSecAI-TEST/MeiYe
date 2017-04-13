@@ -23,6 +23,16 @@ public class ServiceDialog {
         });
     }
 
+    public ServiceDialog(final Activity activity, final String tel) {
+        queRenUtilDialog = new QueRenUtilDialog(activity, "联系客服", Constants.service, "取消", "呼叫");
+        queRenUtilDialog.setYesClicklistener(new QueRenUtilDialog.OnYesClickListener() {
+            @Override
+            public void onYes() {
+                activity.startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tel)));
+            }
+        });
+    }
+
     public void Show() {
         queRenUtilDialog.show();
     }

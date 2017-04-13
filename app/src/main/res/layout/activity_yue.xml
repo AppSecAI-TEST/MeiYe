@@ -64,16 +64,26 @@
 
         <View style="@style/henxian" />
 
+
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swr_loading"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_shouZhiMingXi"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include layout="@layout/include_img_kong" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_shouZhiMingXi"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
         </android.support.v4.widget.SwipeRefreshLayout>
     </LinearLayout>
 </LinearLayout>

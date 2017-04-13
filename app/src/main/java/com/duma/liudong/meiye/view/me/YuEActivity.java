@@ -53,6 +53,8 @@ public class YuEActivity extends BaseActivity implements SwipeRefreshLayout.OnRe
     UserMoneyBean userMoneyBean;
     BaseRvAdapter<UserMoneyBean.DetailBean> adapter;
     RequestCall build;
+    @BindView(R.id.layout_kong)
+    LinearLayout layoutKong;
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -102,6 +104,7 @@ public class YuEActivity extends BaseActivity implements SwipeRefreshLayout.OnRe
                 return userMoneyBean.getDetail();
             }
         };
+        adapter.setKongView(layoutKong);
     }
 
     @OnClick({R.id.layout_back, R.id.tv_tixian})

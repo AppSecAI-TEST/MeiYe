@@ -1,7 +1,6 @@
 package com.duma.liudong.meiye.view.me;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -12,6 +11,8 @@ import com.duma.liudong.meiye.base.BaseFragment;
 import com.duma.liudong.meiye.model.DiZhiBean;
 import com.duma.liudong.meiye.presenter.DiZhiListener;
 import com.duma.liudong.meiye.presenter.DiZhiPresenter;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -44,7 +45,6 @@ public class DiZhiFragment extends BaseFragment implements DiZhiListener, SwipeR
 
     private DiZhiPresenter diZhiPresenter;
 
-    private Bundle b;
 
     @Override
     protected int setLayoutResouceId() {
@@ -80,25 +80,29 @@ public class DiZhiFragment extends BaseFragment implements DiZhiListener, SwipeR
             layoutDizhiKong.setVisibility(View.GONE);
         }
         // LD: 返回给确认订单信息的默认地址
-        b = new Bundle();
+        boolean isEmpty = true;
         for (int i = 0; i < mlist.size(); i++) {
             if (mlist.get(i).getIs_default().equals("1")) {
-                b.putSerializable("bean", mlist.get(i));
+                isEmpty = false;
+                EventBus.getDefault().post(mlist.get(i));
                 return;
             }
         }
+        if (isEmpty) {
+            EventBus.getDefault().post(new DiZhiBean());
+        }
     }
 
-    public Intent getType() {
-        Intent i = new Intent();
-        if (b.isEmpty()) {
-            i.putExtra("type", "-1");
-        } else {
-            i.putExtra("type", "0");
-            i.putExtras(b);
-        }
-        return i;
-    }
+//    public Intent getType() {
+//        Intent i = new Intent();
+//        if (b.isEmpty()) {
+//            i.putExtra("type", "-1");
+//        } else {
+//            i.putExtra("type", "0");
+//            i.putExtras(b);
+//        }
+//        return i;
+//    }
 
 
     @OnClick(R.id.layout_addDizhi)
