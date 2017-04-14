@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <LinearLayout
@@ -26,6 +27,7 @@
             android:paddingRight="10dp">
 
             <TextView
+                android:id="@+id/tv_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="代付款"
@@ -34,6 +36,7 @@
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_shangping"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -49,6 +52,7 @@
             android:text="共" />
 
         <TextView
+            android:id="@+id/tv_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="10"
@@ -67,6 +71,7 @@
             android:textSize="10sp" />
 
         <TextView
+            android:id="@+id/tv_jiage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="10"
@@ -83,19 +88,21 @@
         android:paddingRight="0dp">
 
         <TextView
+            android:id="@+id/tv_hei_one"
             style="@style/bianxianhei"
-            android:text="返修/退换"
-            android:textColor="@color/texthei" />
-
-
-        <TextView
-            style="@style/bianxianhei"
-            android:text="再次购买"
+            android:text="申请退款"
             android:textColor="@color/texthei" />
 
         <TextView
+            android:id="@+id/tv_hei_two"
+            style="@style/bianxianhei"
+            android:text="取消订单"
+            android:textColor="@color/texthei" />
+
+        <TextView
+            android:id="@+id/tv_hong"
             style="@style/bianxianhong"
-            android:text="再次购买"
+            android:text="去支付"
             android:textColor="@color/main_red" />
     </LinearLayout>
 

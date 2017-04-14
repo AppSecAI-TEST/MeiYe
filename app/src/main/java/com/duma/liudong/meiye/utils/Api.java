@@ -33,6 +33,7 @@ public class Api {
     public static final String editAddress = url + "/App/user/editAddress";
     public static final String addressList = url + "/App/user/addressList";
     public static final String delAddress = url + "/App/user/delAddress";
+    public static final String orderList = url + "/App/user/orderList";
     /**
      * Index
      */

@@ -90,12 +90,13 @@
         <activity android:name=".view.forum.LunTanXiangQinWeb" />
         <activity android:name=".view.me.ShouHuoDiZhiActivity" />
         <activity android:name=".view.me.TianJiaDiZhiActivity" />
-        <activity android:name=".view.me.ShiWuDinDanQuanBuActivity" />
+        <activity android:name=".view.me.shiWuDinDan.ShiWuDinDanQuanBuActivity" />
         <activity android:name=".view.shoppingCart.YouHuiJuanListActivity" />
         <activity android:name=".view.me.WoDeZuJiActivity" />
         <activity android:name=".view.shoppingCart.ZhiFuActivity" />
         <activity android:name=".view.shoppingCart.FuKuanChenGongActivity" />
         <activity android:name=".view.me.TiXianActivity" />
+        <activity android:name=".view.me.shiWuDinDan.ShiWuDianDanXiangQingActivity" />
         <!--微信的选择器activity-->
         <activity
             android:name="me.iwf.photopicker.PhotoPickerActivity"

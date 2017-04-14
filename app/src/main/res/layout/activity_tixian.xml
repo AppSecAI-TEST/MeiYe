@@ -5,6 +5,8 @@
     android:background="@color/bg_hui"
     android:orientation="vertical">
 
+    <include layout="@layout/include_top_bar" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -20,6 +22,7 @@
             android:text="可提现金额:" />
 
         <TextView
+            android:id="@+id/tv_ketixian_jine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2000"
@@ -41,6 +44,7 @@
             android:text="金额(元):" />
 
         <EditText
+            android:id="@+id/edit_jine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -67,7 +71,6 @@
         android:textColor="@color/text_hui" />
 
     <LinearLayout
-        android:id="@+id/layout_zhifubao"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
@@ -149,7 +152,7 @@
             android:layout_weight="1" />
 
         <RadioButton
-            android:id="@+id/rdoBtn_yinlian"
+            android:id="@+id/rdoBtn_yinhangka"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center|left"
@@ -157,6 +160,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btn_shenqi"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_margin="40dp"

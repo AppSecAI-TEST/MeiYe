@@ -42,6 +42,7 @@ public class YouHuiJuanFragment extends BaseFragment implements SwipeRefreshLayo
     private YouHuiJuanActivity activity;
     private RequestCall build;
 
+
     @Override
     protected int setLayoutResouceId() {
         return R.layout.fragment_youhuijuan;

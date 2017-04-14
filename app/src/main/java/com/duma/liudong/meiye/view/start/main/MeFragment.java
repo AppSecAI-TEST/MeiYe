@@ -19,7 +19,7 @@ import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.view.me.FanKuiActivity;
 import com.duma.liudong.meiye.view.me.HongBaoActivity;
 import com.duma.liudong.meiye.view.me.JiFenActivity;
-import com.duma.liudong.meiye.view.me.ShiWuDinDanQuanBuActivity;
+import com.duma.liudong.meiye.view.me.shiWuDinDan.ShiWuDinDanQuanBuActivity;
 import com.duma.liudong.meiye.view.me.ShouCangActivity;
 import com.duma.liudong.meiye.view.me.UserDataActivity;
 import com.duma.liudong.meiye.view.me.WoDekeHuActivity;

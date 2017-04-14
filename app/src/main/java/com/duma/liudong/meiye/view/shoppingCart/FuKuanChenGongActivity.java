@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.utils.StartUtil;
-import com.duma.liudong.meiye.view.me.ShiWuDinDanQuanBuActivity;
+import com.duma.liudong.meiye.view.me.shiWuDinDan.ShiWuDinDanQuanBuActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;

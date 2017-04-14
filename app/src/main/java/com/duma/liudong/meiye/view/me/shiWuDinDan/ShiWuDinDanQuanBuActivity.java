@@ -1,4 +1,4 @@
-package com.duma.liudong.meiye.view.me;
+package com.duma.liudong.meiye.view.me.shiWuDinDan;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -32,6 +32,8 @@ public class ShiWuDinDanQuanBuActivity extends BaseActivity {
     @BindView(R.id.viewPater_bar)
     ViewPager viewPaterBar;
 
+    public boolean isOne = true;
+
     @Override
     protected void initContentView(Bundle savedInstanceState) {
         setContentView(R.layout.activity_shiwudindan);
@@ -54,5 +56,21 @@ public class ShiWuDinDanQuanBuActivity extends BaseActivity {
     @OnClick(R.id.layout_back)
     public void onClick() {
         finish();
+    }
+
+    public String getType() {
+        //0: 全部 1:待付款,2:待收货3.待评价4退款
+        switch (viewPaterBar.getCurrentItem()) {
+            case 0:
+                return "";
+            case 1:
+                return "WAITPAY";
+            case 2:
+                return "WAITRECEIVE";
+            case 3:
+                return "WAITCCOMMENT";
+            default:
+                return "RETURNED";
+        }
     }
 }

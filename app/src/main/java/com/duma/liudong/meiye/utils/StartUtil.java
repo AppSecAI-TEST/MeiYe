@@ -134,6 +134,10 @@ public class StartUtil {
         return format.format(l);
     }
 
+    public static String getShiJian(long time) {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(time * 1000);
+    }
+
     //textView变颜色
     public static void tvHui(TextView textView) {
         textView.setTextColor(MyApplication.getInstance().getResources().getColor(R.color.text_hui));

@@ -377,6 +377,7 @@ public class QueRenDinDanActivity extends BaseActivity {
     }
 
     private void tijiaoHttp() {
+        DialogUtil.show(mActivity);
         OkHttpUtils.getInstance().cancelTag(this);
         OkHttpUtils
                 .get()
@@ -394,6 +395,7 @@ public class QueRenDinDanActivity extends BaseActivity {
                 .execute(new MyStringCallback() {
                     @Override
                     public void onMySuccess(String result) {
+                        DialogUtil.hide();
                         if (bean.getTotal_price().getTotal_fee() == 0) {
                             startActivity(new Intent(mActivity, FuKuanChenGongActivity.class));
                         } else {
