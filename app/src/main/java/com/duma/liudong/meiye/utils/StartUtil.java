@@ -13,6 +13,7 @@ import com.duma.liudong.meiye.view.classift.ShangPingXiangQinWeb;
 import com.duma.liudong.meiye.view.classift.dianPu.DianPuActivity;
 import com.duma.liudong.meiye.view.forum.LunTanXiangQinWeb;
 import com.duma.liudong.meiye.view.shoppingCart.QueRenDinDanActivity;
+import com.duma.liudong.meiye.view.shoppingCart.ZhiFuActivity;
 import com.duma.liudong.meiye.view.start.login.LoginActivity;
 import com.duma.liudong.meiye.view.start.main.MainActivity;
 
@@ -85,6 +86,14 @@ public class StartUtil {
     public static void toLunTanWeb(Activity activity, String bbs_id) {
         Intent intent = new Intent(activity, LunTanXiangQinWeb.class);
         intent.putExtra("url", Api.LunTanH5Url + bbs_id);
+        activity.startActivity(intent);
+    }
+
+    //跳转支付
+    public static void toZhiFu(Activity activity, String id, String money) {
+        Intent intent = new Intent(activity, ZhiFuActivity.class);
+        intent.putExtra("money", money);
+        intent.putExtra("id", id);
         activity.startActivity(intent);
     }
 

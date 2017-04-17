@@ -20,6 +20,7 @@ import com.duma.liudong.meiye.utils.Lg;
 import com.duma.liudong.meiye.utils.PayResult;
 import com.duma.liudong.meiye.utils.Ts;
 import com.duma.liudong.meiye.view.dialog.QueRenUtilDialog;
+import com.duma.liudong.meiye.view.me.shiWuDinDan.ShiWuDinDanQuanBuActivity;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
@@ -72,10 +73,9 @@ public class ZhiFuActivity extends BaseActivity {
         dialog.setYesClicklistener(new QueRenUtilDialog.OnYesClickListener() {
             @Override
             public void onYes() {
-                // TODO: 17/4/13 跳转到全部订单
-//                Intent intent = new Intent(mActivity, QuanBuDinDanActivity.class);
-//                intent.putExtra("type", "");
-//                startActivity(intent);
+                Intent intent = new Intent(mActivity, ShiWuDinDanQuanBuActivity.class);
+                intent.putExtra("type", "");
+                startActivity(intent);
             }
         });
         id = getIntent().getStringExtra("id");

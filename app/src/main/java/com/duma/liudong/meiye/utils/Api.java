@@ -34,6 +34,9 @@ public class Api {
     public static final String addressList = url + "/App/user/addressList";
     public static final String delAddress = url + "/App/user/delAddress";
     public static final String orderList = url + "/App/user/orderList";
+    public static final String cancelOrder = url + "/App/user/cancelOrder";
+    public static final String delOrder = url + "/App/user/delOrder";
+    public static final String confirmOrder = url + "/App/user/confirmOrder";
     /**
      * Index
      */
@@ -54,6 +57,8 @@ public class Api {
     public static final String delcart = url + "/App/order/delcart";
     public static final String makeSure = url + "/App/order/makeSure";
     public static final String makeOrder = url + "/App/order/makeOrder";
+    public static final String orderInfo = url + "/App/order/orderInfo";
+
     /**
      * 头条
      */
@@ -81,4 +86,9 @@ public class Api {
     public static final String upload = url + "/App/Bbs/upload";
     public static final String add = url + "/App/Bbs/add";
     public static final String like = url + "/App/Bbs/like";
+
+    /**
+     * Tuangou - 团购列表
+     */
+    public static final String Tuangouindex = url + "/App/Tuangou/index";
 }

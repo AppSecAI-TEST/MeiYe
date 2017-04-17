@@ -1,5 +1,7 @@
 package com.duma.liudong.meiye.presenter;
 
+import android.app.Activity;
+
 import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.base.MyStringCallback;
 import com.duma.liudong.meiye.model.MeBean;
@@ -99,6 +101,82 @@ public class PublicPresenter {
                     public void onMySuccess(String result) {
                         DialogUtil.hide();
                         Ts.setText("领卷成功!");
+                    }
+                });
+    }
+
+    public interface GetSuccessListener {
+        void GetCodeSuccess();
+    }
+
+    private GetSuccessListener getSuccessListener;
+
+    public void setGetSuccessListener(GetSuccessListener getSuccessListener) {
+        this.getSuccessListener = getSuccessListener;
+    }
+
+    //取消订单
+    public void cancelOrder(Activity activity, String order_id) {
+        DialogUtil.show(activity);
+        OkHttpUtils.getInstance().cancelTag("cancelOrder");
+        OkHttpUtils
+                .get()
+                .tag("cancelOrder")
+                .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
+                .addParams("order_id", order_id)
+                .url(Api.cancelOrder)
+                .build()
+                .execute(new MyStringCallback() {
+                    @Override
+                    public void onMySuccess(String result) {
+                        DialogUtil.hide();
+                        Ts.setText("取消成功!");
+                        getSuccessListener.GetCodeSuccess();
+                    }
+                });
+    }
+
+    //删除订单
+    public void delOrder(Activity activity, String order_id) {
+        DialogUtil.show(activity);
+        OkHttpUtils.getInstance().cancelTag("delOrder");
+        OkHttpUtils
+                .get()
+                .tag("delOrder")
+                .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
+                .addParams("order_id", order_id)
+                .url(Api.delOrder)
+                .build()
+                .execute(new MyStringCallback() {
+                    @Override
+                    public void onMySuccess(String result) {
+                        DialogUtil.hide();
+                        Ts.setText("删除成功!");
+                        getSuccessListener.GetCodeSuccess();
+                    }
+                });
+    }
+
+    //确认收货
+    public void confirmOrder(Activity activity, String order_id) {
+        DialogUtil.show(activity);
+        OkHttpUtils.getInstance().cancelTag("confirmOrder");
+        OkHttpUtils
+                .get()
+                .tag("confirmOrder")
+                .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
+                .addParams("order_id", order_id)
+                .url(Api.confirmOrder)
+                .build()
+                .execute(new MyStringCallback() {
+                    @Override
+                    public void onMySuccess(String result) {
+                        DialogUtil.hide();
+                        Ts.setText("收货成功!");
+                        getSuccessListener.GetCodeSuccess();
                     }
                 });
     }

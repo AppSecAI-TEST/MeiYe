@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.base.MyViewPagerAdapter;
+import com.duma.liudong.meiye.utils.StartUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -72,5 +73,10 @@ public class ShiWuDinDanQuanBuActivity extends BaseActivity {
             default:
                 return "RETURNED";
         }
+    }
+
+    @Override
+    protected void OnBack() {
+        StartUtil.toMain(mActivity);
     }
 }

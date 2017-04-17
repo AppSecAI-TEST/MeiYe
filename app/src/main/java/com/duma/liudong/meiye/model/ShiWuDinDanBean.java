@@ -113,6 +113,7 @@ public class ShiWuDinDanBean implements Serializable {
     private String is_checkout;
     private String order_status_code;
     private String order_status_desc;
+    private String is_pick;
     private int pay_btn;
     private int cancel_btn;
     private int receive_btn;
@@ -121,7 +122,24 @@ public class ShiWuDinDanBean implements Serializable {
     private int return_btn;
     private int del_btn;
     private String store_name;
-    private List<GoodsListBean> goods_list;
+    private List<QueRenDinDanBean.CartListBean.GoodsListBean> goods_list;
+
+
+    public String getIs_pick() {
+        return is_pick;
+    }
+
+    public void setIs_pick(String is_pick) {
+        this.is_pick = is_pick;
+    }
+
+    public List<QueRenDinDanBean.CartListBean.GoodsListBean> getGoods_list() {
+        return goods_list;
+    }
+
+    public void setGoods_list(List<QueRenDinDanBean.CartListBean.GoodsListBean> goods_list) {
+        this.goods_list = goods_list;
+    }
 
     public String getOrder_id() {
         return order_id;
@@ -274,6 +292,9 @@ public class ShiWuDinDanBean implements Serializable {
     }
 
     public String getShipping_price() {
+        if (shipping_price == null) {
+            return "0";
+        }
         return shipping_price;
     }
 
@@ -560,277 +581,4 @@ public class ShiWuDinDanBean implements Serializable {
         this.store_name = store_name;
     }
 
-    public List<GoodsListBean> getGoods_list() {
-        return goods_list;
-    }
-
-    public void setGoods_list(List<GoodsListBean> goods_list) {
-        this.goods_list = goods_list;
-    }
-
-    public static class GoodsListBean implements Serializable {
-        /**
-         * rec_id : 3
-         * order_id : 24
-         * goods_id : 18
-         * goods_name : 【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液
-         * goods_sn : 1
-         * goods_num : 1
-         * market_price : 94.00
-         * goods_price : 41.00
-         * cost_price : 0.00
-         * member_goods_price : 41.00
-         * give_integral : 0
-         * spec_key :
-         * spec_key_name :
-         * bar_code :
-         * is_comment : 0
-         * prom_type : 0
-         * prom_id : 0
-         * is_send : 0
-         * delivery_id : 0
-         * sku :
-         * store_id : 1
-         * commission : 0
-         * is_checkout : 0
-         * deleted : 0
-         * original_img : /Public/upload/goods/2017/03-29/58db6ede94228.jpg
-         * type : 1
-         */
-
-        private String rec_id;
-        private String order_id;
-        private String goods_id;
-        private String goods_name;
-        private String goods_sn;
-        private String goods_num;
-        private String market_price;
-        private String goods_price;
-        private String cost_price;
-        private String member_goods_price;
-        private String give_integral;
-        private String spec_key;
-        private String spec_key_name;
-        private String bar_code;
-        private String is_comment;
-        private String prom_type;
-        private String prom_id;
-        private String is_send;
-        private String delivery_id;
-        private String sku;
-        private String store_id;
-        private String commission;
-        private String is_checkout;
-        private String deleted;
-        private String original_img;
-        private String type;
-
-        public String getRec_id() {
-            return rec_id;
-        }
-
-        public void setRec_id(String rec_id) {
-            this.rec_id = rec_id;
-        }
-
-        public String getOrder_id() {
-            return order_id;
-        }
-
-        public void setOrder_id(String order_id) {
-            this.order_id = order_id;
-        }
-
-        public String getGoods_id() {
-            return goods_id;
-        }
-
-        public void setGoods_id(String goods_id) {
-            this.goods_id = goods_id;
-        }
-
-        public String getGoods_name() {
-            return goods_name;
-        }
-
-        public void setGoods_name(String goods_name) {
-            this.goods_name = goods_name;
-        }
-
-        public String getGoods_sn() {
-            return goods_sn;
-        }
-
-        public void setGoods_sn(String goods_sn) {
-            this.goods_sn = goods_sn;
-        }
-
-        public String getGoods_num() {
-            return goods_num;
-        }
-
-        public void setGoods_num(String goods_num) {
-            this.goods_num = goods_num;
-        }
-
-        public String getMarket_price() {
-            return market_price;
-        }
-
-        public void setMarket_price(String market_price) {
-            this.market_price = market_price;
-        }
-
-        public String getGoods_price() {
-            return goods_price;
-        }
-
-        public void setGoods_price(String goods_price) {
-            this.goods_price = goods_price;
-        }
-
-        public String getCost_price() {
-            return cost_price;
-        }
-
-        public void setCost_price(String cost_price) {
-            this.cost_price = cost_price;
-        }
-
-        public String getMember_goods_price() {
-            return member_goods_price;
-        }
-
-        public void setMember_goods_price(String member_goods_price) {
-            this.member_goods_price = member_goods_price;
-        }
-
-        public String getGive_integral() {
-            return give_integral;
-        }
-
-        public void setGive_integral(String give_integral) {
-            this.give_integral = give_integral;
-        }
-
-        public String getSpec_key() {
-            return spec_key;
-        }
-
-        public void setSpec_key(String spec_key) {
-            this.spec_key = spec_key;
-        }
-
-        public String getSpec_key_name() {
-            return spec_key_name;
-        }
-
-        public void setSpec_key_name(String spec_key_name) {
-            this.spec_key_name = spec_key_name;
-        }
-
-        public String getBar_code() {
-            return bar_code;
-        }
-
-        public void setBar_code(String bar_code) {
-            this.bar_code = bar_code;
-        }
-
-        public String getIs_comment() {
-            return is_comment;
-        }
-
-        public void setIs_comment(String is_comment) {
-            this.is_comment = is_comment;
-        }
-
-        public String getProm_type() {
-            return prom_type;
-        }
-
-        public void setProm_type(String prom_type) {
-            this.prom_type = prom_type;
-        }
-
-        public String getProm_id() {
-            return prom_id;
-        }
-
-        public void setProm_id(String prom_id) {
-            this.prom_id = prom_id;
-        }
-
-        public String getIs_send() {
-            return is_send;
-        }
-
-        public void setIs_send(String is_send) {
-            this.is_send = is_send;
-        }
-
-        public String getDelivery_id() {
-            return delivery_id;
-        }
-
-        public void setDelivery_id(String delivery_id) {
-            this.delivery_id = delivery_id;
-        }
-
-        public String getSku() {
-            return sku;
-        }
-
-        public void setSku(String sku) {
-            this.sku = sku;
-        }
-
-        public String getStore_id() {
-            return store_id;
-        }
-
-        public void setStore_id(String store_id) {
-            this.store_id = store_id;
-        }
-
-        public String getCommission() {
-            return commission;
-        }
-
-        public void setCommission(String commission) {
-            this.commission = commission;
-        }
-
-        public String getIs_checkout() {
-            return is_checkout;
-        }
-
-        public void setIs_checkout(String is_checkout) {
-            this.is_checkout = is_checkout;
-        }
-
-        public String getDeleted() {
-            return deleted;
-        }
-
-        public void setDeleted(String deleted) {
-            this.deleted = deleted;
-        }
-
-        public String getOriginal_img() {
-            return original_img;
-        }
-
-        public void setOriginal_img(String original_img) {
-            this.original_img = original_img;
-        }
-
-        public String getType() {
-            return type;
-        }
-
-        public void setType(String type) {
-            this.type = type;
-        }
-    }
 }

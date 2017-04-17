@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -11,6 +12,10 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationClient;
+import com.amap.api.location.AMapLocationClientOption;
+import com.amap.api.location.AMapLocationListener;
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.base.BaseFragment;
@@ -20,7 +25,7 @@ import com.duma.liudong.meiye.view.home.MessageActivity;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements AMapLocationListener {
 
     @BindView(R.id.rdoBtn_home)
     RadioButton rdoBtnHome;
@@ -51,6 +56,11 @@ public class MainActivity extends BaseActivity {
     ShoppingCartBarFragment shoppingCartBarFragment;
     MeBarFragment meBarFragment;
 
+    //声明AMapLocationClient类对象
+    public AMapLocationClient mLocationClient = null;
+    //声明AMapLocationClientOption对象
+    public AMapLocationClientOption mLocationOption = null;
+
     @Override
     protected void initContentView(Bundle savedInstanceState) {
         setContentView(R.layout.activity_main);
@@ -58,6 +68,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        initGps();
         addAllFragment();
         showHome();
         rdoBtnShoppingCart.setOnTouchListener(new View.OnTouchListener() {
@@ -75,6 +86,23 @@ public class MainActivity extends BaseActivity {
         });
     }
 
+    private void initGps() {
+        //初始化定位
+        mLocationClient = new AMapLocationClient(getApplicationContext());
+        //设置定位回调监听
+        mLocationClient.setLocationListener(this);
+        //初始化AMapLocationClientOption对象
+        mLocationOption = new AMapLocationClientOption();
+        //设置定位模式为AMapLocationMode.Hight_Accuracy，高精度模式。
+        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
+        //该方法默认为false。
+        mLocationOption.setOnceLocation(true);
+        //给定位客户端对象设置定位参数
+        mLocationClient.setLocationOption(mLocationOption);
+        //启动定位
+        mLocationClient.startLocation();
+    }
+
     public void showHome() {
         showFramgment(getHomeFragment(), getSearch_BarFragment());
     }
@@ -89,6 +117,9 @@ public class MainActivity extends BaseActivity {
         super.onResume();
         if (getMeFragment().isVisible()) {
             getMeFragment().refresh();
+        }
+        if (getShoppingCartFragment().isVisible()) {
+            getShoppingCartFragment().onLazyLoad();
         }
         if (getHomeFragment().isVisible()) {
             getHomeFragment().onLazyLoad();
@@ -240,5 +271,26 @@ public class MainActivity extends BaseActivity {
             meBarFragment = new MeBarFragment();
         }
         return meBarFragment;
+    }
+
+    @Override
+    public void onLocationChanged(AMapLocation amapLocation) {
+        if (amapLocation != null) {
+            if (amapLocation.getErrorCode() == 0) {
+                //可在其中解析amapLocation获取相应内容。
+                getSearch_BarFragment().setTvName(amapLocation.getCity());
+            } else {
+                //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
+                Log.e("AmapError", "location Error, ErrCode:"
+                        + amapLocation.getErrorCode() + ", errInfo:"
+                        + amapLocation.getErrorInfo());
+            }
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mLocationClient.stopLocation();//停止定位后，本地定位服务并不会被销毁
     }
 }

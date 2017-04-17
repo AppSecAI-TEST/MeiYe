@@ -3,6 +3,7 @@ package com.duma.liudong.meiye.base;
 
 import android.app.Application;
 
+import com.blankj.utilcode.util.Utils;
 import com.duma.liudong.meiye.utils.SPUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.log.LoggerInterceptor;
@@ -22,7 +23,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-
+        Utils.init(this);
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(new LoggerInterceptor("okhttp"))
                 //其他配置

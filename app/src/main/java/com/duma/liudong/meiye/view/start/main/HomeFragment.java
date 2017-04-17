@@ -21,6 +21,7 @@ import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.view.home.LinJuanActivity;
+import com.duma.liudong.meiye.view.home.MeiTuan.TuanGouActivity;
 import com.duma.liudong.meiye.view.home.MiaoShaActivity;
 import com.duma.liudong.meiye.view.home.TouTiaoActivity;
 import com.duma.liudong.meiye.widget.SampleAdapter;
@@ -236,7 +237,6 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
     }
 
     private void initIndex() {
-        // TODO: 17/3/29 头条数据有问题
         SampleAdapter sampleAdapter = new SampleAdapter(bean.getArticle());
         bannerAd.setAdapter(sampleAdapter);
         bannerAd.start();
@@ -265,6 +265,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
                 startActivity(new Intent(mActivity, TouTiaoActivity.class));
                 break;
             case R.id.layout_tuangou:
+
                 break;
             case R.id.layout_dingzhi:
                 break;
@@ -277,6 +278,8 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
                 startActivity(new Intent(mActivity, MiaoShaActivity.class));
                 break;
             case R.id.layout_group:
+                //团购
+                startActivity(new Intent(mActivity, TuanGouActivity.class));
                 break;
             case R.id.layout_customization:
                 break;

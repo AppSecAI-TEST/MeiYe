@@ -1,6 +1,9 @@
 package com.duma.liudong.meiye.view.me.shiWuDinDan;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,17 +12,39 @@ import android.widget.TextView;
 
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
+import com.duma.liudong.meiye.base.MyApplication;
+import com.duma.liudong.meiye.base.MyStringCallback;
+import com.duma.liudong.meiye.model.EvenDinDan;
+import com.duma.liudong.meiye.model.QueRenDinDanBean;
 import com.duma.liudong.meiye.model.ShiWuDinDanBean;
+import com.duma.liudong.meiye.presenter.PublicPresenter;
+import com.duma.liudong.meiye.utils.Api;
+import com.duma.liudong.meiye.utils.Constants;
+import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
+import com.duma.liudong.meiye.utils.Ts;
+import com.duma.liudong.meiye.view.dialog.QueRenUtilDialog;
+import com.duma.liudong.meiye.view.dialog.ServiceDialog;
+import com.google.gson.Gson;
+import com.zhy.adapter.recyclerview.CommonAdapter;
+import com.zhy.adapter.recyclerview.base.ViewHolder;
+import com.zhy.http.okhttp.OkHttpUtils;
+
+import org.greenrobot.eventbus.EventBus;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static com.duma.liudong.meiye.R.id.tv_hong;
 
 /**
  * Created by liudong on 17/4/14.
  */
 
-public class ShiWuDianDanXiangQingActivity extends BaseActivity {
+public class ShiWuDianDanXiangQingActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
     @BindView(R.id.layout_back)
     LinearLayout layoutBack;
     @BindView(R.id.tv_title)
@@ -62,12 +87,26 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity {
     TextView tvShijian;
     @BindView(R.id.tv_hei)
     TextView tvHei;
-    @BindView(R.id.tv_hong)
+    @BindView(tv_hong)
     TextView tvHong;
     @BindView(R.id.layout_btn)
     LinearLayout layoutBtn;
+    @BindView(R.id.tv_code)
+    TextView tvCode;
+    @BindView(R.id.tv_store_name)
+    TextView tvStoreName;
+    @BindView(R.id.sw_loading)
+    SwipeRefreshLayout swLoading;
 
     private ShiWuDinDanBean bean;
+
+    private CommonAdapter<QueRenDinDanBean.CartListBean.GoodsListBean> adapter;
+    private List<QueRenDinDanBean.CartListBean.GoodsListBean> mlist;
+    private String id;
+    private QueRenUtilDialog QuXiaoDialog, shanchuDialog, ShouHuoDialog;
+    private PublicPresenter publicPresenter;
+    private String type;
+    private boolean isOne = false;
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -76,8 +115,56 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        publicPresenter = new PublicPresenter();
+        publicPresenter.setGetSuccessListener(new PublicPresenter.GetSuccessListener() {
+            @Override
+            public void GetCodeSuccess() {
+                onRefresh();
+            }
+        });
+        initDialog();
         tvTitle.setText("商品详情");
-        bean = (ShiWuDinDanBean) getIntent().getSerializableExtra("bean");
+        id = getIntent().getStringExtra("id");
+        type = getIntent().getStringExtra("type");
+        StartUtil.setSw(swLoading, this);
+        mlist = new ArrayList<>();
+        rvShangping.setLayoutManager(new LinearLayoutManager(mActivity));
+        rvShangping.setFocusable(false);
+        rvShangping.setNestedScrollingEnabled(false);
+        initAdapter();
+        onRefresh();
+    }
+
+    private void initDialog() {
+        QuXiaoDialog = new QueRenUtilDialog(mActivity, "", "是否取消订单", "取消", "确定");
+        QuXiaoDialog.setYesClicklistener(new QueRenUtilDialog.OnYesClickListener() {
+            @Override
+            public void onYes() {
+                isOne = true;
+                publicPresenter.cancelOrder(mActivity, id);
+            }
+        });
+        shanchuDialog = new QueRenUtilDialog(mActivity, "", "是否删除订单", "取消", "确定");
+        shanchuDialog.setYesClicklistener(new QueRenUtilDialog.OnYesClickListener() {
+            @Override
+            public void onYes() {
+                isOne = true;
+                publicPresenter.delOrder(mActivity, id);
+            }
+        });
+        ShouHuoDialog = new QueRenUtilDialog(mActivity, "", "确定收到商品了嘛?", "取消", "确定");
+        ShouHuoDialog.setYesClicklistener(new QueRenUtilDialog.OnYesClickListener() {
+            @Override
+            public void onYes() {
+                isOne = true;
+                publicPresenter.confirmOrder(mActivity, id);
+            }
+        });
+    }
+
+    private void initRes() {
+        tvLiuyan.setText(bean.getUser_note());
+        tvKuaidiType.setText("快递");
         tvType.setText(bean.getOrder_status_desc());
         tvName.setText(bean.getConsignee());
         tvDianhua.setText(bean.getMobile());
@@ -88,19 +175,187 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity {
         tvShifu.setText(bean.getOrder_amount());
         tvYunfei.setText("￥" + bean.getShipping_price());
         tvShijian.setText(StartUtil.getShiJian(Long.parseLong(bean.getAdd_time())));
+        tvCode.setText("订单编号:" + bean.getOrder_sn());
+        tvStoreName.setText(bean.getStore_name());
+        layoutXuanZeKuaiDi.setVisibility(View.VISIBLE);
+        tvKuaidiType.setText("快递");
+        if (bean.getIs_pick().equals("1")) {
+            //自取
+            tvKuaidiType.setText("自取");
+            layoutXuanZeKuaiDi.setVisibility(View.GONE);
+        }
+        layoutBtn.setVisibility(View.VISIBLE);
+        switch (bean.getOrder_status_code()) {
+            case "WAITPAY":
+                //代付款
+                tvHei.setVisibility(View.VISIBLE);
+                tvHong.setVisibility(View.VISIBLE);
+                tvHei.setText("取消订单");
+                tvHong.setText("去支付");
+                break;
+            case "WAITSEND":
+                //待发货
+                tvHei.setVisibility(View.GONE);
+                tvHong.setVisibility(View.VISIBLE);
+                tvHong.setText("提醒发货");
+                break;
+            case "WAITRECEIVE":
+                //待收货
+                tvHei.setVisibility(View.VISIBLE);
+                tvHong.setVisibility(View.VISIBLE);
+                tvHei.setText("查看物流");
+                tvHong.setText("确认收货");
+                break;
+            case "WAITCCOMMENT":
+                //待评价
+                layoutBtn.setVisibility(View.GONE);
+                break;
+            case "COMMENTED":
+                //已评价==已完成
+                tvHei.setVisibility(View.VISIBLE);
+                tvHong.setVisibility(View.GONE);
+                tvHei.setText("删除订单");
+                break;
+            case "RETURNED":
+                //已退货
+                layoutBtn.setVisibility(View.GONE);
+                break;
+            default:
+                //交易关闭
+                tvHei.setVisibility(View.VISIBLE);
+                tvHong.setVisibility(View.GONE);
+                tvHei.setText("删除订单");
+                break;
+        }
+        mlist.clear();
+        mlist.addAll(bean.getGoods_list());
+        adapter.notifyDataSetChanged();
     }
 
-    @OnClick({R.id.layout_back, R.id.tv_hei, R.id.tv_hong})
+    private void initAdapter() {
+        adapter = new CommonAdapter<QueRenDinDanBean.CartListBean.GoodsListBean>(mActivity, R.layout.rv_dindanxiangqing, mlist) {
+            @Override
+            protected void convert(ViewHolder holder, final QueRenDinDanBean.CartListBean.GoodsListBean goodsListBean, int position) {
+                ImageView img_head_pic = holder.getView(R.id.img_head_pic);
+                ImageLoader.with(Api.url + goodsListBean.getOriginal_img(), img_head_pic);
+                holder.setText(R.id.tv_title, goodsListBean.getGoods_name());
+                holder.setText(R.id.tv_guige, goodsListBean.getSpec_key_name());
+                holder.setText(R.id.tv_jiage, "￥" + goodsListBean.getMember_goods_price());
+                holder.setText(R.id.tv_shuliang, "x" + goodsListBean.getGoods_num());
+                LinearLayout layout_ziqu = holder.getView(R.id.layout_ziqu);
+                if (bean.getIs_pick().equals("1")) {
+                    //自取
+                    layout_ziqu.setVisibility(View.VISIBLE);
+                    holder.setText(R.id.tv_ziqu_name, goodsListBean.getPickup_address());
+                } else {
+                    layout_ziqu.setVisibility(View.GONE);
+                }
+                holder.setOnClickListener(R.id.layout_tel, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ServiceDialog dialog = new ServiceDialog(mActivity, goodsListBean.getPickup_phone());
+                        dialog.Show();
+                    }
+                });
+                TextView tv_shouhou, tv_pingjia;
+                tv_shouhou = holder.getView(R.id.tv_shouhou);
+                tv_pingjia = holder.getView(R.id.tv_pingjia);
+                tv_shouhou.setVisibility(View.GONE);
+                tv_pingjia.setVisibility(View.GONE);
+                if (bean.getOrder_status_code().equals("WAITCCOMMENT")) {
+                    tv_pingjia.setVisibility(View.VISIBLE);
+                }
+                if (bean.getOrder_status_code().equals("WAITSEND") || bean.getOrder_status_code().equals("WAITRECEIVE") || bean.getOrder_status_code().equals("WAITCCOMMENT")) {
+                    tv_shouhou.setVisibility(View.VISIBLE);
+                }
+                tv_pingjia.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(mActivity, PingJiaActivity.class));
+                    }
+                });
+                tv_shouhou.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // TODO: 17/4/17 退款
+
+                    }
+                });
+
+            }
+        };
+        rvShangping.setAdapter(adapter);
+    }
+
+    @OnClick({R.id.layout_back, R.id.tv_hei, tv_hong})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.layout_back:
                 finish();
                 break;
             case R.id.tv_hei:
-
+                switch (tvHei.getText().toString()) {
+                    case "取消订单":
+                        QuXiaoDialog.show();
+                        break;
+                    case "查看物流":
+                        break;
+                    case "删除订单":
+                        shanchuDialog.show();
+                        break;
+                }
                 break;
-            case R.id.tv_hong:
+            case tv_hong:
+                switch (tvHong.getText().toString()) {
+                    case "去支付":
+                        StartUtil.toZhiFu(mActivity, bean.getOrder_id(), bean.getTotal_amount());
+                        break;
+                    case "提醒发货":
+                        Ts.setText("已提醒卖家~请耐心等待!");
+                        break;
+                    case "确认收货":
+                        ShouHuoDialog.show();
+                        break;
+                }
                 break;
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        swLoading.setRefreshing(true);
+        OkHttpUtils.getInstance().cancelTag(this);
+        OkHttpUtils
+                .get()
+                .url(Api.orderInfo)
+                .tag(this)
+                .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
+                .addParams("order_id", id)
+                .build()
+                .execute(new MyStringCallback() {
+                    @Override
+                    public void onMySuccess(String result) {
+                        swLoading.setRefreshing(false);
+                        bean = new Gson().fromJson(result, ShiWuDinDanBean.class);
+                        initRes();
+                    }
+
+                    @Override
+                    protected void onError(String result) {
+                        super.onError(result);
+                        if (result.equals("-1")) {
+                            isOne = true;
+                            finish();
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        if (isOne)
+            EventBus.getDefault().post(new EvenDinDan(type));
     }
 }
