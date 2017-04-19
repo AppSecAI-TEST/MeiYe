@@ -3,6 +3,7 @@ package com.duma.liudong.meiye.view.home;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -87,6 +88,11 @@ public class TouTiaoFragment extends BaseFragment implements SwipeRefreshLayout.
                 holder.setText(R.id.tv_publish_time, toutiaoBean.getPublish_time());
                 holder.setText(R.id.tv_click, "人气:" + toutiaoBean.getClick());
                 ImageLoader.with(Api.url + toutiaoBean.getThumb(), imageView);
+            }
+
+            @Override
+            protected void onitemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                StartUtil.toH5Web(mActivity, Api.TouTiaoH5Url + mlist.get(position).getArticle_id(), mlist.get(position).getTitle());
             }
 
             @Override

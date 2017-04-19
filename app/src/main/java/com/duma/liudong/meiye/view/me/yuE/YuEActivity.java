@@ -86,7 +86,7 @@ public class YuEActivity extends BaseActivity implements SwipeRefreshLayout.OnRe
             protected void getView(ViewHolder holder, UserMoneyBean.DetailBean detailBean, int position) {
                 holder.setText(R.id.tv_name, detailBean.getDesc());
                 holder.setText(R.id.tv_shijian, detailBean.getTime());
-                holder.setText(R.id.tv_qian, detailBean.getMoney());
+                holder.setText(R.id.tv_qian, detailBean.getUser_money());
             }
 
             @Override

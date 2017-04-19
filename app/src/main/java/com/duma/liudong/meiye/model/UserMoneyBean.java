@@ -41,7 +41,7 @@ public class UserMoneyBean {
 
         private String time;
         private String desc;
-        private String money;
+        private String user_money;
 
         public String getTime() {
             return time;
@@ -59,12 +59,12 @@ public class UserMoneyBean {
             this.desc = desc;
         }
 
-        public String getMoney() {
-            return money;
+        public String getUser_money() {
+            return user_money;
         }
 
-        public void setMoney(String money) {
-            this.money = money;
+        public void setUser_money(String user_money) {
+            this.user_money = user_money;
         }
     }
 }

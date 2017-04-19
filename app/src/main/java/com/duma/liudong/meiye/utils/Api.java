@@ -13,6 +13,8 @@ public class Api {
     public static final String LunTanH5Url = Api.url + "/index.php/Mobile/Forum/detail?bbs_id=";
     //签到
     public static final String QianDaoH5Url = Api.url + "/index.php/Mobile/User/sign.html";
+    //头条
+    public static final String TouTiaoH5Url = Api.url + "/index.php/Mobile/Toutiao/detail.html?article_id=";
     /**
      * 个人用户
      */
