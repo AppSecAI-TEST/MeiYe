@@ -271,7 +271,11 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
                 tv_pingjia.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(mActivity, PingJiaActivity.class));
+                        Intent intent = new Intent(mActivity, PingJiaActivity.class);
+                        intent.putExtra("img", Api.url + goodsListBean.getOriginal_img());
+                        intent.putExtra("goods_id", goodsListBean.getGoods_id());
+                        intent.putExtra("order_id", bean.getOrder_id());
+                        startActivity(intent);
                     }
                 });
                 tv_shouhou.setOnClickListener(new View.OnClickListener() {

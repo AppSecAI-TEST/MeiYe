@@ -23,8 +23,23 @@ public class ClassifyBean {
     private String name;
     private String image;
     private String goods_id;
+    private String goods_num;
     private String goods_url;
+
+    public ClassifyBean(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     private List<SecondBean> second;
+
+    public String getGoods_num() {
+        return goods_num;
+    }
+
+    public void setGoods_num(String goods_num) {
+        this.goods_num = goods_num;
+    }
 
     public boolean isClick() {
         return click;

@@ -4,10 +4,27 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <View
+        android:id="@+id/layout_show"
+        style="@style/henxian" />
+
     <include layout="@layout/include_img_kong" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_shangping"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_shangping"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <View
+            android:id="@+id/view_toumin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transparent_max"
+            android:visibility="gone" />
+    </FrameLayout>
+
 </LinearLayout>

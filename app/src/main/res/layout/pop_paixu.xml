@@ -2,14 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_fenlei"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
-    <View
-        style="@style/henxian"
-        android:layout_height="10dp" />
 </LinearLayout>

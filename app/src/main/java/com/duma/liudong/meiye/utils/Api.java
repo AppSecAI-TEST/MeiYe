@@ -7,9 +7,12 @@ package com.duma.liudong.meiye.utils;
 public class Api {
     public static final String url = "http://meiye.duma-ivy.cn";
 
+    //商品详情
     public static final String H5Url = Api.url + "/index.php/Mobile/Goods/goodsdetail?goods_id=";
-
+    //论坛详情
     public static final String LunTanH5Url = Api.url + "/index.php/Mobile/Forum/detail?bbs_id=";
+    //签到
+    public static final String QianDaoH5Url = Api.url + "/index.php/Mobile/User/sign.html";
     /**
      * 个人用户
      */
@@ -37,6 +40,7 @@ public class Api {
     public static final String cancelOrder = url + "/App/user/cancelOrder";
     public static final String delOrder = url + "/App/user/delOrder";
     public static final String confirmOrder = url + "/App/user/confirmOrder";
+    public static final String comment = url + "/App/user/comment";
     /**
      * Index
      */
@@ -91,4 +95,5 @@ public class Api {
      * Tuangou - 团购列表
      */
     public static final String Tuangouindex = url + "/App/Tuangou/index";
+    public static final String address = url + "/App/Tuangou/address";
 }

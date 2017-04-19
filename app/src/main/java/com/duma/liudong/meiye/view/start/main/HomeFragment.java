@@ -21,7 +21,6 @@ import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.view.home.LinJuanActivity;
-import com.duma.liudong.meiye.view.home.MeiTuan.TuanGouActivity;
 import com.duma.liudong.meiye.view.home.MiaoShaActivity;
 import com.duma.liudong.meiye.view.home.TouTiaoActivity;
 import com.duma.liudong.meiye.widget.SampleAdapter;
@@ -265,9 +264,12 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
                 startActivity(new Intent(mActivity, TouTiaoActivity.class));
                 break;
             case R.id.layout_tuangou:
-
+                //团购
+                StartUtil.toTuanGou(mActivity, "null");
                 break;
             case R.id.layout_dingzhi:
+                //定制
+                StartUtil.toShangPingLieBiao(mActivity, "", "", "定制", "2");
                 break;
             case R.id.layout_tuijian:
                 break;
@@ -279,13 +281,19 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
                 break;
             case R.id.layout_group:
                 //团购
-                startActivity(new Intent(mActivity, TuanGouActivity.class));
+                StartUtil.toTuanGou(mActivity, "");
                 break;
             case R.id.layout_customization:
+                //定制
+                StartUtil.toShangPingLieBiao(mActivity, "", "", "定制", "2");
                 break;
             case R.id.layout_train:
+                //培训
+                StartUtil.toTuanGou(mActivity, "培训");
                 break;
             case R.id.layout_sign:
+                //签到
+                StartUtil.toH5Web(mActivity, Api.QianDaoH5Url, "签到");
                 break;
             case R.id.layout_coupons:
                 //领卷
@@ -298,16 +306,28 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
             case R.id.img_ad:
                 break;
             case R.id.img_miaosha:
+                //周日秒杀
+                startActivity(new Intent(mActivity, MiaoShaActivity.class));
                 break;
             case R.id.img_xinpin:
+                //新品拿样
+                StartUtil.toShangPingLieBiao(mActivity, Constants.marketing_type, "4", "新品拿样", "");
                 break;
             case R.id.img_weihuo:
+                //尾货清仓
+                StartUtil.toShangPingLieBiao(mActivity, Constants.marketing_type, "5", "尾货清仓", "");
                 break;
             case R.id.img_youpin:
+                //优品推荐
+                StartUtil.toShangPingLieBiao(mActivity, Constants.marketing_type, "6", "优品推荐", "");
                 break;
             case R.id.img_rexiao:
+                //热销爆款
+                StartUtil.toShangPingLieBiao(mActivity, Constants.marketing_type, "7", "热销爆款", "");
                 break;
             case R.id.img_haohuo:
+                //附近好货
+                StartUtil.toShangPingLieBiao(mActivity, Constants.marketing_type, "8", "附近好货", "");
                 break;
         }
     }

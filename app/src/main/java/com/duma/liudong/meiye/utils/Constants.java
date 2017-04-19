@@ -14,6 +14,10 @@ public class Constants {
     public static final String head_pic = "head_pic";
     public static final String sex = "sex";
 
+    public static final String city = "city";
+    public static final String lat = "lat";
+    public static final String lng = "lng";
+
     public static final int codeTime = 60;//短信验证码倒计时
     public static final String service = "18772397060";//客服电话
 
@@ -36,6 +40,7 @@ public class Constants {
     public static final String store_class = "store_class";//店铺分类id
     public static final String store_id = "store_id";//店铺id
     public static final String cat_id = "cat_id";//产品分类id
+    public static final String marketing_type = "marketing_type";//4 新品 5 尾货 6 优品 7 热销 8 附近好货
 
     //购物车
     public static final int jiesuan = 0;

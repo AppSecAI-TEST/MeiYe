@@ -21,7 +21,6 @@ import com.duma.liudong.meiye.base.MyViewPagerAdapter;
 import com.duma.liudong.meiye.model.ClassifyBean;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.DialogUtil;
-import com.duma.liudong.meiye.utils.Lg;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.zhy.adapter.recyclerview.CommonAdapter;
@@ -121,8 +120,6 @@ public class LinJuanActivity extends BaseActivity {
     }
 
     public String getId() {
-        Lg.e("getPosition:  " + getPosition());
-        Lg.e("getId:  " + mList.get(getPosition()).getId());
         return mList.get(getPosition()).getId();
     }
 

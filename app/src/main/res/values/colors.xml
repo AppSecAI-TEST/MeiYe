@@ -17,6 +17,9 @@
     <color name="button_rad3">#fa8a34</color>
     <color name="yellow">#eab82c</color>
 
+    <color name="bg_hui2">#e4e4e4</color>
+    <color name="bg_tei2">#d7d7d7</color>
+
     <color name="transparent">#7b000000</color>
     <color name="transparent_max">#21000000</color>
 </resources>

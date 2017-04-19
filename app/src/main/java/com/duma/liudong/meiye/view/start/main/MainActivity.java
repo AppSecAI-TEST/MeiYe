@@ -19,6 +19,8 @@ import com.amap.api.location.AMapLocationListener;
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.base.BaseFragment;
+import com.duma.liudong.meiye.base.MyApplication;
+import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.view.home.MessageActivity;
 
@@ -279,6 +281,9 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
             if (amapLocation.getErrorCode() == 0) {
                 //可在其中解析amapLocation获取相应内容。
                 getSearch_BarFragment().setTvName(amapLocation.getCity());
+                MyApplication.getSpUtils().put(Constants.city, amapLocation.getCity());
+                MyApplication.getSpUtils().put(Constants.lat, amapLocation.getLatitude() + "");
+                MyApplication.getSpUtils().put(Constants.lng, amapLocation.getLongitude() + "");
             } else {
                 //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
                 Log.e("AmapError", "location Error, ErrCode:"

@@ -1,5 +1,7 @@
 package com.duma.liudong.meiye.view.classift;
 
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -8,23 +10,20 @@ import android.widget.TextView;
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseFragment;
 import com.duma.liudong.meiye.base.MyApplication;
-import com.duma.liudong.meiye.model.SlideBus;
+import com.duma.liudong.meiye.presenter.ShangPinLieBiaoPresenter;
 import com.duma.liudong.meiye.utils.Constants;
-
-import org.greenrobot.eventbus.EventBus;
+import com.duma.liudong.meiye.utils.StartUtil;
+import com.zhy.http.okhttp.builder.GetBuilder;
+import com.zhy.http.okhttp.request.RequestCall;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-
-import static com.duma.liudong.meiye.R.id.tv_zonghe;
 
 /**
  * Created by liudong on 17/3/30.
  */
 
-public class PaiXuFragment extends BaseFragment {
-    @BindView(tv_zonghe)
-    TextView tvZonghe;
+public class PaiXuFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
     @BindView(R.id.img_zonghe)
     ImageView imgZonghe;
     @BindView(R.id.layout_zonghe)
@@ -43,9 +42,21 @@ public class PaiXuFragment extends BaseFragment {
     LinearLayout layoutXiaoliang;
     @BindView(R.id.layout_shaixuan)
     LinearLayout layoutShaixuan;
+    @BindView(R.id.tv_zonghe)
+    TextView tvZonghe;
+    @BindView(R.id.layout_kong)
+    LinearLayout layoutKong;
+    @BindView(R.id.rv_shangping)
+    RecyclerView rvShangping;
+    @BindView(R.id.sw_loading)
+    SwipeRefreshLayout swLoading;
 
-    public String paixuName = "";
-    public String paixu = "";
+
+    private ShangPinLieBiaoPresenter shangPinPresenter;
+    private String paixuName = "";
+    private String paixu = "";
+
+    private ShangPingLieBiaoActivity mActivity_shangping;
 
     @Override
     protected int setLayoutResouceId() {
@@ -54,9 +65,75 @@ public class PaiXuFragment extends BaseFragment {
 
     @Override
     protected void initData() {
+        mActivity_shangping = (ShangPingLieBiaoActivity) mActivity;
+        StartUtil.setSw(swLoading, this);
+        shangPinPresenter = new ShangPinLieBiaoPresenter(mActivity, rvShangping);
+        shangPinPresenter.setKongView(layoutKong);
+        shangPinPresenter.setShangPinListener(new ShangPinLieBiaoPresenter.OnShangPinListener() {
+            @Override
+            public void loading_hide() {
+                swLoading.setRefreshing(false);
+            }
+
+            @Override
+            public void loading_show() {
+                swLoading.setRefreshing(true);
+            }
+
+            @Override
+            public void onLoadMore() {
+                shangPinPresenter.QueryHttp(getBuild());
+            }
+
+        });
+        setType();
         refresh();
+        if (mActivity_shangping.isOne) {
+            shangPinPresenter.QueryHttp(getBuild());
+            mActivity_shangping.isOne = false;
+        }
     }
 
+    @Override
+    protected void onLazyLoad() {
+        shangPinPresenter.QueryHttp(getBuild());
+    }
+
+    public void setType() {
+        shangPinPresenter.setShangping(mActivity_shangping.type);
+    }
+
+    @Override
+    public void onRefresh() {
+        shangPinPresenter.Shuaxin();
+    }
+
+    private RequestCall getBuild() {
+        GetBuilder getBuilder = shangPinPresenter.getBuild();
+        getBuilder
+                .addParams(mActivity_shangping.key, mActivity_shangping.Value)//跳转过来的功能字段
+                .addParams("goods_type", mActivity_shangping.goods_type)//商品分类 默认1 1实物商品2定制商品3团购商品（必填）
+                .addParams(paixuName, paixu);//单个排序
+
+        if (mActivity_shangping.goods_type.equals("2")) {
+            //如果是定制
+            getBuilder.addParams("cat_id", mActivity_shangping.getId());
+        }
+        //条件筛选
+        for (Integer integer : mActivity_shangping.layoutTagFlow.getSelectedList()) {
+            getBuilder.addParams(mActivity_shangping.list_shaixuan.get(integer).getName(), "1");
+        }
+        //价格筛选
+        for (Integer integer : mActivity_shangping.layoutTagJiage.getSelectedList()) {
+            if (integer == 0) {
+                getBuilder.addParams(Constants.jiaGe, Constants.daoXu);
+            } else {
+                getBuilder.addParams(Constants.jiaGe, Constants.zhenXu);
+            }
+        }
+        return getBuilder
+                .build();
+    }
 
     @OnClick({R.id.layout_zonghe, R.id.layout_juli, R.id.layout_xiaoliang, R.id.layout_shaixuan})
     public void onClick(View view) {
@@ -69,7 +146,6 @@ public class PaiXuFragment extends BaseFragment {
             case R.id.layout_juli:
                 if (paixuName.equals(Constants.juLi)) {
                     setPaixu();
-
                 } else {
                     paixu = Constants.zhenXu;
                     paixuName = Constants.juLi;
@@ -86,7 +162,7 @@ public class PaiXuFragment extends BaseFragment {
                 refresh();
                 break;
             case R.id.layout_shaixuan:
-                EventBus.getDefault().post(new SlideBus(1));
+                mActivity_shangping.openDrawer();
                 break;
         }
     }
@@ -114,7 +190,7 @@ public class PaiXuFragment extends BaseFragment {
             default:
                 setClick(tvZonghe, imgZonghe);
         }
-        EventBus.getDefault().post(new SlideBus(0));
+        onRefresh();
     }
 
     private void setMoRen(TextView tv, ImageView img) {
@@ -131,4 +207,5 @@ public class PaiXuFragment extends BaseFragment {
         }
 
     }
+
 }

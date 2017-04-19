@@ -6,11 +6,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseXiaLaRvPresenter;
+import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.model.ShangPinBean;
 import com.duma.liudong.meiye.utils.Api;
+import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.google.gson.reflect.TypeToken;
@@ -19,6 +23,7 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.builder.GetBuilder;
 
 import java.lang.reflect.Type;
+import java.text.NumberFormat;
 import java.util.List;
 
 /**
@@ -28,6 +33,8 @@ import java.util.List;
 public class ShangPinLieBiaoPresenter extends BaseXiaLaRvPresenter<ShangPinBean> {
 
     private OnShangPinListener shangPinListener;
+    private int type;
+    private NumberFormat numberFormat;
 
     public interface OnShangPinListener {
         void loading_hide();
@@ -44,6 +51,8 @@ public class ShangPinLieBiaoPresenter extends BaseXiaLaRvPresenter<ShangPinBean>
                 .get()
                 .tag("base")
                 .url(Api.goodindex)
+                .addParams("lat", MyApplication.getSpUtils().getString(Constants.lat))
+                .addParams("lng", MyApplication.getSpUtils().getString(Constants.lng))
                 .addParams("p", p + "");
 
         return getBuilder;
@@ -57,27 +66,57 @@ public class ShangPinLieBiaoPresenter extends BaseXiaLaRvPresenter<ShangPinBean>
         super(context, R.layout.rv_shangping, rv);
         setType(new TypeToken<List<ShangPinBean>>() {
         }.getType());
+        numberFormat = NumberFormat.getInstance();
+        numberFormat.setMaximumFractionDigits(2);
     }
 
     public void setShangping(int type) {
+        this.type = type;
         if (type == 0) {
             setLayoutManagerByType(R.layout.rv_shangping);
-        } else {
+        } else if (type == 1) {
             setLayoutManagerByType(R.layout.rv_shangping_vertical, new LinearLayoutManager(mActivity));
+        } else {
+            setLayoutManagerByType(R.layout.rv_miaosha, new LinearLayoutManager(mActivity));
         }
     }
 
     @Override
-    protected void getView(ViewHolder holder, ShangPinBean shangPinBean, int position) {
-        ImageView img_original_img = holder.getView(R.id.img_original_img);
-        ImageView img_type = holder.getView(R.id.img_type);
-        ImageLoader.with(shangPinBean.getOriginal_img(), img_original_img);
-        ImageLoader.with(shangPinBean.getType(), img_type);
-        holder.setText(R.id.tv_goods_name, shangPinBean.getGoods_name());
-        holder.setText(R.id.tv_market_price, "￥" + shangPinBean.getMarket_price());
-        holder.setText(R.id.tv_shop_price, shangPinBean.getShop_price());
-        holder.setText(R.id.tv_sales_sum, shangPinBean.getSales_sum() + "人付款");
-        holder.setText(R.id.tv_distance, shangPinBean.getDistance() + "m");
+    protected void getView(ViewHolder holder, final ShangPinBean shangPinBean, int position) {
+        if (type != 3) {
+            ImageView img_original_img = holder.getView(R.id.img_original_img);
+            ImageView img_type = holder.getView(R.id.img_type);
+            ImageLoader.with(shangPinBean.getOriginal_img(), img_original_img);
+            ImageLoader.with(shangPinBean.getType(), img_type);
+            holder.setText(R.id.tv_goods_name, shangPinBean.getGoods_name());
+            holder.setText(R.id.tv_market_price, "￥" + shangPinBean.getMarket_price());
+            holder.setText(R.id.tv_shop_price, shangPinBean.getShop_price());
+            holder.setText(R.id.tv_sales_sum, shangPinBean.getSales_sum() + "人付款");
+            holder.setText(R.id.tv_distance, shangPinBean.getDistance() + "m");
+        } else {
+            ImageView img_original_img = holder.getView(R.id.img_original_img);
+            ImageLoader.with(shangPinBean.getOriginal_img(), img_original_img);
+            holder.setText(R.id.tv_goods_name, shangPinBean.getGoods_name());
+            holder.setText(R.id.tv_market_price, shangPinBean.getMarket_price());
+            holder.setText(R.id.tv_distance, shangPinBean.getDistance() + "m");
+            holder.setText(R.id.tv_shop_price, "¥" + shangPinBean.getShop_price());
+            double num1 = Double.parseDouble(shangPinBean.getSales_sum());
+            double num2 = Double.parseDouble(shangPinBean.getStore_count()) + num1;
+            String res = numberFormat.format((num1 / num2) * 100);
+            holder.setText(R.id.tv_sales_sum, "已付" + res + "%");
+            ProgressBar progressBar = holder.getView(R.id.progressBar_sum);
+            progressBar.setMax((int) num2);
+            progressBar.setProgress((int) num1);
+            TextView textView = holder.getView(R.id.tv_qianggou);
+            textView.setBackgroundColor(MyApplication.getInstance().getResources().getColor(R.color.main_red));
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    StartUtil.toShangPingWeb(mActivity, Api.H5Url + shangPinBean.getGoods_id());
+                }
+            });
+        }
+
     }
 
     @Override
@@ -106,7 +145,8 @@ public class ShangPinLieBiaoPresenter extends BaseXiaLaRvPresenter<ShangPinBean>
 
     @Override
     protected void loadMore() {
-        shangPinListener.onLoadMore();
+        if (isOne)
+            shangPinListener.onLoadMore();
     }
 
 

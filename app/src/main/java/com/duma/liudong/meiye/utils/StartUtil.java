@@ -12,9 +12,11 @@ import com.duma.liudong.meiye.view.classift.ShangPingLieBiaoActivity;
 import com.duma.liudong.meiye.view.classift.ShangPingXiangQinWeb;
 import com.duma.liudong.meiye.view.classift.dianPu.DianPuActivity;
 import com.duma.liudong.meiye.view.forum.LunTanXiangQinWeb;
+import com.duma.liudong.meiye.view.home.meiTuan.TuanGouActivity;
 import com.duma.liudong.meiye.view.shoppingCart.QueRenDinDanActivity;
 import com.duma.liudong.meiye.view.shoppingCart.ZhiFuActivity;
 import com.duma.liudong.meiye.view.start.login.LoginActivity;
+import com.duma.liudong.meiye.view.start.main.WebViewActivity;
 import com.duma.liudong.meiye.view.start.main.MainActivity;
 
 import java.text.SimpleDateFormat;
@@ -53,10 +55,26 @@ public class StartUtil {
     }
 
     //跳转商品列表
-    public static void toShangPingLieBiao(Activity activity, String key, String Value, String title) {
+    public static void toShangPingLieBiao(Activity activity, String key, String Value, String title, String goods_type) {
         Intent intent = new Intent(activity, ShangPingLieBiaoActivity.class);
         intent.putExtra("key", key);
         intent.putExtra("Value", Value);
+        intent.putExtra("title", title);
+        intent.putExtra("goods_type", goods_type);
+        activity.startActivity(intent);
+    }
+
+    //跳转团购
+    public static void toTuanGou(Activity activity, String res) {
+        Intent intent = new Intent(activity, TuanGouActivity.class);
+        intent.putExtra("res", res);
+        activity.startActivity(intent);
+    }
+
+    //跳转h5
+    public static void toH5Web(Activity activity, String url, String title) {
+        Intent intent = new Intent(activity, WebViewActivity.class);
+        intent.putExtra("url", url);
         intent.putExtra("title", title);
         activity.startActivity(intent);
     }

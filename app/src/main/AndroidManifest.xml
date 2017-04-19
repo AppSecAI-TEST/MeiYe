@@ -112,7 +112,8 @@
         <activity android:name=".view.me.TiXianActivity" />
         <activity android:name=".view.me.shiWuDinDan.ShiWuDianDanXiangQingActivity" />
         <activity android:name=".view.me.shiWuDinDan.PingJiaActivity" />
-        <activity android:name=".view.home.MeiTuan.TuanGouActivity" />
+        <activity android:name=".view.home.meiTuan.TuanGouActivity" />
+        <activity android:name=".view.start.main.WebViewActivity" />
     </application>
 
 </manifest>

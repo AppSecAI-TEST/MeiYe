@@ -122,7 +122,7 @@ public class ClassifyFragment extends BaseFragment {
                         holder.setOnClickListener(R.id.layout_click, new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                StartUtil.toShangPingLieBiao(mActivity, Constants.cat_id, threeBean.getId(), threeBean.getName());
+                                StartUtil.toShangPingLieBiao(mActivity, Constants.cat_id, threeBean.getId(), threeBean.getName(), "1");
                             }
                         });
                     }

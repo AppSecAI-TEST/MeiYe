@@ -51,9 +51,9 @@ public class ScrollableLayout extends LinearLayout {
     private boolean mDisallowIntercept;
 
     private int minY = 0;
-    private int maxY = 0;
+    public int maxY = 0;//top的y
 
-    public int mCurY;
+    public int mCurY;//当前的y 滑动是变化
     private boolean isClickHead;
     private int mScrollMinY = 10;
 
