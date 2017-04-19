@@ -1,5 +1,6 @@
-package com.duma.liudong.meiye.view.me;
+package com.duma.liudong.meiye.view.me.yuE;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -28,6 +29,8 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.duma.liudong.meiye.R.id.tv_tixian;
+
 /**
  * Created by liudong on 17/3/27.
  */
@@ -43,7 +46,7 @@ public class YuEActivity extends BaseActivity implements SwipeRefreshLayout.OnRe
     LinearLayout layoutOther;
     @BindView(R.id.tv_yue)
     TextView tvYue;
-    @BindView(R.id.tv_tixian)
+    @BindView(tv_tixian)
     TextView tvTixian;
     @BindView(R.id.rv_shouZhiMingXi)
     RecyclerView rvShangping;
@@ -103,17 +106,30 @@ public class YuEActivity extends BaseActivity implements SwipeRefreshLayout.OnRe
                 tvYue.setText("¥" + userMoneyBean.getUser_money());
                 return userMoneyBean.getDetail();
             }
+
+            @Override
+            protected void HttpSuccess() {
+                tvTixian.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            protected void HttpError() {
+                tvTixian.setVisibility(View.GONE);
+            }
         };
         adapter.setKongView(layoutKong);
     }
 
-    @OnClick({R.id.layout_back, R.id.tv_tixian})
+    @OnClick({R.id.layout_back, tv_tixian})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.layout_back:
                 finish();
                 break;
-            case R.id.tv_tixian:
+            case tv_tixian:
+                Intent intent = new Intent(mActivity, TiXianActivity.class);
+                intent.putExtra("money", userMoneyBean.getUser_money());
+                startActivity(intent);
                 break;
         }
     }

@@ -145,7 +145,7 @@ public class ClassifyFragment extends BaseFragment {
         OneAdapter.commonAdapter.notifyDataSetChanged();
         TwoList.clear();
         TwoList.addAll(OneAdapter.mList.get(position).getSecond());
-        ImageLoader.with(OneAdapter.mList.get(position).getImage(), imgAd);
+        ImageLoader.with(OneAdapter.mList.get(position).getAd_image(), imgAd);
         TwoAdapter.notifyDataSetChanged();
     }
 

@@ -87,7 +87,7 @@
         <activity android:name=".view.home.MessageActivity" />
         <activity android:name=".view.home.MessageContentActivity" />
         <activity android:name=".view.me.JiFenActivity" />
-        <activity android:name=".view.me.YuEActivity" />
+        <activity android:name=".view.me.yuE.YuEActivity" />
         <activity android:name=".view.me.YouHuiJuanActivity" />
         <activity android:name=".view.me.HongBaoActivity" />
         <activity android:name=".view.home.LinJuanActivity" />
@@ -109,11 +109,15 @@
         <activity android:name=".view.me.WoDeZuJiActivity" />
         <activity android:name=".view.shoppingCart.ZhiFuActivity" />
         <activity android:name=".view.shoppingCart.FuKuanChenGongActivity" />
-        <activity android:name=".view.me.TiXianActivity" />
+        <activity android:name=".view.me.yuE.TiXianActivity" />
         <activity android:name=".view.me.shiWuDinDan.ShiWuDianDanXiangQingActivity" />
         <activity android:name=".view.me.shiWuDinDan.PingJiaActivity" />
         <activity android:name=".view.home.meiTuan.TuanGouActivity" />
         <activity android:name=".view.start.main.WebViewActivity" />
+        <activity android:name=".view.me.yuE.TiXianZFBActivity" />
+        <activity android:name=".view.me.yuE.TiXianYHActivity" />
+        <activity android:name=".view.home.SouSuoActivity" />
+        <activity android:name=".view.classift.dianPu.DianPuListActivity" />
     </application>
 
 </manifest>

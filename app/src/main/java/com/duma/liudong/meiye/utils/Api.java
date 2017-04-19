@@ -41,12 +41,14 @@ public class Api {
     public static final String delOrder = url + "/App/user/delOrder";
     public static final String confirmOrder = url + "/App/user/confirmOrder";
     public static final String comment = url + "/App/user/comment";
+    public static final String withdraw = url + "/App/user/withdraw";
     /**
      * Index
      */
     public static final String cate = url + "/App/Index/cate";
     public static final String mainindex = url + "/App/Index/index";
     public static final String goodindex = url + "/App/Goods/index";
+    public static final String store_search = url + "/App/Goods/store_search";
 
     /**
      * coupon - 领取优惠券

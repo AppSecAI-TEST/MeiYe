@@ -94,7 +94,8 @@ public abstract class BaseRvAdapter<T> {
                 hide_loading();
                 List<T> list = getTs(result);
                 if (list == null || list.size() == 0) {
-                    onError("");
+                    hide_loading();
+                    show_kong();
                     return;
                 }
                 refresh(list);
@@ -103,6 +104,7 @@ public abstract class BaseRvAdapter<T> {
             @Override
             protected void onError(String result) {
                 super.onError(result);
+                HttpError();
                 hide_loading();
                 show_kong();
             }

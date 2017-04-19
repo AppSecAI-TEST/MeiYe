@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <LinearLayout
+            android:id="@+id/layout_back"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_19" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/leirong_hui_shape"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_type"
+                    android:layout_width="48dp"
+                    android:layout_height="match_parent"
+                    android:drawableRight="@drawable/img_21"
+                    android:gravity="center"
+                    android:text="1宝贝" />
+
+                <EditText
+                    android:id="@+id/edit_res"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="请输入您要搜索的名称"
+                    android:inputType="text"
+                    android:paddingLeft="4dp"
+                    android:textColor="@color/texthei"
+                    android:textColorHint="@color/text_hui"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_sousuo"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="搜索" />
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_qingkong"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/button_rad"
+        android:text="清空历史搜索"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+</LinearLayout>

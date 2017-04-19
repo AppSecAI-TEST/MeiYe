@@ -24,7 +24,7 @@ import com.duma.liudong.meiye.view.me.ShouCangActivity;
 import com.duma.liudong.meiye.view.me.UserDataActivity;
 import com.duma.liudong.meiye.view.me.WoDekeHuActivity;
 import com.duma.liudong.meiye.view.me.YouHuiJuanActivity;
-import com.duma.liudong.meiye.view.me.YuEActivity;
+import com.duma.liudong.meiye.view.me.yuE.YuEActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;

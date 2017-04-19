@@ -1,10 +1,12 @@
 package com.duma.liudong.meiye.view.start.main;
 
+import android.content.Intent;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseFragment;
+import com.duma.liudong.meiye.view.home.SouSuoActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -31,6 +33,6 @@ public class SearchBarFragment extends BaseFragment {
 
     @OnClick(R.id.layout_sousuo)
     public void onClick() {
-        // TODO: 17/4/17 跳转搜索
+        startActivity(new Intent(mActivity, SouSuoActivity.class));
     }
 }

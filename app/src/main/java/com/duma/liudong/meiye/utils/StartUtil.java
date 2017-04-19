@@ -11,14 +11,16 @@ import com.duma.liudong.meiye.model.LoginBean;
 import com.duma.liudong.meiye.view.classift.ShangPingLieBiaoActivity;
 import com.duma.liudong.meiye.view.classift.ShangPingXiangQinWeb;
 import com.duma.liudong.meiye.view.classift.dianPu.DianPuActivity;
+import com.duma.liudong.meiye.view.classift.dianPu.DianPuListActivity;
 import com.duma.liudong.meiye.view.forum.LunTanXiangQinWeb;
 import com.duma.liudong.meiye.view.home.meiTuan.TuanGouActivity;
 import com.duma.liudong.meiye.view.shoppingCart.QueRenDinDanActivity;
 import com.duma.liudong.meiye.view.shoppingCart.ZhiFuActivity;
 import com.duma.liudong.meiye.view.start.login.LoginActivity;
-import com.duma.liudong.meiye.view.start.main.WebViewActivity;
 import com.duma.liudong.meiye.view.start.main.MainActivity;
+import com.duma.liudong.meiye.view.start.main.WebViewActivity;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 
 /**
@@ -61,6 +63,13 @@ public class StartUtil {
         intent.putExtra("Value", Value);
         intent.putExtra("title", title);
         intent.putExtra("goods_type", goods_type);
+        activity.startActivity(intent);
+    }
+
+    //跳转商品列表
+    public static void toDianPuList(Activity activity, String keyword) {
+        Intent intent = new Intent(activity, DianPuListActivity.class);
+        intent.putExtra("keyword", keyword);
         activity.startActivity(intent);
     }
 
@@ -124,6 +133,15 @@ public class StartUtil {
         MyApplication.getSpUtils().put(Constants.birthday, getTime(Long.parseLong(Birthday) * 1000));
     }
 
+    public static String setNum(double Birthday) {
+        DecimalFormat df = new DecimalFormat("0.0");
+        return df.format(Birthday);
+    }
+
+    public static String setNumOr00(double Birthday) {
+        DecimalFormat df = new DecimalFormat("0.00");
+        return df.format(Birthday);
+    }
 
     public static void setNickName(String nickName) {
         //如果昵称为空的话 给个默认的

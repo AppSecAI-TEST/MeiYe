@@ -134,7 +134,7 @@ public class LunTanClassiftFragment extends BaseFragment implements SwipeRefresh
 
             @Override
             protected void onitemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                StartUtil.toLunTanWeb(mActivity, mlist.get(position).getBbs_id());
+                StartUtil.toH5Web(mActivity, Api.LunTanH5Url + mlist.get(position).getBbs_id(), mlist.get(position).getTitle());
             }
         };
         beanBaseXiaLaRvPresenter.setType(new TypeToken<ArrayList<TieziBean>>() {

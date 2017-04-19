@@ -45,10 +45,11 @@
 
         <EditText
             android:id="@+id/edit_jine"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
             android:hint="请输入提现金额"
+            android:inputType="number"
             android:textColor="@color/main_red"
             android:textColorHint="@color/text_hui"
             android:textSize="14sp" />
@@ -109,6 +110,7 @@
             android:id="@+id/rdoBtn_zhifubao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:checked="true"
             android:gravity="center|left"
             android:textColor="@color/maincolor" />
     </LinearLayout>

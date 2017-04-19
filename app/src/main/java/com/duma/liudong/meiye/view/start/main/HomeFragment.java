@@ -29,6 +29,8 @@ import com.google.gson.Gson;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.http.okhttp.OkHttpUtils;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -105,6 +107,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
     private BaseAdAdapter<IndexBean.ShiwuBean> shangpingAdapter;
     private BaseAdAdapter<IndexBean.TuangouBean> tuangouAdapter;
     private BaseAdAdapter<IndexBean.TuijianBean> tuijianAdapter;
+    private List<IndexBean.FriendLinkBean> friendLinkBeanList;
 
     @Override
     protected int setLayoutResouceId() {
@@ -239,7 +242,8 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
         SampleAdapter sampleAdapter = new SampleAdapter(bean.getArticle());
         bannerAd.setAdapter(sampleAdapter);
         bannerAd.start();
-        new BaseBannaer().setBanner(bannerHome, bean.getFriend_link(), this);
+        friendLinkBeanList = bean.getFriend_link();
+        new BaseBannaer().setBanner(bannerHome, friendLinkBeanList, this);
         bannerHome.startTurning(BaseBannaer.time);
         ImageLoader.with(bean.getAd().getAd_code(), imgAd);
         ImageLoader.with(bean.getGoods_cat().get(0).getPic_url(), imgMiaosha);
@@ -351,7 +355,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
      */
     @Override
     public void onItemClick(int position) {
-        // TODO: 17/3/29 跳转商品详情
+        StartUtil.toShangPingWeb(mActivity, friendLinkBeanList.get(position).getLink_url());
     }
 
     @Override

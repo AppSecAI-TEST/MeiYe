@@ -25,10 +25,19 @@ public class ClassifyBean {
     private String goods_id;
     private String goods_num;
     private String goods_url;
+    private String ad_image;
 
     public ClassifyBean(String id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public String getAd_image() {
+        return ad_image;
+    }
+
+    public void setAd_image(String ad_image) {
+        this.ad_image = ad_image;
     }
 
     private List<SecondBean> second;
