@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
+import com.duma.liudong.meiye.base.BasePopWindos;
 import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.utils.Ts;
@@ -31,12 +32,37 @@ public class SouSuoActivity extends BaseActivity {
     TextView tvSousuo;
     @BindView(R.id.btn_qingkong)
     Button btnQingkong;
+    @BindView(R.id.layout_show)
+    LinearLayout layoutShow;
+
+    private BasePopWindos basePopWindos;
+    private LinearLayout layout_baobei, layout_dianpu;
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
         setContentView(R.layout.activity_sousuo);
     }
 
+    @Override
+    protected void initData() {
+        basePopWindos = new BasePopWindos(mActivity, R.layout.pop_sousuo);
+        layout_baobei = (LinearLayout) basePopWindos.getView().findViewById(R.id.layout_baobei);
+        layout_dianpu = (LinearLayout) basePopWindos.getView().findViewById(R.id.layout_dianpu);
+        layout_baobei.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                basePopWindos.disMiss();
+                tvType.setText("宝贝");
+            }
+        });
+        layout_dianpu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                basePopWindos.disMiss();
+                tvType.setText("店铺");
+            }
+        });
+    }
 
     @OnClick({R.id.layout_back, R.id.tv_type, R.id.tv_sousuo, R.id.btn_qingkong})
     public void onClick(View view) {
@@ -45,6 +71,7 @@ public class SouSuoActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.tv_type:
+                basePopWindos.Show(layoutShow);
                 break;
             case R.id.tv_sousuo:
                 if (editRes.getText().toString().equals("")) {

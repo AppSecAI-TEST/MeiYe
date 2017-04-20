@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/layout_show"
         android:layout_width="match_parent"
         android:layout_height="48dp">
 
@@ -39,7 +40,7 @@
                     android:layout_height="match_parent"
                     android:drawableRight="@drawable/img_21"
                     android:gravity="center"
-                    android:text="1宝贝" />
+                    android:text="宝贝" />
 
                 <EditText
                     android:id="@+id/edit_res"

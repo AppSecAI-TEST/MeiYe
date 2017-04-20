@@ -44,6 +44,9 @@ public class Api {
     public static final String confirmOrder = url + "/App/user/confirmOrder";
     public static final String comment = url + "/App/user/comment";
     public static final String withdraw = url + "/App/user/withdraw";
+    public static final String footList = url + "/App/user/footList";
+    public static final String delFoot = url + "/App/user/delFoot";
+    public static final String delCollect = url + "/App/user/delCollect";
     /**
      * Index
      */
@@ -65,8 +68,9 @@ public class Api {
     public static final String delcart = url + "/App/order/delcart";
     public static final String makeSure = url + "/App/order/makeSure";
     public static final String makeOrder = url + "/App/order/makeOrder";
+    public static final String serverOrder = url + "/App/order/serverOrder";
+    public static final String serverSure = url + "/App/order/serverSure";
     public static final String orderInfo = url + "/App/order/orderInfo";
-
     /**
      * 头条
      */
@@ -94,6 +98,9 @@ public class Api {
     public static final String upload = url + "/App/Bbs/upload";
     public static final String add = url + "/App/Bbs/add";
     public static final String like = url + "/App/Bbs/like";
+    public static final String follow_list = url + "/App/Bbs/follow_list";
+    public static final String follow_bbs = url + "/App/Bbs/follow_bbs";
+    public static final String my_add_bbs = url + "/App/Bbs/my_add_bbs";
 
     /**
      * Tuangou - 团购列表

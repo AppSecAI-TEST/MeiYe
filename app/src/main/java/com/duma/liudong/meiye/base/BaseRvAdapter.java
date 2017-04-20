@@ -95,6 +95,8 @@ public abstract class BaseRvAdapter<T> {
                 List<T> list = getTs(result);
                 if (list == null || list.size() == 0) {
                     hide_loading();
+                    mList.clear();
+                    commonAdapter.notifyDataSetChanged();
                     show_kong();
                     return;
                 }

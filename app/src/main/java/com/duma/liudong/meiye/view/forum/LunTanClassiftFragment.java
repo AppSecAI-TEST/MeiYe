@@ -20,6 +20,7 @@ import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
+import com.duma.liudong.meiye.utils.Ts;
 import com.duma.liudong.meiye.view.start.main.ForumFragment;
 import com.duma.liudong.meiye.view.start.main.MainActivity;
 import com.google.gson.Gson;
@@ -108,7 +109,7 @@ public class LunTanClassiftFragment extends BaseFragment implements SwipeRefresh
             }
 
             @Override
-            protected void getView(ViewHolder holder, final TieziBean zhiDingBean, int position) {
+            protected void getView(final ViewHolder holder, final TieziBean zhiDingBean, int position) {
                 holder.setText(R.id.tv_content, zhiDingBean.getContent());
                 holder.setText(R.id.tv_click_count, zhiDingBean.getClick_count());
                 holder.setText(R.id.tv_user_name, zhiDingBean.getUser_name());
@@ -130,6 +131,12 @@ public class LunTanClassiftFragment extends BaseFragment implements SwipeRefresh
                         DianZanHttp(tv_zan, zhiDingBean.getBbs_id());
                     }
                 });
+                holder.setOnClickListener(R.id.layout_guanzhu, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        guanZhuHttp((ImageView) holder.getView(R.id.img_guanzhu), zhiDingBean.getBbs_id());
+                    }
+                });
             }
 
             @Override
@@ -141,8 +148,27 @@ public class LunTanClassiftFragment extends BaseFragment implements SwipeRefresh
         }.getType());
     }
 
+    private void guanZhuHttp(final ImageView view, String bbs_id) {
+//        OkHttpUtils.getInstance().cancelTag("guanZhuHttp");
+        OkHttpUtils
+                .get()
+                .tag("guanZhuHttp")
+                .url(Api.like)
+                .addParams("bbs_id", bbs_id)
+                .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
+                .build()
+                .execute(new MyStringCallback() {
+                    @Override
+                    public void onMySuccess(String result) {
+                        Ts.setText("关注成功!");
+                        view.setImageDrawable(MyApplication.getInstance().getResources().getDrawable(R.drawable.im_22));
+                    }
+                });
+    }
+
     private void DianZanHttp(final TextView tv_zan, String Bbs_id) {
-        OkHttpUtils.getInstance().cancelTag("DianZanHttp");
+//        OkHttpUtils.getInstance().cancelTag("DianZanHttp");
         OkHttpUtils
                 .get()
                 .tag("DianZanHttp")

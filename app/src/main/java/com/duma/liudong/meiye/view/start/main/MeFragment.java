@@ -16,12 +16,15 @@ import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
+import com.duma.liudong.meiye.view.me.DinDanZhongXinActivity;
 import com.duma.liudong.meiye.view.me.FanKuiActivity;
+import com.duma.liudong.meiye.view.me.FenSiActivity;
+import com.duma.liudong.meiye.view.me.GuanZhuActivity;
 import com.duma.liudong.meiye.view.me.HongBaoActivity;
 import com.duma.liudong.meiye.view.me.JiFenActivity;
-import com.duma.liudong.meiye.view.me.shiWuDinDan.ShiWuDinDanQuanBuActivity;
 import com.duma.liudong.meiye.view.me.ShouCangActivity;
 import com.duma.liudong.meiye.view.me.UserDataActivity;
+import com.duma.liudong.meiye.view.me.WoDeZuJiActivity;
 import com.duma.liudong.meiye.view.me.WoDekeHuActivity;
 import com.duma.liudong.meiye.view.me.YouHuiJuanActivity;
 import com.duma.liudong.meiye.view.me.yuE.YuEActivity;
@@ -110,6 +113,7 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
     LinearLayout layoutShoucang;
     @BindView(R.id.layout_wode_kehu)
     LinearLayout layoutWodeKehu;
+    private Intent intent;
 
     @Override
     protected int setLayoutResouceId() {
@@ -146,6 +150,8 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
         }
         switch (view.getId()) {
             case R.id.img_head_pic:
+                //个人资料or账户管理
+                startActivity(new Intent(mActivity, UserDataActivity.class));
                 break;
             case R.id.layout_account:
                 //个人资料or账户管理
@@ -170,30 +176,53 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
                 startActivity(new Intent(mActivity, YouHuiJuanActivity.class));
                 break;
             case R.id.layout_asset:
+                //我的资产->跳余额
+                startActivity(new Intent(mActivity, YuEActivity.class));
                 break;
             case R.id.layout_shiwu_dindan:
                 //实物订单
-                startActivity(new Intent(mActivity, ShiWuDinDanQuanBuActivity.class));
+                StartUtil.toShiWuOrDinZHi(mActivity, "1");
                 break;
             case R.id.layout_tuangou_dindan:
+                //团购订单
+                StartUtil.toShiWuOrDinZHi(mActivity, "3");
                 break;
             case R.id.layout_dinzhi_dindan:
+                //定制订单
+                StartUtil.toShiWuOrDinZHi(mActivity, "2");
                 break;
             case R.id.layout_wode_dinzhi:
                 break;
             case R.id.layout_wode_dindan:
+                //我的订单
+                startActivity(new Intent(mActivity, DinDanZhongXinActivity.class));
                 break;
             case R.id.img_ad:
                 break;
             case R.id.layout_qiandao:
+                StartUtil.toH5Web(mActivity, Api.QianDaoH5Url, "签到");
                 break;
             case R.id.layout_guanzhuan:
+                //关注
+                this.intent = new Intent(mActivity, GuanZhuActivity.class);
+                this.intent.putExtra("url", Api.follow_bbs);
+                startActivity(this.intent);
                 break;
             case R.id.layout_tiezi:
+                //贴子
+                this.intent = new Intent(mActivity, GuanZhuActivity.class);
+                this.intent.putExtra("url", Api.my_add_bbs);
+                startActivity(this.intent);
                 break;
             case R.id.layout_fensi:
+                //粉丝
+                startActivity(new Intent(mActivity, FenSiActivity.class));
                 break;
             case R.id.layout_luntan:
+                //我的论坛
+                this.intent = new Intent(mActivity, GuanZhuActivity.class);
+                this.intent.putExtra("url", Api.my_add_bbs);
+                startActivity(this.intent);
                 break;
             case R.id.layout_tequan:
                 break;
@@ -203,6 +232,7 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
                 break;
             case R.id.layout_zuji:
                 //足迹
+                startActivity(new Intent(mActivity, WoDeZuJiActivity.class));
                 break;
             case R.id.layout_shoucang:
                 //收藏

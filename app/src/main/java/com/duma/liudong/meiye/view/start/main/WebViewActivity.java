@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -39,12 +40,13 @@ public class WebViewActivity extends BaseActivity implements SwipeRefreshLayout.
     LinearLayout layoutOther;
     @BindView(R.id.web_webview)
     WebView webWebview;
-    @BindView(R.id.sw_loading)
-    SwipeRefreshLayout swLoading;
+    //    @BindView(R.id.sw_loading)
+//    SwipeRefreshLayout swLoading;
     @BindView(R.id.progressBar_sum)
     ProgressBar progressBarSum;
 
     private String url;
+    private ViewTreeObserver.OnScrollChangedListener mOnScrollChangedListener;
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -53,7 +55,7 @@ public class WebViewActivity extends BaseActivity implements SwipeRefreshLayout.
 
     @Override
     protected void initData() {
-        StartUtil.setSw(swLoading, this);
+//        StartUtil.setSw(swLoading, this);
         url = getIntent().getStringExtra("url");
         tvTitle.setText(getIntent().getStringExtra("title"));
         WebSettings mWebSettings = webWebview.getSettings();
@@ -82,10 +84,51 @@ public class WebViewActivity extends BaseActivity implements SwipeRefreshLayout.
                 progressBarSum.setProgress(newProgress);
                 if (newProgress >= 100) {
                     progressBarSum.setVisibility(View.GONE);
-                    swLoading.setRefreshing(false);
+//                    swLoading.setRefreshing(false);
                 }
             }
         });
+//        webWebview.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                switch (event.getAction()) {
+//                    case MotionEvent.ACTION_MOVE:
+//                        if (webWebview.getScrollY() == 0) {
+//                            swLoading.setEnabled(true);
+//                        } else {
+//                            swLoading.setEnabled(false);
+//                        }
+//                        break;
+//                    case MotionEvent.ACTION_CANCEL:
+//                        swLoading.setEnabled(false);
+//                        break;
+//                }
+//                return false;
+//            }
+//        });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+//        swLoading.getViewTreeObserver().addOnScrollChangedListener(mOnScrollChangedListener =
+//                new ViewTreeObserver.OnScrollChangedListener() {
+//                    @Override
+//                    public void onScrollChanged() {
+//                        if (webWebview.getScrollY() == 0) {
+//                            swLoading.setEnabled(true);
+//                        } else {
+//                            swLoading.setEnabled(false);
+//                        }
+//
+//                    }
+//                });
+    }
+
+    @Override
+    public void onStop() {
+//        swLoading.getViewTreeObserver().removeOnScrollChangedListener(mOnScrollChangedListener);
+        super.onStop();
     }
 
     @Override

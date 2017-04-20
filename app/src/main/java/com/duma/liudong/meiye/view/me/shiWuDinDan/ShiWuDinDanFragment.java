@@ -259,7 +259,7 @@ public class ShiWuDinDanFragment extends BaseFragment implements SwipeRefreshLay
                 .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
                 .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
                 .addParams("type", activity.getType())
-                .addParams("goods_type", "1")
+                .addParams("goods_type", activity.goods_type)
                 .addParams("p", baseXiaLaRvPresenter.p + "")
                 .build();
     }

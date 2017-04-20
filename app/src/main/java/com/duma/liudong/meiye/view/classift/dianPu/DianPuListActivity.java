@@ -92,7 +92,7 @@ public class DianPuListActivity extends BaseActivity implements SwipeRefreshLayo
             protected void getView(ViewHolder holder, DianPuListBean dianPuListBean, int position) {
                 holder.setText(R.id.tv_store_name, dianPuListBean.getStore_name());
                 ImageLoader.with(dianPuListBean.getStore_logo(), (ImageView) holder.getView(R.id.img_store_logo));
-                ImageLoader.with(dianPuListBean.getStore_logo(), (ImageView) holder.getView(R.id.img_head_pic));
+                ImageLoader.with(dianPuListBean.getStore_avatar(), (ImageView) holder.getView(R.id.img_head_pic));
             }
 
             @Override

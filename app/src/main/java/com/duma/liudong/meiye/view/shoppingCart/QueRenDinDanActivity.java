@@ -425,6 +425,8 @@ public class QueRenDinDanActivity extends BaseActivity {
                 .addParams("coupon_id", getId() + "")
                 .addParams("user_note", editLiuyan.getText().toString())
                 .addParams("address_id", addresId)
+//                .addParams("make_spell", "1")
+//                .addParams("goods_id", "1")
                 .build()
                 .execute(new MyStringCallback() {
                     @Override

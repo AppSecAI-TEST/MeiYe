@@ -135,72 +135,95 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
         };
         dingzhiAdapter = new BaseAdAdapter<IndexBean.DingzhiBean>(mActivity, rvDingzhi, Constants.dingZhi_AD) {
             @Override
-            protected void getView(ViewHolder holder, IndexBean.DingzhiBean dingzhiBean, int position) {
+            protected void getView(ViewHolder holder, final IndexBean.DingzhiBean dingzhiBean, int position) {
                 holder.setText(R.id.tv_goods_name, dingzhiBean.getGoods_name());
-                holder.setText(R.id.tv_market_price, dingzhiBean.getMarket_price());
+                holder.setText(R.id.tv_market_price, "¥" + dingzhiBean.getMarket_price());
                 holder.setText(R.id.tv_sales_sum, dingzhiBean.getSales_sum());
                 holder.setText(R.id.tv_sell_up, dingzhiBean.getSell_up() + "件起批");
                 ImageView imageView = holder.getView(R.id.img_original_img);
                 ImageLoader.with(dingzhiBean.getOriginal_img(), imageView);
 
                 TextView tv = holder.getView(R.id.tv_shop_price);
-                tv.setText("¥" + dingzhiBean.getShop_price());
+                tv.setText(dingzhiBean.getShop_price());
                 tv.setVisibility(View.VISIBLE);
                 if (dingzhiBean.getShop_price().equals("")) {
-                    tv.setVisibility(View.GONE);
+                    tv.setText("0");
                 }
-
+                holder.setOnClickListener(R.id.layout_onClick, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        StartUtil.toShangPingWeb(mActivity, Api.H5Url + dingzhiBean.getGoods_id());
+                    }
+                });
             }
         };
         shangpingAdapter = new BaseAdAdapter<IndexBean.ShiwuBean>(mActivity, rvShangping) {
             @Override
-            protected void getView(ViewHolder holder, IndexBean.ShiwuBean shiwuBean, int position) {
+            protected void getView(ViewHolder holder, final IndexBean.ShiwuBean shiwuBean, int position) {
                 holder.setText(R.id.tv_goods_name, shiwuBean.getGoods_name());
-                holder.setText(R.id.tv_market_price, shiwuBean.getMarket_price());
+                holder.setText(R.id.tv_market_price, "¥" + shiwuBean.getMarket_price());
                 holder.setText(R.id.tv_sales_sum, shiwuBean.getSales_sum() + "人付款");
                 ImageView imageView = holder.getView(R.id.img_original_img);
                 ImageLoader.with(shiwuBean.getOriginal_img(), imageView);
 
                 TextView tv = holder.getView(R.id.tv_shop_price);
-                tv.setText("¥" + shiwuBean.getShop_price());
+                tv.setText(shiwuBean.getShop_price());
                 tv.setVisibility(View.VISIBLE);
                 if (shiwuBean.getShop_price().equals("")) {
                     tv.setVisibility(View.GONE);
                 }
+                holder.setOnClickListener(R.id.layout_onClick, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        StartUtil.toShangPingWeb(mActivity, Api.H5Url + shiwuBean.getGoods_id());
+                    }
+                });
             }
         };
         tuangouAdapter = new BaseAdAdapter<IndexBean.TuangouBean>(mActivity, rvTuangou) {
             @Override
-            protected void getView(ViewHolder holder, IndexBean.TuangouBean tuangouBean, int position) {
+            protected void getView(ViewHolder holder, final IndexBean.TuangouBean tuangouBean, int position) {
                 holder.setText(R.id.tv_goods_name, tuangouBean.getGoods_name());
-                holder.setText(R.id.tv_market_price, tuangouBean.getMarket_price());
+                holder.setText(R.id.tv_market_price, "¥" + tuangouBean.getMarket_price());
                 holder.setText(R.id.tv_sales_sum, tuangouBean.getSales_sum() + "人付款");
                 ImageView imageView = holder.getView(R.id.img_original_img);
                 ImageLoader.with(tuangouBean.getOriginal_img(), imageView);
 
                 TextView tv = holder.getView(R.id.tv_shop_price);
-                tv.setText("¥" + tuangouBean.getShop_price());
+                tv.setText(tuangouBean.getShop_price());
                 tv.setVisibility(View.VISIBLE);
                 if (tuangouBean.getShop_price().equals("")) {
-                    tv.setVisibility(View.GONE);
+                    tv.setText("0");
                 }
+                holder.setOnClickListener(R.id.layout_onClick, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        StartUtil.toShangPingWeb(mActivity, Api.H5Url + tuangouBean.getGoods_id());
+                    }
+                });
             }
         };
         tuijianAdapter = new BaseAdAdapter<IndexBean.TuijianBean>(mActivity, rvTuijian) {
             @Override
-            protected void getView(ViewHolder holder, IndexBean.TuijianBean tuijianBean, int position) {
+            protected void getView(ViewHolder holder, final IndexBean.TuijianBean tuijianBean, int position) {
                 holder.setText(R.id.tv_goods_name, tuijianBean.getGoods_name());
-                holder.setText(R.id.tv_market_price, tuijianBean.getMarket_price());
+                holder.setText(R.id.tv_market_price, "¥" + tuijianBean.getMarket_price());
                 holder.setText(R.id.tv_sales_sum, tuijianBean.getSales_sum() + "人付款");
                 ImageView imageView = holder.getView(R.id.img_original_img);
                 ImageLoader.with(tuijianBean.getOriginal_img(), imageView);
 
                 TextView tv = holder.getView(R.id.tv_shop_price);
-                tv.setText("¥" + tuijianBean.getShop_price());
+                tv.setText(tuijianBean.getShop_price());
                 tv.setVisibility(View.VISIBLE);
                 if (tuijianBean.getShop_price().equals("")) {
                     tv.setVisibility(View.GONE);
                 }
+                holder.setOnClickListener(R.id.layout_onClick, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        StartUtil.toShangPingWeb(mActivity, Api.H5Url + tuijianBean.getGoods_id());
+                    }
+                });
             }
         };
 
@@ -308,6 +331,8 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
             case R.id.layout_enter:
                 break;
             case R.id.img_ad:
+                //中间的广告图
+                StartUtil.toH5Web(mActivity, bean.getAd().getAd_code(), bean.getAd().getAd_name());
                 break;
             case R.id.img_miaosha:
                 //周日秒杀

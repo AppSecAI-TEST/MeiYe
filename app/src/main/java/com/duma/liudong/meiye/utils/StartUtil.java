@@ -14,6 +14,7 @@ import com.duma.liudong.meiye.view.classift.dianPu.DianPuActivity;
 import com.duma.liudong.meiye.view.classift.dianPu.DianPuListActivity;
 import com.duma.liudong.meiye.view.forum.LunTanXiangQinWeb;
 import com.duma.liudong.meiye.view.home.meiTuan.TuanGouActivity;
+import com.duma.liudong.meiye.view.me.shiWuDinDan.ShiWuDinDanQuanBuActivity;
 import com.duma.liudong.meiye.view.shoppingCart.QueRenDinDanActivity;
 import com.duma.liudong.meiye.view.shoppingCart.ZhiFuActivity;
 import com.duma.liudong.meiye.view.start.login.LoginActivity;
@@ -85,6 +86,13 @@ public class StartUtil {
         Intent intent = new Intent(activity, WebViewActivity.class);
         intent.putExtra("url", url);
         intent.putExtra("title", title);
+        activity.startActivity(intent);
+    }
+
+    //实物/定制 订单
+    public static void toShiWuOrDinZHi(Activity activity, String type) {
+        Intent intent = new Intent(activity, ShiWuDinDanQuanBuActivity.class);
+        intent.putExtra("type", type);
         activity.startActivity(intent);
     }
 

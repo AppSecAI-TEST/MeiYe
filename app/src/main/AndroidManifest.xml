@@ -118,6 +118,12 @@
         <activity android:name=".view.me.yuE.TiXianYHActivity" />
         <activity android:name=".view.home.SouSuoActivity" />
         <activity android:name=".view.classift.dianPu.DianPuListActivity" />
+        <activity android:name=".view.me.SheZhiActivity" />
+        <activity android:name=".view.me.FenSiActivity" />
+        <activity android:name=".view.shoppingCart.fuwu.FuWuQueRenDinDanActivity" />
+        <activity android:name=".view.me.GuanZhuActivity" />
+        <activity android:name=".view.me.DinDanZhongXinActivity" />
+        <activity android:name=".view.me.maiJia.MjMainActivity" />
     </application>
 
 </manifest>

@@ -3,10 +3,12 @@ package com.duma.liudong.meiye.presenter;
 import android.app.Activity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.utils.Constants;
 import com.zhy.adapter.recyclerview.CommonAdapter;
+import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.ArrayList;
@@ -56,6 +58,24 @@ public abstract class BaseAdAdapter<T> {
                 getView(holder, t, position);
             }
         };
+        adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                onitemClick(view, holder, position);
+            }
+
+            @Override
+            public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
+                return false;
+            }
+        });
+    }
+
+    private String getUrl() {
+        return null;
+    }
+
+    protected void onitemClick(View view, RecyclerView.ViewHolder holder, int position) {
     }
 
     protected abstract void getView(ViewHolder holder, T t, int position);

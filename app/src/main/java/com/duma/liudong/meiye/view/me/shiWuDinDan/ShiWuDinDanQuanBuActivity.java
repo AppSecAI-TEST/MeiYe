@@ -34,6 +34,7 @@ public class ShiWuDinDanQuanBuActivity extends BaseActivity {
     ViewPager viewPaterBar;
 
     public boolean isOne = true;
+    public String goods_type = "1";
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class ShiWuDinDanQuanBuActivity extends BaseActivity {
     @Override
     protected void initData() {
         tvTitle.setText("订单中心");
+        goods_type = getIntent().getStringExtra("type");
         MyViewPagerAdapter viewPagerAdapter = new MyViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "全部");
         viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "待付款");
