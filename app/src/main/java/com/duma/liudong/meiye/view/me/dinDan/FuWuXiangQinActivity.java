@@ -1,4 +1,4 @@
-package com.duma.liudong.meiye.view.me.shiWuDinDan;
+package com.duma.liudong.meiye.view.me.dinDan;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,8 +15,8 @@ import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.base.MyStringCallback;
 import com.duma.liudong.meiye.model.EvenDinDan;
+import com.duma.liudong.meiye.model.FuWuBean;
 import com.duma.liudong.meiye.model.QueRenDinDanBean;
-import com.duma.liudong.meiye.model.ShiWuDinDanBean;
 import com.duma.liudong.meiye.presenter.PublicPresenter;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
@@ -41,10 +41,10 @@ import butterknife.OnClick;
 import static com.duma.liudong.meiye.R.id.tv_hong;
 
 /**
- * Created by liudong on 17/4/14.
+ * Created by liudong on 17/4/21.
  */
 
-public class ShiWuDianDanXiangQingActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class FuWuXiangQinActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
     @BindView(R.id.layout_back)
     LinearLayout layoutBack;
     @BindView(R.id.tv_title)
@@ -53,24 +53,16 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
     ImageView imgOther;
     @BindView(R.id.layout_other)
     LinearLayout layoutOther;
+    @BindView(R.id.tv_code)
+    TextView tvCode;
     @BindView(R.id.tv_type)
     TextView tvType;
-    @BindView(R.id.tv_kuanDiType)
-    TextView tvKuanDiType;
-    @BindView(R.id.tv_name)
-    TextView tvName;
-    @BindView(R.id.tv_dianhua)
-    TextView tvDianhua;
-    @BindView(R.id.tv_dizhi)
-    TextView tvDizhi;
-    @BindView(R.id.layout_xuanZeKuaiDi)
-    LinearLayout layoutXuanZeKuaiDi;
+    @BindView(R.id.tv_store_name)
+    TextView tvStoreName;
     @BindView(R.id.rv_shangping)
     RecyclerView rvShangping;
-    @BindView(R.id.tv_liuyan)
-    TextView tvLiuyan;
-    @BindView(R.id.tv_kuaidi_type)
-    TextView tvKuaidiType;
+    @BindView(R.id.tv_mobile)
+    TextView tvMobile;
     @BindView(R.id.tv_shangPingZongJiaGe)
     TextView tvShangPingZongJiaGe;
     @BindView(R.id.tv_youHuiJuan)
@@ -79,38 +71,38 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
     TextView tvYue;
     @BindView(R.id.tv_jifen)
     TextView tvJifen;
-    @BindView(R.id.tv_yunfei)
-    TextView tvYunfei;
     @BindView(R.id.tv_shifu)
     TextView tvShifu;
     @BindView(R.id.tv_shijian)
     TextView tvShijian;
+    @BindView(R.id.sw_loading)
+    SwipeRefreshLayout swLoading;
     @BindView(R.id.tv_hei)
     TextView tvHei;
-    @BindView(tv_hong)
+    @BindView(R.id.tv_hong)
     TextView tvHong;
     @BindView(R.id.layout_btn)
     LinearLayout layoutBtn;
-    @BindView(R.id.tv_code)
-    TextView tvCode;
-    @BindView(R.id.tv_store_name)
-    TextView tvStoreName;
-    @BindView(R.id.sw_loading)
-    SwipeRefreshLayout swLoading;
+    @BindView(R.id.view_henxian)
+    View viewHenxian;
+    @BindView(R.id.rv_juanma)
+    RecyclerView rvJuanma;
 
-    private ShiWuDinDanBean bean;
+    private FuWuBean bean;
 
     private CommonAdapter<QueRenDinDanBean.CartListBean.GoodsListBean> adapter;
     private List<QueRenDinDanBean.CartListBean.GoodsListBean> mlist;
     private String id;
     private QueRenUtilDialog QuXiaoDialog, shanchuDialog, ShouHuoDialog;
     private PublicPresenter publicPresenter;
-    private String type;
+    private String fenlei_type;
     private boolean isOne = false;
+    private CommonAdapter<FuWuBean.SupportBean> JuanMaAdapter;
+    private List<FuWuBean.SupportBean> mJuanMaList;
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_shiwudindanxiangqin);
+        setContentView(R.layout.activity_fuwuxiangqin);
     }
 
     @Override
@@ -125,9 +117,10 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
         initDialog();
         tvTitle.setText("商品详情");
         id = getIntent().getStringExtra("id");
-        type = getIntent().getStringExtra("type");
+        fenlei_type = getIntent().getStringExtra("fenlei_type");
         StartUtil.setSw(swLoading, this);
         mlist = new ArrayList<>();
+        mJuanMaList = new ArrayList<>();
         rvShangping.setLayoutManager(new LinearLayoutManager(mActivity));
         rvShangping.setFocusable(false);
         rvShangping.setNestedScrollingEnabled(false);
@@ -163,27 +156,15 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
     }
 
     private void initRes() {
-        tvLiuyan.setText(bean.getUser_note());
-        tvKuaidiType.setText("快递");
+        tvMobile.setText("购买手机号:" + bean.getMobile());
         tvType.setText(bean.getOrder_status_desc());
-        tvName.setText(bean.getConsignee());
-        tvDianhua.setText(bean.getMobile());
-        tvDizhi.setText(bean.getProvince() + bean.getCity() + bean.getDistrict() + bean.getAddress());
         tvYouHuiJuan.setText("-￥" + bean.getCoupon_price());
         tvYue.setText("-￥" + bean.getUser_money());
         tvShangPingZongJiaGe.setText("￥" + bean.getTotal_amount());
         tvShifu.setText(bean.getOrder_amount());
-        tvYunfei.setText("￥" + bean.getShipping_price());
         tvShijian.setText(StartUtil.getShiJian(Long.parseLong(bean.getAdd_time())));
         tvCode.setText("订单编号:" + bean.getOrder_sn());
         tvStoreName.setText(bean.getStore_name());
-        layoutXuanZeKuaiDi.setVisibility(View.VISIBLE);
-        tvKuaidiType.setText("快递");
-        if (bean.getIs_pick().equals("1")) {
-            //自取
-            tvKuaidiType.setText("自取");
-            layoutXuanZeKuaiDi.setVisibility(View.GONE);
-        }
         layoutBtn.setVisibility(View.VISIBLE);
         switch (bean.getOrder_status_code()) {
             case "WAITPAY":
@@ -230,6 +211,14 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
         mlist.clear();
         mlist.addAll(bean.getGoods_list());
         adapter.notifyDataSetChanged();
+        mJuanMaList.clear();
+        mJuanMaList.addAll(bean.getSupport());
+        JuanMaAdapter.notifyDataSetChanged();
+        if (mJuanMaList.size() == 0) {
+            viewHenxian.setVisibility(View.GONE);
+        } else {
+            viewHenxian.setVisibility(View.VISIBLE);
+        }
     }
 
     private void initAdapter() {
@@ -289,9 +278,30 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
             }
         };
         rvShangping.setAdapter(adapter);
+
+        rvJuanma.setLayoutManager(new LinearLayoutManager(mActivity));
+        rvJuanma.setFocusable(false);
+        rvJuanma.setNestedScrollingEnabled(false);
+        JuanMaAdapter = new CommonAdapter<FuWuBean.SupportBean>(mActivity, R.layout.rv_juanma, mJuanMaList) {
+            @Override
+            protected void convert(ViewHolder holder, FuWuBean.SupportBean supportBean, int position) {
+                TextView tv_name, tv_card_num;
+                tv_name = holder.getView(R.id.tv_name);
+                tv_card_num = holder.getView(R.id.tv_card_num);
+                tv_card_num.setText(supportBean.getCard_num());
+                if (supportBean.getIs_use().equals("0")) {
+                    tv_name.setTextColor(MyApplication.getInstance().getResources().getColor(R.color.main_red));
+                    tv_card_num.setTextColor(MyApplication.getInstance().getResources().getColor(R.color.main_red));
+                } else {
+                    tv_name.setTextColor(MyApplication.getInstance().getResources().getColor(R.color.texthei));
+                    tv_card_num.setTextColor(MyApplication.getInstance().getResources().getColor(R.color.texthei));
+                }
+            }
+        };
+        rvJuanma.setAdapter(JuanMaAdapter);
     }
 
-    @OnClick({R.id.layout_back, R.id.tv_hei, tv_hong})
+    @OnClick({R.id.layout_back, R.id.tv_hei, R.id.tv_hong})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.layout_back:
@@ -312,7 +322,7 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
             case tv_hong:
                 switch (tvHong.getText().toString()) {
                     case "去支付":
-                        StartUtil.toZhiFu(mActivity, bean.getOrder_id(), bean.getTotal_amount());
+                        StartUtil.toZhiFu(mActivity, bean.getOrder_id(), bean.getTotal_amount(), "1");
                         break;
                     case "提醒发货":
                         Ts.setText("已提醒卖家~请耐心等待!");
@@ -336,12 +346,13 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
                 .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
                 .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
                 .addParams("order_id", id)
+                .addParams("order_type", "1")
                 .build()
                 .execute(new MyStringCallback() {
                     @Override
                     public void onMySuccess(String result) {
                         swLoading.setRefreshing(false);
-                        bean = new Gson().fromJson(result, ShiWuDinDanBean.class);
+                        bean = new Gson().fromJson(result, FuWuBean.class);
                         initRes();
                     }
 
@@ -360,6 +371,6 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
     public void finish() {
         super.finish();
         if (isOne)
-            EventBus.getDefault().post(new EvenDinDan(type));
+            EventBus.getDefault().post(new EvenDinDan(fenlei_type));
     }
 }

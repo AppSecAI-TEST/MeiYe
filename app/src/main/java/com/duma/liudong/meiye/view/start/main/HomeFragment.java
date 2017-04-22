@@ -332,7 +332,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
                 break;
             case R.id.img_ad:
                 //中间的广告图
-                StartUtil.toH5Web(mActivity, bean.getAd().getAd_code(), bean.getAd().getAd_name());
+                StartUtil.toH5Web(mActivity, bean.getAd().getAd_link(), bean.getAd().getAd_name());
                 break;
             case R.id.img_miaosha:
                 //周日秒杀

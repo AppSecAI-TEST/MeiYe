@@ -39,31 +39,31 @@ public class GouWuCheBean {
          * num : 3
          */
 
-        private int total_fee;
-        private int cut_fee;
-        private int num;
+        private String total_fee;
+        private String cut_fee;
+        private String num;
 
-        public int getTotal_fee() {
+        public String getTotal_fee() {
             return total_fee;
         }
 
-        public void setTotal_fee(int total_fee) {
+        public void setTotal_fee(String total_fee) {
             this.total_fee = total_fee;
         }
 
-        public int getCut_fee() {
+        public String getCut_fee() {
             return cut_fee;
         }
 
-        public void setCut_fee(int cut_fee) {
+        public void setCut_fee(String cut_fee) {
             this.cut_fee = cut_fee;
         }
 
-        public int getNum() {
+        public String getNum() {
             return num;
         }
 
-        public void setNum(int num) {
+        public void setNum(String num) {
             this.num = num;
         }
     }
@@ -103,7 +103,7 @@ public class GouWuCheBean {
 
             private String store_name;
             private String store_id;
-            private int total;
+            private String total;
             private String postage;
             private String coupon;
 
@@ -131,11 +131,11 @@ public class GouWuCheBean {
                 this.store_id = store_id;
             }
 
-            public int getTotal() {
+            public String getTotal() {
                 return total;
             }
 
-            public void setTotal(int total) {
+            public void setTotal(String total) {
                 this.total = total;
             }
 
@@ -196,7 +196,7 @@ public class GouWuCheBean {
             private String store_id;
             private String original_img;
             private String post_condition_id;
-            private int goods_fee;
+            private String goods_fee;
             private String store_count;
 
             public String getId() {
@@ -367,11 +367,8 @@ public class GouWuCheBean {
                 this.post_condition_id = post_condition_id;
             }
 
-            public int getGoods_fee() {
-                return goods_fee;
-            }
 
-            public void setGoods_fee(int goods_fee) {
+            public void setGoods_fee(String goods_fee) {
                 this.goods_fee = goods_fee;
             }
 

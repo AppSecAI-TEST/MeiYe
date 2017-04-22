@@ -104,14 +104,14 @@
         <activity android:name=".view.forum.LunTanXiangQinWeb" />
         <activity android:name=".view.me.ShouHuoDiZhiActivity" />
         <activity android:name=".view.me.TianJiaDiZhiActivity" />
-        <activity android:name=".view.me.shiWuDinDan.ShiWuDinDanQuanBuActivity" />
+        <activity android:name=".view.me.dinDan.QuanBuDinDanActivity" />
         <activity android:name=".view.shoppingCart.YouHuiJuanListActivity" />
         <activity android:name=".view.me.WoDeZuJiActivity" />
         <activity android:name=".view.shoppingCart.ZhiFuActivity" />
         <activity android:name=".view.shoppingCart.FuKuanChenGongActivity" />
         <activity android:name=".view.me.yuE.TiXianActivity" />
-        <activity android:name=".view.me.shiWuDinDan.ShiWuDianDanXiangQingActivity" />
-        <activity android:name=".view.me.shiWuDinDan.PingJiaActivity" />
+        <activity android:name=".view.me.dinDan.ShiWuDianDanXiangQingActivity" />
+        <activity android:name=".view.me.dinDan.PingJiaActivity" />
         <activity android:name=".view.home.meiTuan.TuanGouActivity" />
         <activity android:name=".view.start.main.WebViewActivity" />
         <activity android:name=".view.me.yuE.TiXianZFBActivity" />
@@ -124,6 +124,11 @@
         <activity android:name=".view.me.GuanZhuActivity" />
         <activity android:name=".view.me.DinDanZhongXinActivity" />
         <activity android:name=".view.me.maiJia.MjMainActivity" />
+        <activity android:name=".view.me.maiJia.ShangXiaJiaActivity" />
+        <activity android:name=".view.me.dinDan.DinZhiXiangQinActivity" />
+        <activity android:name=".view.me.dinDan.FuWuXiangQinActivity" />
+        <activity android:name=".view.me.dinDan.WoDeDinZhiActivity" />
+        <activity android:name=".widget.city.ShouYeDingWeiActivity" />
     </application>
 
 </manifest>

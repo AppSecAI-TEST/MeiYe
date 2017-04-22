@@ -20,6 +20,7 @@ import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.base.MyStringCallback;
 import com.duma.liudong.meiye.model.DiZhiBean;
+import com.duma.liudong.meiye.model.OridBean;
 import com.duma.liudong.meiye.model.QueRenDinDanBean;
 import com.duma.liudong.meiye.model.YouHuiJuanBean;
 import com.duma.liudong.meiye.utils.Api;
@@ -112,7 +113,6 @@ public class QueRenDinDanActivity extends BaseActivity {
     @BindView(R.id.layout_peisong)
     LinearLayout layoutPeisong;
 
-    private String store_id;
     private boolean isOne = false;
     private QueRenDinDanBean bean;
     private int isJifen = 0;//是否使用积分
@@ -130,6 +130,8 @@ public class QueRenDinDanActivity extends BaseActivity {
 
     int height;//快递试图的高度
 
+    String key, value, type;//传过来的参数  type==1为开团
+
     @Override
     protected void initContentView(Bundle savedInstanceState) {
         setContentView(R.layout.activity_querendindan);
@@ -141,7 +143,10 @@ public class QueRenDinDanActivity extends BaseActivity {
         EventBus.getDefault().register(this);
         tvTitle.setText("确认订单");
         editLiuyan.setFocusable(false);
-        store_id = getIntent().getStringExtra("store_id");
+        key = getIntent().getStringExtra("key");
+        value = getIntent().getStringExtra("value");
+        type = getIntent().getStringExtra("type");
+
         mlist = new ArrayList<>();
         rvShangping.setLayoutManager(new LinearLayoutManager(mActivity));
         rvShangping.setFocusable(false);
@@ -258,7 +263,7 @@ public class QueRenDinDanActivity extends BaseActivity {
                 .tag(this)
                 .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
                 .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
-                .addParams("store_id", store_id)
+                .addParams(key, value)
                 .addParams("use_points", isJifen + "")
                 .addParams("is_pick", isZiQu + "")
                 .addParams("use_money", isYue + "")
@@ -418,24 +423,25 @@ public class QueRenDinDanActivity extends BaseActivity {
                 .url(Api.makeOrder)
                 .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
                 .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
-                .addParams("store_id", store_id)
+                .addParams(key, value)
                 .addParams("use_points", isJifen + "")
                 .addParams("is_pick", isZiQu + "")
                 .addParams("use_money", isYue + "")
                 .addParams("coupon_id", getId() + "")
                 .addParams("user_note", editLiuyan.getText().toString())
                 .addParams("address_id", addresId)
-//                .addParams("make_spell", "1")
+                .addParams("make_spell", type)
 //                .addParams("goods_id", "1")
                 .build()
                 .execute(new MyStringCallback() {
                     @Override
                     public void onMySuccess(String result) {
                         DialogUtil.hide();
-                        if (bean.getTotal_price().getTotal_fee() == 0) {
-                            startActivity(new Intent(mActivity, FuKuanChenGongActivity.class));
+                        OridBean oridBean = new Gson().fromJson(result, OridBean.class);
+                        if (bean.getTotal_price().getTotal_fee().equals("0")) {
+                            StartUtil.toZhiFuSuccess(mActivity, type.equals("1") ? "2" : "1");
                         } else {
-                            StartUtil.toZhiFu(mActivity, result, bean.getTotal_price().getTotal_fee() + "");
+                            StartUtil.toZhiFu(mActivity, oridBean.getOrder_id(), bean.getTotal_price().getTotal_fee() + "", type.equals("1") ? "2" : "1");
                         }
                     }
                 });

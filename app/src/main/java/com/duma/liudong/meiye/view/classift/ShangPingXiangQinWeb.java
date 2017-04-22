@@ -110,5 +110,16 @@ public class ShangPingXiangQinWeb extends BaseActivity {
             startActivity(intent);
         }
 
+        //跳转ShiWu
+        @JavascriptInterface
+        public void goShiwu(String goods_id) {
+            StartUtil.toQueRenDinDan(mActivity, Constants.goods_id, goods_id, "");
+        }
+
+        //跳转shiWuDinZhi
+        @JavascriptInterface
+        public void goShiWuDinZhi(String goods_id) {
+            StartUtil.toQueRenDinDan(mActivity, Constants.goods_id, goods_id, "1");
+        }
     }
 }

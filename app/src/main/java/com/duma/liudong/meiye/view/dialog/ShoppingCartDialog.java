@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.model.GouWuCheBean;
+import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.utils.Ts;
 import com.zhy.adapter.recyclerview.CommonAdapter;
@@ -45,7 +46,7 @@ public class ShoppingCartDialog extends Dialog {
         mList.clear();
         mList.addAll(list);
         for (int i = 0; i < mList.size(); i++) {
-            if (mList.get(i).getMark().getTotal() == 0) {
+            if (mList.get(i).getMark().getTotal().equals("0")) {
                 mList.remove(i);
                 i--;
             }
@@ -63,7 +64,7 @@ public class ShoppingCartDialog extends Dialog {
         }
         if (mList.size() == 1) {
             dismiss();
-            StartUtil.toQueRenDinDan(mActivity, mList.get(0).getMark().getStore_id());
+            StartUtil.toQueRenDinDan(mActivity, Constants.store_id, mList.get(0).getMark().getStore_id(), "");
             return;
         }
     }
@@ -109,7 +110,7 @@ public class ShoppingCartDialog extends Dialog {
                 holder.setOnClickListener(R.id.tv_jiesuan, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        StartUtil.toQueRenDinDan(mActivity, cartListBean.getMark().getStore_id());
+                        StartUtil.toQueRenDinDan(mActivity, Constants.store_id, cartListBean.getMark().getStore_id(), "");
                     }
                 });
 //                LinearLayout linearLayout = holder.getView(R.id.layout_item);

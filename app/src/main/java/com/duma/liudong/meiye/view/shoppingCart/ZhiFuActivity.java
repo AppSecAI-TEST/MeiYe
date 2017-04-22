@@ -15,14 +15,19 @@ import android.widget.TextView;
 import com.alipay.sdk.app.PayTask;
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
+import com.duma.liudong.meiye.base.MyApplication;
+import com.duma.liudong.meiye.base.MyStringCallback;
+import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
+import com.duma.liudong.meiye.utils.DialogUtil;
 import com.duma.liudong.meiye.utils.Lg;
 import com.duma.liudong.meiye.utils.PayResult;
+import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.utils.Ts;
 import com.duma.liudong.meiye.view.dialog.QueRenUtilDialog;
-import com.duma.liudong.meiye.view.me.shiWuDinDan.ShiWuDinDanQuanBuActivity;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+import com.zhy.http.okhttp.OkHttpUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -52,12 +57,12 @@ public class ZhiFuActivity extends BaseActivity {
     RadioButton rdoBtnYinlian;
     @BindView(R.id.layout_yinlian)
     LinearLayout layoutYinlian;
-    private String id, money, use_money;
+    private String id, money, type;//订单id 和 支付金额 和 订单类型
 
     private QueRenUtilDialog dialog;
     private IWXAPI wxapi;
 
-    private String type = "0";
+    private String ClickType = "0";
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -73,13 +78,12 @@ public class ZhiFuActivity extends BaseActivity {
         dialog.setYesClicklistener(new QueRenUtilDialog.OnYesClickListener() {
             @Override
             public void onYes() {
-                Intent intent = new Intent(mActivity, ShiWuDinDanQuanBuActivity.class);
-                intent.putExtra("type", "");
-                startActivity(intent);
+                StartUtil.toQuanBuDinDan(mActivity, type);
             }
         });
         id = getIntent().getStringExtra("id");
         money = getIntent().getStringExtra("money");
+        type = getIntent().getStringExtra("type");
         tvMoney.setText(money + "元");
 
     }
@@ -104,27 +108,27 @@ public class ZhiFuActivity extends BaseActivity {
                 }
                 break;
             case R.id.layout_weixin:
-                type = "0";
+                ClickType = "0";
                 isCheck();
                 break;
             case R.id.layout_zhifubao:
-                type = "1";
+                ClickType = "1";
                 isCheck();
                 break;
             case R.id.rdoBtn_weixin:
-                type = "0";
+                ClickType = "0";
                 isCheck();
                 break;
             case R.id.rdoBtn_zhifubao:
-                type = "1";
+                ClickType = "1";
                 isCheck();
                 break;
             case R.id.rdoBtn_yinlian:
-                type = "2";
+                ClickType = "2";
                 isCheck();
                 break;
             case R.id.layout_yinlian:
-                type = "2";
+                ClickType = "2";
                 isCheck();
                 break;
         }
@@ -163,7 +167,7 @@ public class ZhiFuActivity extends BaseActivity {
     }
 
     public void isCheck() {
-        switch (type) {
+        switch (ClickType) {
             case "0":
                 //微信
                 rdoBtnWeixin.setChecked(true);
@@ -246,7 +250,7 @@ public class ZhiFuActivity extends BaseActivity {
 
     private void ZhiFuSuccess() {
         Ts.setText("支付成功！");
-        startActivity(new Intent(mActivity, FuKuanChenGongActivity.class));
+        StartUtil.toZhiFuSuccess(mActivity, type);
         finish();
 //        isTiaoZhuan();
     }
@@ -305,25 +309,27 @@ public class ZhiFuActivity extends BaseActivity {
 
     //支付宝
     private void getDinDanHttp() {
-//        DialogUtil.show(this, false);
-//        OkHttpUtils
-//                .get()
-//                .tag(this)
-//                .url(Api.huoqudindan)
-//                .addParams("order_id", id)
-//                .build()
-//                .execute(new MyStringCallback() {
-//                    @Override
-//                    public void onMySuccess(String result) {
-//                        DialogUtil.hide();
-//                        goZhiFuBao(result);
-//                    }
-//
-//                    @Override
-//                    public void onError(String result) {
-//                        DialogUtil.hide();
-//                    }
-//                });
+        DialogUtil.show(this, false);
+        OkHttpUtils
+                .get()
+                .tag(this)
+                .url(Api.PayserverOrder)
+                .addParams("order_id", id)
+                .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
+                .build()
+                .execute(new MyStringCallback() {
+                    @Override
+                    public void onMySuccess(String result) {
+                        DialogUtil.hide();
+                        goZhiFuBao(result);
+                    }
+
+                    @Override
+                    public void onError(String result) {
+                        DialogUtil.hide();
+                    }
+                });
 
 
     }

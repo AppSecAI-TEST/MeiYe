@@ -1,5 +1,7 @@
 package com.duma.liudong.meiye.utils;
 
+import com.duma.liudong.meiye.base.MyApplication;
+
 /**
  * Created by liudong on 17/3/21.
  */
@@ -15,6 +17,8 @@ public class Api {
     public static final String QianDaoH5Url = Api.url + "/index.php/Mobile/User/sign.html";
     //头条
     public static final String TouTiaoH5Url = Api.url + "/index.php/Mobile/Toutiao/detail.html?article_id=";
+    //二维码
+    public static final String erweima = Api.url + "/index.php/Mobile/User/qrcode?user_id=" + MyApplication.getSpUtils().getString(Constants.user_id) + "&token=" + MyApplication.getSpUtils().getString(Constants.token);
     /**
      * 个人用户
      */
@@ -47,6 +51,16 @@ public class Api {
     public static final String footList = url + "/App/user/footList";
     public static final String delFoot = url + "/App/user/delFoot";
     public static final String delCollect = url + "/App/user/delCollect";
+    public static final String storeCollect = url + "/App/user/storeCollect";
+    public static final String orderInfo = url + "/App/user/orderInfo";
+    /**
+     * seller-个人中心
+     */
+    public static final String sellerindex = url + "/App/seller/index";
+    public static final String my_list = url + "/App/Goods/my_list";
+    public static final String is_warehouse = url + "/App/Goods/is_warehouse";
+    public static final String is_onsale = url + "/App/Goods/is_onsale";
+    public static final String del = url + "/App/Goods/del";
     /**
      * Index
      */
@@ -54,6 +68,7 @@ public class Api {
     public static final String mainindex = url + "/App/Index/index";
     public static final String goodindex = url + "/App/Goods/index";
     public static final String store_search = url + "/App/Goods/store_search";
+    public static final String recommend = url + "/App/Index/recommend";
 
     /**
      * coupon - 领取优惠券
@@ -70,7 +85,7 @@ public class Api {
     public static final String makeOrder = url + "/App/order/makeOrder";
     public static final String serverOrder = url + "/App/order/serverOrder";
     public static final String serverSure = url + "/App/order/serverSure";
-    public static final String orderInfo = url + "/App/order/orderInfo";
+
     /**
      * 头条
      */
@@ -107,4 +122,9 @@ public class Api {
      */
     public static final String Tuangouindex = url + "/App/Tuangou/index";
     public static final String address = url + "/App/Tuangou/address";
+
+    /**
+     * pay
+     */
+    public static final String PayserverOrder = url + "/App/Pay/makeAlipay";
 }

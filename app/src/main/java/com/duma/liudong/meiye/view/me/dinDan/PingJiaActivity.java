@@ -1,4 +1,4 @@
-package com.duma.liudong.meiye.view.me.shiWuDinDan;
+package com.duma.liudong.meiye.view.me.dinDan;
 
 import android.content.Intent;
 import android.os.Bundle;

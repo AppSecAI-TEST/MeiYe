@@ -174,4 +174,34 @@
         <item name="android:paddingRight">20dp</item>
         <item name="android:background">@drawable/ripple</item>
     </style>
+
+    <style name="ad">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">140dp</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:src">@drawable/ic_launcher</item>
+    </style>
+    <!--bar样式-->
+    <style name="bar">
+        <item name="android:layout_height">48dp</item>
+        <item name="android:background">@color/maincolor</item>
+    </style>
+    <!--bara两边的宽度-->
+    <style name="bar_back_width">
+        <item name="android:background">@drawable/ripple_hong</item>
+        <item name="android:layout_width">45dp</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="jiantou_image">
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">20dp</item>
+    </style>
+
+    <style name="barText">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
 </resources>

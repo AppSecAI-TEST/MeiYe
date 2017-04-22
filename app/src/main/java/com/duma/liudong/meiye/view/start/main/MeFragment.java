@@ -2,6 +2,7 @@ package com.duma.liudong.meiye.view.start.main;
 
 import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -10,7 +11,11 @@ import android.widget.TextView;
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseFragment;
 import com.duma.liudong.meiye.base.MyApplication;
+import com.duma.liudong.meiye.base.MyStringCallback;
+import com.duma.liudong.meiye.model.IndexBean;
 import com.duma.liudong.meiye.model.MeBean;
+import com.duma.liudong.meiye.model.TuiJianBean;
+import com.duma.liudong.meiye.presenter.BaseAdAdapter;
 import com.duma.liudong.meiye.presenter.PublicPresenter;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
@@ -27,7 +32,11 @@ import com.duma.liudong.meiye.view.me.UserDataActivity;
 import com.duma.liudong.meiye.view.me.WoDeZuJiActivity;
 import com.duma.liudong.meiye.view.me.WoDekeHuActivity;
 import com.duma.liudong.meiye.view.me.YouHuiJuanActivity;
+import com.duma.liudong.meiye.view.me.dinDan.WoDeDinZhiActivity;
 import com.duma.liudong.meiye.view.me.yuE.YuEActivity;
+import com.google.gson.Gson;
+import com.zhy.adapter.recyclerview.base.ViewHolder;
+import com.zhy.http.okhttp.OkHttpUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -113,7 +122,11 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
     LinearLayout layoutShoucang;
     @BindView(R.id.layout_wode_kehu)
     LinearLayout layoutWodeKehu;
+    @BindView(R.id.rv_shangping)
+    RecyclerView rvShangping;
     private Intent intent;
+    private BaseAdAdapter<IndexBean.ShiwuBean> shangpingAdapter;
+    private TuiJianBean bean;
 
     @Override
     protected int setLayoutResouceId() {
@@ -127,6 +140,47 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
 
         publicPresenter = new PublicPresenter();
         publicPresenter.setGetMeListener(this);
+        shangpingAdapter = new BaseAdAdapter<IndexBean.ShiwuBean>(mActivity, rvShangping) {
+            @Override
+            protected void getView(ViewHolder holder, final IndexBean.ShiwuBean shiwuBean, int position) {
+                holder.setText(R.id.tv_goods_name, shiwuBean.getGoods_name());
+                holder.setText(R.id.tv_market_price, "¥" + shiwuBean.getMarket_price());
+                holder.setText(R.id.tv_sales_sum, shiwuBean.getSales_sum() + "人付款");
+                ImageView imageView = holder.getView(R.id.img_original_img);
+                ImageLoader.with(shiwuBean.getOriginal_img(), imageView);
+
+                TextView tv = holder.getView(R.id.tv_shop_price);
+                tv.setText(shiwuBean.getShop_price());
+                tv.setVisibility(View.VISIBLE);
+                if (shiwuBean.getShop_price().equals("")) {
+                    tv.setVisibility(View.GONE);
+                }
+                holder.setOnClickListener(R.id.layout_onClick, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        StartUtil.toShangPingWeb(mActivity, Api.H5Url + shiwuBean.getGoods_id());
+                    }
+                });
+
+            }
+        };
+
+    }
+
+    private void tuiJianHttp() {
+        OkHttpUtils
+                .get()
+                .tag(this)
+                .url(Api.recommend)
+                .build()
+                .execute(new MyStringCallback() {
+                    @Override
+                    public void onMySuccess(String result) {
+                        bean = new Gson().fromJson(result, TuiJianBean.class);
+                        shangpingAdapter.setmList(bean.getGoods());
+                        ImageLoader.with(bean.getAd().getAd_code(), imgAd);
+                    }
+                });
     }
 
 
@@ -158,6 +212,8 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
                 startActivity(new Intent(mActivity, UserDataActivity.class));
                 break;
             case R.id.layout_ref_num:
+                //二维码
+                StartUtil.toH5Web(mActivity, Api.erweima, "我的推广码");
                 break;
             case R.id.layout_red_packet:
                 //红包
@@ -181,23 +237,29 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
                 break;
             case R.id.layout_shiwu_dindan:
                 //实物订单
-                StartUtil.toShiWuOrDinZHi(mActivity, "1");
+                StartUtil.toQuanBuDinDan(mActivity, "1");
                 break;
             case R.id.layout_tuangou_dindan:
                 //团购订单
-                StartUtil.toShiWuOrDinZHi(mActivity, "3");
+                StartUtil.toQuanBuDinDan(mActivity, "3");
                 break;
             case R.id.layout_dinzhi_dindan:
                 //定制订单
-                StartUtil.toShiWuOrDinZHi(mActivity, "2");
+                StartUtil.toQuanBuDinDan(mActivity, "2");
                 break;
             case R.id.layout_wode_dinzhi:
+                //我的定制
+                startActivity(new Intent(mActivity, WoDeDinZhiActivity.class));
                 break;
             case R.id.layout_wode_dindan:
                 //我的订单
                 startActivity(new Intent(mActivity, DinDanZhongXinActivity.class));
                 break;
             case R.id.img_ad:
+                //中间的广告
+                if (bean != null) {
+                    StartUtil.toH5Web(mActivity, bean.getAd().getAd_link(), bean.getAd().getAd_name());
+                }
                 break;
             case R.id.layout_qiandao:
                 StartUtil.toH5Web(mActivity, Api.QianDaoH5Url, "签到");
@@ -246,6 +308,7 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
     }
 
     public void refresh() {
+        tuiJianHttp();
         if (!StartUtil.isLogin()) {
             setData(null);
             return;

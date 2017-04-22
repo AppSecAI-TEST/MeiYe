@@ -45,7 +45,7 @@ public class WebViewActivity extends BaseActivity implements SwipeRefreshLayout.
     @BindView(R.id.progressBar_sum)
     ProgressBar progressBarSum;
 
-    private String url;
+    private String url, title;
     private ViewTreeObserver.OnScrollChangedListener mOnScrollChangedListener;
 
     @Override
@@ -57,7 +57,9 @@ public class WebViewActivity extends BaseActivity implements SwipeRefreshLayout.
     protected void initData() {
 //        StartUtil.setSw(swLoading, this);
         url = getIntent().getStringExtra("url");
-        tvTitle.setText(getIntent().getStringExtra("title"));
+        title = getIntent().getStringExtra("title");
+        tvTitle.setText(title);
+        imgOther.setImageDrawable(mActivity.getResources().getDrawable(R.drawable.img_81));
         WebSettings mWebSettings = webWebview.getSettings();
         mWebSettings.setJavaScriptEnabled(true);
         mWebSettings.setUseWideViewPort(true);
@@ -140,16 +142,26 @@ public class WebViewActivity extends BaseActivity implements SwipeRefreshLayout.
         }
     }
 
-    @OnClick(R.id.layout_back)
-    public void onClick() {
-        finish();
-    }
 
     @Override
     public void onRefresh() {
         progressBarSum.setVisibility(View.VISIBLE);
         webWebview.reload();  //刷新
     }
+
+
+    @OnClick({R.id.layout_back, R.id.layout_other})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.layout_back:
+                finish();
+                break;
+            case R.id.layout_other:
+                StartUtil.toShare(mActivity, title, url);
+                break;
+        }
+    }
+
 
     class webJs {
 

@@ -226,10 +226,7 @@
 
         <ImageView
             android:id="@+id/img_ad"
-            android:layout_width="match_parent"
-            android:layout_height="140dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher" />
+            style="@style/ad" />
 
         <View
             style="@style/henxian"

@@ -20,7 +20,6 @@ import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.DialogUtil;
 import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
-import com.duma.liudong.meiye.view.shoppingCart.FuKuanChenGongActivity;
 import com.duma.liudong.meiye.view.shoppingCart.YouHuiJuanListActivity;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -298,9 +297,9 @@ public class FuWuQueRenDinDanActivity extends BaseActivity {
                     public void onMySuccess(String result) {
                         DialogUtil.hide();
                         if (bean.getTotal() == 0) {
-                            startActivity(new Intent(mActivity, FuKuanChenGongActivity.class));
+                            StartUtil.toZhiFuSuccess(mActivity, "3");
                         } else {
-                            StartUtil.toZhiFu(mActivity, result, bean.getTotal() + "");
+                            StartUtil.toZhiFu(mActivity, result, bean.getTotal() + "", "3");
                         }
                     }
                 });

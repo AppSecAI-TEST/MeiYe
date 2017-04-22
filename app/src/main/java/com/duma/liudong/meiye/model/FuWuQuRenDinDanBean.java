@@ -35,35 +35,11 @@ public class FuWuQuRenDinDanBean {
     private String type;
     private int goods_num;
     private String member_price;
-    private int total;
+    private double total;
     private String store_name;
     private String user_money;
     private String reward_points;
     private String balance;
-
-    public String getBalance() {
-        return balance;
-    }
-
-    public void setBalance(String balance) {
-        this.balance = balance;
-    }
-
-    public String getUser_money() {
-        return user_money;
-    }
-
-    public void setUser_money(String user_money) {
-        this.user_money = user_money;
-    }
-
-    public String getReward_points() {
-        return reward_points;
-    }
-
-    public void setReward_points(String reward_points) {
-        this.reward_points = reward_points;
-    }
 
     public String getStore_id() {
         return store_id;
@@ -161,11 +137,11 @@ public class FuWuQuRenDinDanBean {
         this.member_price = member_price;
     }
 
-    public int getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 
@@ -175,5 +151,29 @@ public class FuWuQuRenDinDanBean {
 
     public void setStore_name(String store_name) {
         this.store_name = store_name;
+    }
+
+    public String getUser_money() {
+        return user_money;
+    }
+
+    public void setUser_money(String user_money) {
+        this.user_money = user_money;
+    }
+
+    public String getReward_points() {
+        return reward_points;
+    }
+
+    public void setReward_points(String reward_points) {
+        this.reward_points = reward_points;
+    }
+
+    public String getBalance() {
+        return balance;
+    }
+
+    public void setBalance(String balance) {
+        this.balance = balance;
     }
 }

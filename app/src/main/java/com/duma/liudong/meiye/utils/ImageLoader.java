@@ -3,6 +3,7 @@ package com.duma.liudong.meiye.utils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.MyApplication;
 
 /**
@@ -12,8 +13,8 @@ public class ImageLoader {
     public static void with(Object url, ImageView imageView) {
         Glide.with(MyApplication.getInstance())
                 .load(url)
-//                .error(R.drawable.lmage1)//load失敗的Drawable
-//                .placeholder(R.drawable.lmage1)//loading時候的Drawable
+//                .error(R.drawable.zu)//load失敗的Drawable
+                .placeholder(R.drawable.zu)//loading時候的Drawable
 
 //                .an//設置load完的動畫
 

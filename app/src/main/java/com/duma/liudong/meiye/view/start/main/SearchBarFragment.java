@@ -1,12 +1,16 @@
 package com.duma.liudong.meiye.view.start.main;
 
 import android.content.Intent;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseFragment;
+import com.duma.liudong.meiye.base.MyApplication;
+import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.view.home.SouSuoActivity;
+import com.duma.liudong.meiye.widget.city.ShouYeDingWeiActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -27,8 +31,18 @@ public class SearchBarFragment extends BaseFragment {
         return R.layout.fragment_search_bar;
     }
 
-    public void setTvName(String name) {
-        tvName.setText(name);
+    @Override
+    protected void initData() {
+        tvName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mActivity, ShouYeDingWeiActivity.class));
+            }
+        });
+    }
+
+    public void setTvName() {
+        tvName.setText(MyApplication.getSpUtils().getString(Constants.city));
     }
 
     @OnClick(R.id.layout_sousuo)

@@ -117,6 +117,7 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
     @Override
     protected void onResume() {
         super.onResume();
+        getSearch_BarFragment().setTvName();
         if (getMeFragment().isVisible()) {
             getMeFragment().refresh();
         }
@@ -280,10 +281,10 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
         if (amapLocation != null) {
             if (amapLocation.getErrorCode() == 0) {
                 //可在其中解析amapLocation获取相应内容。
-                getSearch_BarFragment().setTvName(amapLocation.getCity());
                 MyApplication.getSpUtils().put(Constants.city, amapLocation.getCity());
                 MyApplication.getSpUtils().put(Constants.lat, amapLocation.getLatitude() + "");
                 MyApplication.getSpUtils().put(Constants.lng, amapLocation.getLongitude() + "");
+                getSearch_BarFragment().setTvName();
             } else {
                 //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
                 Log.e("AmapError", "location Error, ErrCode:"

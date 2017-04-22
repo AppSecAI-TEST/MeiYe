@@ -209,7 +209,7 @@ public class LunTanClassiftFragment extends BaseFragment implements SwipeRefresh
                 holder.setOnClickListener(R.id.layout_onClick, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        StartUtil.toLunTanWeb(mActivity, zhiDingBean.getBbs_id());
+                        StartUtil.toH5Web(mActivity, Api.LunTanH5Url + zhiDingBean.getBbs_id(), zhiDingBean.getTitle());
                     }
                 });
             }

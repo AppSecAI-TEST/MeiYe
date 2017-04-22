@@ -7,6 +7,7 @@ import java.util.List;
  */
 
 public class QueRenDinDanBean {
+
     /**
      * address : {"address_id":"1","user_id":"2","consignee":"王的的","email":"","country":"0","province":"浙江省","city":"杭州市","district":"拱墅区","twon":null,"address":"华丰新村","zipcode":"","mobile":"13888888888","is_default":"1"}
      * cart_list : [{"goods_list":[{"id":"11","user_id":"2","session_id":"n6tse29au19fmifb71ldqn7bpq","goods_id":"32","goods_sn":"15","goods_name":"【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液","market_price":"941.00","goods_price":"53.00","member_goods_price":"69.00","goods_num":"1","spec_key":"","spec_key_name":"","bar_code":"","selected":"1","add_time":"1491360399","prom_type":"0","prom_id":"0","sku":"","store_id":"1","original_img":"/Public/upload/goods/2017/03-29/58db6ede94228.jpg","post_condition_id":"0","is_free_shipping":"0","weight":"10000","goods_fee":69,"store_count":"10000"}],"mark":{"store_name":"旗舰店","store_id":"1","goods_nums":1,"total":59,"coupon":"已够满10.00元,已减10.00元","coupon_price":"10.00","coupon_name":"今天有活动","freight":22,"user_money":"8888588.00","reward_points":"0"}}]
@@ -49,31 +50,31 @@ public class QueRenDinDanBean {
          * num : 2
          */
 
-        private int total_fee;
-        private int cut_fee;
-        private int num;
+        private String total_fee;
+        private String cut_fee;
+        private String num;
 
-        public int getTotal_fee() {
+        public String getTotal_fee() {
             return total_fee;
         }
 
-        public void setTotal_fee(int total_fee) {
+        public void setTotal_fee(String total_fee) {
             this.total_fee = total_fee;
         }
 
-        public int getCut_fee() {
+        public String getCut_fee() {
             return cut_fee;
         }
 
-        public void setCut_fee(int cut_fee) {
+        public void setCut_fee(String cut_fee) {
             this.cut_fee = cut_fee;
         }
 
-        public int getNum() {
+        public String getNum() {
             return num;
         }
 
-        public void setNum(int num) {
+        public void setNum(String num) {
             this.num = num;
         }
     }
@@ -119,8 +120,8 @@ public class QueRenDinDanBean {
 
             private String store_name;
             private String store_id;
-            private int goods_nums;
-            private int total;
+            private String goods_nums;
+            private String total;
             private String goods_total;
             private String postage;
             private String user_money;
@@ -158,19 +159,19 @@ public class QueRenDinDanBean {
                 this.store_id = store_id;
             }
 
-            public int getGoods_nums() {
+            public String getGoods_nums() {
                 return goods_nums;
             }
 
-            public void setGoods_nums(int goods_nums) {
+            public void setGoods_nums(String goods_nums) {
                 this.goods_nums = goods_nums;
             }
 
-            public int getTotal() {
+            public String getTotal() {
                 return total;
             }
 
-            public void setTotal(int total) {
+            public void setTotal(String total) {
                 this.total = total;
             }
 
@@ -243,7 +244,7 @@ public class QueRenDinDanBean {
             private String post_condition_id;
             private String is_free_shipping;
             private String weight;
-            private int goods_fee;
+            private double goods_fee;
             private String store_count;
 
             private String pickup_id;
@@ -467,11 +468,11 @@ public class QueRenDinDanBean {
                 this.weight = weight;
             }
 
-            public int getGoods_fee() {
+            public double getGoods_fee() {
                 return goods_fee;
             }
 
-            public void setGoods_fee(int goods_fee) {
+            public void setGoods_fee(double goods_fee) {
                 this.goods_fee = goods_fee;
             }
 

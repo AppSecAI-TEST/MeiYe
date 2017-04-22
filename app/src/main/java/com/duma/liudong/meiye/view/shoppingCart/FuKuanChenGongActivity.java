@@ -1,6 +1,5 @@
 package com.duma.liudong.meiye.view.shoppingCart;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -9,7 +8,6 @@ import android.widget.TextView;
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.utils.StartUtil;
-import com.duma.liudong.meiye.view.me.shiWuDinDan.ShiWuDinDanQuanBuActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -28,6 +26,8 @@ public class FuKuanChenGongActivity extends BaseActivity {
     @BindView(R.id.tv_chakanDinDan)
     TextView tvChakanDinDan;
 
+    private String type;
+
     @Override
     protected void initContentView(Bundle savedInstanceState) {
         setContentView(R.layout.activity_fukuanchenggong);
@@ -36,21 +36,25 @@ public class FuKuanChenGongActivity extends BaseActivity {
     @Override
     protected void initData() {
         layoutName.setText("付款成功");
+        type = getIntent().getStringExtra("type");
+    }
+
+    @Override
+    protected void OnBack() {
+        StartUtil.toQuanBuDinDan(mActivity, type);
     }
 
     @OnClick({R.id.layout_back, R.id.tv_shouye, R.id.tv_chakanDinDan})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.layout_back:
-                finish();
+                StartUtil.toQuanBuDinDan(mActivity, type);
                 break;
             case R.id.tv_shouye:
                 StartUtil.toMain(mActivity);
                 break;
             case R.id.tv_chakanDinDan:
-                Intent intent = new Intent(this, ShiWuDinDanQuanBuActivity.class);
-                intent.putExtra("type", "");
-                startActivity(intent);
+                StartUtil.toQuanBuDinDan(mActivity, type);
                 break;
         }
     }

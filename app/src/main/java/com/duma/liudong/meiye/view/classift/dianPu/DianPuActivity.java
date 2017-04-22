@@ -14,13 +14,18 @@ import android.widget.TextView;
 
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
+import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.base.MyStringCallback;
 import com.duma.liudong.meiye.base.MyViewPagerAdapter;
 import com.duma.liudong.meiye.model.DianPubean;
 import com.duma.liudong.meiye.model.SlideBus;
 import com.duma.liudong.meiye.utils.Api;
+import com.duma.liudong.meiye.utils.Constants;
+import com.duma.liudong.meiye.utils.DialogUtil;
 import com.duma.liudong.meiye.utils.ImageLoader;
+import com.duma.liudong.meiye.utils.Ts;
 import com.duma.liudong.meiye.view.dialog.ServiceDialog;
+import com.duma.liudong.meiye.view.home.SouSuoActivity;
 import com.duma.liudong.meiye.widget.ScrollableLayout;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -67,6 +72,8 @@ public class DianPuActivity extends BaseActivity implements ScrollableLayout.OnS
     RadioButton btnMaijia;
     @BindView(R.id.group_btn)
     RadioGroup groupBtn;
+    @BindView(R.id.layout_shoucang)
+    LinearLayout layoutShoucang;
     private DianPuShouYeFragment dianPuShouYeFragment;
     public String store_id;
     public DianPubean dianPubean;
@@ -170,13 +177,17 @@ public class DianPuActivity extends BaseActivity implements ScrollableLayout.OnS
         groupBtn.setVisibility(View.VISIBLE);
     }
 
-    @OnClick({R.id.layout_back, R.id.layout_sousuo, R.id.btn_feilei, R.id.btn_jianjie, R.id.btn_maijia})
+    @OnClick({R.id.layout_back, R.id.layout_sousuo, R.id.btn_feilei, R.id.btn_jianjie, R.id.btn_maijia, R.id.layout_shoucang})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.layout_back:
                 finish();
                 break;
             case R.id.layout_sousuo:
+                startActivity(new Intent(mActivity, SouSuoActivity.class));
+                break;
+            case R.id.layout_shoucang:
+                ShouCangHttp();
                 break;
             case R.id.btn_feilei:
                 Intent intent = new Intent(mActivity, DianPuClassiftActivity.class);
@@ -192,6 +203,26 @@ public class DianPuActivity extends BaseActivity implements ScrollableLayout.OnS
                 serviceDialog.Show();
                 break;
         }
+    }
+
+    private void ShouCangHttp() {
+        DialogUtil.show(mActivity);
+        OkHttpUtils.getInstance().cancelTag("ShouCangHttp");
+        OkHttpUtils
+                .get()
+                .tag("ShouCangHttp")
+                .url(Api.storeCollect)
+                .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
+                .addParams("store_id", store_id)
+                .build()
+                .execute(new MyStringCallback() {
+                    @Override
+                    public void onMySuccess(String result) {
+                        DialogUtil.hide();
+                        Ts.setText("收藏成功!");
+                    }
+                });
     }
 
     @Override

@@ -39,6 +39,7 @@ public class Constants {
     public static final String keyword = "keyword";//关键字  搜索页面跳入商品列表时
     public static final String store_class = "store_class";//店铺分类id
     public static final String store_id = "store_id";//店铺id
+    public static final String goods_id = "goods_id";//商品id
     public static final String cat_id = "cat_id";//产品分类id
     public static final String marketing_type = "marketing_type";//4 新品 5 尾货 6 优品 7 热销 8 附近好货
 

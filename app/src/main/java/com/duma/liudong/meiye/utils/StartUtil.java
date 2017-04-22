@@ -12,9 +12,11 @@ import com.duma.liudong.meiye.view.classift.ShangPingLieBiaoActivity;
 import com.duma.liudong.meiye.view.classift.ShangPingXiangQinWeb;
 import com.duma.liudong.meiye.view.classift.dianPu.DianPuActivity;
 import com.duma.liudong.meiye.view.classift.dianPu.DianPuListActivity;
-import com.duma.liudong.meiye.view.forum.LunTanXiangQinWeb;
 import com.duma.liudong.meiye.view.home.meiTuan.TuanGouActivity;
-import com.duma.liudong.meiye.view.me.shiWuDinDan.ShiWuDinDanQuanBuActivity;
+import com.duma.liudong.meiye.view.me.dinDan.FuWuXiangQinActivity;
+import com.duma.liudong.meiye.view.me.dinDan.QuanBuDinDanActivity;
+import com.duma.liudong.meiye.view.me.dinDan.ShiWuDianDanXiangQingActivity;
+import com.duma.liudong.meiye.view.shoppingCart.FuKuanChenGongActivity;
 import com.duma.liudong.meiye.view.shoppingCart.QueRenDinDanActivity;
 import com.duma.liudong.meiye.view.shoppingCart.ZhiFuActivity;
 import com.duma.liudong.meiye.view.start.login.LoginActivity;
@@ -90,8 +92,8 @@ public class StartUtil {
     }
 
     //实物/定制 订单
-    public static void toShiWuOrDinZHi(Activity activity, String type) {
-        Intent intent = new Intent(activity, ShiWuDinDanQuanBuActivity.class);
+    public static void toQuanBuDinDan(Activity activity, String type) {
+        Intent intent = new Intent(activity, QuanBuDinDanActivity.class);
         intent.putExtra("type", type);
         activity.startActivity(intent);
     }
@@ -111,25 +113,73 @@ public class StartUtil {
     }
 
     //跳转确认订单
-    public static void toQueRenDinDan(Activity activity, String store_id) {
+    public static void toQueRenDinDan(Activity activity, String key, String value, String type) {
         Intent intent = new Intent(activity, QueRenDinDanActivity.class);
-        intent.putExtra("store_id", store_id);
+        intent.putExtra("key", key);
+        intent.putExtra("value", value);
+        intent.putExtra("type", type);//是否开团 1:是
         activity.startActivity(intent);
     }
 
-    //跳转确认订单
-    public static void toLunTanWeb(Activity activity, String bbs_id) {
-        Intent intent = new Intent(activity, LunTanXiangQinWeb.class);
-        intent.putExtra("url", Api.LunTanH5Url + bbs_id);
-        activity.startActivity(intent);
-    }
+//    //跳转论坛
+//    public static void toLunTanWeb(Activity activity, String bbs_id) {
+//        Intent intent = new Intent(activity, LunTanXiangQinWeb.class);
+//        intent.putExtra("url", Api.LunTanH5Url + bbs_id);
+//        activity.startActivity(intent);
+//    }
 
     //跳转支付
-    public static void toZhiFu(Activity activity, String id, String money) {
+    public static void toZhiFu(Activity activity, String id, String money, String type) {
         Intent intent = new Intent(activity, ZhiFuActivity.class);
         intent.putExtra("money", money);
         intent.putExtra("id", id);
+        intent.putExtra("type", type);//判断是那种商品//1:实物,2:定制,3:团购
         activity.startActivity(intent);
+    }
+
+    //跳转支付成功
+    public static void toZhiFuSuccess(Activity activity, String type) {
+        Intent intent = new Intent(activity, FuKuanChenGongActivity.class);
+        intent.putExtra("type", type);//判断是那种商品//1:实物,2:定制,3:团购
+        activity.startActivity(intent);
+    }
+
+    //跳转分享
+    public static void toShare(Activity activity, String title, String url) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, StartUtil.getShare(title, url));
+        activity.startActivity(Intent.createChooser(intent, "分享到"));
+    }
+
+    //跳转详情页
+    public static void toXiangQin(Activity activity, String type, String id, String fenlei_type) {
+        //判断是那种商品//1:实物,2:定制,3:团购
+        Intent intent;
+        switch (type) {
+            case "1":
+                //1:实物
+                intent = new Intent(activity, ShiWuDianDanXiangQingActivity.class);
+                intent.putExtra("id", id);
+                intent.putExtra("fenlei_type", fenlei_type);
+                activity.startActivity(intent);
+                break;
+            case "2":
+                //定制  ->就是开团
+                intent = new Intent(activity, ShiWuDianDanXiangQingActivity.class);
+                intent.putExtra("id", id);
+                intent.putExtra("fenlei_type", fenlei_type);
+                activity.startActivity(intent);
+                break;
+            case "3":
+                //团购->就是服务 带卷码的
+                intent = new Intent(activity, FuWuXiangQinActivity.class);
+                intent.putExtra("id", id);
+                intent.putExtra("fenlei_type", fenlei_type);
+                activity.startActivity(intent);
+                break;
+        }
+
     }
 
     public static void setSw(SwipeRefreshLayout swLoading, SwipeRefreshLayout.OnRefreshListener onRefreshListener) {
@@ -149,6 +199,10 @@ public class StartUtil {
     public static String setNumOr00(double Birthday) {
         DecimalFormat df = new DecimalFormat("0.00");
         return df.format(Birthday);
+    }
+
+    public static String getShare(String title, String url) {
+        return "【" + title + "】" + url + "(分享自美业基地)";
     }
 
     public static void setNickName(String nickName) {

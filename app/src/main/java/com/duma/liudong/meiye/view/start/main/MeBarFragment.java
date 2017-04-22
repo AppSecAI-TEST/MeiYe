@@ -40,6 +40,7 @@ public class MeBarFragment extends BaseFragment {
                     return;
                 }
                 startActivity(new Intent(mActivity, MjMainActivity.class));
+                mActivity.overridePendingTransition(R.anim.out_to_left2, R.anim.in_from_right);
                 break;
             case R.id.img_shezhi:
                 startActivity(new Intent(mActivity, SheZhiActivity.class));

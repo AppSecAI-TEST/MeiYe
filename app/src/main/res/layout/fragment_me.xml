@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/bg_hui">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/sw_loading"
@@ -127,6 +128,7 @@
                     style="@style/wode_bianju"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:background="@color/white"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -152,6 +154,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
+                    android:background="@color/white"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:paddingBottom="10dp"
@@ -231,6 +234,7 @@
                 <LinearLayout
                     style="@style/wode_bianju2"
                     android:layout_width="match_parent"
+                    android:background="@color/white"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -367,6 +371,7 @@
                 <LinearLayout
                     style="@style/wode_bianju2"
                     android:layout_width="match_parent"
+                    android:background="@color/white"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -498,9 +503,8 @@
 
                 <ImageView
                     android:id="@+id/img_ad"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:src="@mipmap/ic_launcher" />
+                    style="@style/ad"
+                    android:background="@color/white" />
 
                 <View
                     style="@style/henxian"
@@ -509,6 +513,7 @@
                 <LinearLayout
                     style="@style/wode_bianju2"
                     android:layout_width="match_parent"
+                    android:background="@color/white"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -642,6 +647,7 @@
                     style="@style/wode_bianju2"
                     android:layout_width="match_parent"
                     android:layout_height="90dp"
+                    android:background="@color/white"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -741,6 +747,23 @@
                     </LinearLayout>
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:background="@color/bg_hui"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="推荐商品" />
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_shangping"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
         </ScrollView>
     </android.support.v4.widget.SwipeRefreshLayout>

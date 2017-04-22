@@ -1,4 +1,4 @@
-package com.duma.liudong.meiye.view.me.shiWuDinDan;
+package com.duma.liudong.meiye.view.me.dinDan;
 
 import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -48,7 +48,7 @@ public class ShiWuDinDanFragment extends BaseFragment implements SwipeRefreshLay
     @BindView(R.id.sw_loading)
     SwipeRefreshLayout swLoading;
 
-    ShiWuDinDanQuanBuActivity activity;
+    QuanBuDinDanActivity activity;
     private BaseXiaLaRvPresenter<ShiWuDinDanBean> baseXiaLaRvPresenter;
     private PublicPresenter publicPresenter;
     private QueRenUtilDialog QuXiaoDialog, shanchuDialog, ShouHuoDialog;
@@ -70,7 +70,7 @@ public class ShiWuDinDanFragment extends BaseFragment implements SwipeRefreshLay
             }
         });
         initDialog();
-        activity = (ShiWuDinDanQuanBuActivity) mActivity;
+        activity = (QuanBuDinDanActivity) mActivity;
         StartUtil.setSw(swLoading, this);
         initAdapter();
         if (activity.isOne) {
@@ -81,7 +81,7 @@ public class ShiWuDinDanFragment extends BaseFragment implements SwipeRefreshLay
 
     @Subscribe
     public void onRes(EvenDinDan evenDinDan) {
-        if (evenDinDan.getType().equals(activity.getType())) {
+        if (evenDinDan.getType().equals(activity.getfenlei_Type())) {
             onRefresh();
         }
     }
@@ -156,10 +156,7 @@ public class ShiWuDinDanFragment extends BaseFragment implements SwipeRefreshLay
                         holder.setOnClickListener(R.id.layout_onClick, new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(mActivity, ShiWuDianDanXiangQingActivity.class);
-                                intent.putExtra("id", shiWuBean.getOrder_id());
-                                intent.putExtra("type", activity.getType());
-                                startActivity(intent);
+                                StartUtil.toXiangQin(mActivity, activity.type, shiWuBean.getOrder_id(), activity.getfenlei_Type());
                             }
                         });
                     }
@@ -258,8 +255,8 @@ public class ShiWuDinDanFragment extends BaseFragment implements SwipeRefreshLay
                 .url(Api.orderList)
                 .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
                 .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
-                .addParams("type", activity.getType())
-                .addParams("goods_type", activity.goods_type)
+                .addParams("type", activity.getfenlei_Type())
+                .addParams("goods_type", activity.type)
                 .addParams("p", baseXiaLaRvPresenter.p + "")
                 .build();
     }
@@ -297,7 +294,7 @@ public class ShiWuDinDanFragment extends BaseFragment implements SwipeRefreshLay
                     //调接口
                     break;
                 case "去支付":
-                    StartUtil.toZhiFu(mActivity, bean.getOrder_id(), bean.getTotal_amount());
+                    StartUtil.toZhiFu(mActivity, bean.getOrder_id(), bean.getTotal_amount(), activity.getfenlei_Type());
                     break;
                 case "查看物流":
                     // TODO: 17/4/17
@@ -307,10 +304,11 @@ public class ShiWuDinDanFragment extends BaseFragment implements SwipeRefreshLay
                 case "查看订单":
                 case "申请退款":
                     //跳转详情页
-                    intent = new Intent(mActivity, ShiWuDianDanXiangQingActivity.class);
-                    intent.putExtra("id", bean.getOrder_id());
-                    intent.putExtra("type", activity.getType());
-                    startActivity(intent);
+//                    intent = new Intent(mActivity, ShiWuDianDanXiangQingActivity.class);
+//                    intent.putExtra("id", bean.getOrder_id());
+//                    intent.putExtra("type", activity.getfenlei_Type());
+//                    startActivity(intent);
+                    StartUtil.toXiangQin(mActivity, activity.type, bean.getOrder_id(), activity.getfenlei_Type());
                     break;
             }
         }

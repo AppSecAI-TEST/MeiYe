@@ -6,6 +6,8 @@
 
     <include layout="@layout/include_top_bar" />
 
+    <View style="@style/henxian" />
+
     <ProgressBar
         android:id="@+id/progressBar_sum"
         style="?android:attr/progressBarStyleHorizontal"
