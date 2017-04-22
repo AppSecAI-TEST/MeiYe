@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
+import com.duma.liudong.meiye.utils.StartUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -81,40 +82,58 @@ public class DinDanZhongXinActivity extends BaseActivity {
             case R.id.layout_other:
                 break;
             case R.id.layout_shiwu_daishoukuan:
+                StartUtil.toQuanBuDinDan(mActivity, "1", "1");
                 break;
             case R.id.layout_shiwu_daishouhuan:
+                StartUtil.toQuanBuDinDan(mActivity, "1", "2");
                 break;
             case R.id.layout_shiwu_daipingjia:
+                StartUtil.toQuanBuDinDan(mActivity, "1", "3");
                 break;
             case R.id.layout_shiwu_tuikuan:
+                StartUtil.toQuanBuDinDan(mActivity, "1", "4");
                 break;
             case R.id.layout_shiwu:
+                StartUtil.toQuanBuDinDan(mActivity, "1");
                 break;
             case R.id.layout_tuangou_daishoukuan:
+                StartUtil.toQuanBuDinDan(mActivity, "2", "1");
                 break;
             case R.id.layout_tuangou_daishouhuan:
+                StartUtil.toQuanBuDinDan(mActivity, "2", "2");
                 break;
             case R.id.layout_tuangou_daipingjia:
+                StartUtil.toQuanBuDinDan(mActivity, "2", "3");
                 break;
             case R.id.layout_tuangou_tuikuan:
+                StartUtil.toQuanBuDinDan(mActivity, "2", "4");
                 break;
             case R.id.layout_tuangou:
+                StartUtil.toQuanBuDinDan(mActivity, "2");
                 break;
             case R.id.layout_dinzhi_daishoukuan:
+                StartUtil.toQuanBuDinDan(mActivity, "3", "1");
                 break;
             case R.id.layout_dinzhi_daishouhuan:
+                StartUtil.toQuanBuDinDan(mActivity, "3", "2");
                 break;
             case R.id.layout_dinzhi_daipingjia:
+                StartUtil.toQuanBuDinDan(mActivity, "3", "3");
                 break;
             case R.id.layout_dinzhi_tuikuan:
+                StartUtil.toQuanBuDinDan(mActivity, "3", "4");
                 break;
             case R.id.layout_dinzhi:
+                StartUtil.toQuanBuDinDan(mActivity, "3");
                 break;
             case R.id.layout_wanchen:
+                StartUtil.toWoDiDinZhi(mActivity, "1");
                 break;
             case R.id.layout_jinxin:
+                StartUtil.toWoDiDinZhi(mActivity);
                 break;
             case R.id.layout_dingzhi:
+                StartUtil.toWoDiDinZhi(mActivity);
                 break;
         }
     }

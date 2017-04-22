@@ -16,6 +16,7 @@ import com.duma.liudong.meiye.view.home.meiTuan.TuanGouActivity;
 import com.duma.liudong.meiye.view.me.dinDan.FuWuXiangQinActivity;
 import com.duma.liudong.meiye.view.me.dinDan.QuanBuDinDanActivity;
 import com.duma.liudong.meiye.view.me.dinDan.ShiWuDianDanXiangQingActivity;
+import com.duma.liudong.meiye.view.me.dinDan.WoDeDinZhiActivity;
 import com.duma.liudong.meiye.view.shoppingCart.FuKuanChenGongActivity;
 import com.duma.liudong.meiye.view.shoppingCart.QueRenDinDanActivity;
 import com.duma.liudong.meiye.view.shoppingCart.ZhiFuActivity;
@@ -98,6 +99,28 @@ public class StartUtil {
         activity.startActivity(intent);
     }
 
+    //实物/定制 订单
+    public static void toQuanBuDinDan(Activity activity, String type, String position) {
+        Intent intent = new Intent(activity, QuanBuDinDanActivity.class);
+        intent.putExtra("type", type);
+        intent.putExtra("position", position);
+        activity.startActivity(intent);
+    }
+
+    //我的定制
+    public static void toWoDiDinZhi(Activity activity, String position) {
+        Intent intent = new Intent(activity, WoDeDinZhiActivity.class);
+        intent.putExtra("position", position);
+        activity.startActivity(intent);
+    }
+
+    //我的定制
+    public static void toWoDiDinZhi(Activity activity) {
+        Intent intent = new Intent(activity, WoDeDinZhiActivity.class);
+        intent.putExtra("position", "0");
+        activity.startActivity(intent);
+    }
+
     //跳转店铺
     public static void toDianPu(Activity activity, String id) {
         Intent intent = new Intent(activity, DianPuActivity.class);
@@ -170,6 +193,9 @@ public class StartUtil {
                 intent.putExtra("id", id);
                 intent.putExtra("fenlei_type", fenlei_type);
                 activity.startActivity(intent);
+//                intent = new Intent(activity, DinZhiXiangQinActivity.class);
+//                intent.putExtra("id", id);
+//                activity.startActivity(intent);
                 break;
             case "3":
                 //团购->就是服务 带卷码的

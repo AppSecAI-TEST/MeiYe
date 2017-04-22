@@ -32,7 +32,6 @@ import com.duma.liudong.meiye.view.me.UserDataActivity;
 import com.duma.liudong.meiye.view.me.WoDeZuJiActivity;
 import com.duma.liudong.meiye.view.me.WoDekeHuActivity;
 import com.duma.liudong.meiye.view.me.YouHuiJuanActivity;
-import com.duma.liudong.meiye.view.me.dinDan.WoDeDinZhiActivity;
 import com.duma.liudong.meiye.view.me.yuE.YuEActivity;
 import com.google.gson.Gson;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
@@ -249,7 +248,7 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
                 break;
             case R.id.layout_wode_dinzhi:
                 //我的定制
-                startActivity(new Intent(mActivity, WoDeDinZhiActivity.class));
+                StartUtil.toWoDiDinZhi(mActivity);
                 break;
             case R.id.layout_wode_dindan:
                 //我的订单

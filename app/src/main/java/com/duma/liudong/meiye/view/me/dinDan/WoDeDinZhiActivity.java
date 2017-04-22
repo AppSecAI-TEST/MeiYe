@@ -33,6 +33,7 @@ public class WoDeDinZhiActivity extends BaseActivity {
     ViewPager viewPaterBar;
 
     public boolean isOne = true;
+    private int position = 0;
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -42,12 +43,14 @@ public class WoDeDinZhiActivity extends BaseActivity {
     @Override
     protected void initData() {
         tvTitle.setText("我的定制");
+        position = Integer.parseInt(getIntent().getStringExtra("position"));
         MyViewPagerAdapter viewPagerAdapter = new MyViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragment(new DinZhiFragment(), "进行中");
         viewPagerAdapter.addFragment(new DinZhiFragment(), "已完成");
         viewPaterBar.setOffscreenPageLimit(2);
         viewPaterBar.setAdapter(viewPagerAdapter);
         tabLayoutBar.setupWithViewPager(viewPaterBar);
+        tabLayoutBar.getTabAt(position).select();
     }
 
     @OnClick(R.id.layout_back)
@@ -56,12 +59,12 @@ public class WoDeDinZhiActivity extends BaseActivity {
     }
 
     public String getType() {
-        //0: 进行中 1:已完成
+        //1:进行中,0:已完成
         switch (viewPaterBar.getCurrentItem()) {
             case 0:
-                return "0";
-            default:
                 return "1";
+            default:
+                return "0";
         }
     }
 }

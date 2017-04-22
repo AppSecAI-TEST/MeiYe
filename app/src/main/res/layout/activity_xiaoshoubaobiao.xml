@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_top_bar" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/sw_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_hui"
+            android:padding="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:background="@color/blue"
+                    android:gravity="center|start"
+                    android:paddingLeft="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_zou_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="本周销售业绩"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/white"
+                    android:gravity="center|start"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text="销售量"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tv_zou_Liang"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="15"
+                        android:textColor="@color/main_red"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center|right"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="前一周"
+                            android:textColor="@color/text_hui"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tv_zou_Liang_up"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="20.0万"
+                            android:textColor="@color/text_hui"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:gravity="center|start"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text="销售额"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tv_zou_e"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="300元"
+                        android:textColor="@color/main_red"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center|right"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="前一周"
+                            android:textColor="@color/text_hui"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tv_zou_e_up"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="20.0万"
+                            android:textColor="@color/text_hui"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/blue"
+                    android:gravity="center|start"
+                    android:paddingLeft="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_yue_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="本月销售业绩"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/white"
+                    android:gravity="center|start"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text="销售量"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tv_yue_liang"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="15"
+                        android:textColor="@color/main_red"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center|right"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="前一月"
+                            android:textColor="@color/text_hui"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tv_yue_liang_up"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="20.0万"
+                            android:textColor="@color/text_hui"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:gravity="center|start"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text="销售额"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tv_yue_e"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="300万"
+                        android:textColor="@color/main_red"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center|right"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="前一月"
+                            android:textColor="@color/text_hui"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tv_yue_e_up"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="20.0万"
+                            android:textColor="@color/text_hui"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/blue"
+                    android:gravity="center|start"
+                    android:paddingLeft="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_nian_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="本年销售业绩"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/white"
+                    android:gravity="center|start"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text="销售量"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tv_nian_liang"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="15"
+                        android:textColor="@color/main_red"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center|right"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="前一年"
+                            android:textColor="@color/text_hui"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tv_nian_liang_up"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="20.0万"
+                            android:textColor="@color/text_hui"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:gravity="center|start"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text="销售额"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tv_nian_e"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="300万"
+                        android:textColor="@color/main_red"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center|right"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="前一年"
+                            android:textColor="@color/text_hui"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tv_nian_e_up"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="20.0万"
+                            android:textColor="@color/text_hui"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/yellow2"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="每月销售统计"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:background="@color/white"
+                    android:gravity="center|start"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="时间"
+                        android:textColor="@color/yellow2" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="成交单数"
+                        android:textColor="@color/yellow2" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="成交金额"
+                        android:textColor="@color/yellow2" />
+                </LinearLayout>
+
+                <View style="@style/henxian" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_xiaoshou"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white" />
+            </LinearLayout>
+
+
+        </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

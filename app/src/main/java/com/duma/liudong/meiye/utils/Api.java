@@ -53,6 +53,7 @@ public class Api {
     public static final String delCollect = url + "/App/user/delCollect";
     public static final String storeCollect = url + "/App/user/storeCollect";
     public static final String orderInfo = url + "/App/user/orderInfo";
+    public static final String mySpell = url + "/App/user/mySpell";
     /**
      * seller-个人中心
      */
@@ -61,6 +62,7 @@ public class Api {
     public static final String is_warehouse = url + "/App/Goods/is_warehouse";
     public static final String is_onsale = url + "/App/Goods/is_onsale";
     public static final String del = url + "/App/Goods/del";
+    public static final String sellStatement = url + "/App/seller/sellStatement";
     /**
      * Index
      */

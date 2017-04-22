@@ -129,6 +129,7 @@
         <activity android:name=".view.me.dinDan.FuWuXiangQinActivity" />
         <activity android:name=".view.me.dinDan.WoDeDinZhiActivity" />
         <activity android:name=".widget.city.ShouYeDingWeiActivity" />
+        <activity android:name=".view.me.maiJia.XiaoShouBaoBiaoActivity" />
     </application>
 
 </manifest>

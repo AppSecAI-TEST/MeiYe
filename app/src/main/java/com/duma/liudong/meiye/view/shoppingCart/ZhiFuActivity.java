@@ -29,6 +29,9 @@ import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.zhy.http.okhttp.OkHttpUtils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -322,7 +325,13 @@ public class ZhiFuActivity extends BaseActivity {
                     @Override
                     public void onMySuccess(String result) {
                         DialogUtil.hide();
-                        goZhiFuBao(result);
+                        String code = "";
+                        try {
+                            code = new JSONObject(result).getString("code");
+                        } catch (JSONException e) {
+                            Ts.JsonErroy();
+                        }
+                        goZhiFuBao(code);
                     }
 
                     @Override
@@ -335,7 +344,6 @@ public class ZhiFuActivity extends BaseActivity {
     }
 
     private void goZhiFuBao(final String payInfo) {
-        Lg.e(payInfo);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -343,7 +351,7 @@ public class ZhiFuActivity extends BaseActivity {
                 PayTask alipay = new PayTask(mActivity);
                 // 调用支付接口，获取支付结果
                 String result = alipay.pay(payInfo, true);
-
+                Lg.e(result);
                 Message msg = new Message();
                 msg.what = SDK_PAY_FLAG;
                 msg.obj = result;

@@ -35,6 +35,7 @@ public class QuanBuDinDanActivity extends BaseActivity {
 
     public boolean isOne = true;
     public String type = "1";//1:实物,2:定制,3:团购
+    public int position = 0;
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -44,26 +45,30 @@ public class QuanBuDinDanActivity extends BaseActivity {
     @Override
     protected void initData() {
         type = getIntent().getStringExtra("type");
-        switch (type) {
-            case "1":
-                tvTitle.setText("实物订单");
-                break;
-            case "2":
-                tvTitle.setText("定制订单");
-                break;
-            case "3":
-                tvTitle.setText("团购订单");
-                break;
-        }
+        position = Integer.parseInt(getIntent().getStringExtra("position") == null ? "0" : getIntent().getStringExtra("position"));
         MyViewPagerAdapter viewPagerAdapter = new MyViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "全部");
         viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "待付款");
-        viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "待收货");
+        switch (type) {
+            case "1":
+                viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "待收货");
+                tvTitle.setText("实物订单");
+                break;
+            case "2":
+                viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "待收货");
+                tvTitle.setText("定制订单");
+                break;
+            case "3":
+                viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "待使用");
+                tvTitle.setText("团购订单");
+                break;
+        }
         viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "待评价");
         viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "退款");
         viewPaterBar.setOffscreenPageLimit(5);
         viewPaterBar.setAdapter(viewPagerAdapter);
         tabLayoutBar.setupWithViewPager(viewPaterBar);
+        tabLayoutBar.getTabAt(position).select();
     }
 
     @OnClick(R.id.layout_back)

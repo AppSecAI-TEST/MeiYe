@@ -1,6 +1,5 @@
 package com.duma.liudong.meiye.view.me.dinDan;
 
-import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -190,21 +189,40 @@ public class ShiWuDinDanFragment extends BaseFragment implements SwipeRefreshLay
                         tv_hong.setText("提醒发货");
                         break;
                     case "WAITRECEIVE":
-                        //待收货
-                        tv_hei_one.setVisibility(View.VISIBLE);
-                        tv_hei_two.setVisibility(View.VISIBLE);
-                        tv_hong.setVisibility(View.VISIBLE);
-                        tv_hei_one.setText("申请退款");
-                        tv_hei_two.setText("查看物流");
-                        tv_hong.setText("确认收货");
+                        //1:实物,2:定制,3:团购
+                        //待收货->待使用
+                        if (activity.type.equals("3")) {
+                            tv_hei_one.setVisibility(View.VISIBLE);
+                            tv_hei_two.setVisibility(View.GONE);
+                            tv_hong.setVisibility(View.VISIBLE);
+                            tv_hei_one.setText("申请退款");
+//                            tv_hei_two.setText("查看物流");
+                            tv_hong.setText("查看劵码");
+                        } else {
+                            tv_hei_one.setVisibility(View.VISIBLE);
+                            tv_hei_two.setVisibility(View.VISIBLE);
+                            tv_hong.setVisibility(View.VISIBLE);
+                            tv_hei_one.setText("申请退款");
+                            tv_hei_two.setText("查看物流");
+                            tv_hong.setText("确认收货");
+                        }
+
                         break;
                     case "WAITCCOMMENT":
                         //待评价
-                        tv_hei_one.setVisibility(View.GONE);
-                        tv_hei_two.setVisibility(View.VISIBLE);
-                        tv_hong.setVisibility(View.VISIBLE);
-                        tv_hei_two.setText("申请退款");
-                        tv_hong.setText("评价晒单");
+                        if (activity.type.equals("3")) {
+                            tv_hei_one.setVisibility(View.GONE);
+                            tv_hei_two.setVisibility(View.VISIBLE);
+                            tv_hong.setVisibility(View.VISIBLE);
+                            tv_hei_two.setText("申请退款");
+                            tv_hong.setText("评价晒单");
+                        } else {
+                            tv_hei_one.setVisibility(View.GONE);
+                            tv_hei_two.setVisibility(View.GONE);
+                            tv_hong.setVisibility(View.VISIBLE);
+//                            tv_hei_two.setText("申请退款");
+                            tv_hong.setText("评价晒单");
+                        }
                         break;
                     case "COMMENTED":
                         //已评价==已完成
@@ -265,7 +283,6 @@ public class ShiWuDinDanFragment extends BaseFragment implements SwipeRefreshLay
 
         private TextView textView;
         private ShiWuDinDanBean bean;
-        Intent intent;
 
         public OnTextClick(TextView textView, ShiWuDinDanBean bean) {
             this.textView = textView;
@@ -294,7 +311,7 @@ public class ShiWuDinDanFragment extends BaseFragment implements SwipeRefreshLay
                     //调接口
                     break;
                 case "去支付":
-                    StartUtil.toZhiFu(mActivity, bean.getOrder_id(), bean.getTotal_amount(), activity.getfenlei_Type());
+                    StartUtil.toZhiFu(mActivity, bean.getOrder_id(), bean.getTotal_amount(), activity.type);
                     break;
                 case "查看物流":
                     // TODO: 17/4/17
@@ -303,6 +320,7 @@ public class ShiWuDinDanFragment extends BaseFragment implements SwipeRefreshLay
                 case "评价晒单":
                 case "查看订单":
                 case "申请退款":
+                default:
                     //跳转详情页
 //                    intent = new Intent(mActivity, ShiWuDianDanXiangQingActivity.class);
 //                    intent.putExtra("id", bean.getOrder_id());
