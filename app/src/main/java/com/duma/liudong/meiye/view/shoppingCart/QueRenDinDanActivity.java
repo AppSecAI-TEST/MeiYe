@@ -39,7 +39,9 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -130,7 +132,7 @@ public class QueRenDinDanActivity extends BaseActivity {
 
     int height;//快递试图的高度
 
-    String key, value, type;//传过来的参数  type==1为开团
+    String key, value, type, spell_id;//传过来的参数  type==1为开团
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -142,11 +144,11 @@ public class QueRenDinDanActivity extends BaseActivity {
         height = ConvertUtils.dp2px(131);
         EventBus.getDefault().register(this);
         tvTitle.setText("确认订单");
-        editLiuyan.setFocusable(false);
         key = getIntent().getStringExtra("key");
         value = getIntent().getStringExtra("value");
         type = getIntent().getStringExtra("type");
-
+        spell_id = getIntent().getStringExtra("spell_id");
+        tvShijian.setText(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         mlist = new ArrayList<>();
         rvShangping.setLayoutManager(new LinearLayoutManager(mActivity));
         rvShangping.setFocusable(false);
@@ -200,6 +202,8 @@ public class QueRenDinDanActivity extends BaseActivity {
             layoutKuaiDiKong.setVisibility(View.VISIBLE);
             layoutKuaiDi.setVisibility(View.GONE);
         } else {
+            layoutKuaiDiKong.setVisibility(View.GONE);
+            layoutKuaiDi.setVisibility(View.VISIBLE);
             initDiZhi(diZhiBean);
         }
     }
@@ -316,6 +320,7 @@ public class QueRenDinDanActivity extends BaseActivity {
     }
 
     private void initRes() {
+        tvYunfei.setText("￥" + bean.getCart_list().get(0).getMark().getFreight());
         tvZongji.setText(bean.getTotal_price().getTotal_fee() + "");
         tvShifu.setText(bean.getTotal_price().getTotal_fee() + "");
         tvJifen.setText(bean.getCart_list().get(0).getMark().getReward_points());
@@ -398,6 +403,7 @@ public class QueRenDinDanActivity extends BaseActivity {
             case R.id.layout_youHuiJuan:
                 Intent intent = new Intent(mActivity, YouHuiJuanListActivity.class);
                 intent.putExtra("id", bean.getCart_list().get(0).getMark().getStore_id());
+                intent.putExtra("money", bean.getCart_list().get(0).getMark().getGoods_total());
                 startActivity(intent);
                 break;
             case R.id.layout_hongbao:
@@ -431,7 +437,7 @@ public class QueRenDinDanActivity extends BaseActivity {
                 .addParams("user_note", editLiuyan.getText().toString())
                 .addParams("address_id", addresId)
                 .addParams("make_spell", type)
-//                .addParams("goods_id", "1")
+                .addParams("spell_id", spell_id)
                 .build()
                 .execute(new MyStringCallback() {
                     @Override

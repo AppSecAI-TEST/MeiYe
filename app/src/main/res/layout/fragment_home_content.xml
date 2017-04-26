@@ -5,17 +5,16 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/layout_show"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
 
         <com.bigkoo.convenientbanner.ConvenientBanner
             android:id="@+id/banner_home"
             android:layout_width="match_parent"
             android:layout_height="140dp"
             app:canLoop="true" />
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -132,7 +131,7 @@
                     android:drawablePadding="6dp"
                     android:drawableTop="@drawable/lingquan"
                     android:gravity="center"
-                    android:text="领卷" />
+                    android:text="领券" />
             </LinearLayout>
 
             <LinearLayout
@@ -329,7 +328,8 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/img_1"
-                android:text="更多" />
+                android:text="更多"
+                android:visibility="invisible" />
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
@@ -368,7 +368,8 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/img_1"
-                android:text="更多" />
+                android:text="更多"
+                android:visibility="invisible" />
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
@@ -407,7 +408,8 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/img_1"
-                android:text="更多" />
+                android:text="更多"
+                android:visibility="invisible" />
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
@@ -446,7 +448,8 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/img_1"
-                android:text="更多" />
+                android:text="更多"
+                android:visibility="invisible" />
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
@@ -485,7 +488,8 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/img_1"
-                android:text="更多" />
+                android:text="更多"
+                android:visibility="invisible" />
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView

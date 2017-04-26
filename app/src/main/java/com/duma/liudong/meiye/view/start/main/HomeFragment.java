@@ -98,6 +98,12 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
     RecyclerView rvTuijian;
     @BindView(R.id.layout_toutiao)
     LinearLayout layoutToutiao;
+    @BindView(R.id.tv_refresh)
+    TextView tvRefresh;
+    @BindView(R.id.layout_404)
+    LinearLayout layout404;
+    @BindView(R.id.layout_show)
+    LinearLayout layoutShow;
 
     private IndexBean bean;
     private boolean one = true;
@@ -238,6 +244,8 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
 
     public void getIndexHttp() {
         swLoading.setRefreshing(true);
+        layout404.setVisibility(View.GONE);
+        layoutShow.setVisibility(View.GONE);
         OkHttpUtils.getInstance().cancelTag("getIndexHttp");
         OkHttpUtils
                 .get()
@@ -247,6 +255,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
                 .execute(new MyStringCallback() {
                     @Override
                     public void onMySuccess(String result) {
+                        layoutShow.setVisibility(View.VISIBLE);
                         one = false;
                         swLoading.setRefreshing(false);
                         bean = new Gson().fromJson(result, IndexBean.class);
@@ -257,6 +266,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
                     protected void onError(String result) {
                         super.onError(result);
                         swLoading.setRefreshing(false);
+                        layout404.setVisibility(View.VISIBLE);
                     }
                 });
     }
@@ -327,8 +337,12 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
                 startActivity(new Intent(mActivity, LinJuanActivity.class));
                 break;
             case R.id.layout_makeMoney:
+                //赚钱
+                StartUtil.toH5Web(mActivity, Api.zhuanQianH5, "赚钱");
                 break;
             case R.id.layout_enter:
+                //入驻
+                StartUtil.toH5Web(mActivity, Api.ruzhuH5, "赚钱");
                 break;
             case R.id.img_ad:
                 //中间的广告图
@@ -385,6 +399,12 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
 
     @Override
     public void onRefresh() {
+        getIndexHttp();
+    }
+
+
+    @OnClick(R.id.tv_refresh)
+    public void onClick() {
         getIndexHttp();
     }
 

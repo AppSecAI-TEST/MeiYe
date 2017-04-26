@@ -344,6 +344,7 @@ public class ZhiFuActivity extends BaseActivity {
     }
 
     private void goZhiFuBao(final String payInfo) {
+        Lg.e(payInfo);
         new Thread(new Runnable() {
             @Override
             public void run() {

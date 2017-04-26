@@ -42,7 +42,12 @@ public class SearchBarFragment extends BaseFragment {
     }
 
     public void setTvName() {
-        tvName.setText(MyApplication.getSpUtils().getString(Constants.city));
+        String string = MyApplication.getSpUtils().getString(Constants.city);
+        if (string.equals("")) {
+            tvName.setText("定位失败");
+        } else {
+            tvName.setText(string);
+        }
     }
 
     @OnClick(R.id.layout_sousuo)

@@ -33,6 +33,7 @@ import com.google.gson.reflect.TypeToken;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.builder.GetBuilder;
 import com.zhy.http.okhttp.request.RequestCall;
 
 import java.lang.reflect.Type;
@@ -402,7 +403,7 @@ public class TuanGouActivity extends BaseActivity implements SwipeRefreshLayout.
 
     private RequestCall getBuild() {
         TuanGouAdapter.p++;
-        return OkHttpUtils
+        GetBuilder getBuilder = OkHttpUtils
                 .get()
                 .url(Api.Tuangouindex)
                 .tag("base")
@@ -410,13 +411,17 @@ public class TuanGouActivity extends BaseActivity implements SwipeRefreshLayout.
                 .addParams("p", TuanGouAdapter.p + "")
                 .addParams("sort", sort)
                 .addParams("cate_id", cate_id)
-                .addParams("juli", "")
                 .addParams("pick_city_name", MyApplication.getSpUtils().getString(Constants.city))
-                .addParams("pick_street_id", pick_street_id)
-                .addParams("pick_district_id", pick_district_id)
                 .addParams("lat", MyApplication.getSpUtils().getString(Constants.lat))
-                .addParams("lng", MyApplication.getSpUtils().getString(Constants.lng))
-                .build();
+                .addParams("lng", MyApplication.getSpUtils().getString(Constants.lng));
+        if (pick_district_id.equals("")) {
+            getBuilder.addParams("juli", pick_street_id);
+        } else {
+            getBuilder.addParams("pick_street_id", pick_street_id)
+                    .addParams("pick_district_id", pick_district_id);
+        }
+
+        return getBuilder.build();
     }
 
     private void initFenLeiHttp() {
@@ -562,7 +567,7 @@ public class TuanGouActivity extends BaseActivity implements SwipeRefreshLayout.
         children.add(new CityBean.ChildrenBean("5", "5Km"));
         children.add(new CityBean.ChildrenBean("7", "7Km"));
         children.add(new CityBean.ChildrenBean("10", "10Km"));
-        children.add(new CityBean.ChildrenBean("", "全城"));
+        children.add(new CityBean.ChildrenBean("100", "全城"));
 
         cityBean = new CityBean("", "全城", children);
     }

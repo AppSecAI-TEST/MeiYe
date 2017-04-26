@@ -22,6 +22,10 @@ public class Ts {
         Toast.makeText(MyApplication.getInstance(), "json解析错误!", Toast.LENGTH_SHORT).show();
     }
 
+    public static void HttpErroy() {
+        Toast.makeText(MyApplication.getInstance(), "网络连接错误!", Toast.LENGTH_SHORT).show();
+    }
+
     public static void databaseErroy() {
         Toast.makeText(MyApplication.getInstance(), "数据库异常！", Toast.LENGTH_SHORT).show();
     }

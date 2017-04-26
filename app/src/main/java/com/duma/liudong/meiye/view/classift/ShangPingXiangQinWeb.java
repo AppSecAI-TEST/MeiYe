@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.base.MyApplication;
+import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.Lg;
 import com.duma.liudong.meiye.utils.StartUtil;
@@ -113,13 +114,30 @@ public class ShangPingXiangQinWeb extends BaseActivity {
         //跳转ShiWu
         @JavascriptInterface
         public void goShiwu(String goods_id) {
-            StartUtil.toQueRenDinDan(mActivity, Constants.goods_id, goods_id, "");
+            StartUtil.toQueRenDinDan(mActivity, "goods_id", goods_id, "");
         }
 
-        //跳转shiWuDinZhi
+        //跳转会员
+        @JavascriptInterface
+        public void goHuiYuan() {
+            StartUtil.toH5Web(mActivity, Api.HuiYuanH5, "会员升级");
+        }
+
+        //跳转shiWuDinZhi  开团
         @JavascriptInterface
         public void goShiWuDinZhi(String goods_id) {
-            StartUtil.toQueRenDinDan(mActivity, Constants.goods_id, goods_id, "1");
+            StartUtil.toQueRenDinDan(mActivity, "goods_id", goods_id, "1");
+        }
+
+        @JavascriptInterface
+        public void goCanTuan(String goods_id, String spell_id) {
+            StartUtil.toQueRenDinDan(mActivity, "goods_id", goods_id, "", spell_id);
+        }
+
+        //跳转分享
+        @JavascriptInterface
+        public void goShare(String title, String url) {
+            StartUtil.toShare(mActivity, title, url);
         }
     }
 }

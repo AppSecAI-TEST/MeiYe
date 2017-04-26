@@ -90,7 +90,7 @@ public class ShangPinLieBiaoPresenter extends BaseXiaLaRvPresenter<ShangPinBean>
             ImageLoader.with(shangPinBean.getType(), img_type);
             holder.setText(R.id.tv_goods_name, shangPinBean.getGoods_name());
             holder.setText(R.id.tv_market_price, "￥" + shangPinBean.getMarket_price());
-            holder.setText(R.id.tv_shop_price, shangPinBean.getShop_price());
+            holder.setText(R.id.tv_shop_price, shangPinBean.getPrice());
             holder.setText(R.id.tv_sales_sum, shangPinBean.getSales_sum() + "人付款");
             holder.setText(R.id.tv_distance, shangPinBean.getDistance() + "m");
         } else {
@@ -99,7 +99,7 @@ public class ShangPinLieBiaoPresenter extends BaseXiaLaRvPresenter<ShangPinBean>
             holder.setText(R.id.tv_goods_name, shangPinBean.getGoods_name());
             holder.setText(R.id.tv_market_price, shangPinBean.getMarket_price());
             holder.setText(R.id.tv_distance, shangPinBean.getDistance() + "m");
-            holder.setText(R.id.tv_shop_price, "¥" + shangPinBean.getShop_price());
+            holder.setText(R.id.tv_shop_price, "¥" + shangPinBean.getPrice());
             double num1 = Double.parseDouble(shangPinBean.getSales_sum());
             double num2 = Double.parseDouble(shangPinBean.getStore_count()) + num1;
             String res = numberFormat.format((num1 / num2) * 100);

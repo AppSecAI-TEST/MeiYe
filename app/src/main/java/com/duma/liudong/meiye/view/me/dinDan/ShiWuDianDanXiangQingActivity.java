@@ -15,11 +15,14 @@ import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.base.MyStringCallback;
 import com.duma.liudong.meiye.model.EvenDinDan;
+import com.duma.liudong.meiye.model.PingJiaBean;
 import com.duma.liudong.meiye.model.QueRenDinDanBean;
 import com.duma.liudong.meiye.model.ShiWuDinDanBean;
+import com.duma.liudong.meiye.model.TuiKuanBean;
 import com.duma.liudong.meiye.presenter.PublicPresenter;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
+import com.duma.liudong.meiye.utils.DialogUtil;
 import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.utils.Ts;
@@ -29,6 +32,7 @@ import com.google.gson.Gson;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.request.RequestCall;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -106,6 +110,8 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
     private String fenlei_type;
     private boolean isOne = false;
 
+    private String store_id;//判断是不是商家端的订单详情
+
     @Override
     protected void initContentView(Bundle savedInstanceState) {
         setContentView(R.layout.activity_shiwudindanxiangqin);
@@ -123,6 +129,7 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
         initDialog();
         tvTitle.setText("商品详情");
         id = getIntent().getStringExtra("id");
+        store_id = getIntent().getStringExtra("store_id");
         fenlei_type = getIntent().getStringExtra("fenlei_type");
         StartUtil.setSw(swLoading, this);
         mlist = new ArrayList<>();
@@ -161,6 +168,7 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
     }
 
     private void initRes() {
+        tvJifen.setText("￥" + bean.getIntegral_money());
         tvLiuyan.setText(bean.getUser_note());
         tvKuaidiType.setText("快递");
         tvType.setText(bean.getOrder_status_desc());
@@ -228,6 +236,11 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
         mlist.clear();
         mlist.addAll(bean.getGoods_list());
         adapter.notifyDataSetChanged();
+
+        if (!store_id.equals("")) {
+            tvHei.setVisibility(View.GONE);
+            tvHong.setVisibility(View.GONE);
+        }
     }
 
     private void initAdapter() {
@@ -266,20 +279,91 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
                 if (bean.getOrder_status_code().equals("WAITSEND") || bean.getOrder_status_code().equals("WAITRECEIVE") || bean.getOrder_status_code().equals("WAITCCOMMENT")) {
                     tv_shouhou.setVisibility(View.VISIBLE);
                 }
+
+                switch (goodsListBean.getIs_send()) {
+                    case "2":
+                        //退款中
+                        tv_shouhou.setText("退款中");
+                        break;
+                    case "3":
+                        //退款完成
+                        tv_shouhou.setText("退款完成");
+                        break;
+                    default:
+                        tv_shouhou.setText("申请退款");
+                }
+
+                if (!store_id.equals("")) {
+                    tv_shouhou.setVisibility(View.GONE);
+                    tv_pingjia.setVisibility(View.GONE);
+                }
                 tv_pingjia.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(mActivity, PingJiaActivity.class);
-                        intent.putExtra("img", Api.url + goodsListBean.getOriginal_img());
-                        intent.putExtra("goods_id", goodsListBean.getGoods_id());
-                        intent.putExtra("order_id", bean.getOrder_id());
-                        startActivity(intent);
+                        DialogUtil.show(mActivity);
+                        OkHttpUtils
+                                .get()
+                                .tag(this)
+                                .url(Api.isComment)
+                                .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                                .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
+                                .addParams("order_id", bean.getOrder_id())
+                                .addParams("goods_id", goodsListBean.getGoods_id())
+                                .build()
+                                .execute(new MyStringCallback() {
+                                    @Override
+                                    public void onMySuccess(String result) {
+                                        DialogUtil.hide();
+                                        PingJiaBean pingJiaBean = new Gson().fromJson(result, PingJiaBean.class);
+                                        if (pingJiaBean.getIs_comment().equals("0")) {
+                                            DialogUtil.hide();
+                                            Intent intent = new Intent(mActivity, PingJiaActivity.class);
+                                            intent.putExtra("img", Api.url + goodsListBean.getOriginal_img());
+                                            intent.putExtra("goods_id", goodsListBean.getGoods_id());
+                                            intent.putExtra("order_id", bean.getOrder_id());
+                                            startActivity(intent);
+                                        } else {
+                                            Ts.setText("您已经评价~");
+                                        }
+                                    }
+                                });
+
                     }
                 });
                 tv_shouhou.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // TODO: 17/4/17 退款
+                        DialogUtil.show(mActivity);
+                        OkHttpUtils
+                                .post()
+                                .tag(this)
+                                .url(Api.isReturnGoods)
+                                .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                                .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
+                                .addParams("order_id", bean.getOrder_id())
+                                .addParams("goods_id", goodsListBean.getGoods_id())
+                                .addParams("spec_key", goodsListBean.getSpec_key())
+                                .addParams("order_sn", bean.getOrder_sn())
+                                .addParams("type", "3")
+                                .build()
+                                .execute(new MyStringCallback() {
+                                    @Override
+                                    public void onMySuccess(String result) {
+                                        DialogUtil.hide();
+                                        TuiKuanBean tuiKuanBean = new Gson().fromJson(result, TuiKuanBean.class);
+                                        if (tuiKuanBean.getIs_return().equals("0")) {
+                                            DialogUtil.hide();
+                                            StartUtil.totuikuan(mActivity, bean.getOrder_id(), bean.getOrder_sn()
+                                                    , goodsListBean.getGoods_id(), bean.getStore_name(), goodsListBean.getGoods_name()
+                                                    , goodsListBean.getOriginal_img(), goodsListBean.getGoods_num(), goodsListBean.getGoods_price(), goodsListBean.getSpec_key());
+                                        } else {
+                                            StartUtil.totuikuanXiangQin(mActivity, bean.getOrder_id(), bean.getOrder_sn()
+                                                    , goodsListBean.getGoods_id(), bean.getStore_name(), goodsListBean.getGoods_name()
+                                                    , goodsListBean.getOriginal_img(), goodsListBean.getGoods_num(), goodsListBean.getGoods_price(), goodsListBean.getSpec_key());
+                                        }
+
+                                    }
+                                });
 
                     }
                 });
@@ -301,6 +385,7 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
                         QuXiaoDialog.show();
                         break;
                     case "查看物流":
+                        StartUtil.toH5Web(mActivity, Api.WuLiuH5 + bean.getOrder_id(), "查看物流");
                         break;
                     case "删除订单":
                         shanchuDialog.show();
@@ -310,7 +395,7 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
             case R.id.tv_hong:
                 switch (tvHong.getText().toString()) {
                     case "去支付":
-                        StartUtil.toZhiFu(mActivity, bean.getOrder_id(), bean.getTotal_amount(), "1");
+                        StartUtil.toZhiFu(mActivity, bean.getOrder_id(), bean.getOrder_amount(), "1");
                         break;
                     case "提醒发货":
                         Ts.setText("已提醒卖家~请耐心等待!");
@@ -324,34 +409,57 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        onRefresh();
+    }
+
+    @Override
     public void onRefresh() {
         swLoading.setRefreshing(true);
         OkHttpUtils.getInstance().cancelTag(this);
-        OkHttpUtils
-                .get()
-                .url(Api.orderInfo)
-                .tag(this)
-                .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
-                .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
-                .addParams("order_id", id)
-                .build()
-                .execute(new MyStringCallback() {
-                    @Override
-                    public void onMySuccess(String result) {
-                        swLoading.setRefreshing(false);
-                        bean = new Gson().fromJson(result, ShiWuDinDanBean.class);
-                        initRes();
-                    }
+        RequestCall build = getBuild();
+        build.execute(new MyStringCallback() {
+            @Override
+            public void onMySuccess(String result) {
+                swLoading.setRefreshing(false);
+                bean = new Gson().fromJson(result, ShiWuDinDanBean.class);
+                initRes();
+            }
 
-                    @Override
-                    protected void onError(String result) {
-                        super.onError(result);
-                        if (result.equals("-1")) {
-                            isOne = true;
-                            finish();
-                        }
-                    }
-                });
+            @Override
+            protected void onError(String result) {
+                super.onError(result);
+                if (result.equals("-1")) {
+                    isOne = true;
+                    finish();
+                }
+            }
+        });
+    }
+
+    private RequestCall getBuild() {
+        if (!store_id.equals("")) {
+            return OkHttpUtils
+                    .get()
+                    .url(Api.sellerorderInfo)
+                    .tag(this)
+                    .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                    .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
+                    .addParams("order_id", id)
+                    .addParams("order_type", "2")
+                    .addParams("store_id", store_id)
+                    .build();
+        } else {
+            return OkHttpUtils
+                    .get()
+                    .url(Api.orderInfo)
+                    .tag(this)
+                    .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                    .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
+                    .addParams("order_id", id)
+                    .build();
+        }
     }
 
     @Override

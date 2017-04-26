@@ -126,6 +126,15 @@ public class QueRenDinDanBean {
             private String postage;
             private String user_money;
             private String reward_points;
+            private String freight;
+
+            public String getFreight() {
+                return freight;
+            }
+
+            public void setFreight(String freight) {
+                this.freight = freight;
+            }
 
             public String getGoods_total() {
                 return goods_total;
@@ -247,10 +256,20 @@ public class QueRenDinDanBean {
             private double goods_fee;
             private String store_count;
 
+
             private String pickup_id;
             private String pickup_name;
             private String pickup_address;
             private String pickup_phone;
+            private String is_send;
+
+            public String getIs_send() {
+                return is_send;
+            }
+
+            public void setIs_send(String is_send) {
+                this.is_send = is_send;
+            }
 
             public String getPickup_id() {
                 return pickup_id;

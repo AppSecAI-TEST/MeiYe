@@ -27,6 +27,9 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -116,7 +119,7 @@ public class FuWuQueRenDinDanActivity extends BaseActivity {
         tvTitle.setText("确认订单");
         goods_id = getIntent().getStringExtra("goods_id");
         DinDanHttp();
-
+        tvShijian.setText(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         swithYue.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -220,9 +223,9 @@ public class FuWuQueRenDinDanActivity extends BaseActivity {
         ImageLoader.with(Api.url + bean.getOriginal_img(), imgHeadPic);
         tvShangpingTitle.setText(bean.getGoods_name());
         tvJiage.setText(bean.getMember_price());
-        tvZongji.setText(bean.getTotal() + "");
+        tvZonge.setText("￥" + bean.getGoods_num() * Double.parseDouble(bean.getMember_price()) + "");
         tvShifu.setText(bean.getTotal() + "");
-        tvZonge.setText("￥" + bean.getTotal());
+        tvZongji.setText("" + bean.getTotal());
         tvJifen.setText(bean.getReward_points());
         tvYue.setText(bean.getBalance());
         tvShuliang.setText("x" + bean.getGoods_num());
@@ -255,6 +258,7 @@ public class FuWuQueRenDinDanActivity extends BaseActivity {
             case R.id.layout_youHuiJuan:
                 Intent intent = new Intent(mActivity, YouHuiJuanListActivity.class);
                 intent.putExtra("id", bean.getStore_id());
+                intent.putExtra("money", bean.getTotal());
                 startActivity(intent);
                 break;
             case R.id.layout_hongbao:

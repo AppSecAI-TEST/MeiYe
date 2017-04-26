@@ -369,7 +369,8 @@
             style="@style/layout_querendindan"
             android:layout_width="match_parent"
             android:orientation="horizontal"
-            android:paddingRight="10dp">
+            android:paddingRight="10dp"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"

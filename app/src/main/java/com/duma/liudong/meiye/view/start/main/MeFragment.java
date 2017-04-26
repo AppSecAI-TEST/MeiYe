@@ -195,7 +195,7 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
         refresh();
     }
 
-    @OnClick({R.id.layout_wode_kehu, R.id.img_head_pic, R.id.layout_account, R.id.layout_ref_num, R.id.layout_red_packet, R.id.layout_integral, R.id.layout_balance, R.id.layout_discount_coupon, R.id.layout_asset, R.id.layout_shiwu_dindan, R.id.layout_tuangou_dindan, R.id.layout_dinzhi_dindan, R.id.layout_wode_dinzhi, R.id.layout_wode_dindan, R.id.img_ad, R.id.layout_qiandao, R.id.layout_guanzhuan, R.id.layout_tiezi, R.id.layout_fensi, R.id.layout_luntan, R.id.layout_tequan, R.id.layout_fankui, R.id.layout_zuji, R.id.layout_shoucang})
+    @OnClick({R.id.tv_level_up, R.id.layout_wode_kehu, R.id.img_head_pic, R.id.layout_account, R.id.layout_ref_num, R.id.layout_red_packet, R.id.layout_integral, R.id.layout_balance, R.id.layout_discount_coupon, R.id.layout_asset, R.id.layout_shiwu_dindan, R.id.layout_tuangou_dindan, R.id.layout_dinzhi_dindan, R.id.layout_wode_dinzhi, R.id.layout_wode_dindan, R.id.img_ad, R.id.layout_qiandao, R.id.layout_guanzhuan, R.id.layout_tiezi, R.id.layout_fensi, R.id.layout_luntan, R.id.layout_tequan, R.id.layout_fankui, R.id.layout_zuji, R.id.layout_shoucang})
     public void onClick(View view) {
         if (!StartUtil.isLogin()) {
             StartUtil.toLogin(mActivity);
@@ -286,6 +286,12 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
                 startActivity(this.intent);
                 break;
             case R.id.layout_tequan:
+                //特权
+                StartUtil.toH5Web(mActivity, Api.TeQuanH5, "新人特权");
+                break;
+            case R.id.tv_level_up:
+                //会员升级
+                StartUtil.toH5Web(mActivity, Api.HuiYuanH5, "会员升级");
                 break;
             case R.id.layout_fankui:
                 //反馈

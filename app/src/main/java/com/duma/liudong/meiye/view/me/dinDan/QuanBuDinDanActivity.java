@@ -36,6 +36,7 @@ public class QuanBuDinDanActivity extends BaseActivity {
     public boolean isOne = true;
     public String type = "1";//1:实物,2:定制,3:团购
     public int position = 0;
+    public String store_id = "";
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class QuanBuDinDanActivity extends BaseActivity {
     @Override
     protected void initData() {
         type = getIntent().getStringExtra("type");
+        store_id = getIntent().getStringExtra("store_id") == null ? "" : getIntent().getStringExtra("store_id");
         position = Integer.parseInt(getIntent().getStringExtra("position") == null ? "0" : getIntent().getStringExtra("position"));
         MyViewPagerAdapter viewPagerAdapter = new MyViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "全部");
@@ -73,7 +75,7 @@ public class QuanBuDinDanActivity extends BaseActivity {
 
     @OnClick(R.id.layout_back)
     public void onClick() {
-        finish();
+        StartUtil.toMain(mActivity);
     }
 
     public String getfenlei_Type() {

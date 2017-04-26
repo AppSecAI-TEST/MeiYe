@@ -38,6 +38,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.duma.liudong.meiye.utils.Api.url;
+
 /**
  * Created by liudong on 17/4/11.
  */
@@ -82,7 +84,7 @@ public class LunTanClassiftFragment extends BaseFragment implements SwipeRefresh
             onLazyLoad();
             forumFragment.isOne = false;
         }
-        ImageLoader.withYuan(Api.url + MyApplication.getSpUtils().getString(Constants.head_pic), imgHeadPic);
+        ImageLoader.withYuan(url + MyApplication.getSpUtils().getString(Constants.head_pic), imgHeadPic);
     }
 
     private void initXiaLaAdapter() {
@@ -137,11 +139,31 @@ public class LunTanClassiftFragment extends BaseFragment implements SwipeRefresh
                         guanZhuHttp((ImageView) holder.getView(R.id.img_guanzhu), zhiDingBean.getBbs_id());
                     }
                 });
+                holder.setOnClickListener(R.id.layout_share, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        StartUtil.toShare(mActivity, zhiDingBean.getUser_name() + "的帖子", Api.LunTanH5Url + zhiDingBean.getBbs_id());
+                    }
+                });
+                ImageView imageView = (ImageView) holder.getView(R.id.img_guanzhu);
+                if (zhiDingBean.getIs_follow() == 0) {
+                    //没关注
+                    imageView.setImageDrawable(MyApplication.getInstance().getResources().getDrawable(R.drawable.img_83));
+                } else {
+                    imageView.setImageDrawable(MyApplication.getInstance().getResources().getDrawable(R.drawable.im_22));
+                }
+
+                if (zhiDingBean.getIs_like() == 0) {
+                    //没点赞
+                    ZaiView_no(tv_zan);
+                } else {
+                    ZaiView(tv_zan);
+                }
             }
 
             @Override
             protected void onitemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                StartUtil.toH5Web(mActivity, Api.LunTanH5Url + mlist.get(position).getBbs_id(), mlist.get(position).getTitle());
+                StartUtil.toH5Web(mActivity, Api.LunTanH5Url + mlist.get(position).getBbs_id(), mlist.get(position).getUser_name() + "的帖子");
             }
         };
         beanBaseXiaLaRvPresenter.setType(new TypeToken<ArrayList<TieziBean>>() {
@@ -150,10 +172,14 @@ public class LunTanClassiftFragment extends BaseFragment implements SwipeRefresh
 
     private void guanZhuHttp(final ImageView view, String bbs_id) {
 //        OkHttpUtils.getInstance().cancelTag("guanZhuHttp");
+        if (!StartUtil.isLogin()) {
+            StartUtil.toLogin(mActivity);
+            return;
+        }
         OkHttpUtils
                 .get()
                 .tag("guanZhuHttp")
-                .url(Api.like)
+                .url(Api.follow)
                 .addParams("bbs_id", bbs_id)
                 .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
                 .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
@@ -169,6 +195,10 @@ public class LunTanClassiftFragment extends BaseFragment implements SwipeRefresh
 
     private void DianZanHttp(final TextView tv_zan, String Bbs_id) {
 //        OkHttpUtils.getInstance().cancelTag("DianZanHttp");
+        if (!StartUtil.isLogin()) {
+            StartUtil.toLogin(mActivity);
+            return;
+        }
         OkHttpUtils
                 .get()
                 .tag("DianZanHttp")
@@ -180,12 +210,24 @@ public class LunTanClassiftFragment extends BaseFragment implements SwipeRefresh
                 .execute(new MyStringCallback() {
                     @Override
                     public void onMySuccess(String result) {
-                        tv_zan.setTextColor(MyApplication.getInstance().getResources().getColor(R.color.main_red));
-                        Drawable drawable = getResources().getDrawable(R.drawable.img_79);
-                        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-                        tv_zan.setCompoundDrawables(drawable, null, null, null);
+                        ZaiView(tv_zan);
+//                        beanBaseXiaLaRvPresenter.Shuaxin();
                     }
                 });
+    }
+
+    private void ZaiView(TextView tv_zan) {
+        tv_zan.setTextColor(MyApplication.getInstance().getResources().getColor(R.color.main_red));
+        Drawable drawable = getResources().getDrawable(R.drawable.img_79);
+        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+        tv_zan.setCompoundDrawables(drawable, null, null, null);
+    }
+
+    private void ZaiView_no(TextView tv_zan) {
+        tv_zan.setTextColor(MyApplication.getInstance().getResources().getColor(R.color.text_hui));
+        Drawable drawable = getResources().getDrawable(R.drawable.img_80);
+        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+        tv_zan.setCompoundDrawables(drawable, null, null, null);
     }
 
     private RequestCall getBuild() {
@@ -196,6 +238,8 @@ public class LunTanClassiftFragment extends BaseFragment implements SwipeRefresh
                 .tag("base")
                 .addParams("cat_id", forumFragment.getCat_id())
                 .addParams("p", beanBaseXiaLaRvPresenter.p + "")
+                .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
                 .build();
     }
 
@@ -229,6 +273,10 @@ public class LunTanClassiftFragment extends BaseFragment implements SwipeRefresh
 
     @OnClick(R.id.layout_fatie)
     public void onClick() {
+        if (!StartUtil.isLogin()) {
+            StartUtil.toLogin(mActivity);
+            return;
+        }
         Intent intent = new Intent(mActivity, FaTieActivity.class);
         intent.putExtra("list", (Serializable) forumFragment.list);
         startActivity(intent);
@@ -237,6 +285,7 @@ public class LunTanClassiftFragment extends BaseFragment implements SwipeRefresh
     @Override
     public void onRefresh() {
         isTop();
+        ImageLoader.withYuan(url + MyApplication.getSpUtils().getString(Constants.head_pic), imgHeadPic);
         beanBaseXiaLaRvPresenter.Shuaxin();
     }
 
@@ -261,5 +310,6 @@ public class LunTanClassiftFragment extends BaseFragment implements SwipeRefresh
                     });
         }
     }
+
 
 }

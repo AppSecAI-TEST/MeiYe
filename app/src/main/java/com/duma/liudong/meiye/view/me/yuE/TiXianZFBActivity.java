@@ -1,5 +1,6 @@
 package com.duma.liudong.meiye.view.me.yuE;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -89,7 +90,10 @@ public class TiXianZFBActivity extends BaseActivity {
                     public void onMySuccess(String result) {
                         DialogUtil.hide();
                         Ts.setText("提交成功!");
-                        finish();
+                        Intent intent = new Intent(mActivity, YuEActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        startActivity(intent);
                     }
                 });
     }

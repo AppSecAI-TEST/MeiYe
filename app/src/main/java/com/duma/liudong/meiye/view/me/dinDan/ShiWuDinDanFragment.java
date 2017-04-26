@@ -137,7 +137,7 @@ public class ShiWuDinDanFragment extends BaseFragment implements SwipeRefreshLay
                 holder.setText(R.id.tv_store_name, shiWuBean.getStore_name())
                         .setText(R.id.tv_type, shiWuBean.getOrder_status_desc())
                         .setText(R.id.tv_num, shiWuBean.getGoods_list().size() + "")
-                        .setText(R.id.tv_jiage, shiWuBean.getTotal_amount());
+                        .setText(R.id.tv_jiage, shiWuBean.getOrder_amount());
 
                 RecyclerView recyclerView = holder.getView(R.id.rv_shangping);
                 recyclerView.setFocusable(false);
@@ -155,7 +155,7 @@ public class ShiWuDinDanFragment extends BaseFragment implements SwipeRefreshLay
                         holder.setOnClickListener(R.id.layout_onClick, new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                StartUtil.toXiangQin(mActivity, activity.type, shiWuBean.getOrder_id(), activity.getfenlei_Type());
+                                StartUtil.toXiangQin(mActivity, activity.type, shiWuBean.getOrder_id(), activity.getfenlei_Type(), activity.store_id);
                             }
                         });
                     }
@@ -171,81 +171,91 @@ public class ShiWuDinDanFragment extends BaseFragment implements SwipeRefreshLay
                 tv_hei_two.setOnClickListener(new OnTextClick(tv_hei_two, shiWuBean));
                 tv_hong.setOnClickListener(new OnTextClick(tv_hong, shiWuBean));
 
-                switch (shiWuBean.getOrder_status_code()) {
-                    case "WAITPAY":
-                        //代付款
-                        tv_hei_one.setVisibility(View.GONE);
-                        tv_hei_two.setVisibility(View.VISIBLE);
-                        tv_hong.setVisibility(View.VISIBLE);
-                        tv_hei_two.setText("取消订单");
-                        tv_hong.setText("去支付");
-                        break;
-                    case "WAITSEND":
-                        //待发货
-                        tv_hei_one.setVisibility(View.GONE);
-                        tv_hei_two.setVisibility(View.VISIBLE);
-                        tv_hong.setVisibility(View.VISIBLE);
-                        tv_hei_two.setText("申请退款");
-                        tv_hong.setText("提醒发货");
-                        break;
-                    case "WAITRECEIVE":
-                        //1:实物,2:定制,3:团购
-                        //待收货->待使用
-                        if (activity.type.equals("3")) {
-                            tv_hei_one.setVisibility(View.VISIBLE);
-                            tv_hei_two.setVisibility(View.GONE);
-                            tv_hong.setVisibility(View.VISIBLE);
-                            tv_hei_one.setText("申请退款");
-//                            tv_hei_two.setText("查看物流");
-                            tv_hong.setText("查看劵码");
-                        } else {
-                            tv_hei_one.setVisibility(View.VISIBLE);
+                if (activity.store_id.equals("")) {
+                    switch (shiWuBean.getOrder_status_code()) {
+                        case "WAITPAY":
+                            //代付款
+                            tv_hei_one.setVisibility(View.GONE);
                             tv_hei_two.setVisibility(View.VISIBLE);
                             tv_hong.setVisibility(View.VISIBLE);
-                            tv_hei_one.setText("申请退款");
-                            tv_hei_two.setText("查看物流");
-                            tv_hong.setText("确认收货");
-                        }
-
-                        break;
-                    case "WAITCCOMMENT":
-                        //待评价
-                        if (activity.type.equals("3")) {
+                            tv_hei_two.setText("取消订单");
+                            tv_hong.setText("去支付");
+                            break;
+                        case "WAITSEND":
+                            //待发货
                             tv_hei_one.setVisibility(View.GONE);
                             tv_hei_two.setVisibility(View.VISIBLE);
                             tv_hong.setVisibility(View.VISIBLE);
                             tv_hei_two.setText("申请退款");
-                            tv_hong.setText("评价晒单");
-                        } else {
-                            tv_hei_one.setVisibility(View.GONE);
-                            tv_hei_two.setVisibility(View.GONE);
-                            tv_hong.setVisibility(View.VISIBLE);
+                            tv_hong.setText("提醒发货");
+                            if (activity.getfenlei_Type().equals("RETURNED")) {
+                                tv_hong.setVisibility(View.GONE);
+                            }
+                            break;
+                        case "WAITRECEIVE":
+                            //1:实物,2:定制,3:团购
+                            //待收货->待使用
+                            if (activity.type.equals("3")) {
+                                tv_hei_one.setVisibility(View.VISIBLE);
+                                tv_hei_two.setVisibility(View.GONE);
+                                tv_hong.setVisibility(View.VISIBLE);
+                                tv_hei_one.setText("申请退款");
+//                            tv_hei_two.setText("查看物流");
+                                tv_hong.setText("查看劵码");
+                            } else {
+                                tv_hei_one.setVisibility(View.VISIBLE);
+                                tv_hei_two.setVisibility(View.VISIBLE);
+                                tv_hong.setVisibility(View.VISIBLE);
+                                tv_hei_one.setText("申请退款");
+                                tv_hei_two.setText("查看物流");
+                                tv_hong.setText("确认收货");
+                            }
+
+                            break;
+                        case "WAITCCOMMENT":
+                            //待评价
+                            if (activity.type.equals("3")) {
+                                tv_hei_one.setVisibility(View.GONE);
+                                tv_hei_two.setVisibility(View.VISIBLE);
+                                tv_hong.setVisibility(View.VISIBLE);
+                                tv_hei_two.setText("申请退款");
+                                tv_hong.setText("评价晒单");
+                            } else {
+                                tv_hei_one.setVisibility(View.GONE);
+                                tv_hei_two.setVisibility(View.GONE);
+                                tv_hong.setVisibility(View.VISIBLE);
 //                            tv_hei_two.setText("申请退款");
-                            tv_hong.setText("评价晒单");
-                        }
-                        break;
-                    case "COMMENTED":
-                        //已评价==已完成
-                        tv_hei_one.setVisibility(View.VISIBLE);
-                        tv_hei_two.setVisibility(View.VISIBLE);
-                        tv_hong.setVisibility(View.GONE);
-                        tv_hei_one.setText("删除订单");
-                        tv_hei_two.setText("查看订单");
-                        break;
-                    case "RETURNED":
-                        //已退货
-                        tv_hei_one.setVisibility(View.GONE);
-                        tv_hei_two.setVisibility(View.VISIBLE);
-                        tv_hong.setVisibility(View.GONE);
-                        tv_hei_two.setText("查看订单");
-                        break;
-                    default:
-                        //交易关闭
-                        tv_hei_one.setVisibility(View.GONE);
-                        tv_hei_two.setVisibility(View.VISIBLE);
-                        tv_hong.setVisibility(View.GONE);
-                        tv_hei_two.setText("删除订单");
-                        break;
+                                tv_hong.setText("评价晒单");
+                            }
+                            break;
+                        case "COMMENTED":
+                            //已评价==已完成
+                            tv_hei_one.setVisibility(View.VISIBLE);
+                            tv_hei_two.setVisibility(View.VISIBLE);
+                            tv_hong.setVisibility(View.GONE);
+                            tv_hei_one.setText("删除订单");
+                            tv_hei_two.setText("查看订单");
+                            break;
+                        case "RETURNED":
+                            //已退货
+                            tv_hei_one.setVisibility(View.GONE);
+                            tv_hei_two.setVisibility(View.VISIBLE);
+                            tv_hong.setVisibility(View.GONE);
+                            tv_hei_two.setText("查看订单");
+                            break;
+                        default:
+                            //交易关闭
+                            tv_hei_one.setVisibility(View.GONE);
+                            tv_hei_two.setVisibility(View.VISIBLE);
+                            tv_hong.setVisibility(View.GONE);
+                            tv_hei_two.setText("删除订单");
+                            break;
+                    }
+                } else {
+                    tv_hei_one.setVisibility(View.GONE);
+                    tv_hei_two.setVisibility(View.VISIBLE);
+                    tv_hong.setVisibility(View.GONE);
+                    tv_hei_two.setText("查看订单");
                 }
 
             }
@@ -266,17 +276,33 @@ public class ShiWuDinDanFragment extends BaseFragment implements SwipeRefreshLay
     }
 
     private RequestCall getBuild() {
-        baseXiaLaRvPresenter.p++;
-        return OkHttpUtils
-                .get()
-                .tag("base")
-                .url(Api.orderList)
-                .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
-                .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
-                .addParams("type", activity.getfenlei_Type())
-                .addParams("goods_type", activity.type)
-                .addParams("p", baseXiaLaRvPresenter.p + "")
-                .build();
+        if (activity.store_id.equals("")) {
+            baseXiaLaRvPresenter.p++;
+            return OkHttpUtils
+                    .get()
+                    .tag("base")
+                    .url(Api.orderList)
+                    .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                    .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
+                    .addParams("type", activity.getfenlei_Type())
+                    .addParams("goods_type", activity.type)
+                    .addParams("p", baseXiaLaRvPresenter.p + "")
+                    .build();
+        } else {
+            baseXiaLaRvPresenter.p++;
+            return OkHttpUtils
+                    .get()
+                    .tag("base")
+                    .url(Api.sellerorderList)
+                    .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                    .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
+                    .addParams("type", activity.getfenlei_Type())
+                    .addParams("goods_type", activity.type)
+                    .addParams("p", baseXiaLaRvPresenter.p + "")
+                    .addParams("store_id", activity.store_id)
+                    .build();
+        }
+
     }
 
     class OnTextClick implements View.OnClickListener {
@@ -311,11 +337,10 @@ public class ShiWuDinDanFragment extends BaseFragment implements SwipeRefreshLay
                     //调接口
                     break;
                 case "去支付":
-                    StartUtil.toZhiFu(mActivity, bean.getOrder_id(), bean.getTotal_amount(), activity.type);
+                    StartUtil.toZhiFu(mActivity, bean.getOrder_id(), bean.getOrder_amount(), activity.type);
                     break;
                 case "查看物流":
-                    // TODO: 17/4/17
-                    Ts.setText("查看物流");
+                    StartUtil.toH5Web(mActivity, Api.WuLiuH5 + bean.getOrder_id(), "查看物流");
                     break;
                 case "评价晒单":
                 case "查看订单":
@@ -326,7 +351,7 @@ public class ShiWuDinDanFragment extends BaseFragment implements SwipeRefreshLay
 //                    intent.putExtra("id", bean.getOrder_id());
 //                    intent.putExtra("type", activity.getfenlei_Type());
 //                    startActivity(intent);
-                    StartUtil.toXiangQin(mActivity, activity.type, bean.getOrder_id(), activity.getfenlei_Type());
+                    StartUtil.toXiangQin(mActivity, activity.type, bean.getOrder_id(), activity.getfenlei_Type(), activity.store_id);
                     break;
             }
         }

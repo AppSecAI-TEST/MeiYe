@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.AppUtils;
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
+import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.utils.Ts;
 
@@ -63,7 +64,7 @@ public class SheZhiActivity extends BaseActivity {
                 // TODO: 17/4/20 升级
                 break;
             case R.id.layout_banquan:
-                StartUtil.toH5Web(mActivity, "http://meiye.duma-ivy.cn/apidoc/", "版权信息");
+                StartUtil.toH5Web(mActivity, Api.banquanH5, "版权信息");
                 break;
         }
     }

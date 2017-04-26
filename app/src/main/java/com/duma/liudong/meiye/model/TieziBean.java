@@ -9,18 +9,20 @@ import java.util.List;
 public class TieziBean {
 
     /**
-     * head_pic : http://meiye.duma-ivy.cn/Public/upload/head_pic/2017-03-27/58d8701391de5.jpg
-     * bbs_id : 1
-     * title : 今天天气很好123123
-     * content : 今天天气很好
-     * add_time : 2017-03-14
-     * click_count : 0
-     * img_json : ["http://meiye.duma-ivy.cn/Public/upload/link/2017/03-13/58c63517b1e4e.jpeg","http://meiye.duma-ivy.cn/Public/upload/link/2017/03-13/58c63517b1e4e.jpeg","http://meiye.duma-ivy.cn/Public/upload/link/2017/03-13/58c63517b1e4e.jpeg","http://meiye.duma-ivy.cn/Public/upload/link/2017/03-13/58c63517b1e4e.jpeg"]
-     * user_id : 1
-     * user_name : 阿斯达
+     * head_pic : http://meiye.duma-ivy.cn/Public/upload/head_pic/2017-04-25/58fefd7592030.jpg
+     * bbs_id : 17
+     * title :
+     * content : 点赞
+     * add_time : 2017-04-25
+     * click_count : 4
+     * img_json : ["http://meiye.duma-ivy.cn/Public/upload/head_pic/2017-04-25/58ff01c4434e1.jpg"]
+     * user_id : 11
+     * user_name : 晓得了
      * like_count : 1
-     * comment_count : 1
-     * bbs_comment : [{"bbs_comment_id":"1","bbs_id":"1","user_id":"1","user_name":"测试","content":"测试内容","reply_id":"2","reply_name":"张凯","add_time":"2017-03-14","like_count":"123","head_pic":"http://meiye.duma-ivy.cn/Public/upload/head_pic/2017-03-27/58d8701391de5.jpg"}]
+     * comment_count : 0
+     * bbs_comment : [{"bbs_comment_id":"55","bbs_id":"17","user_id":"11","user_name":"晓得了","content":"囧","reply_id":"0","reply_name":"","add_time":"2017-04-25 15:59:59","like_count":"0","head_pic":"http://meiye.duma-ivy.cn/Public/upload/head_pic/2017-04-25/58fefd7592030.jpg"}]
+     * is_follow : 0
+     * is_like : 0
      */
 
     private String head_pic;
@@ -33,6 +35,8 @@ public class TieziBean {
     private String user_name;
     private String like_count;
     private String comment_count;
+    private int is_follow;
+    private int is_like;
     private List<String> img_json;
     private List<BbsCommentBean> bbs_comment;
 
@@ -116,6 +120,22 @@ public class TieziBean {
         this.comment_count = comment_count;
     }
 
+    public int getIs_follow() {
+        return is_follow;
+    }
+
+    public void setIs_follow(int is_follow) {
+        this.is_follow = is_follow;
+    }
+
+    public int getIs_like() {
+        return is_like;
+    }
+
+    public void setIs_like(int is_like) {
+        this.is_like = is_like;
+    }
+
     public List<String> getImg_json() {
         return img_json;
     }
@@ -134,16 +154,16 @@ public class TieziBean {
 
     public static class BbsCommentBean {
         /**
-         * bbs_comment_id : 1
-         * bbs_id : 1
-         * user_id : 1
-         * user_name : 测试
-         * content : 测试内容
-         * reply_id : 2
-         * reply_name : 张凯
-         * add_time : 2017-03-14
-         * like_count : 123
-         * head_pic : http://meiye.duma-ivy.cn/Public/upload/head_pic/2017-03-27/58d8701391de5.jpg
+         * bbs_comment_id : 55
+         * bbs_id : 17
+         * user_id : 11
+         * user_name : 晓得了
+         * content : 囧
+         * reply_id : 0
+         * reply_name :
+         * add_time : 2017-04-25 15:59:59
+         * like_count : 0
+         * head_pic : http://meiye.duma-ivy.cn/Public/upload/head_pic/2017-04-25/58fefd7592030.jpg
          */
 
         private String bbs_comment_id;

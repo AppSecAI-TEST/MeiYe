@@ -189,6 +189,12 @@ public class WebViewActivity extends BaseActivity implements SwipeRefreshLayout.
             StartUtil.toDianPu(mActivity, id);
         }
 
+        //跳转分享
+        @JavascriptInterface
+        public void goShare(String title, String url) {
+            StartUtil.toShare(mActivity, title, title);
+        }
+
     }
 
 }

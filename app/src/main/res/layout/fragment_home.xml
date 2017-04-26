@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include layout="@layout/include_error" />
+
     <com.duma.liudong.meiye.widget.VerticalSwipeRefreshLayout
         android:id="@+id/sw_loading"
         android:layout_width="match_parent"

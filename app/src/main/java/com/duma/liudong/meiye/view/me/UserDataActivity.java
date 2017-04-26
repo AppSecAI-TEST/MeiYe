@@ -152,6 +152,7 @@ public class UserDataActivity extends BaseActivity implements XiuGaiNiChengDialo
                 startActivity(new Intent(UserDataActivity.this, ChangePasswordActivity.class));
                 break;
             case R.id.layout_anquan:
+                startActivity(new Intent(mActivity, AnQuanActivity.class));
                 break;
             case R.id.btn_cancel_login:
                 StartUtil.cancleLogin();

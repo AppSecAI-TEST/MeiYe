@@ -16,8 +16,10 @@ import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.DialogUtil;
 import com.duma.liudong.meiye.utils.ImageLoader;
+import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.utils.Ts;
 import com.duma.liudong.meiye.view.classift.dianPu.DianPuJianJieActivity;
+import com.duma.liudong.meiye.view.home.MessageContentActivity;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 
@@ -144,16 +146,24 @@ public class MjMainActivity extends BaseActivity {
                 startActivity(intent);
                 break;
             case R.id.layout_daishoukuan:
+                StartUtil.toQuanBuDinDan(mActivity, bean.getSc_id(), "1", bean.getStore_id());
                 break;
             case R.id.layout_daishouhuo:
+                StartUtil.toQuanBuDinDan(mActivity, bean.getSc_id(), "2", bean.getStore_id());
                 break;
             case R.id.layout_daipingjia:
+                StartUtil.toQuanBuDinDan(mActivity, bean.getSc_id(), "3", bean.getStore_id());
                 break;
             case R.id.layout_tuikuan:
+                StartUtil.toQuanBuDinDan(mActivity, bean.getSc_id(), "4", bean.getStore_id());
                 break;
             case R.id.layout_dindan_type:
+                StartUtil.toQuanBuDinDan(mActivity, bean.getSc_id(), "0", bean.getStore_id());
                 break;
             case R.id.layout_dindantixin:
+                intent = new Intent(mActivity, MessageContentActivity.class);
+                intent.putExtra("type", "3");
+                startActivity(intent);
                 break;
             case R.id.layout_shangxiajia:
                 //商品上下架
@@ -168,6 +178,9 @@ public class MjMainActivity extends BaseActivity {
                 startActivity(intent);
                 break;
             case R.id.layout_xiaoxi:
+                intent = new Intent(mActivity, MessageContentActivity.class);
+                intent.putExtra("type", "3");
+                startActivity(intent);
                 break;
         }
     }

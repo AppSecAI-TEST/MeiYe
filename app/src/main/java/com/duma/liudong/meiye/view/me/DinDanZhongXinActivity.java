@@ -12,6 +12,7 @@ import com.duma.liudong.meiye.utils.StartUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import code.qiao.com.tipsview.TipsView;
 
 /**
  * Created by liudong on 17/4/20.
@@ -71,6 +72,8 @@ public class DinDanZhongXinActivity extends BaseActivity {
     @Override
     protected void initData() {
         tvTitle.setText("订单中心");
+        TipsView.create(mActivity)
+                .attach(layoutShiwuDaishouhuan);
     }
 
     @OnClick({R.id.layout_back, R.id.layout_other, R.id.layout_shiwu_daishoukuan, R.id.layout_shiwu_daishouhuan, R.id.layout_shiwu_daipingjia, R.id.layout_shiwu_tuikuan, R.id.layout_shiwu, R.id.layout_tuangou_daishoukuan, R.id.layout_tuangou_daishouhuan, R.id.layout_tuangou_daipingjia, R.id.layout_tuangou_tuikuan, R.id.layout_tuangou, R.id.layout_dinzhi_daishoukuan, R.id.layout_dinzhi_daishouhuan, R.id.layout_dinzhi_daipingjia, R.id.layout_dinzhi_tuikuan, R.id.layout_dinzhi, R.id.layout_wanchen, R.id.layout_jinxin, R.id.layout_dingzhi})

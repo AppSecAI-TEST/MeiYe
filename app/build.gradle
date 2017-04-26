@@ -19,7 +19,11 @@ android {
         }
     }
 }
-
+repositories {
+    flatDir {
+        dirs 'libs' //this way we can find the .aar file in libs folder
+    }
+}
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -75,4 +79,8 @@ dependencies {
     //数据库
     compile files('libs/ormlite-android-5.0.jar')
     compile files('libs/ormlite-core-5.0.jar')
+    //adapter
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.13'
+    //未读消息aar
+    compile(name: 'tipsview-release', ext: 'aar')
 }

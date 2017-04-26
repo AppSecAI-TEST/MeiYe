@@ -36,6 +36,8 @@ public class DiZhiFragment extends BaseFragment implements DiZhiListener, SwipeR
     @BindView(R.id.layout_dizhi_kong)
     LinearLayout layoutDizhiKong;
 
+    DiZhiBean diZhiBean;
+
     public static DiZhiFragment newInstance() {
         if (instance == null) {
             instance = new DiZhiFragment();
@@ -53,6 +55,7 @@ public class DiZhiFragment extends BaseFragment implements DiZhiListener, SwipeR
 
     @Override
     protected void initData() {
+        diZhiBean = new DiZhiBean();
         swrLoading.setOnRefreshListener(this);
         swrLoading.setColorSchemeColors(getResources().getColor(R.color.maincolor));
 
@@ -84,12 +87,12 @@ public class DiZhiFragment extends BaseFragment implements DiZhiListener, SwipeR
         for (int i = 0; i < mlist.size(); i++) {
             if (mlist.get(i).getIs_default().equals("1")) {
                 isEmpty = false;
-                EventBus.getDefault().post(mlist.get(i));
+                diZhiBean = mlist.get(i);
                 return;
             }
         }
         if (isEmpty) {
-            EventBus.getDefault().post(new DiZhiBean());
+            diZhiBean = new DiZhiBean();
         }
     }
 
@@ -104,6 +107,12 @@ public class DiZhiFragment extends BaseFragment implements DiZhiListener, SwipeR
 //        return i;
 //    }
 
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().post(diZhiBean);
+    }
 
     @OnClick(R.id.layout_addDizhi)
     public void onClick() {

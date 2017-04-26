@@ -11,20 +11,24 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.duma.liudong.meiye.R;
+import com.duma.liudong.meiye.base.ActivityCollector;
 import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.base.BaseFragment;
 import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.StartUtil;
+import com.duma.liudong.meiye.utils.Ts;
 import com.duma.liudong.meiye.view.home.MessageActivity;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity implements AMapLocationListener {
@@ -47,6 +51,8 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
     FrameLayout layoutTabFragment;
     @BindView(R.id.radioGroup_p)
     RadioGroup radioGroupP;
+    @BindView(R.id.tv_dian)
+    TextView tvDian;
 
     HomeFragment homeFragment;
     ClassifyFragment classifyFragment;
@@ -62,6 +68,7 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
     public AMapLocationClient mLocationClient = null;
     //声明AMapLocationClientOption对象
     public AMapLocationClientOption mLocationOption = null;
+
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -298,5 +305,26 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
     protected void onDestroy() {
         super.onDestroy();
         mLocationClient.stopLocation();//停止定位后，本地定位服务并不会被销毁
+    }
+
+    private long exitTime = 0;
+
+    @Override
+    protected void OnBack() {
+        if ((System.currentTimeMillis() - exitTime) > 2000) // System.currentTimeMillis()无论何时调用，肯定大于2000
+        {
+            Ts.setText("再按一次退出App");
+            exitTime = System.currentTimeMillis();
+        } else {
+            ActivityCollector.finishAll();
+            System.exit(0);
+        }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

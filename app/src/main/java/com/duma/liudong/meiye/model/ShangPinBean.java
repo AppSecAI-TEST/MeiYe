@@ -6,19 +6,20 @@ package com.duma.liudong.meiye.model;
 
 public class ShangPinBean {
     /**
-     * goods_id : 18
-     * goods_name : 【送2个替换装】透真气垫BB霜裸妆遮瑕强隔离持久保湿cc霜粉底液
-     * original_img : /Public/upload/goods/2017/03-29/58db6ede94228.jpg
+     * goods_id : 2
+     * goods_name : 实物商品
+     * original_img : http://meiye.duma-ivy.cn/Public/upload/goods/2017/04-21/58f9d3564d06c.jpg
      * sales_sum : 0
-     * store_id : 1
-     * type : 1
-     * shop_price : 89.00
-     * market_price : 219.00
+     * store_id : 4
+     * type : http://meiye.duma-ivy.cn/Public/images/meiye/type_1.png
+     * price : 0.03
+     * market_price : 0.10
      * store_name : 旗舰店
-     * store_logo : /Public/upload/seller/2017/03-29/58db723588613.jpg
-     * lng : 116.39564503788
-     * lat : 39.92998577808
-     * distance : 2823
+     * store_logo : http://meiye.duma-ivy.cn/Public/upload/seller/2017/04-20/58f7fd364d151.jpg
+     * lng : 113.63755982348
+     * lat : 40.856228406037
+     * goods_url : http://www.meiye.com/goods.html?goods_id=2
+     * distance : 1324660
      */
 
     private String goods_id;
@@ -27,14 +28,15 @@ public class ShangPinBean {
     private String sales_sum;
     private String store_id;
     private String type;
-    private String shop_price;
+    private String price;
     private String market_price;
     private String store_name;
     private String store_logo;
     private String lng;
     private String lat;
-    private int distance;
     private String store_count;
+    private int distance;
+    private String goods_url;
 
     public String getStore_count() {
         return store_count;
@@ -92,12 +94,12 @@ public class ShangPinBean {
         this.type = type;
     }
 
-    public String getShop_price() {
-        return shop_price;
+    public String getPrice() {
+        return price;
     }
 
-    public void setShop_price(String shop_price) {
-        this.shop_price = shop_price;
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public String getMarket_price() {
@@ -138,6 +140,14 @@ public class ShangPinBean {
 
     public void setLat(String lat) {
         this.lat = lat;
+    }
+
+    public String getGoods_url() {
+        return goods_url;
+    }
+
+    public void setGoods_url(String goods_url) {
+        this.goods_url = goods_url;
     }
 
     public int getDistance() {

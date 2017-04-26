@@ -129,7 +129,7 @@ public class PingJiaActivity extends BaseActivity {
                 .addParams("order_id", order_id)
                 .addParams("goods_id", goods_id)
                 .addParams("content", editText.getText().toString())
-                .addParams("goods_rank", getNum())
+                .addParams("goods_rank", num1 + "")
                 .addParams("describe_score", xxStoreDesccredit + "")
                 .addParams("seller_score", xxStoreServicecredit + "")
                 .addParams("logistics_score", xxStoreDeliverycredit + "");
@@ -148,15 +148,15 @@ public class PingJiaActivity extends BaseActivity {
         });
     }
 
-    private String getNum() {
-        switch (num1) {
-            case 1:
-            case 2:
-                return "1";
-            case 3:
-            case 4:
-                return "2";
-        }
-        return "3";
-    }
+//    private String getNum() {
+//        switch (num1) {
+//            case 1:
+//            case 2:
+//                return "1";
+//            case 3:
+//            case 4:
+//                return "2";
+//        }
+//        return "3";
+//    }
 }

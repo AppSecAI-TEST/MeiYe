@@ -90,7 +90,7 @@ public class DianPuClassiftActivity extends BaseActivity implements SwipeRefresh
                             @Override
                             public void onClick(View v) {
                                 //跳转到商品列表页 带的是 cat_id
-                                StartUtil.toShangPingLieBiao(mActivity, Constants.cat_id, childrenBean.getCat_id(), childrenBean.getCat_name(), "1");
+                                StartUtil.toShangPingLieBiao(mActivity, Constants.store_class, childrenBean.getCat_id(), childrenBean.getCat_name(), "1");
                             }
                         });
                     }
@@ -100,7 +100,7 @@ public class DianPuClassiftActivity extends BaseActivity implements SwipeRefresh
                     @Override
                     public void onClick(View v) {
                         //跳转到商品列表页 带的是 cat_id
-                        StartUtil.toShangPingLieBiao(mActivity, Constants.cat_id, dianPuClassiftBean.getCat_id(), dianPuClassiftBean.getCat_name(), "1");
+                        StartUtil.toShangPingLieBiao(mActivity, Constants.store_class, dianPuClassiftBean.getCat_id(), dianPuClassiftBean.getCat_name(), "1");
                     }
                 });
             }

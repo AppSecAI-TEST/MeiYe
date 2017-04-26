@@ -28,8 +28,8 @@ public class ShangPinAdapter {
                 ImageView imageView = holder.getView(R.id.img_original_img);
                 ImageLoader.with(shangPinBean.getOriginal_img(), imageView);
                 holder.setText(R.id.tv_goods_name, shangPinBean.getGoods_name());
-                holder.setText(R.id.tv_market_price, shangPinBean.getMarket_price());
-                holder.setText(R.id.tv_shop_price, "¥" + shangPinBean.getShop_price());
+                holder.setText(R.id.tv_market_price, "¥" + shangPinBean.getMarket_price());
+                holder.setText(R.id.tv_shop_price, shangPinBean.getPrice());
                 holder.setText(R.id.tv_sales_sum, shangPinBean.getSales_sum() + "人付款");
                 holder.setOnClickListener(R.id.layout_onClick, new View.OnClickListener() {
                     @Override

@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:text="-- 没有商品了 --"
+            android:text="-- 已经到底了 --"
             android:textSize="14sp" />
     </LinearLayout>
 

@@ -130,6 +130,10 @@
         <activity android:name=".view.me.dinDan.WoDeDinZhiActivity" />
         <activity android:name=".widget.city.ShouYeDingWeiActivity" />
         <activity android:name=".view.me.maiJia.XiaoShouBaoBiaoActivity" />
+        <activity android:name=".view.me.AnQuanActivity" />
+        <activity android:name=".view.me.dinDan.ShenQinTuiKuanActivity" />
+        <activity android:name=".view.me.dinDan.TuiKuanXiangQinActivity" />
+        <activity android:name=".widget.demo.DemoActivity" />
     </application>
 
 </manifest>

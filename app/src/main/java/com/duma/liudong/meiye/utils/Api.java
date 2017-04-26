@@ -9,8 +9,11 @@ import com.duma.liudong.meiye.base.MyApplication;
 public class Api {
     public static final String url = "http://meiye.duma-ivy.cn";
 
+    /**
+     * h5
+     */
     //商品详情
-    public static final String H5Url = Api.url + "/index.php/Mobile/Goods/goodsdetail?goods_id=";
+    public static final String H5Url = Api.url + "/index.php/Mobile/Goods/goodsdetail?" + Constants.user_id + "=" + MyApplication.getSpUtils().getString(Constants.user_id) + "&goods_id=";
     //论坛详情
     public static final String LunTanH5Url = Api.url + "/index.php/Mobile/Forum/detail?bbs_id=";
     //签到
@@ -19,6 +22,20 @@ public class Api {
     public static final String TouTiaoH5Url = Api.url + "/index.php/Mobile/Toutiao/detail.html?article_id=";
     //二维码
     public static final String erweima = Api.url + "/index.php/Mobile/User/qrcode?user_id=" + MyApplication.getSpUtils().getString(Constants.user_id) + "&token=" + MyApplication.getSpUtils().getString(Constants.token);
+    //赚钱
+    public static final String zhuanQianH5 = Api.url + "/index.php/Mobile/User/makeMoney";
+    //入驻
+    public static final String ruzhuH5 = Api.url + "/index.php/Mobile/User/settled";
+    //版权
+    public static final String banquanH5 = Api.url + "/index.php/Mobile/User/copyright";
+    //会员升级
+    public static final String HuiYuanH5 = Api.url + "/index.php/Mobile/User/upgrade";
+    //问卷调查
+    public static final String WenJuanH5 = Api.url + "/index.php/Mobile/Question/index";
+    //查看物流
+    public static final String WuLiuH5 = Api.url + "/index.php/Mobile/Goods/logistics?order_id=";
+    //新人特权
+    public static final String TeQuanH5 = Api.url + "/index.php/Mobile/User/privilege";
     /**
      * 个人用户
      */
@@ -54,6 +71,12 @@ public class Api {
     public static final String storeCollect = url + "/App/user/storeCollect";
     public static final String orderInfo = url + "/App/user/orderInfo";
     public static final String mySpell = url + "/App/user/mySpell";
+    public static final String returnGoods = url + "/App/user/returnGoods";
+    public static final String isBindIdCard = url + "/App/user/isBindIdCard";
+    public static final String sellerorderList = url + "/App/seller/orderList";
+
+    public static final String isComment = url + "/App/user/isComment";
+    public static final String isReturnGoods = url + "/App/user/isReturnGoods";
     /**
      * seller-个人中心
      */
@@ -63,6 +86,7 @@ public class Api {
     public static final String is_onsale = url + "/App/Goods/is_onsale";
     public static final String del = url + "/App/Goods/del";
     public static final String sellStatement = url + "/App/seller/sellStatement";
+    public static final String sellerorderInfo = url + "/App/seller/orderInfo";
     /**
      * Index
      */
@@ -118,7 +142,7 @@ public class Api {
     public static final String follow_list = url + "/App/Bbs/follow_list";
     public static final String follow_bbs = url + "/App/Bbs/follow_bbs";
     public static final String my_add_bbs = url + "/App/Bbs/my_add_bbs";
-
+    public static final String follow = url + "/App/Bbs/follow";
     /**
      * Tuangou - 团购列表
      */

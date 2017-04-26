@@ -135,9 +135,9 @@ public class MiaoShaFragment extends BaseFragment implements SwipeRefreshLayout.
                 ImageView img_original_img = holder.getView(R.id.img_original_img);
                 ImageLoader.with(shangPinBean.getOriginal_img(), img_original_img);
                 holder.setText(R.id.tv_goods_name, shangPinBean.getGoods_name());
-                holder.setText(R.id.tv_market_price, shangPinBean.getMarket_price());
+                holder.setText(R.id.tv_market_price, shangPinBean.getPrice());
                 holder.setText(R.id.tv_distance, shangPinBean.getDistance() + "m");
-                holder.setText(R.id.tv_shop_price, "¥" + shangPinBean.getShop_price());
+                holder.setText(R.id.tv_shop_price, "¥" + shangPinBean.getMarket_price());
                 double num1 = Double.parseDouble(shangPinBean.getSales_sum());
                 double num2 = Double.parseDouble(shangPinBean.getStore_count()) + num1;
                 String res = numberFormat.format((num1 / num2) * 100);

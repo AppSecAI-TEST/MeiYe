@@ -70,6 +70,7 @@ public class YouHuiJuanFragment extends BaseFragment implements SwipeRefreshLayo
             @Override
             protected void getView(ViewHolder holder, YouHuiJuanBean youHuiJuanBean, int position) {
                 holder.setText(R.id.tv_money, youHuiJuanBean.getMoney());
+                holder.setText(R.id.tv_name, youHuiJuanBean.getName());
                 holder.setText(R.id.tv_condition, youHuiJuanBean.getCondition());
                 holder.setText(R.id.tv_time, "使用日期:" + StartUtil.getTime(Long.parseLong(youHuiJuanBean.getUse_start_time()) * 1000) + " - " + StartUtil.getTime(Long.parseLong(youHuiJuanBean.getUse_end_time()) * 1000));
                 TextView tv_type = holder.getView(R.id.tv_type);
@@ -131,6 +132,7 @@ public class YouHuiJuanFragment extends BaseFragment implements SwipeRefreshLayo
                     .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
                     .addParams("type", "0")
                     .addParams("store_id", mActivity.getIntent().getStringExtra("id"))
+                    .addParams("money", mActivity.getIntent().getStringExtra("money"))
                     .build();
         } else {
             build = OkHttpUtils
