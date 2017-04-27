@@ -96,23 +96,26 @@ public class StartUtil {
 
     //实物/定制 订单
     public static void toQuanBuDinDan(Activity activity, String type) {
-        toQuanBuDinDan(activity, type, "0");
+        toQuanBuDinDan(activity, type, "");
     }
 
     //实物/定制 订单
     public static void toQuanBuDinDan(Activity activity, String type, String position) {
-        Intent intent = new Intent(activity, QuanBuDinDanActivity.class);
-        intent.putExtra("type", type);
-        intent.putExtra("position", position);
-        activity.startActivity(intent);
+        toQuanBuDinDan(activity, type, position, "");
     }
 
     //实物/定制 订单
     public static void toQuanBuDinDan(Activity activity, String type, String position, String store_id) {
+        toQuanBuDinDan(activity, type, position, store_id, "");
+    }
+
+    //实物/定制 订单
+    public static void toQuanBuDinDan(Activity activity, String type, String position, String store_id, String isFinish) {
         Intent intent = new Intent(activity, QuanBuDinDanActivity.class);
         intent.putExtra("type", type);
         intent.putExtra("position", position);
         intent.putExtra("store_id", store_id);
+        intent.putExtra("isFinish", isFinish);//有值就是返回首页
         activity.startActivity(intent);
     }
 

@@ -77,6 +77,7 @@ public class Api {
 
     public static final String isComment = url + "/App/user/isComment";
     public static final String isReturnGoods = url + "/App/user/isReturnGoods";
+    public static final String orderNum = url + "/App/user/orderNum";
     /**
      * seller-个人中心
      */

@@ -2,6 +2,7 @@ package com.duma.liudong.meiye.view.me.maiJia;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,7 +15,6 @@ import com.duma.liudong.meiye.base.MyStringCallback;
 import com.duma.liudong.meiye.model.SelletBean;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
-import com.duma.liudong.meiye.utils.DialogUtil;
 import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.utils.Ts;
@@ -30,7 +30,7 @@ import butterknife.OnClick;
  * Created by liudong on 17/4/20.
  */
 
-public class MjMainActivity extends BaseActivity {
+public class MjMainActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
     @BindView(R.id.tv_maijia)
     TextView tvMaijia;
     @BindView(R.id.tv_store_xinxi)
@@ -69,6 +69,18 @@ public class MjMainActivity extends BaseActivity {
     LinearLayout layoutShow;
     @BindView(R.id.tv_shoucang)
     TextView tvShoucang;
+    @BindView(R.id.dian_daifukuan)
+    TextView dianDaifukuan;
+    @BindView(R.id.dian_daishouhuo)
+    TextView dianDaishouhuo;
+    @BindView(R.id.dian_daipingjia)
+    TextView dianDaipingjia;
+    @BindView(R.id.dian_tuikuan)
+    TextView dianTuikuan;
+    @BindView(R.id.tv_shouhuo)
+    TextView tvShouhuo;
+    @BindView(R.id.sw_loading)
+    SwipeRefreshLayout swLoading;
     private SelletBean bean;
 
     @Override
@@ -78,33 +90,14 @@ public class MjMainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        StartUtil.setSw(swLoading, this);
         layoutShow.setVisibility(View.GONE);
-        DialogUtil.show(mActivity);
-        OkHttpUtils
-                .get()
-                .url(Api.sellerindex)
-                .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
-                .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
-                .build()
-                .execute(new MyStringCallback() {
-                    @Override
-                    public void onMySuccess(String result) {
-                        layoutShow.setVisibility(View.VISIBLE);
-                        bean = new Gson().fromJson(result, SelletBean.class);
-                        if (bean.getStore_id().equals("")) {
-                            Ts.setText("您还没开店呢!");
-                            finish();
-                        }
-                        initRes();
-                        DialogUtil.hide();
-                    }
-
-                    @Override
-                    protected void onError(String result) {
-                        super.onError(result);
-                        finish();
-                    }
-                });
+        dianDaifukuan.setVisibility(View.GONE);
+        dianDaishouhuo.setVisibility(View.GONE);
+        dianDaipingjia.setVisibility(View.GONE);
+        dianTuikuan.setVisibility(View.GONE);
+        swLoading.setRefreshing(true);
+        onRefresh();
     }
 
     private void initRes() {
@@ -113,11 +106,13 @@ public class MjMainActivity extends BaseActivity {
         tvShoucang.setText(bean.getStore_collect());
         tvShijian.setText(bean.getStore_info().getStore_time_y() + "年");
         tvXiaoliang.setText("成交" + bean.getStore_info().getOrder_num() + "笔");
+        tvShouhuo.setText("待收货");
         switch (bean.getSc_id()) {
             case "1":
                 //团购订单
                 imgDindanType.setImageDrawable(MyApplication.getInstance().getResources().getDrawable(R.drawable.img_96));
                 tvDindanName.setText("团购订单");
+                tvShouhuo.setText("待使用");
                 break;
             case "2":
                 //实物订单
@@ -129,6 +124,20 @@ public class MjMainActivity extends BaseActivity {
                 imgDindanType.setImageDrawable(MyApplication.getInstance().getResources().getDrawable(R.drawable.img_97));
                 tvDindanName.setText("定制订单");
                 break;
+        }
+
+        setTest(dianDaifukuan, bean.getWait_pay());
+        setTest(dianDaishouhuo, bean.getWait_shipping());
+        setTest(dianDaipingjia, bean.getWait_confirm());
+        setTest(dianTuikuan, bean.getRefund_pay());
+    }
+
+    private void setTest(TextView dianDinzhiDaipingjia, String wp) {
+        if (wp.isEmpty() || wp.equals("0")) {
+            dianDinzhiDaipingjia.setVisibility(View.GONE);
+        } else {
+            dianDinzhiDaipingjia.setVisibility(View.VISIBLE);
+            dianDinzhiDaipingjia.setText(wp);
         }
     }
 
@@ -189,5 +198,35 @@ public class MjMainActivity extends BaseActivity {
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+    }
+
+    @Override
+    public void onRefresh() {
+        OkHttpUtils
+                .get()
+                .url(Api.sellerindex)
+                .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
+                .build()
+                .execute(new MyStringCallback() {
+                    @Override
+                    public void onMySuccess(String result) {
+                        layoutShow.setVisibility(View.VISIBLE);
+                        bean = new Gson().fromJson(result, SelletBean.class);
+                        if (bean.getStore_id().equals("")) {
+                            Ts.setText("您还没开店呢!");
+                            finish();
+                        }
+                        initRes();
+                        swLoading.setRefreshing(false);
+                    }
+
+                    @Override
+                    protected void onError(String result) {
+                        super.onError(result);
+                        swLoading.setRefreshing(false);
+                        finish();
+                    }
+                });
     }
 }

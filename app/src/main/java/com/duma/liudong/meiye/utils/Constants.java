@@ -5,6 +5,7 @@ package com.duma.liudong.meiye.utils;
  */
 
 public class Constants {
+    public static final String isOne = "isOne";
     //登录保存的个人信息
     public static final String user_id = "user_id";
     public static final String phone = "phone";

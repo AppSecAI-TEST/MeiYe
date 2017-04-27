@@ -95,6 +95,7 @@ public class DinZhiFragment extends BaseFragment implements SwipeRefreshLayout.O
                 double v = Integer.parseInt(wodeDinZhiBean.getGoods_num()) * Double.parseDouble(wodeDinZhiBean.getMember_goods_price());
                 holder.setText(R.id.tv_jiage, v + "");
                 holder.setText(R.id.tv_num, wodeDinZhiBean.getSell_up());
+                holder.setText(R.id.tv_danjia, wodeDinZhiBean.getMember_goods_price());
             }
 
             @Override

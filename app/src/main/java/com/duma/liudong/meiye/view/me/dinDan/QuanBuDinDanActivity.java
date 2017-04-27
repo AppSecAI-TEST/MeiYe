@@ -37,6 +37,7 @@ public class QuanBuDinDanActivity extends BaseActivity {
     public String type = "1";//1:实物,2:定制,3:团购
     public int position = 0;
     public String store_id = "";
+    public String isFinish = "";
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -46,8 +47,9 @@ public class QuanBuDinDanActivity extends BaseActivity {
     @Override
     protected void initData() {
         type = getIntent().getStringExtra("type");
-        store_id = getIntent().getStringExtra("store_id") == null ? "" : getIntent().getStringExtra("store_id");
-        position = Integer.parseInt(getIntent().getStringExtra("position") == null ? "0" : getIntent().getStringExtra("position"));
+        store_id = getIntent().getStringExtra("store_id");
+        position = Integer.parseInt(getIntent().getStringExtra("position").equals("") ? "0" : getIntent().getStringExtra("position"));
+        isFinish = getIntent().getStringExtra("isFinish");
         MyViewPagerAdapter viewPagerAdapter = new MyViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "全部");
         viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "待付款");
@@ -75,7 +77,12 @@ public class QuanBuDinDanActivity extends BaseActivity {
 
     @OnClick(R.id.layout_back)
     public void onClick() {
-        StartUtil.toMain(mActivity);
+        if (isFinish.equals("")) {
+            finish();
+        } else {
+            StartUtil.toMain(mActivity);
+        }
+
     }
 
     public String getfenlei_Type() {
@@ -96,6 +103,10 @@ public class QuanBuDinDanActivity extends BaseActivity {
 
     @Override
     protected void OnBack() {
-        StartUtil.toMain(mActivity);
+        if (isFinish.equals("")) {
+            finish();
+        } else {
+            StartUtil.toMain(mActivity);
+        }
     }
 }

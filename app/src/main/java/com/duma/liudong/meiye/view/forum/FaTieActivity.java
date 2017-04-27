@@ -74,6 +74,7 @@ public class FaTieActivity extends BaseActivity {
     @Override
     protected void initData() {
         list = (List<ForumBean>) getIntent().getSerializableExtra("list");
+        mImgUrlList = new ArrayList<>();
         recyclerView.init(this, MultiPickResultView.ACTION_SELECT, null);
         dialog = new LunTanFenLeiDialog(mActivity, list);
         dialog.setOnFenLeiOnlick(new LunTanFenLeiDialog.OnFenLeiOnlick() {
@@ -101,6 +102,9 @@ public class FaTieActivity extends BaseActivity {
                 if (editText.getText().toString().equals("")) {
                     Ts.setText("说点什么吧...");
                     return;
+                }
+                if (recyclerView.getPhotos().size() == 0) {
+                    FaTei();
                 }
                 addTu();
                 break;
@@ -143,25 +147,28 @@ public class FaTieActivity extends BaseActivity {
     private void initRes(int size) {
         num++;
         if (num == size) {
-//            ListStringBean stringBean = new ListStringBean(mImgUrlList);
-            OkHttpUtils
-                    .post()
-                    .url(Api.add)
-                    .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
-                    .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
-                    .addParams("cat_id", bean.getCat_id())
-                    .addParams("content", editText.getText().toString())
-                    .addParams("img_json", new Gson().toJson(mImgUrlList))
-                    .build()
-                    .execute(new MyStringCallback() {
-                        @Override
-                        public void onMySuccess(String result) {
-                            DialogUtil.hide();
-                            Ts.setText("发帖成功!");
-                            finish();
-                        }
-                    });
+            FaTei();
         }
+    }
+
+    private void FaTei() {
+        OkHttpUtils
+                .post()
+                .url(Api.add)
+                .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
+                .addParams("cat_id", bean.getCat_id())
+                .addParams("content", editText.getText().toString())
+                .addParams("img_json", new Gson().toJson(mImgUrlList))
+                .build()
+                .execute(new MyStringCallback() {
+                    @Override
+                    public void onMySuccess(String result) {
+                        DialogUtil.hide();
+                        Ts.setText("发帖成功!");
+                        finish();
+                    }
+                });
     }
 
     @Override

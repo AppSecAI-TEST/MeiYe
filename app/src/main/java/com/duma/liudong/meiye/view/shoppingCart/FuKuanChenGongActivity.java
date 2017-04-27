@@ -41,20 +41,20 @@ public class FuKuanChenGongActivity extends BaseActivity {
 
     @Override
     protected void OnBack() {
-        StartUtil.toQuanBuDinDan(mActivity, type);
+        StartUtil.toQuanBuDinDan(mActivity, type, "", "", "1");
     }
 
     @OnClick({R.id.layout_back, R.id.tv_shouye, R.id.tv_chakanDinDan})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.layout_back:
-                StartUtil.toQuanBuDinDan(mActivity, type);
+                StartUtil.toQuanBuDinDan(mActivity, type, "", "", "1");
                 break;
             case R.id.tv_shouye:
                 StartUtil.toMain(mActivity);
                 break;
             case R.id.tv_chakanDinDan:
-                StartUtil.toQuanBuDinDan(mActivity, type);
+                StartUtil.toQuanBuDinDan(mActivity, type, "", "", "1");
                 break;
         }
     }

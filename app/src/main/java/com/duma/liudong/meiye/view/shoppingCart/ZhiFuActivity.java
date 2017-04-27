@@ -81,7 +81,7 @@ public class ZhiFuActivity extends BaseActivity {
         dialog.setYesClicklistener(new QueRenUtilDialog.OnYesClickListener() {
             @Override
             public void onYes() {
-                StartUtil.toQuanBuDinDan(mActivity, type);
+                StartUtil.toQuanBuDinDan(mActivity, type, "", "", "1");
             }
         });
         id = getIntent().getStringExtra("id");
@@ -368,7 +368,6 @@ public class ZhiFuActivity extends BaseActivity {
         if (data == null) {
             return;
         }
-
         /*
          * 支付控件返回字符串:success、fail、cancel 分别代表支付成功，支付失败，支付取消
          */

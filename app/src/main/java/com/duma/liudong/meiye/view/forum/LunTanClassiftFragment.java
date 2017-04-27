@@ -15,6 +15,7 @@ import com.duma.liudong.meiye.base.BaseFragment;
 import com.duma.liudong.meiye.base.BaseXiaLaRvPresenter;
 import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.base.MyStringCallback;
+import com.duma.liudong.meiye.model.GuanZhuBean;
 import com.duma.liudong.meiye.model.TieziBean;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
@@ -122,7 +123,7 @@ public class LunTanClassiftFragment extends BaseFragment implements SwipeRefresh
                 ImageView img_touxiang = holder.getView(R.id.img_touxiang);
                 ImageLoader.withYuan(zhiDingBean.getHead_pic(), img_touxiang);
                 img_img_json.setVisibility(View.GONE);
-                if (zhiDingBean.getImg_json() != null) {
+                if (zhiDingBean.getImg_json() != null && zhiDingBean.getImg_json().size() != 0) {
                     img_img_json.setVisibility(View.VISIBLE);
                     ImageLoader.with(zhiDingBean.getImg_json().get(0), img_img_json);
                 }
@@ -177,7 +178,7 @@ public class LunTanClassiftFragment extends BaseFragment implements SwipeRefresh
             return;
         }
         OkHttpUtils
-                .get()
+                .post()
                 .tag("guanZhuHttp")
                 .url(Api.follow)
                 .addParams("bbs_id", bbs_id)
@@ -187,8 +188,15 @@ public class LunTanClassiftFragment extends BaseFragment implements SwipeRefresh
                 .execute(new MyStringCallback() {
                     @Override
                     public void onMySuccess(String result) {
-                        Ts.setText("关注成功!");
-                        view.setImageDrawable(MyApplication.getInstance().getResources().getDrawable(R.drawable.im_22));
+                        GuanZhuBean bean = new Gson().fromJson(result, GuanZhuBean.class);
+                        if (bean.getIs_follow() == 1) {
+                            Ts.setText("关注成功!");
+                            view.setImageDrawable(MyApplication.getInstance().getResources().getDrawable(R.drawable.im_22));
+                        } else {
+                            Ts.setText("取消关注成功!");
+                            view.setImageDrawable(MyApplication.getInstance().getResources().getDrawable(R.drawable.img_83));
+                        }
+
                     }
                 });
     }

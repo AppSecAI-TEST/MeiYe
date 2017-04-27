@@ -13,7 +13,7 @@ public class ImageLoader {
     public static void with(Object url, ImageView imageView) {
         Glide.with(MyApplication.getInstance())
                 .load(url)
-//                .error(R.drawable.zu)//load失敗的Drawable
+                .error(R.drawable.zu)//load失敗的Drawable
                 .placeholder(R.drawable.zu)//loading時候的Drawable
 
 //                .an//設置load完的動畫
@@ -28,8 +28,8 @@ public class ImageLoader {
     public static void withYuan(Object url, ImageView imageView) {
         Glide.with(MyApplication.getInstance())
                 .load(url)
-//                .error(R.drawable.xiaotouxiang)//load失敗的Drawable
-//                .placeholder(R.drawable.xiaotouxiang)//loading時候的Drawable
+                .error(R.drawable.touxiang)//load失敗的Drawable
+                .placeholder(R.drawable.touxiang)//loading時候的Drawable
                 .transform(new GlideCircleTransform(MyApplication.getInstance()))
                 .into(imageView);
     }

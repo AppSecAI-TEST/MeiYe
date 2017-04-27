@@ -127,7 +127,7 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
             }
         });
         initDialog();
-        tvTitle.setText("商品详情");
+        tvTitle.setText("订单详情");
         id = getIntent().getStringExtra("id");
         store_id = getIntent().getStringExtra("store_id");
         fenlei_type = getIntent().getStringExtra("fenlei_type");
@@ -355,11 +355,11 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
                                             DialogUtil.hide();
                                             StartUtil.totuikuan(mActivity, bean.getOrder_id(), bean.getOrder_sn()
                                                     , goodsListBean.getGoods_id(), bean.getStore_name(), goodsListBean.getGoods_name()
-                                                    , goodsListBean.getOriginal_img(), goodsListBean.getGoods_num(), goodsListBean.getGoods_price(), goodsListBean.getSpec_key());
+                                                    , goodsListBean.getOriginal_img(), goodsListBean.getGoods_num(), goodsListBean.getMember_goods_price(), goodsListBean.getSpec_key());
                                         } else {
                                             StartUtil.totuikuanXiangQin(mActivity, bean.getOrder_id(), bean.getOrder_sn()
                                                     , goodsListBean.getGoods_id(), bean.getStore_name(), goodsListBean.getGoods_name()
-                                                    , goodsListBean.getOriginal_img(), goodsListBean.getGoods_num(), goodsListBean.getGoods_price(), goodsListBean.getSpec_key());
+                                                    , goodsListBean.getOriginal_img(), goodsListBean.getGoods_num(), goodsListBean.getMember_goods_price(), goodsListBean.getSpec_key());
                                         }
 
                                     }

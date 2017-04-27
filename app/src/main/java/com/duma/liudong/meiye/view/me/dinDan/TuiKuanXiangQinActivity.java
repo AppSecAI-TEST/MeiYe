@@ -126,7 +126,6 @@ public class TuiKuanXiangQinActivity extends BaseActivity {
                         initRes();
                     }
 
-
                     @Override
                     protected void onError(String result) {
                         finish();

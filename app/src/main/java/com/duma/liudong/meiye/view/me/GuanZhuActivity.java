@@ -103,7 +103,7 @@ public class GuanZhuActivity extends BaseActivity implements SwipeRefreshLayout.
                 ImageView img_touxiang = holder.getView(R.id.img_touxiang);
                 ImageLoader.withYuan(zhiDingBean.getHead_pic(), img_touxiang);
                 img_img_json.setVisibility(View.GONE);
-                if (zhiDingBean.getImg_json() != null) {
+                if (zhiDingBean.getImg_json() != null && zhiDingBean.getImg_json().size() != 0) {
                     img_img_json.setVisibility(View.VISIBLE);
                     ImageLoader.with(zhiDingBean.getImg_json().get(0), img_img_json);
                 }

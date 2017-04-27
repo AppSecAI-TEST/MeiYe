@@ -162,7 +162,7 @@ public class DinZhiXiangQinActivity extends BaseActivity {
         tvJiage.setText(v + "");
         tvNum.setText(bean.getSupport().getMark().getSeller_up());
         tvChaNum.setText(bean.getSupport().getMark().getShortX() + "");
-        timeDaojishi.start(bean.getSupport().getMark().getEnd_time());
+        timeDaojishi.start(bean.getSupport().getMark().getEnd_time() * 1000);
         tvCont.setText(bean.getSupport().getMark().getTips());
 
         mList.clear();
