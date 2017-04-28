@@ -147,56 +147,59 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
         if (getHomeFragment().isVisible()) {
             getHomeFragment().onLazyLoad();
         }
-        OkHttpUtils
-                .post()
-                .tag(this)
-                .url(Api.message)
-                .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
-                .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
-                .addParams("store_id", store_id)
-                .build()
-                .execute(new MyStringCallback() {
-                    @Override
-                    public void onMySuccess(String result) {
-                        List<MessageBean> list = new ArrayList<>();
-                        try {
-                            JSONObject jsonObject = new JSONObject(result);
-                            MessageBean bean;
-                            bean = new Gson().fromJson(jsonObject.getString("sys_msg"), MessageBean.class);
-                            if (!bean.getMessage_type().equals("")) {
-                                if (bean.getNo_read().equals("")) {
-                                    bean.setNo_read("0");
+        if (StartUtil.isLogin()) {
+            OkHttpUtils
+                    .post()
+                    .tag(this)
+                    .url(Api.message)
+                    .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                    .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
+                    .addParams("store_id", store_id)
+                    .build()
+                    .execute(new MyStringCallback() {
+                        @Override
+                        public void onMySuccess(String result) {
+                            List<MessageBean> list = new ArrayList<>();
+                            try {
+                                JSONObject jsonObject = new JSONObject(result);
+                                MessageBean bean;
+                                bean = new Gson().fromJson(jsonObject.getString("sys_msg"), MessageBean.class);
+                                if (!bean.getMessage_type().equals("")) {
+                                    if (bean.getNo_read().equals("")) {
+                                        bean.setNo_read("0");
+                                    }
+                                    list.add(bean);
                                 }
-                                list.add(bean);
-                            }
-                            bean = new Gson().fromJson(jsonObject.getString("money_msg"), MessageBean.class);
-                            if (!bean.getMessage_type().equals("")) {
-                                if (bean.getNo_read().equals("")) {
-                                    bean.setNo_read("0");
+                                bean = new Gson().fromJson(jsonObject.getString("money_msg"), MessageBean.class);
+                                if (!bean.getMessage_type().equals("")) {
+                                    if (bean.getNo_read().equals("")) {
+                                        bean.setNo_read("0");
+                                    }
+                                    list.add(bean);
                                 }
-                                list.add(bean);
-                            }
-                            bean = new Gson().fromJson(jsonObject.getString("mail_msg"), MessageBean.class);
-                            if (!bean.getMessage_type().equals("")) {
-                                if (bean.getNo_read().equals("")) {
-                                    bean.setNo_read("0");
+                                bean = new Gson().fromJson(jsonObject.getString("mail_msg"), MessageBean.class);
+                                if (!bean.getMessage_type().equals("")) {
+                                    if (bean.getNo_read().equals("")) {
+                                        bean.setNo_read("0");
+                                    }
+                                    list.add(bean);
                                 }
-                                list.add(bean);
+                                int s = 0;
+                                for (int i = 0; i < list.size(); i++) {
+                                    s = s + Integer.parseInt(list.get(i).getNo_read());
+                                }
+                                if (s == 0) {
+                                    tvDian.setVisibility(View.GONE);
+                                } else {
+                                    tvDian.setVisibility(View.VISIBLE);
+                                }
+                            } catch (JSONException e) {
+                                Ts.JsonErroy();
                             }
-                            int s = 0;
-                            for (int i = 0; i < list.size(); i++) {
-                                s = s + Integer.parseInt(list.get(i).getNo_read());
-                            }
-                            if (s == 0) {
-                                tvDian.setVisibility(View.GONE);
-                            } else {
-                                tvDian.setVisibility(View.VISIBLE);
-                            }
-                        } catch (JSONException e) {
-                            Ts.JsonErroy();
                         }
-                    }
-                });
+                    });
+        }
+
 
     }
 

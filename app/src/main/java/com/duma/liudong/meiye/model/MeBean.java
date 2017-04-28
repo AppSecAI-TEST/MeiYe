@@ -38,6 +38,15 @@ public class MeBean {
     private String packet;
     private AdBean ad;
     private List<GoodsBean> goods;
+    private String level_img;
+
+    public String getLevel_img() {
+        return level_img;
+    }
+
+    public void setLevel_img(String level_img) {
+        this.level_img = level_img;
+    }
 
     public String getHead_pic() {
         return head_pic;

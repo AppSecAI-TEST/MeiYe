@@ -51,8 +51,6 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
     TextView tvNickName;
     @BindView(R.id.layout_account)
     LinearLayout layoutAccount;
-    @BindView(R.id.tv_level)
-    TextView tvLevel;
     @BindView(R.id.tv_level_up)
     TextView tvLevelUp;
     @BindView(R.id.tv_ref_num)
@@ -87,8 +85,6 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
     LinearLayout layoutAsset;
     @BindView(R.id.sw_loading)
     SwipeRefreshLayout swLoading;
-
-    PublicPresenter publicPresenter;
     @BindView(R.id.layout_shiwu_dindan)
     LinearLayout layoutShiwuDindan;
     @BindView(R.id.layout_tuangou_dindan)
@@ -123,9 +119,12 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
     LinearLayout layoutWodeKehu;
     @BindView(R.id.rv_shangping)
     RecyclerView rvShangping;
+    @BindView(R.id.img_huiyuan)
+    ImageView imgHuiyuan;
     private Intent intent;
     private BaseAdAdapter<IndexBean.ShiwuBean> shangpingAdapter;
     private TuiJianBean bean;
+    PublicPresenter publicPresenter;
 
     @Override
     protected int setLayoutResouceId() {
@@ -369,6 +368,7 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
             tvTotalClient.setText("我的客户:" + meBean.getTotal_client());
             tvRedPacket.setText(meBean.getPacket());//红包
             tvDiscountCoupon.setText(meBean.getCoupon());//优惠券
+            ImageLoader.with(Api.url + meBean.getLevel_img(), imgHuiyuan);
         }
     }
 

@@ -84,6 +84,8 @@ public class MjMainActivity extends BaseActivity implements SwipeRefreshLayout.O
     SwipeRefreshLayout swLoading;
     private SelletBean bean;
 
+    private String type;
+
     @Override
     protected void initContentView(Bundle savedInstanceState) {
         setContentView(R.layout.activity_maijia);
@@ -114,16 +116,19 @@ public class MjMainActivity extends BaseActivity implements SwipeRefreshLayout.O
                 imgDindanType.setImageDrawable(MyApplication.getInstance().getResources().getDrawable(R.drawable.img_96));
                 tvDindanName.setText("团购订单");
                 tvShouhuo.setText("待使用");
+                type = "3";
                 break;
             case "2":
                 //实物订单
                 imgDindanType.setImageDrawable(MyApplication.getInstance().getResources().getDrawable(R.drawable.img_95));
                 tvDindanName.setText("实物订单");
+                type = "1";
                 break;
             case "3":
                 //定制订单
                 imgDindanType.setImageDrawable(MyApplication.getInstance().getResources().getDrawable(R.drawable.img_97));
                 tvDindanName.setText("定制订单");
+                type = "2";
                 break;
         }
 
@@ -156,19 +161,19 @@ public class MjMainActivity extends BaseActivity implements SwipeRefreshLayout.O
                 startActivity(intent);
                 break;
             case R.id.layout_daishoukuan:
-                StartUtil.toQuanBuDinDan(mActivity, bean.getSc_id(), "1", bean.getStore_id());
+                StartUtil.toQuanBuDinDan(mActivity,type, "1", bean.getStore_id());
                 break;
             case R.id.layout_daishouhuo:
-                StartUtil.toQuanBuDinDan(mActivity, bean.getSc_id(), "2", bean.getStore_id());
+                StartUtil.toQuanBuDinDan(mActivity,type, "2", bean.getStore_id());
                 break;
             case R.id.layout_daipingjia:
-                StartUtil.toQuanBuDinDan(mActivity, bean.getSc_id(), "3", bean.getStore_id());
+                StartUtil.toQuanBuDinDan(mActivity, type, "3", bean.getStore_id());
                 break;
             case R.id.layout_tuikuan:
-                StartUtil.toQuanBuDinDan(mActivity, bean.getSc_id(), "4", bean.getStore_id());
+                StartUtil.toQuanBuDinDan(mActivity, type, "4", bean.getStore_id());
                 break;
             case R.id.layout_dindan_type:
-                StartUtil.toQuanBuDinDan(mActivity, bean.getSc_id(), "0", bean.getStore_id());
+                StartUtil.toQuanBuDinDan(mActivity, type, "0", bean.getStore_id());
                 break;
             case R.id.layout_dindantixin:
                 intent = new Intent(mActivity, MessageContentActivity.class);

@@ -38,4 +38,12 @@ public class MyApplication extends Application {
     public static SPUtils getSpUtils() {
         return LazyHolder.INSTANCE;
     }
+
+    private static class LazyHolder2 {
+        private static final SPUtils INSTANCE = new SPUtils("one");
+    }
+
+    public static SPUtils getSpUtils2() {
+        return LazyHolder2.INSTANCE;
+    }
 }

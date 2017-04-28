@@ -56,6 +56,7 @@ public class MessageContentActivity extends BaseActivity implements SwipeRefresh
     private RequestCall build;
     private RequestCall canleBulod;
     private QueRenUtilDialog dialog;
+    private String store_id;
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -64,6 +65,7 @@ public class MessageContentActivity extends BaseActivity implements SwipeRefresh
 
     @Override
     protected void initData() {
+        store_id = getIntent().getStringExtra("store_id");
         type = getIntent().getStringExtra("type");
         title = getIntent().getStringExtra("title");
         ImageLoader.with(R.drawable.img_26, imgOther);
@@ -93,12 +95,14 @@ public class MessageContentActivity extends BaseActivity implements SwipeRefresh
                 .url(Api.messageAction)
                 .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
                 .addParams("type", type)
+                .addParams("store_id", store_id)
                 .addParams("token", MyApplication.getSpUtils().getString(Constants.token)).build();
         canleBulod = OkHttpUtils.get()
                 .url(Api.messageAction)
                 .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
                 .addParams("type", type)
                 .addParams("is_del", "1")
+                .addParams("store_id", store_id)
                 .addParams("token", MyApplication.getSpUtils().getString(Constants.token)).build();
         adapter.setType(new TypeToken<ArrayList<MessageContentBean>>() {
         }.getType());

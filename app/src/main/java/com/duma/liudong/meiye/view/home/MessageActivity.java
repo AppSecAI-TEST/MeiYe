@@ -18,7 +18,6 @@ import com.duma.liudong.meiye.base.MessageBean;
 import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
-import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.utils.Ts;
 import com.google.gson.Gson;
@@ -113,15 +112,15 @@ public class MessageActivity extends BaseActivity implements SwipeRefreshLayout.
                 ImageView imageView = holder.getView(R.id.img_head_pic);
                 switch (bean.getMessage_type()) {
                     case "0":
-                        ImageLoader.with(R.drawable.img_24, imageView);
+                        imageView.setImageDrawable(MyApplication.getInstance().getResources().getDrawable(R.drawable.img_24));
                         holder.setText(R.id.tv_title, "系统消息");
                         break;
                     case "1":
-                        ImageLoader.with(R.drawable.img_23, imageView);
+                        imageView.setImageDrawable(MyApplication.getInstance().getResources().getDrawable(R.drawable.img_23));
                         holder.setText(R.id.tv_title, "我的资产");
                         break;
                     case "2":
-                        ImageLoader.with(R.drawable.img_25, imageView);
+                        imageView.setImageDrawable(MyApplication.getInstance().getResources().getDrawable(R.drawable.img_25));
                         holder.setText(R.id.tv_title, "物流通知");
                         break;
                 }
@@ -151,6 +150,7 @@ public class MessageActivity extends BaseActivity implements SwipeRefreshLayout.
             protected void onitemClick(View view, RecyclerView.ViewHolder holder, int position) {
                 Intent intent = new Intent(MessageActivity.this, MessageContentActivity.class);
                 intent.putExtra("type", mList.get(position).getMessage_type());
+                intent.putExtra("store_id", store_id);
                 switch (mList.get(position).getMessage_type()) {
                     case "0":
                         intent.putExtra("title", "系统消息");

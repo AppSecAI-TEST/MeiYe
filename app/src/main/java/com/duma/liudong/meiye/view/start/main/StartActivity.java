@@ -26,11 +26,11 @@ public class StartActivity extends BaseActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (MyApplication.getSpUtils().getString(Constants.isOne).equals(Constants.isOne)) {
+                if (MyApplication.getSpUtils2().getString(Constants.isOne).equals(Constants.isOne)) {
                     StartUtil.toMain(mActivity);
                 } else {
                     startActivity(new Intent(mActivity, ViewPaterActivity.class));
-                    MyApplication.getSpUtils().put(Constants.isOne, Constants.isOne);
+                    MyApplication.getSpUtils2().put(Constants.isOne, Constants.isOne);
                 }
                 finish();
             }
