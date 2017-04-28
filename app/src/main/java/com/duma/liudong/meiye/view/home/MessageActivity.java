@@ -54,6 +54,7 @@ public class MessageActivity extends BaseActivity implements SwipeRefreshLayout.
     private List<MessageBean> mList;
     private BaseRvAdapter<MessageBean> adapter;
     private RequestCall build;
+    private String store_id;
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -69,6 +70,7 @@ public class MessageActivity extends BaseActivity implements SwipeRefreshLayout.
     @Override
     protected void initData() {
         tvTitle.setText("消息");
+        store_id = getIntent().getStringExtra("store_id");
         StartUtil.setSw(swLoading, this);
         rvShangping.setLayoutManager(new LinearLayoutManager(mActivity));
         build = OkHttpUtils
@@ -77,6 +79,7 @@ public class MessageActivity extends BaseActivity implements SwipeRefreshLayout.
                 .url(Api.message)
                 .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
                 .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
+                .addParams("store_id", store_id)
                 .build();
         adapter = new BaseRvAdapter<MessageBean>(mActivity, R.layout.rv_message, rvShangping) {
             @Nullable

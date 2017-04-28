@@ -12,12 +12,13 @@ import android.widget.TextView;
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseFragment;
 import com.duma.liudong.meiye.base.BaseRvAdapter;
+import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.model.LinJuanBean;
 import com.duma.liudong.meiye.presenter.PublicPresenter;
 import com.duma.liudong.meiye.utils.Api;
+import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.DialogUtil;
 import com.duma.liudong.meiye.utils.ImageLoader;
-import com.duma.liudong.meiye.utils.Lg;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.google.gson.reflect.TypeToken;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
@@ -114,12 +115,13 @@ public class LinJuanFragment extends BaseFragment implements SwipeRefreshLayout.
                 .tag("base")
                 .url(Api.couponindex)
                 .addParams("cat_id", activity.getId() + "")
+                .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
                 .build();
     }
 
     @Override
     protected void onLazyLoad() {
-        Lg.e("ldd", "调用了");
         refresh();
     }
 

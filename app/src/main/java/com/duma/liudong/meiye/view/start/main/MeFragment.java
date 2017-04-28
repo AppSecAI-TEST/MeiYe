@@ -367,8 +367,8 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
             tvNewClient.setText("今日新增:" + meBean.getNew_client());
             tvNewMoney.setText("今日收益:" + meBean.getNew_money());
             tvTotalClient.setText("我的客户:" + meBean.getTotal_client());
-            tvRedPacket.setText(meBean.getCoupon());//红包
-            tvDiscountCoupon.setText(meBean.getPacket());//优惠券
+            tvRedPacket.setText(meBean.getPacket());//红包
+            tvDiscountCoupon.setText(meBean.getCoupon());//优惠券
         }
     }
 

@@ -19,6 +19,7 @@ import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.utils.Ts;
 import com.duma.liudong.meiye.view.classift.dianPu.DianPuJianJieActivity;
+import com.duma.liudong.meiye.view.home.MessageActivity;
 import com.duma.liudong.meiye.view.home.MessageContentActivity;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -187,8 +188,8 @@ public class MjMainActivity extends BaseActivity implements SwipeRefreshLayout.O
                 startActivity(intent);
                 break;
             case R.id.layout_xiaoxi:
-                intent = new Intent(mActivity, MessageContentActivity.class);
-                intent.putExtra("type", "3");
+                intent = new Intent(mActivity, MessageActivity.class);
+                intent.putExtra("store_id", bean.getStore_id());
                 startActivity(intent);
                 break;
         }

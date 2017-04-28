@@ -17,6 +17,8 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <include layout="@layout/include_img_kong" />
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_shangping"
                 android:layout_width="match_parent"

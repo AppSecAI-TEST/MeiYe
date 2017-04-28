@@ -142,7 +142,7 @@ public class DianPuClassiftActivity extends BaseActivity implements SwipeRefresh
                 finish();
                 break;
             case R.id.layout_onClick:
-                StartUtil.toShangPingLieBiao(mActivity, Constants.store_id, store_id, "全部商品", "1");
+                StartUtil.toShangPingLieBiao(mActivity, Constants.store_id, store_id, "全部商品", "");
                 break;
         }
     }

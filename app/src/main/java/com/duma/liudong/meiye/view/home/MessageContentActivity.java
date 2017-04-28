@@ -48,6 +48,8 @@ public class MessageContentActivity extends BaseActivity implements SwipeRefresh
     RecyclerView rvShangping;
     @BindView(R.id.sw_loading)
     SwipeRefreshLayout swLoading;
+    @BindView(R.id.layout_kong)
+    LinearLayout layoutKong;
     private String type, title;
 
     private BaseRvAdapter<MessageContentBean> adapter;
@@ -100,6 +102,7 @@ public class MessageContentActivity extends BaseActivity implements SwipeRefresh
                 .addParams("token", MyApplication.getSpUtils().getString(Constants.token)).build();
         adapter.setType(new TypeToken<ArrayList<MessageContentBean>>() {
         }.getType());
+        adapter.setKongView(layoutKong);
         adapter.QueryHttp(build);
         dialog = new QueRenUtilDialog(mActivity, "", "是否清空消息", "否", "是");
         dialog.setYesClicklistener(new QueRenUtilDialog.OnYesClickListener() {
@@ -132,4 +135,5 @@ public class MessageContentActivity extends BaseActivity implements SwipeRefresh
     public void onRefresh() {
         adapter.QueryHttp(build);
     }
+
 }
