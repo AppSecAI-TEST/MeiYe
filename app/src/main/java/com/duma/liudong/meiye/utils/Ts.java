@@ -19,7 +19,7 @@ public class Ts {
     }
 
     public static void JsonErroy() {
-        Toast.makeText(MyApplication.getInstance(), "json解析错误!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(MyApplication.getInstance(), "服务器错误!json解析错误!", Toast.LENGTH_SHORT).show();
     }
 
     public static void HttpErroy() {

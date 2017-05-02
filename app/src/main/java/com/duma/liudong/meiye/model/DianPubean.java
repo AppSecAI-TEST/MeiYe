@@ -75,7 +75,7 @@ public class DianPubean implements Serializable {
     private String contacts_name;
     private String contacts_mobile;
     private String company_type;
-    private int store_score;
+    private double store_score;
     private String store_time_y;
     private String goods_num;
     private String order_num;
@@ -313,11 +313,11 @@ public class DianPubean implements Serializable {
         this.company_type = company_type;
     }
 
-    public int getStore_score() {
+    public double getStore_score() {
         return store_score;
     }
 
-    public void setStore_score(int store_score) {
+    public void setStore_score(double store_score) {
         this.store_score = store_score;
     }
 

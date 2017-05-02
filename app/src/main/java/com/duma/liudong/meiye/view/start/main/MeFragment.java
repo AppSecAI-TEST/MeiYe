@@ -348,6 +348,7 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
             tvNewMoney.setText("今日收益:...");
             tvTotalClient.setText("我的客户:...");
             tvRedPacket.setText("...");//红包
+            imgHuiyuan.setVisibility(View.GONE);
         } else {
             if (StartUtil.isEmpty(meBean.getNickname())) {
                 tvNickName.setText("用户" + MyApplication.getSpUtils().getString(Constants.phone));
@@ -368,6 +369,7 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
             tvTotalClient.setText("我的客户:" + meBean.getTotal_client());
             tvRedPacket.setText(meBean.getPacket());//红包
             tvDiscountCoupon.setText(meBean.getCoupon());//优惠券
+            imgHuiyuan.setVisibility(View.VISIBLE);
             ImageLoader.with(Api.url + meBean.getLevel_img(), imgHuiyuan);
         }
     }

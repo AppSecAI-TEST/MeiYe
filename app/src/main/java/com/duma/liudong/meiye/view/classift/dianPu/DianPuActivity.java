@@ -170,8 +170,8 @@ public class DianPuActivity extends BaseActivity implements ScrollableLayout.OnS
         ImageLoader.with(dianPubean.getStore_banner(), imgStoreBanner);
         ImageLoader.withYuan(dianPubean.getStore_logo(), imgStoreLogo);
         tvStoreName.setText(dianPubean.getStore_name());
-        tvStoreTimeY.setText(dianPubean.getStore_time_y());
-        tvOrderNum.setText(dianPubean.getOrder_num());
+        tvStoreTimeY.setText(dianPubean.getStore_time_y() + "年");
+        tvOrderNum.setText("成交" + dianPubean.getOrder_num() + "笔");
         tvStoreCollect.setText(dianPubean.getStore_collect());
         dianPuShouYeFragment.setBannerShangping();
         groupBtn.setVisibility(View.VISIBLE);

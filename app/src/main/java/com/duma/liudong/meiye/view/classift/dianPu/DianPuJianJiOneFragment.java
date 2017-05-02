@@ -73,7 +73,7 @@ public class DianPuJianJiOneFragment extends BaseFragment {
 
         xxStoreDeliverycredit.setStarCount(dianPubean.getStore_deliverycredit());
         xxStoreDesccredit.setStarCount(dianPubean.getStore_desccredit());
-        xxStoreScore.setStarCount(dianPubean.getStore_score());
+        xxStoreScore.setStarCount((int) dianPubean.getStore_score());
         xxStoreServicecredit.setStarCount(dianPubean.getStore_servicecredit());
     }
 }

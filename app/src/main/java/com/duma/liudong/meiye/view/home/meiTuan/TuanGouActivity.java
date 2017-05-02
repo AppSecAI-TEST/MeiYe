@@ -440,7 +440,8 @@ public class TuanGouActivity extends BaseActivity implements SwipeRefreshLayout.
                         DialogUtil.hide();
                         Type type = new TypeToken<List<ClassifyBean>>() {
                         }.getType();
-                        List<ClassifyBean> list = new Gson().fromJson(result, type);
+                        List<ClassifyBean> list = null;
+                        list = new Gson().fromJson(result, type);
                         mlist.clear();
                         mlist.addAll(list.subList(0, 8));
                         FenleiList.clear();
@@ -567,7 +568,7 @@ public class TuanGouActivity extends BaseActivity implements SwipeRefreshLayout.
         children.add(new CityBean.ChildrenBean("5", "5Km"));
         children.add(new CityBean.ChildrenBean("7", "7Km"));
         children.add(new CityBean.ChildrenBean("10", "10Km"));
-        children.add(new CityBean.ChildrenBean("100", "全城"));
+        children.add(new CityBean.ChildrenBean("", "全城"));
 
         cityBean = new CityBean("", "全城", children);
     }

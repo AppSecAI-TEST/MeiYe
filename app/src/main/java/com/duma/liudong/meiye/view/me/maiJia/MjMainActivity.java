@@ -32,6 +32,8 @@ import butterknife.OnClick;
  */
 
 public class MjMainActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
+
+
     @BindView(R.id.tv_maijia)
     TextView tvMaijia;
     @BindView(R.id.tv_store_xinxi)
@@ -40,24 +42,66 @@ public class MjMainActivity extends BaseActivity implements SwipeRefreshLayout.O
     ImageView imgHeadPic;
     @BindView(R.id.tv_store_name)
     TextView tvStoreName;
+    @BindView(R.id.tv_shoucang)
+    TextView tvShoucang;
     @BindView(R.id.tv_shijian)
     TextView tvShijian;
     @BindView(R.id.tv_xiaoliang)
     TextView tvXiaoliang;
-    @BindView(R.id.layout_daishoukuan)
-    LinearLayout layoutDaishoukuan;
-    @BindView(R.id.layout_daishouhuo)
-    LinearLayout layoutDaishouhuo;
-    @BindView(R.id.layout_daipingjia)
-    LinearLayout layoutDaipingjia;
-    @BindView(R.id.layout_tuikuan)
-    LinearLayout layoutTuikuan;
-    @BindView(R.id.img_dindan_type)
-    ImageView imgDindanType;
-    @BindView(R.id.tv_dindan_name)
-    TextView tvDindanName;
-    @BindView(R.id.layout_dindan_type)
-    LinearLayout layoutDindanType;
+    @BindView(R.id.dian_shiwu_daishoukuan)
+    TextView dianShiwuDaishoukuan;
+    @BindView(R.id.layout_shiwu_daishoukuan)
+    LinearLayout layoutShiwuDaishoukuan;
+    @BindView(R.id.dian_shiwu_daishouhuo)
+    TextView dianShiwuDaishouhuo;
+    @BindView(R.id.layout_shiwu_daishouhuan)
+    LinearLayout layoutShiwuDaishouhuan;
+    @BindView(R.id.dian_shiwu_daipingjia)
+    TextView dianShiwuDaipingjia;
+    @BindView(R.id.layout_shiwu_daipingjia)
+    LinearLayout layoutShiwuDaipingjia;
+    @BindView(R.id.dian_shiwu_tuikuan)
+    TextView dianShiwuTuikuan;
+    @BindView(R.id.layout_shiwu_tuikuan)
+    LinearLayout layoutShiwuTuikuan;
+    @BindView(R.id.layout_shiwu)
+    LinearLayout layoutShiwu;
+    @BindView(R.id.dian_tuangou_daishoukuan)
+    TextView dianTuangouDaishoukuan;
+    @BindView(R.id.layout_tuangou_daishoukuan)
+    LinearLayout layoutTuangouDaishoukuan;
+    @BindView(R.id.dian_tuangou_daishouhuan)
+    TextView dianTuangouDaishouhuan;
+    @BindView(R.id.layout_tuangou_daishouhuan)
+    LinearLayout layoutTuangouDaishouhuan;
+    @BindView(R.id.dian_tuangou_daipingjia)
+    TextView dianTuangouDaipingjia;
+    @BindView(R.id.layout_tuangou_daipingjia)
+    LinearLayout layoutTuangouDaipingjia;
+    @BindView(R.id.dian_tuangou_tuikuan)
+    TextView dianTuangouTuikuan;
+    @BindView(R.id.layout_tuangou_tuikuan)
+    LinearLayout layoutTuangouTuikuan;
+    @BindView(R.id.layout_tuangou)
+    LinearLayout layoutTuangou;
+    @BindView(R.id.dian_dinzhi_daishoukuan)
+    TextView dianDinzhiDaishoukuan;
+    @BindView(R.id.layout_dinzhi_daishoukuan)
+    LinearLayout layoutDinzhiDaishoukuan;
+    @BindView(R.id.dian_dinzhi_daishouhuan)
+    TextView dianDinzhiDaishouhuan;
+    @BindView(R.id.layout_dinzhi_daishouhuan)
+    LinearLayout layoutDinzhiDaishouhuan;
+    @BindView(R.id.dian_dinzhi_daipingjia)
+    TextView dianDinzhiDaipingjia;
+    @BindView(R.id.layout_dinzhi_daipingjia)
+    LinearLayout layoutDinzhiDaipingjia;
+    @BindView(R.id.dian_dinzhi_tuikuan)
+    TextView dianDinzhiTuikuan;
+    @BindView(R.id.layout_dinzhi_tuikuan)
+    LinearLayout layoutDinzhiTuikuan;
+    @BindView(R.id.layout_dinzhi)
+    LinearLayout layoutDinzhi;
     @BindView(R.id.layout_dindantixin)
     LinearLayout layoutDindantixin;
     @BindView(R.id.layout_shangxiajia)
@@ -66,25 +110,13 @@ public class MjMainActivity extends BaseActivity implements SwipeRefreshLayout.O
     LinearLayout layoutBaobiao;
     @BindView(R.id.layout_xiaoxi)
     LinearLayout layoutXiaoxi;
-    @BindView(R.id.layout_show)
-    LinearLayout layoutShow;
-    @BindView(R.id.tv_shoucang)
-    TextView tvShoucang;
-    @BindView(R.id.dian_daifukuan)
-    TextView dianDaifukuan;
-    @BindView(R.id.dian_daishouhuo)
-    TextView dianDaishouhuo;
-    @BindView(R.id.dian_daipingjia)
-    TextView dianDaipingjia;
-    @BindView(R.id.dian_tuikuan)
-    TextView dianTuikuan;
-    @BindView(R.id.tv_shouhuo)
-    TextView tvShouhuo;
     @BindView(R.id.sw_loading)
     SwipeRefreshLayout swLoading;
+    @BindView(R.id.layout_show)
+    LinearLayout layoutShow;
     private SelletBean bean;
-
     private String type;
+    private Intent intent;
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -95,11 +127,19 @@ public class MjMainActivity extends BaseActivity implements SwipeRefreshLayout.O
     protected void initData() {
         StartUtil.setSw(swLoading, this);
         layoutShow.setVisibility(View.GONE);
-        dianDaifukuan.setVisibility(View.GONE);
-        dianDaishouhuo.setVisibility(View.GONE);
-        dianDaipingjia.setVisibility(View.GONE);
-        dianTuikuan.setVisibility(View.GONE);
         swLoading.setRefreshing(true);
+        dianDinzhiDaipingjia.setVisibility(View.GONE);
+        dianShiwuDaishoukuan.setVisibility(View.GONE);
+        dianShiwuDaishouhuo.setVisibility(View.GONE);
+        dianShiwuDaipingjia.setVisibility(View.GONE);
+        dianShiwuTuikuan.setVisibility(View.GONE);
+        dianTuangouDaishoukuan.setVisibility(View.GONE);
+        dianTuangouDaishouhuan.setVisibility(View.GONE);
+        dianTuangouDaipingjia.setVisibility(View.GONE);
+        dianTuangouTuikuan.setVisibility(View.GONE);
+        dianDinzhiDaishoukuan.setVisibility(View.GONE);
+        dianDinzhiDaishouhuan.setVisibility(View.GONE);
+        dianDinzhiTuikuan.setVisibility(View.GONE);
         onRefresh();
     }
 
@@ -109,33 +149,6 @@ public class MjMainActivity extends BaseActivity implements SwipeRefreshLayout.O
         tvShoucang.setText(bean.getStore_collect());
         tvShijian.setText(bean.getStore_info().getStore_time_y() + "年");
         tvXiaoliang.setText("成交" + bean.getStore_info().getOrder_num() + "笔");
-        tvShouhuo.setText("待收货");
-        switch (bean.getSc_id()) {
-            case "1":
-                //团购订单
-                imgDindanType.setImageDrawable(MyApplication.getInstance().getResources().getDrawable(R.drawable.img_96));
-                tvDindanName.setText("团购订单");
-                tvShouhuo.setText("待使用");
-                type = "3";
-                break;
-            case "2":
-                //实物订单
-                imgDindanType.setImageDrawable(MyApplication.getInstance().getResources().getDrawable(R.drawable.img_95));
-                tvDindanName.setText("实物订单");
-                type = "1";
-                break;
-            case "3":
-                //定制订单
-                imgDindanType.setImageDrawable(MyApplication.getInstance().getResources().getDrawable(R.drawable.img_97));
-                tvDindanName.setText("定制订单");
-                type = "2";
-                break;
-        }
-
-        setTest(dianDaifukuan, bean.getWait_pay());
-        setTest(dianDaishouhuo, bean.getWait_shipping());
-        setTest(dianDaipingjia, bean.getWait_confirm());
-        setTest(dianTuikuan, bean.getRefund_pay());
     }
 
     private void setTest(TextView dianDinzhiDaipingjia, String wp) {
@@ -144,59 +157,6 @@ public class MjMainActivity extends BaseActivity implements SwipeRefreshLayout.O
         } else {
             dianDinzhiDaipingjia.setVisibility(View.VISIBLE);
             dianDinzhiDaipingjia.setText(wp);
-        }
-    }
-
-    @OnClick({R.id.tv_maijia, R.id.tv_store_xinxi, R.id.layout_daishoukuan, R.id.layout_daishouhuo, R.id.layout_daipingjia, R.id.layout_tuikuan, R.id.layout_dindan_type, R.id.layout_dindantixin, R.id.layout_shangxiajia, R.id.layout_baobiao, R.id.layout_xiaoxi})
-    public void onClick(View view) {
-        Intent intent;
-        switch (view.getId()) {
-            case R.id.tv_maijia:
-                finish();
-                break;
-            case R.id.tv_store_xinxi:
-                //商家信息
-                intent = new Intent(mActivity, DianPuJianJieActivity.class);
-                intent.putExtra("bean", bean.getStore_info());
-                startActivity(intent);
-                break;
-            case R.id.layout_daishoukuan:
-                StartUtil.toQuanBuDinDan(mActivity,type, "1", bean.getStore_id());
-                break;
-            case R.id.layout_daishouhuo:
-                StartUtil.toQuanBuDinDan(mActivity,type, "2", bean.getStore_id());
-                break;
-            case R.id.layout_daipingjia:
-                StartUtil.toQuanBuDinDan(mActivity, type, "3", bean.getStore_id());
-                break;
-            case R.id.layout_tuikuan:
-                StartUtil.toQuanBuDinDan(mActivity, type, "4", bean.getStore_id());
-                break;
-            case R.id.layout_dindan_type:
-                StartUtil.toQuanBuDinDan(mActivity, type, "0", bean.getStore_id());
-                break;
-            case R.id.layout_dindantixin:
-                intent = new Intent(mActivity, MessageContentActivity.class);
-                intent.putExtra("type", "3");
-                startActivity(intent);
-                break;
-            case R.id.layout_shangxiajia:
-                //商品上下架
-                intent = new Intent(mActivity, ShangXiaJiaActivity.class);
-                intent.putExtra("id", bean.getStore_id());
-                startActivity(intent);
-                break;
-            case R.id.layout_baobiao:
-                //销售报表
-                intent = new Intent(mActivity, XiaoShouBaoBiaoActivity.class);
-                intent.putExtra("id", bean.getStore_id());
-                startActivity(intent);
-                break;
-            case R.id.layout_xiaoxi:
-                intent = new Intent(mActivity, MessageActivity.class);
-                intent.putExtra("store_id", bean.getStore_id());
-                startActivity(intent);
-                break;
         }
     }
 
@@ -234,5 +194,88 @@ public class MjMainActivity extends BaseActivity implements SwipeRefreshLayout.O
                         finish();
                     }
                 });
+    }
+
+
+    @OnClick({R.id.tv_store_xinxi, R.id.tv_maijia, R.id.layout_shiwu_daishoukuan, R.id.layout_shiwu_daishouhuan, R.id.layout_shiwu_daipingjia, R.id.layout_shiwu_tuikuan, R.id.layout_shiwu, R.id.layout_tuangou_daishoukuan, R.id.layout_tuangou_daishouhuan, R.id.layout_tuangou_daipingjia, R.id.layout_tuangou_tuikuan, R.id.layout_tuangou, R.id.layout_dinzhi_daishoukuan, R.id.layout_dinzhi_daishouhuan, R.id.layout_dinzhi_daipingjia, R.id.layout_dinzhi_tuikuan, R.id.layout_dinzhi, R.id.layout_dindantixin, R.id.layout_shangxiajia, R.id.layout_baobiao, R.id.layout_xiaoxi})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.layout_shiwu_daishoukuan:
+                StartUtil.toQuanBuDinDan(mActivity, "1", "1", bean.getStore_id());
+                break;
+            case R.id.layout_shiwu_daishouhuan:
+                StartUtil.toQuanBuDinDan(mActivity, "1", "2", bean.getStore_id());
+                break;
+            case R.id.layout_shiwu_daipingjia:
+                StartUtil.toQuanBuDinDan(mActivity, "1", "3", bean.getStore_id());
+                break;
+            case R.id.layout_shiwu_tuikuan:
+                StartUtil.toQuanBuDinDan(mActivity, "1", "4", bean.getStore_id());
+                break;
+            case R.id.layout_shiwu:
+                StartUtil.toQuanBuDinDan(mActivity, "1", "0", bean.getStore_id());
+                break;
+            case R.id.layout_tuangou_daishoukuan:
+                StartUtil.toQuanBuDinDan(mActivity, "3", "1", bean.getStore_id());
+                break;
+            case R.id.layout_tuangou_daishouhuan:
+                StartUtil.toQuanBuDinDan(mActivity, "3", "2", bean.getStore_id());
+                break;
+            case R.id.layout_tuangou_daipingjia:
+                StartUtil.toQuanBuDinDan(mActivity, "3", "3", bean.getStore_id());
+                break;
+            case R.id.layout_tuangou_tuikuan:
+                StartUtil.toQuanBuDinDan(mActivity, "3", "4", bean.getStore_id());
+                break;
+            case R.id.layout_tuangou:
+                StartUtil.toQuanBuDinDan(mActivity, "3", "0", bean.getStore_id());
+                break;
+            case R.id.layout_dinzhi_daishoukuan:
+                StartUtil.toQuanBuDinDan(mActivity, "2", "1", bean.getStore_id());
+                break;
+            case R.id.layout_dinzhi_daishouhuan:
+                StartUtil.toQuanBuDinDan(mActivity, "2", "2", bean.getStore_id());
+                break;
+            case R.id.layout_dinzhi_daipingjia:
+                StartUtil.toQuanBuDinDan(mActivity, "2", "3", bean.getStore_id());
+                break;
+            case R.id.layout_dinzhi_tuikuan:
+                StartUtil.toQuanBuDinDan(mActivity, "2", "4", bean.getStore_id());
+                break;
+            case R.id.layout_dinzhi:
+                StartUtil.toQuanBuDinDan(mActivity, "2", "0", bean.getStore_id());
+                break;
+            case R.id.layout_dindantixin:
+                intent = new Intent(mActivity, MessageContentActivity.class);
+                intent.putExtra("type", "3");
+                startActivity(intent);
+                break;
+            case R.id.layout_shangxiajia:
+                //商品上下架
+                intent = new Intent(mActivity, ShangXiaJiaActivity.class);
+                intent.putExtra("id", bean.getStore_id());
+                startActivity(intent);
+                break;
+            case R.id.layout_baobiao:
+                //销售报表
+                intent = new Intent(mActivity, XiaoShouBaoBiaoActivity.class);
+                intent.putExtra("id", bean.getStore_id());
+                startActivity(intent);
+                break;
+            case R.id.layout_xiaoxi:
+                intent = new Intent(mActivity, MessageActivity.class);
+                intent.putExtra("store_id", bean.getStore_id());
+                startActivity(intent);
+                break;
+            case R.id.tv_maijia:
+                finish();
+                break;
+            case R.id.tv_store_xinxi:
+                //商家信息
+                intent = new Intent(mActivity, DianPuJianJieActivity.class);
+                intent.putExtra("bean", bean.getStore_info());
+                startActivity(intent);
+                break;
+        }
     }
 }

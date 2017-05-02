@@ -29,6 +29,7 @@ public class MyApplication extends Application {
                 //其他配置
                 .build();
         OkHttpUtils.initClient(okHttpClient);
+//        CrashHandler.getInstance().init(this);
     }
 
     private static class LazyHolder {
