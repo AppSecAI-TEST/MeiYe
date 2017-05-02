@@ -74,7 +74,7 @@
                     android:layout_weight="1"
                     android:ellipsize="end"
                     android:maxLines="3"
-                    android:text="使用规则则优惠券使用规则优惠券使用规则多大." />
+                    android:text="" />
             </LinearLayout>
         </LinearLayout>
 

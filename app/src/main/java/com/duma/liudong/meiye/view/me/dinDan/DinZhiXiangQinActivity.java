@@ -75,6 +75,10 @@ public class DinZhiXiangQinActivity extends BaseActivity {
     RecyclerView rvUser;
     @BindView(R.id.tv_cont)
     TextView tvCont;
+    @BindView(R.id.tv_text1)
+    TextView tvText1;
+    @BindView(R.id.tv_text2)
+    TextView tvText2;
 
     private String order_id, DinZhitype;
     private DinZhiXiangQinBean bean;
@@ -107,6 +111,12 @@ public class DinZhiXiangQinActivity extends BaseActivity {
         rvTouxiang.setFocusable(false);
         rvTouxiang.setNestedScrollingEnabled(false);
         initAdapter();
+        timeDaojishi.setOnCountdownEndListener(new CountdownView.OnCountdownEndListener() {
+            @Override
+            public void onEnd(CountdownView cv) {
+                onRefresh();
+            }
+        });
         onRefresh();
     }
 
@@ -161,9 +171,18 @@ public class DinZhiXiangQinActivity extends BaseActivity {
         double v = Integer.parseInt(bean.getGoods_list().get(0).getGoods_num()) * Double.parseDouble(bean.getGoods_list().get(0).getMember_goods_price());
         tvJiage.setText(v + "");
         tvNum.setText(bean.getSupport().getMark().getSeller_up());
-        tvChaNum.setText(bean.getSupport().getMark().getShortX() + "");
         timeDaojishi.start(bean.getSupport().getMark().getEnd_time() * 1000);
         tvCont.setText(bean.getSupport().getMark().getTips());
+
+        tvText1.setVisibility(View.GONE);
+        tvText2.setVisibility(View.GONE);
+        if (bean.getSupport().getMark().getEnd_time() == 0) {
+            tvChaNum.setText(bean.getSupport().getMark().getContent());
+        } else {
+            tvText1.setVisibility(View.VISIBLE);
+            tvText2.setVisibility(View.VISIBLE);
+            tvChaNum.setText(bean.getSupport().getMark().getShortX() + "");
+        }
 
         mList.clear();
         mList.addAll(bean.getSupport().getUser());

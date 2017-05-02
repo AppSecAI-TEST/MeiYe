@@ -65,7 +65,7 @@ public class HongBaoFragment extends BaseFragment implements SwipeRefreshLayout.
                 TextView tv_type = holder.getView(R.id.tv_type);
                 switch (activity.getType()) {
                     case "0":
-                        tv_type.setText("立即使用");
+                        tv_type.setText("未使用");
                         tv_type.setTextColor(mActivity.getResources().getColor(R.color.main_red));
                         break;
                     case "1":

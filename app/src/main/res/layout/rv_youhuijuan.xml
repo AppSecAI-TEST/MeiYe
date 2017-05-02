@@ -75,7 +75,8 @@
                 android:gravity="right"
                 android:text="立即使用"
                 android:textColor="@color/main_red"
-                android:textSize="11sp" />
+                android:textSize="11sp"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:layout_width="match_parent"

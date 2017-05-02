@@ -65,6 +65,10 @@ public class ShangPingXiangQinWeb extends BaseActivity {
 
     @Override
     protected void OnBack() {
+        back();
+    }
+
+    private void back() {
         if (webWebview.canGoBack()) {
             webWebview.goBack();
         } else {
@@ -74,7 +78,7 @@ public class ShangPingXiangQinWeb extends BaseActivity {
 
     @OnClick(R.id.img_back)
     public void onClick() {
-        finish();
+        back();
     }
 
     class webJs {
