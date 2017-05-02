@@ -115,14 +115,14 @@ public class ShenShiQuUtil implements Runnable {
 
     private String getText(Activity activity) {
         try {
-            InputStream is = activity.getAssets().open("ssqjson.txt");
+            InputStream is = activity.getAssets().open("city.txt");
             int size = is.available();
 
             byte[] buffer = new byte[size];
             is.read(buffer);
             is.close();
 
-            return new String(buffer, "GB2312");
+            return new String(buffer, "UTF-8");
         } catch (IOException e) {
             Ts.setText("读取省市区数据错误！");
         }

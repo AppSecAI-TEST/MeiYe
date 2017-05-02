@@ -445,13 +445,23 @@ public class QueRenDinDanActivity extends BaseActivity {
                         DialogUtil.hide();
                         OridBean oridBean = new Gson().fromJson(result, OridBean.class);
                         if (bean.getTotal_price().getTotal_fee().equals("0")) {
-                            StartUtil.toZhiFuSuccess(mActivity, type.equals("1") ? "2" : "1");
+                            StartUtil.toZhiFuSuccess(mActivity, getType());
                         } else {
-                            StartUtil.toZhiFu(mActivity, oridBean.getOrder_id(), bean.getTotal_price().getTotal_fee() + "", type.equals("1") ? "2" : "1");
+                            StartUtil.toZhiFu(mActivity, oridBean.getOrder_id(), bean.getTotal_price().getTotal_fee() + "", getType());
                         }
                     }
                 });
     }
+
+    private String getType() {
+        if (type.equals("") && spell_id.equals("")) {
+            //实物
+            return "1";
+        } else {
+            return "2";
+        }
+    }
+
 
     @Override
     protected void onDestroy() {
