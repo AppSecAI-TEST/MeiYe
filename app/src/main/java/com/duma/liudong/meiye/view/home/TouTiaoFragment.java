@@ -87,7 +87,7 @@ public class TouTiaoFragment extends BaseFragment implements SwipeRefreshLayout.
                 holder.setText(R.id.tv_author, "发帖人:" + toutiaoBean.getAuthor());
                 holder.setText(R.id.tv_publish_time, toutiaoBean.getPublish_time());
                 holder.setText(R.id.tv_click, "人气:" + toutiaoBean.getClick());
-                ImageLoader.with(Api.url + toutiaoBean.getThumb(), imageView);
+                ImageLoader.with(toutiaoBean.getThumb(), imageView);
             }
 
             @Override

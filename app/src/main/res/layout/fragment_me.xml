@@ -87,7 +87,8 @@
                             <ImageView
                                 android:id="@+id/img_huiyuan"
                                 android:layout_width="75dp"
-                                android:layout_height="match_parent" />
+                                android:layout_height="match_parent"
+                                android:scaleType="centerInside" />
 
                             <TextView
                                 android:id="@+id/tv_level_up"

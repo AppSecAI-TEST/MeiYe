@@ -19,7 +19,7 @@ public class ImageLoader {
 //                .an//設置load完的動畫
 
                 .centerCrop()//中心切圖, 會填滿
-
+                .dontAnimate()
 //                .fitCenter()//中心fit, 以原本圖片的長寬為主
 
                 .into(imageView);
