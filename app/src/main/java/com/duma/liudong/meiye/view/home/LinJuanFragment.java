@@ -74,11 +74,13 @@ public class LinJuanFragment extends BaseFragment implements SwipeRefreshLayout.
                 holder.setText(R.id.tv_money, linJuanBean.getMoney());
                 holder.setText(R.id.tv_condition, "满" + linJuanBean.getCondition() + "可用");
                 ProgressBar progressBar = holder.getView(R.id.progressBar);
-                int max = Integer.parseInt(linJuanBean.getCreatenum());
-                int progress = Integer.parseInt(linJuanBean.getSend_num());
-                progressBar.setMax(max);
-                progressBar.setProgress(progress);
-                holder.setText(R.id.tv_progressbar, "已抢" + (progress / max) * 100 + "%");
+                Double max = Double.parseDouble(linJuanBean.getCreatenum());
+                Double progress = Double.parseDouble(linJuanBean.getSend_num());
+
+                progressBar.setMax(Integer.parseInt(linJuanBean.getCreatenum()));
+                progressBar.setProgress(Integer.parseInt(linJuanBean.getSend_num()));
+
+                holder.setText(R.id.tv_progressbar, "已抢" + StartUtil.setNum((progress / max) * 100) + "%");
 
                 TextView tv_lingqu = holder.getView(R.id.tv_lingqu);
                 tv_lingqu.setOnClickListener(new View.OnClickListener() {

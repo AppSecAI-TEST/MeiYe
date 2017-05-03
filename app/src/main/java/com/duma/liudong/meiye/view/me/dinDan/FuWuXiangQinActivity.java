@@ -195,7 +195,7 @@ public class FuWuXiangQinActivity extends BaseActivity implements SwipeRefreshLa
                 break;
             case "WAITRECEIVE":
                 //待收货
-                tvHei.setVisibility(View.VISIBLE);
+                tvHei.setVisibility(View.GONE);
                 tvHong.setVisibility(View.VISIBLE);
                 tvHei.setText("查看物流");
                 tvHong.setText("确认收货");
