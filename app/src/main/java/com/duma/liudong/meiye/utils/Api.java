@@ -7,151 +7,151 @@ import com.duma.liudong.meiye.base.MyApplication;
  */
 
 public class Api {
-    public static final String url = "http://meiye.duma-ivy.cn";
-
+    public static String url = "http://meiye.duma-ivy.cn";
     /**
      * h5
      */
     //商品详情
-    public static final String H5Url = Api.url + "/index.php/Mobile/Goods/goodsdetail?" + Constants.user_id + "=" + MyApplication.getSpUtils().getString(Constants.user_id) + "&goods_id=";
+    public static String H5Url = Api.url + "/index.php/Mobile/Goods/goodsdetail?" + Constants.user_id + "=" + MyApplication.getSpUtils().getString(Constants.user_id) + "&goods_id=";
     //论坛详情
-    public static final String LunTanH5Url = Api.url + "/index.php/Mobile/Forum/detail?bbs_id=";
+    public static String LunTanH5Url = Api.url + "/index.php/Mobile/Forum/detail?bbs_id=";
     //签到
-    public static final String QianDaoH5Url = Api.url + "/index.php/Mobile/User/sign.html";
+    public static String QianDaoH5Url = Api.url + "/index.php/Mobile/User/sign.html";
     //头条
-    public static final String TouTiaoH5Url = Api.url + "/index.php/Mobile/Toutiao/detail.html?article_id=";
+    public static String TouTiaoH5Url = Api.url + "/index.php/Mobile/Toutiao/detail.html?article_id=";
     //二维码
-    public static final String erweima = Api.url + "/index.php/Mobile/User/qrcode?user_id=" + MyApplication.getSpUtils().getString(Constants.user_id) + "&token=" + MyApplication.getSpUtils().getString(Constants.token);
+    public static String erweima = Api.url + "/index.php/Mobile/User/qrcode?user_id=" + MyApplication.getSpUtils().getString(Constants.user_id) + "&token=" + MyApplication.getSpUtils().getString(Constants.token);
     //赚钱
-    public static final String zhuanQianH5 = Api.url + "/index.php/Mobile/User/makeMoney";
+    public static String zhuanQianH5 = Api.url + "/index.php/Mobile/User/makeMoney";
     //入驻
-    public static final String ruzhuH5 = Api.url + "/index.php/Mobile/User/settled";
+    public static String ruzhuH5 = Api.url + "/index.php/Mobile/User/settled";
     //版权
-    public static final String banquanH5 = Api.url + "/index.php/Mobile/User/copyright";
+    public static String banquanH5 = Api.url + "/index.php/Mobile/User/copyright";
     //会员升级
-    public static final String HuiYuanH5 = Api.url + "/index.php/Mobile/User/upgrade";
+    public static String HuiYuanH5 = Api.url + "/index.php/Mobile/User/upgrade";
     //问卷调查
-    public static final String WenJuanH5 = Api.url + "/index.php/Mobile/Question/index";
+    public static String WenJuanH5 = Api.url + "/index.php/Mobile/Question/index";
     //查看物流
-    public static final String WuLiuH5 = Api.url + "/index.php/Mobile/Goods/logistics?order_id=";
+    public static String WuLiuH5 = Api.url + "/index.php/Mobile/Goods/logistics?order_id=";
     //新人特权
-    public static final String TeQuanH5 = Api.url + "/index.php/Mobile/User/privilege";
+    public static String TeQuanH5 = Api.url + "/index.php/Mobile/User/privilege";
     /**
      * 个人用户
      */
-    public static final String register = url + "/App/user/register";
-    public static final String login = url + "/App/user/login";
-    public static final String sendCode = url + "/App/user/sendCode";
-    public static final String alterPwd = url + "/App/user/alterPwd";
-    public static final String index = url + "/App/user/index";
-    public static final String setting = url + "/App/user/setting";
-    public static final String alterHead = url + "/App/user/alterHead";
-    public static final String changePwd = url + "/App/user/changePwd";
-    public static final String feedback = url + "/App/user/feedback";
-    public static final String myClient = url + "/App/user/myClient";
-    public static final String message = url + "/App/user/message";
-    public static final String messageAction = url + "/App/user/messageAction";
-    public static final String moneyDetail = url + "/App/user/moneyDetail";
-    public static final String pointsDetail = url + "/App/user/pointsDetail";
-    public static final String coupon = url + "/App/user/coupon";
-    public static final String packet = url + "/App/user/packet";
-    public static final String collectList = url + "/App/user/collectList";
-    public static final String editAddress = url + "/App/user/editAddress";
-    public static final String addressList = url + "/App/user/addressList";
-    public static final String delAddress = url + "/App/user/delAddress";
-    public static final String orderList = url + "/App/user/orderList";
-    public static final String cancelOrder = url + "/App/user/cancelOrder";
-    public static final String delOrder = url + "/App/user/delOrder";
-    public static final String confirmOrder = url + "/App/user/confirmOrder";
-    public static final String comment = url + "/App/user/comment";
-    public static final String withdraw = url + "/App/user/withdraw";
-    public static final String footList = url + "/App/user/footList";
-    public static final String delFoot = url + "/App/user/delFoot";
-    public static final String delCollect = url + "/App/user/delCollect";
-    public static final String storeCollect = url + "/App/user/storeCollect";
-    public static final String orderInfo = url + "/App/user/orderInfo";
-    public static final String mySpell = url + "/App/user/mySpell";
-    public static final String returnGoods = url + "/App/user/returnGoods";
-    public static final String isBindIdCard = url + "/App/user/isBindIdCard";
-    public static final String sellerorderList = url + "/App/seller/orderList";
+    public static String register = url + "/App/user/register";
+    public static String login = url + "/App/user/login";
+    public static String sendCode = url + "/App/user/sendCode";
+    public static String alterPwd = url + "/App/user/alterPwd";
+    public static String index = url + "/App/user/index";
+    public static String setting = url + "/App/user/setting";
+    public static String alterHead = url + "/App/user/alterHead";
+    public static String changePwd = url + "/App/user/changePwd";
+    public static String feedback = url + "/App/user/feedback";
+    public static String myClient = url + "/App/user/myClient";
+    public static String message = url + "/App/user/message";
+    public static String messageAction = url + "/App/user/messageAction";
+    public static String moneyDetail = url + "/App/user/moneyDetail";
+    public static String pointsDetail = url + "/App/user/pointsDetail";
+    public static String coupon = url + "/App/user/coupon";
+    public static String packet = url + "/App/user/packet";
+    public static String collectList = url + "/App/user/collectList";
+    public static String editAddress = url + "/App/user/editAddress";
+    public static String setDefaultAddr = url + "/App/user/setDefaultAddr";
+    public static String addressList = url + "/App/user/addressList";
+    public static String delAddress = url + "/App/user/delAddress";
+    public static String orderList = url + "/App/user/orderList";
+    public static String cancelOrder = url + "/App/user/cancelOrder";
+    public static String delOrder = url + "/App/user/delOrder";
+    public static String confirmOrder = url + "/App/user/confirmOrder";
+    public static String comment = url + "/App/user/comment";
+    public static String withdraw = url + "/App/user/withdraw";
+    public static String footList = url + "/App/user/footList";
+    public static String delFoot = url + "/App/user/delFoot";
+    public static String delCollect = url + "/App/user/delCollect";
+    public static String storeCollect = url + "/App/user/storeCollect";
+    public static String orderInfo = url + "/App/user/orderInfo";
+    public static String mySpell = url + "/App/user/mySpell";
+    public static String returnGoods = url + "/App/user/returnGoods";
+    public static String isBindIdCard = url + "/App/user/isBindIdCard";
+    public static String sellerorderList = url + "/App/seller/orderList";
 
-    public static final String isComment = url + "/App/user/isComment";
-    public static final String isReturnGoods = url + "/App/user/isReturnGoods";
-    public static final String orderNum = url + "/App/user/orderNum";
+    public static String isComment = url + "/App/user/isComment";
+    public static String isReturnGoods = url + "/App/user/isReturnGoods";
+    public static String orderNum = url + "/App/user/orderNum";
     /**
      * seller-个人中心
      */
-    public static final String sellerindex = url + "/App/seller/index";
-    public static final String my_list = url + "/App/Goods/my_list";
-    public static final String is_warehouse = url + "/App/Goods/is_warehouse";
-    public static final String is_onsale = url + "/App/Goods/is_onsale";
-    public static final String del = url + "/App/Goods/del";
-    public static final String sellStatement = url + "/App/seller/sellStatement";
-    public static final String sellerorderInfo = url + "/App/seller/orderInfo";
+    public static String sellerindex = url + "/App/seller/index";
+    public static String my_list = url + "/App/Goods/my_list";
+    public static String is_warehouse = url + "/App/Goods/is_warehouse";
+    public static String is_onsale = url + "/App/Goods/is_onsale";
+    public static String del = url + "/App/Goods/del";
+    public static String sellStatement = url + "/App/seller/sellStatement";
+    public static String sellerorderInfo = url + "/App/seller/orderInfo";
     /**
      * Index
      */
-    public static final String cate = url + "/App/Index/cate";
-    public static final String mainindex = url + "/App/Index/index";
-    public static final String goodindex = url + "/App/Goods/index";
-    public static final String store_search = url + "/App/Goods/store_search";
-    public static final String recommend = url + "/App/Index/recommend";
+    public static String cate = url + "/App/Index/cate";
+    public static String mainindex = url + "/App/Index/index";
+    public static String goodindex = url + "/App/Goods/index";
+    public static String store_search = url + "/App/Goods/store_search";
+    public static String recommend = url + "/App/Index/recommend";
 
     /**
      * coupon - 领取优惠券
      */
-    public static final String couponindex = url + "/App/coupon/index";
-    public static final String getCoupon = url + "/App/coupon/getCoupon";
+    public static String couponindex = url + "/App/coupon/index";
+    public static String getCoupon = url + "/App/coupon/getCoupon";
 
     /**
      * order
      */
-    public static final String cartList = url + "/App/order/cartList";
-    public static final String delcart = url + "/App/order/delcart";
-    public static final String makeSure = url + "/App/order/makeSure";
-    public static final String makeOrder = url + "/App/order/makeOrder";
-    public static final String serverOrder = url + "/App/order/serverOrder";
-    public static final String serverSure = url + "/App/order/serverSure";
+    public static String cartList = url + "/App/order/cartList";
+    public static String delcart = url + "/App/order/delcart";
+    public static String makeSure = url + "/App/order/makeSure";
+    public static String makeOrder = url + "/App/order/makeOrder";
+    public static String serverOrder = url + "/App/order/serverOrder";
+    public static String serverSure = url + "/App/order/serverSure";
 
     /**
      * 头条
      */
-    public static final String Toutiaoindex = url + "/App/Toutiao/index";
+    public static String Toutiaoindex = url + "/App/Toutiao/index";
 
     /**
      * store
      */
-    public static final String Storeindex = url + "/App/Store/index";
-    public static final String Storegoods = url + "/App/Store/goods";
-    public static final String dynamic = url + "/App/Store/dynamic";
-    public static final String store_class = url + "/App/Store/store_class";
+    public static String Storeindex = url + "/App/Store/index";
+    public static String Storegoods = url + "/App/Store/goods";
+    public static String dynamic = url + "/App/Store/dynamic";
+    public static String store_class = url + "/App/Store/store_class";
 
     /**
      * Market - 秒杀活动接口
      */
-    public static final String miaosha = url + "/App/Market/miaosha";
+    public static String miaosha = url + "/App/Market/miaosha";
 
     /**
      * Bbs - 论坛分类
      */
-    public static final String cat = url + "/App/Bbs/cat";
-    public static final String top = url + "/App/Bbs/top";
-    public static final String Bbsindex = url + "/App/Bbs/index";
-    public static final String upload = url + "/App/Bbs/upload";
-    public static final String add = url + "/App/Bbs/add";
-    public static final String like = url + "/App/Bbs/like";
-    public static final String follow_list = url + "/App/Bbs/follow_list";
-    public static final String follow_bbs = url + "/App/Bbs/follow_bbs";
-    public static final String my_add_bbs = url + "/App/Bbs/my_add_bbs";
-    public static final String follow = url + "/App/Bbs/follow";
+    public static String cat = url + "/App/Bbs/cat";
+    public static String top = url + "/App/Bbs/top";
+    public static String Bbsindex = url + "/App/Bbs/index";
+    public static String upload = url + "/App/Bbs/upload";
+    public static String add = url + "/App/Bbs/add";
+    public static String like = url + "/App/Bbs/like";
+    public static String follow_list = url + "/App/Bbs/follow_list";
+    public static String follow_bbs = url + "/App/Bbs/follow_bbs";
+    public static String my_add_bbs = url + "/App/Bbs/my_add_bbs";
+    public static String follow = url + "/App/Bbs/follow";
     /**
      * Tuangou - 团购列表
      */
-    public static final String Tuangouindex = url + "/App/Tuangou/index";
-    public static final String address = url + "/App/Tuangou/address";
+    public static String Tuangouindex = url + "/App/Tuangou/index";
+    public static String address = url + "/App/Tuangou/address";
 
     /**
      * pay
      */
-    public static final String PayserverOrder = url + "/App/Pay/makeAlipay";
+    public static String PayserverOrder = url + "/App/Pay/makeAlipay";
 }

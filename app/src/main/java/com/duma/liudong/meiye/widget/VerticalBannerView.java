@@ -90,6 +90,7 @@ public class VerticalBannerView extends LinearLayout implements BaseBannerAdapte
         this.mAdapter = adapter;
         mAdapter.setOnDataChangedListener(this);
         setupAdapter();
+        start();
     }
 
     public void start() {
@@ -111,7 +112,6 @@ public class VerticalBannerView extends LinearLayout implements BaseBannerAdapte
 
     private void setupAdapter() {
         removeAllViews();
-
         if (mAdapter.getCount() == 1) {
             mFirstView = mAdapter.getView(this);
             mAdapter.setItem(mFirstView, mAdapter.getItem(0));

@@ -32,8 +32,6 @@ import butterknife.OnClick;
  */
 
 public class MjMainActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
-
-
     @BindView(R.id.tv_maijia)
     TextView tvMaijia;
     @BindView(R.id.tv_store_xinxi)
@@ -149,6 +147,22 @@ public class MjMainActivity extends BaseActivity implements SwipeRefreshLayout.O
         tvShoucang.setText(bean.getStore_collect());
         tvShijian.setText(bean.getStore_info().getStore_time_y() + "年");
         tvXiaoliang.setText("成交" + bean.getStore_info().getOrder_num() + "笔");
+
+
+        setTest(dianDinzhiDaipingjia, bean.getOrder_count().getCustom().getWc());
+        setTest(dianDinzhiDaishoukuan, bean.getOrder_count().getCustom().getWp());
+        setTest(dianDinzhiDaishouhuan, bean.getOrder_count().getCustom().getWr());
+        setTest(dianDinzhiTuikuan, bean.getOrder_count().getCustom().getRe());
+
+        setTest(dianShiwuDaishoukuan, bean.getOrder_count().getIndeed().getWp());
+        setTest(dianShiwuDaishouhuo, bean.getOrder_count().getIndeed().getWr());
+        setTest(dianShiwuDaipingjia, bean.getOrder_count().getIndeed().getWc());
+        setTest(dianShiwuTuikuan, bean.getOrder_count().getIndeed().getRe());
+
+        setTest(dianTuangouDaishoukuan, bean.getOrder_count().getServer().getWp());
+        setTest(dianTuangouDaishouhuan, bean.getOrder_count().getServer().getWr());
+        setTest(dianTuangouDaipingjia, bean.getOrder_count().getServer().getWc());
+        setTest(dianTuangouTuikuan, bean.getOrder_count().getServer().getRe());
     }
 
     private void setTest(TextView dianDinzhiDaipingjia, String wp) {

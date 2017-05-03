@@ -6,6 +6,7 @@ package com.duma.liudong.meiye.model;
 
 public class SelletBean {
 
+
     /**
      * store_id :
      * sc_id :
@@ -30,6 +31,15 @@ public class SelletBean {
     private String wait_shipping;
     private String refund_pay;
     private DianPubean store_info;
+    private DinDanNumBean order_count;
+
+    public DinDanNumBean getOrder_count() {
+        return order_count;
+    }
+
+    public void setOrder_count(DinDanNumBean order_count) {
+        this.order_count = order_count;
+    }
 
     public DianPubean getStore_info() {
         return store_info;

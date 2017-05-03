@@ -68,7 +68,7 @@ public class QuanBuDinDanActivity extends BaseActivity {
                 break;
         }
         viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "待评价");
-        viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "退款");
+        viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "退款中");
         viewPaterBar.setOffscreenPageLimit(5);
         viewPaterBar.setAdapter(viewPagerAdapter);
         tabLayoutBar.setupWithViewPager(viewPaterBar);

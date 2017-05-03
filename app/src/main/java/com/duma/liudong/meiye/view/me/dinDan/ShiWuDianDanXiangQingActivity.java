@@ -211,6 +211,10 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
                 tvHong.setVisibility(View.VISIBLE);
                 tvHei.setText("查看物流");
                 tvHong.setText("确认收货");
+                if (bean.getIs_pick().equals("1")) {
+                    //自取
+                    tvHei.setVisibility(View.GONE);
+                }
                 break;
             case "WAITCCOMMENT":
                 //待评价

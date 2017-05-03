@@ -38,8 +38,6 @@ import butterknife.OnClick;
  */
 
 public class FuWuQueRenDinDanActivity extends BaseActivity {
-
-
     @BindView(R.id.layout_back)
     LinearLayout layoutBack;
     @BindView(R.id.img_other)
@@ -162,7 +160,7 @@ public class FuWuQueRenDinDanActivity extends BaseActivity {
     }
 
     private void DinDanHttp() {
-        DialogUtil.show(mActivity, false);
+        DialogUtil.show(mActivity);
         OkHttpUtils.getInstance().cancelTag(this);
         OkHttpUtils
                 .get()
@@ -223,7 +221,7 @@ public class FuWuQueRenDinDanActivity extends BaseActivity {
         ImageLoader.with(Api.url + bean.getOriginal_img(), imgHeadPic);
         tvShangpingTitle.setText(bean.getGoods_name());
         tvJiage.setText(bean.getMember_price());
-        tvZonge.setText("￥" + bean.getGoods_num() * Double.parseDouble(bean.getMember_price()) + "");
+        tvZonge.setText("￥" + getMoney() + "");
         tvShifu.setText(bean.getTotal() + "");
         tvZongji.setText("" + bean.getTotal());
         tvJifen.setText(bean.getReward_points());
@@ -238,6 +236,10 @@ public class FuWuQueRenDinDanActivity extends BaseActivity {
         } else {
             tvYouhuijuan.setText("不使用优惠券");
         }
+    }
+
+    private double getMoney() {
+        return bean.getGoods_num() * Double.parseDouble(bean.getMember_price());
     }
 
     public boolean getRes(int i) {
@@ -258,7 +260,7 @@ public class FuWuQueRenDinDanActivity extends BaseActivity {
             case R.id.layout_youHuiJuan:
                 Intent intent = new Intent(mActivity, YouHuiJuanListActivity.class);
                 intent.putExtra("id", bean.getStore_id());
-                intent.putExtra("money", bean.getTotal());
+                intent.putExtra("money", getMoney() + "");
                 startActivity(intent);
                 break;
             case R.id.layout_hongbao:

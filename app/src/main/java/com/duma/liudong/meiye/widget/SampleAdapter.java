@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseBannerAdapter;
 import com.duma.liudong.meiye.model.IndexBean;
+import com.duma.liudong.meiye.utils.Ts;
 
 import java.util.List;
 
@@ -34,10 +35,14 @@ public class SampleAdapter extends BaseBannerAdapter<List<IndexBean.ArticleBean>
         TextView tv_cat_name = (TextView) view.findViewById(R.id.tv_cat_name);
         TextView tv_cat_name2 = (TextView) view.findViewById(R.id.tv_cat_name2);
 
-        tvTop.setText(data.get(0).getTitle());
-        tvBottom.setText(data.get(1).getTitle());
-        tv_cat_name.setText(data.get(0).getCat_name());
-        tv_cat_name2.setText(data.get(1).getCat_name());
+        try {
+            tvTop.setText(data.get(0).getTitle());
+            tvBottom.setText(data.get(1).getTitle());
+            tv_cat_name.setText(data.get(0).getCat_name());
+            tv_cat_name2.setText(data.get(1).getCat_name());
+        } catch (Exception e) {
+            Ts.erroy();
+        }
     }
 
 //

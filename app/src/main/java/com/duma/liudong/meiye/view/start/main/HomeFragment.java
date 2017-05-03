@@ -274,7 +274,6 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
     private void initIndex() {
         SampleAdapter sampleAdapter = new SampleAdapter(bean.getArticle());
         bannerAd.setAdapter(sampleAdapter);
-        bannerAd.start();
         friendLinkBeanList = bean.getFriend_link();
         new BaseBannaer().setBanner(bannerHome, friendLinkBeanList, this);
         bannerHome.startTurning(BaseBannaer.time);

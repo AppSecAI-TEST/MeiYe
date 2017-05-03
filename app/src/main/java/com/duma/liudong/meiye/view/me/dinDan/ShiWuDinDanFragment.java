@@ -209,6 +209,10 @@ public class ShiWuDinDanFragment extends BaseFragment implements SwipeRefreshLay
                                 tv_hei_one.setText("申请退款");
                                 tv_hei_two.setText("查看物流");
                                 tv_hong.setText("确认收货");
+                                if (shiWuBean.getIs_pick().equals("1")) {
+                                    //自取
+                                    tv_hei_two.setVisibility(View.GONE);
+                                }
                             }
 
                             break;

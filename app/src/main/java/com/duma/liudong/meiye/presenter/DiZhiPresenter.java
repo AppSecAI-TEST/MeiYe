@@ -162,7 +162,7 @@ public class DiZhiPresenter {
         OkHttpUtils
                 .get()
                 .tag("setMoRenDiZhi")
-                .url(Api.editAddress)
+                .url(Api.setDefaultAddr)
                 .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
                 .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
                 .addParams("address_id", address_id)
