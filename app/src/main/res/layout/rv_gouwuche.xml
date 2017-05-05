@@ -76,7 +76,7 @@
             android:drawableLeft="@drawable/you"
             android:drawablePadding="8dp"
             android:gravity="center"
-            android:text="还差6元可享受包邮," />
+            android:text="还差6元可享受包邮 " />
 
         <TextView
             android:layout_width="wrap_content"
@@ -85,6 +85,7 @@
             android:drawableRight="@drawable/fill_1"
             android:gravity="center"
             android:text=" 去凑单"
-            android:textColor="@color/main_red" />
+            android:textColor="@color/main_red"
+            android:visibility="gone" />
     </LinearLayout>
 </LinearLayout>

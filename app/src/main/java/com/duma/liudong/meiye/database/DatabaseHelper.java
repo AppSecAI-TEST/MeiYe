@@ -1,9 +1,9 @@
-package com.duma.liudong.meiye.model.database;
+package com.duma.liudong.meiye.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.duma.liudong.meiye.model.database.dao.LiShiSouSuoBean;
+import com.duma.liudong.meiye.database.dao.LiShiSouSuoBean;
 import com.duma.liudong.meiye.utils.Ts;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;

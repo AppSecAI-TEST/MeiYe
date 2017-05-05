@@ -117,8 +117,8 @@ public class ShangPingXiangQinWeb extends BaseActivity {
 
         //跳转ShiWu
         @JavascriptInterface
-        public void goShiwu(String goods_id) {
-            StartUtil.toQueRenDinDan(mActivity, "goods_id", goods_id, "");
+        public void goShiwu(String goods_id, String cart_id) {
+            StartUtil.toQueRenDinDan(mActivity, "goods_id", goods_id, "", "", cart_id);
         }
 
         //跳转会员
@@ -129,13 +129,13 @@ public class ShangPingXiangQinWeb extends BaseActivity {
 
         //跳转shiWuDinZhi  开团
         @JavascriptInterface
-        public void goShiWuDinZhi(String goods_id) {
-            StartUtil.toQueRenDinDan(mActivity, "goods_id", goods_id, "1");
+        public void goShiWuDinZhi(String goods_id, String cart_id) {
+            StartUtil.toQueRenDinDan(mActivity, "goods_id", goods_id, "1", "", cart_id);
         }
 
         @JavascriptInterface
-        public void goCanTuan(String goods_id, String spell_id) {
-            StartUtil.toQueRenDinDan(mActivity, "goods_id", goods_id, "", spell_id);
+        public void goCanTuan(String goods_id, String spell_id, String cart_id) {
+            StartUtil.toQueRenDinDan(mActivity, "goods_id", goods_id, "", spell_id, cart_id);
         }
 
         //跳转分享

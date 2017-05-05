@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.base.BaseRvAdapter;
-import com.duma.liudong.meiye.base.MessageBean;
+import com.duma.liudong.meiye.model.MessageBean;
 import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;

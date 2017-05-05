@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
@@ -16,6 +15,9 @@ import com.duma.liudong.meiye.base.MyStringCallback;
 import com.duma.liudong.meiye.model.ShangPinBean;
 import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
+import com.duma.liudong.meiye.widget.demo.base.BaseAdapterUtil;
+import com.duma.liudong.meiye.widget.demo.base.BasePullAdapter;
+import com.duma.liudong.meiye.widget.demo.base.BasePullAdapterBuilder;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -40,8 +42,6 @@ public class DemoActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     ImageView imgOther;
     @BindView(R.id.layout_other)
     LinearLayout layoutOther;
-    @BindView(R.id.layout_kong)
-    LinearLayout layoutKong;
     @BindView(R.id.rv_shangping)
     RecyclerView rvShangping;
     @BindView(R.id.sw_loading)
@@ -49,7 +49,8 @@ public class DemoActivity extends BaseActivity implements SwipeRefreshLayout.OnR
 
     private List<ShangPinBean> mList;
     int p = 0;
-    BaseQuickAdapter<ShangPinBean, BaseViewHolder> adapter;
+
+    BasePullAdapter adapter;
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -60,23 +61,25 @@ public class DemoActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     protected void initData() {
         StartUtil.setSw(swLoading, this);
         mList = new ArrayList<>();
-        rvShangping.setLayoutManager(new GridLayoutManager(mActivity, 2));
-        adapter = new BaseQuickAdapter<ShangPinBean, BaseViewHolder>(R.layout.rv_shangping, mList) {
-            @Override
-            protected void convert(BaseViewHolder holder, ShangPinBean shangPinBean) {
-                ImageView img_original_img = holder.getView(R.id.img_original_img);
-                ImageView img_type = holder.getView(R.id.img_type);
-                ImageLoader.with(shangPinBean.getOriginal_img(), img_original_img);
-                ImageLoader.with(shangPinBean.getType(), img_type);
-                holder.setText(R.id.tv_goods_name, shangPinBean.getGoods_name());
-                holder.setText(R.id.tv_market_price, "￥" + shangPinBean.getMarket_price());
-                holder.setText(R.id.tv_shop_price, shangPinBean.getPrice());
-                holder.setText(R.id.tv_sales_sum, shangPinBean.getSales_sum() + "人付款");
-                holder.setText(R.id.tv_distance, shangPinBean.getDistance() + "m");
-            }
-        };
-        rvShangping.setAdapter(adapter);
-        onRefresh();
+
+        adapter = BaseAdapterUtil
+                .getPullAdapter()
+                .setLayoutManager(new GridLayoutManager(mActivity, 2))
+                .build(mActivity, rvShangping, R.layout.rv_shangping, mList)
+                .execute(new BasePullAdapterBuilder.onBaseAdapterListener<ShangPinBean>() {
+                    @Override
+                    public void getView(BaseViewHolder holder, ShangPinBean shangPinBean) {
+                        ImageView img_original_img = holder.getView(R.id.img_original_img);
+                        ImageView img_type = holder.getView(R.id.img_type);
+                        ImageLoader.with(shangPinBean.getOriginal_img(), img_original_img);
+                        ImageLoader.with(shangPinBean.getType(), img_type);
+                        holder.setText(R.id.tv_goods_name, shangPinBean.getGoods_name());
+                        holder.setText(R.id.tv_market_price, "￥" + shangPinBean.getMarket_price());
+                        holder.setText(R.id.tv_shop_price, shangPinBean.getPrice());
+                        holder.setText(R.id.tv_sales_sum, shangPinBean.getSales_sum() + "人付款");
+                        holder.setText(R.id.tv_distance, shangPinBean.getDistance() + "m");
+                    }
+                });
     }
 
 
@@ -86,6 +89,7 @@ public class DemoActivity extends BaseActivity implements SwipeRefreshLayout.OnR
 
     @Override
     public void onRefresh() {
+        swLoading.setRefreshing(true);
         p++;
         OkHttpUtils
                 .get()

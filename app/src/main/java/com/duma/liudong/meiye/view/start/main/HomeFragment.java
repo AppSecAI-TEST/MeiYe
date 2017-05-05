@@ -25,7 +25,6 @@ import com.duma.liudong.meiye.view.home.MiaoShaActivity;
 import com.duma.liudong.meiye.view.home.TouTiaoActivity;
 import com.duma.liudong.meiye.widget.SampleAdapter;
 import com.duma.liudong.meiye.widget.VerticalBannerView;
-import com.duma.liudong.meiye.widget.demo.DemoActivity;
 import com.google.gson.Gson;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -40,7 +39,6 @@ import butterknife.OnClick;
  */
 
 public class HomeFragment extends BaseFragment implements OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
-
     @BindView(R.id.banner_home)
     ConvenientBanner bannerHome;
     @BindView(R.id.layout_seckill)
@@ -371,7 +369,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
             case R.id.img_haohuo:
                 //附近好货
                 StartUtil.toShangPingLieBiao(mActivity, Constants.marketing_type, "8", "附近好货", "");
-                startActivity(new Intent(mActivity, DemoActivity.class));
+//                startActivity(new Intent(mActivity, DemoActivity.class));
                 break;
         }
     }

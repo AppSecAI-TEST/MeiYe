@@ -149,15 +149,16 @@ public class StartUtil {
 
     //跳转确认订单
     public static void toQueRenDinDan(Activity activity, String key, String value, String type) {
-        toQueRenDinDan(activity, key, value, type, "");
+        toQueRenDinDan(activity, key, value, type, "", "");
     }
 
-    public static void toQueRenDinDan(Activity activity, String key, String value, String type, String spell_id) {
+    public static void toQueRenDinDan(Activity activity, String key, String value, String type, String spell_id, String cart_id) {
         Intent intent = new Intent(activity, QueRenDinDanActivity.class);
         intent.putExtra("key", key);
         intent.putExtra("value", value);
         intent.putExtra("type", type);//是否开团 1:是
         intent.putExtra("spell_id", spell_id);
+        intent.putExtra("cart_id", cart_id);
         activity.startActivity(intent);
     }
 

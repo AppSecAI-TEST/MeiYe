@@ -1,9 +1,9 @@
-package com.duma.liudong.meiye.model.database.dao;
+package com.duma.liudong.meiye.database.dao;
 
 import android.content.Context;
 
 import com.duma.liudong.meiye.base.MyApplication;
-import com.duma.liudong.meiye.model.database.DatabaseHelper;
+import com.duma.liudong.meiye.database.DatabaseHelper;
 import com.duma.liudong.meiye.utils.Ts;
 import com.j256.ormlite.dao.Dao;
 

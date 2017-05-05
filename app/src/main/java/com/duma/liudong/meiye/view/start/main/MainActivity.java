@@ -21,7 +21,7 @@ import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.ActivityCollector;
 import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.base.BaseFragment;
-import com.duma.liudong.meiye.base.MessageBean;
+import com.duma.liudong.meiye.model.MessageBean;
 import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.base.MyStringCallback;
 import com.duma.liudong.meiye.utils.Api;
@@ -39,7 +39,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.duma.liudong.meiye.utils.Constants.store_id;
@@ -106,6 +105,7 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
                 return false;
             }
         });
+        MyApplication.getSpUtils().put(Constants.city, "定位中");
     }
 
     private void initGps() {
@@ -121,8 +121,7 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
         mLocationOption.setOnceLocation(true);
         //给定位客户端对象设置定位参数
         mLocationClient.setLocationOption(mLocationOption);
-        //启动定位
-        mLocationClient.startLocation();
+
     }
 
     public void showHome() {
@@ -138,6 +137,11 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
     protected void onResume() {
         super.onResume();
         getSearch_BarFragment().setTvName();
+        if (MyApplication.getSpUtils().getString(Constants.city).equals("")) {
+            //启动定位
+            mLocationClient.startLocation();
+        }
+
         if (getMeFragment().isVisible()) {
             getMeFragment().refresh();
         }
@@ -360,13 +364,14 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
                 MyApplication.getSpUtils().put(Constants.city, amapLocation.getCity());
                 MyApplication.getSpUtils().put(Constants.lat, amapLocation.getLatitude() + "");
                 MyApplication.getSpUtils().put(Constants.lng, amapLocation.getLongitude() + "");
-                getSearch_BarFragment().setTvName();
             } else {
+                MyApplication.getSpUtils().put(Constants.city, "");
                 //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
                 Log.e("AmapError", "location Error, ErrCode:"
                         + amapLocation.getErrorCode() + ", errInfo:"
                         + amapLocation.getErrorInfo());
             }
+            getSearch_BarFragment().setTvName();
         }
     }
 
@@ -388,12 +393,5 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
             ActivityCollector.finishAll();
             System.exit(0);
         }
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
     }
 }

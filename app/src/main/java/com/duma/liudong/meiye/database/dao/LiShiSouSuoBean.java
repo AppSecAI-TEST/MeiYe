@@ -1,4 +1,4 @@
-package com.duma.liudong.meiye.model.database.dao;
+package com.duma.liudong.meiye.database.dao;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;

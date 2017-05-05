@@ -18,8 +18,6 @@ public class DianPuJianJiOneFragment extends BaseFragment {
     TextView tvCompanyName;
     @BindView(R.id.tv_store_time)
     TextView tvStoreTime;
-    @BindView(R.id.tv_business_scope)
-    TextView tvBusinessScope;
     @BindView(R.id.tv_district_name)
     TextView tvDistrictName;
     @BindView(R.id.tv_store_zy)
@@ -44,9 +42,10 @@ public class DianPuJianJiOneFragment extends BaseFragment {
     TextView tvContactsMobile;
     @BindView(R.id.tv_addres)
     TextView tvAddres;
+    @BindView(R.id.tv_sc_name)
+    TextView tvScName;
 
-    DianPuJianJieActivity activity;
-
+    private DianPuJianJieActivity activity;
     private DianPubean dianPubean;
 
     @Override
@@ -60,17 +59,18 @@ public class DianPuJianJiOneFragment extends BaseFragment {
         dianPubean = activity.dianPubean;
 
         tvAddres.setText(dianPubean.getProvince_name() + dianPubean.getCity_name() + dianPubean.getDistrict_name() + dianPubean.getStore_address());
-        tvBusinessScope.setText(dianPubean.getBusiness_scope());
+//        tvBusinessScope.setText(dianPubean.getBusiness_scope());
         tvCompanyName.setText(dianPubean.getCompany_name());
         tvContactsMobile.setText(dianPubean.getContacts_mobile());
         tvDistrictName.setText(dianPubean.getDistrict_name());
         tvGoodsNum.setText(dianPubean.getGoods_num());
         tvOrderNum.setText(dianPubean.getOrder_num());
-        tvStoreTime.setText(dianPubean.getStore_name());
+        tvStoreTime.setText(dianPubean.getStore_time());
         tvStoreZy.setText(dianPubean.getStore_zy());
         tvContactsName.setText(dianPubean.getContacts_name());
-        xxTurnBackRate.setText(dianPubean.getTurn_back_rate());
+        tvScName.setText(dianPubean.getSc_name());
 
+        xxTurnBackRate.setText(dianPubean.getTurn_back_rate() + "%");
         xxStoreDeliverycredit.setStarCount(dianPubean.getStore_deliverycredit());
         xxStoreDesccredit.setStarCount(dianPubean.getStore_desccredit());
         xxStoreScore.setStarCount((int) dianPubean.getStore_score());

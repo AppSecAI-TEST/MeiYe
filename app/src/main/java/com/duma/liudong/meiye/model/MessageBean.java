@@ -1,4 +1,4 @@
-package com.duma.liudong.meiye.base;
+package com.duma.liudong.meiye.model;
 
 /**
  * Created by liudong on 17/3/27.

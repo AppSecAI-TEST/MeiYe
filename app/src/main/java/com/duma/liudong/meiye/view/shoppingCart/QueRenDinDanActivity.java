@@ -132,7 +132,7 @@ public class QueRenDinDanActivity extends BaseActivity {
 
     int height;//快递试图的高度
 
-    String key, value, type, spell_id;//传过来的参数  type==1为开团
+    String key, value, type, spell_id, cart_id;//传过来的参数  type==1为开团
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -148,6 +148,7 @@ public class QueRenDinDanActivity extends BaseActivity {
         value = getIntent().getStringExtra("value");
         type = getIntent().getStringExtra("type");
         spell_id = getIntent().getStringExtra("spell_id");
+        cart_id = getIntent().getStringExtra("cart_id");
         tvShijian.setText(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         mlist = new ArrayList<>();
         rvShangping.setLayoutManager(new LinearLayoutManager(mActivity));
@@ -272,6 +273,7 @@ public class QueRenDinDanActivity extends BaseActivity {
                 .addParams("is_pick", isZiQu + "")
                 .addParams("use_money", isYue + "")
                 .addParams("coupon_id", getId() + "")
+                .addParams("cart_id", cart_id)
                 .build()
                 .execute(new MyStringCallback() {
                     @Override
@@ -397,7 +399,7 @@ public class QueRenDinDanActivity extends BaseActivity {
                 startActivity(new Intent(mActivity, ShouHuoDiZhiActivity.class));
                 break;
             case R.id.layout_kefu:
-                ServiceDialog dialog = new ServiceDialog(mActivity);
+                ServiceDialog dialog = new ServiceDialog(mActivity, bean.getCart_list().get(0).getMark().getStore_phone());
                 dialog.Show();
                 break;
             case R.id.layout_youHuiJuan:
@@ -438,6 +440,7 @@ public class QueRenDinDanActivity extends BaseActivity {
                 .addParams("address_id", addresId)
                 .addParams("make_spell", type)
                 .addParams("spell_id", spell_id)
+                .addParams("cart_id", cart_id)
                 .build()
                 .execute(new MyStringCallback() {
                     @Override

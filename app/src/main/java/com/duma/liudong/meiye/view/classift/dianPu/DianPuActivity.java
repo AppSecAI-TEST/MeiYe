@@ -88,7 +88,6 @@ public class DianPuActivity extends BaseActivity implements ScrollableLayout.OnS
     @Override
     protected void initData() {
         groupBtn.setVisibility(View.GONE);
-        serviceDialog = new ServiceDialog(mActivity);
         store_id = getIntent().getStringExtra("id");
         final int[] huiDrawable = {R.drawable.img_68, R.drawable.img_69, R.drawable.img_73};
         final int[] radDrawable = {R.drawable.img_67, R.drawable.img_70, R.drawable.img_72};
@@ -200,6 +199,7 @@ public class DianPuActivity extends BaseActivity implements ScrollableLayout.OnS
                 startActivity(intent1);
                 break;
             case R.id.btn_maijia:
+                serviceDialog = new ServiceDialog(mActivity, dianPubean.getStore_phone());
                 serviceDialog.Show();
                 break;
         }

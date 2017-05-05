@@ -2,6 +2,7 @@ package com.duma.liudong.meiye.base;
 
 import com.duma.liudong.meiye.utils.DialogUtil;
 import com.duma.liudong.meiye.utils.Lg;
+import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.utils.Ts;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -51,6 +52,10 @@ public abstract class MyStringCallback extends StringCallback {
             } else if (status.equals("100")) {
                 onMySuccess("-1");
             } else {
+                if (jsonObject.getString("msg").equals("token错误,请重新登陆")) {
+                    StartUtil.cancleLogin();
+                    return;
+                }
                 Ts.setText(jsonObject.getString("msg"));
                 DialogUtil.hide();
                 onError(status);

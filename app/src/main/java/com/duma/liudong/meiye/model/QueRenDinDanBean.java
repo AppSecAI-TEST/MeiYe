@@ -127,6 +127,15 @@ public class QueRenDinDanBean {
             private String user_money;
             private String reward_points;
             private String freight;
+            private String store_phone;
+
+            public String getStore_phone() {
+                return store_phone;
+            }
+
+            public void setStore_phone(String store_phone) {
+                this.store_phone = store_phone;
+            }
 
             public String getFreight() {
                 return freight;
