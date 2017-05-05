@@ -262,6 +262,7 @@ public class MjMainActivity extends BaseActivity implements SwipeRefreshLayout.O
             case R.id.layout_dindantixin:
                 intent = new Intent(mActivity, MessageContentActivity.class);
                 intent.putExtra("type", "3");
+                intent.putExtra("title", "订单提醒");
                 startActivity(intent);
                 break;
             case R.id.layout_shangxiajia:
