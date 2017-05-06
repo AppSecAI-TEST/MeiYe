@@ -288,6 +288,7 @@ public class QueRenDinDanActivity extends BaseActivity {
                     @Override
                     protected void onError(String result) {
                         super.onError(result);
+                        DialogUtil.hide();
                         if (!isOne) {
                             finish();
                         }

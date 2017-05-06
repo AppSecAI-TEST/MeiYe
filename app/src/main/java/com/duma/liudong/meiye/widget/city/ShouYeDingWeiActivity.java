@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
+import com.duma.liudong.meiye.model.City;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,8 +34,8 @@ public class ShouYeDingWeiActivity extends BaseActivity {
     protected static final String TAG = "ShouYeDingWeiActivity";
     @BindView(R.id.layout_back)
     LinearLayout layoutBack;
-    @BindView(R.id.layout_name)
-    TextView layoutName;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
     private MyLetterView myLetterView;//自定义的View
     private TextView tvDialog;//主界面显示字母的TextView
     private ListView lvCity;//进行城市列表展示
@@ -62,7 +63,7 @@ public class ShouYeDingWeiActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        layoutName.setText("选择城市");
+        tvTitle.setText("选择城市");
         layoutBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -6,7 +6,6 @@
     android:layout_height="48dp"
     android:background="@color/white">
 
-
     <LinearLayout
         android:id="@+id/layout_back"
         android:layout_width="48dp"

@@ -105,7 +105,7 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
                 return false;
             }
         });
-        MyApplication.getSpUtils().put(Constants.city, "定位中");
+        MyApplication.getSpUtils2().put(Constants.city, "");
     }
 
     private void initGps() {
@@ -137,7 +137,7 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
     protected void onResume() {
         super.onResume();
         getSearch_BarFragment().setTvName();
-        if (MyApplication.getSpUtils().getString(Constants.city).equals("")) {
+        if (MyApplication.getSpUtils2().getString(Constants.city).equals("") || MyApplication.getSpUtils2().getString(Constants.city).equals("1")) {
             //启动定位
             mLocationClient.startLocation();
         }
@@ -361,11 +361,11 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
         if (amapLocation != null) {
             if (amapLocation.getErrorCode() == 0) {
                 //可在其中解析amapLocation获取相应内容。
-                MyApplication.getSpUtils().put(Constants.city, amapLocation.getCity());
-                MyApplication.getSpUtils().put(Constants.lat, amapLocation.getLatitude() + "");
-                MyApplication.getSpUtils().put(Constants.lng, amapLocation.getLongitude() + "");
+                MyApplication.getSpUtils2().put(Constants.city, amapLocation.getCity());
+                MyApplication.getSpUtils2().put(Constants.lat, amapLocation.getLatitude() + "");
+                MyApplication.getSpUtils2().put(Constants.lng, amapLocation.getLongitude() + "");
             } else {
-                MyApplication.getSpUtils().put(Constants.city, "");
+                MyApplication.getSpUtils2().put(Constants.city, "1");
                 //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
                 Log.e("AmapError", "location Error, ErrCode:"
                         + amapLocation.getErrorCode() + ", errInfo:"
@@ -392,6 +392,7 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
         } else {
             ActivityCollector.finishAll();
             System.exit(0);
+            MyApplication.getSpUtils2().put(Constants.city, "");
         }
     }
 }

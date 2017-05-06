@@ -7,7 +7,7 @@ import com.duma.liudong.meiye.base.MyApplication;
  */
 
 public class Api {
-    public static String url = "http://meiye.duma-ivy.cn";
+    public static String url = "http://my.duma-ivy.cn:81";
     /**
      * h5
      */

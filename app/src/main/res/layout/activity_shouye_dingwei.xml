@@ -15,7 +15,7 @@
 
         <include
             android:id="@+id/rl_title"
-            layout="@layout/include_bar" />
+            layout="@layout/include_top_bar" />
 
         <EditText
             android:id="@+id/et_search"
@@ -82,7 +82,8 @@
                 android:layout_gravity="right"
                 android:layout_marginBottom="100dp"
                 android:layout_marginRight="2dp"
-                android:layout_marginTop="50dp" />
+                android:layout_marginTop="50dp"
+                android:visibility="gone" />
         </FrameLayout>
     </LinearLayout>
 </RelativeLayout>

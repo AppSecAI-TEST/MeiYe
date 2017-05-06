@@ -231,7 +231,6 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
                 });
             }
         };
-
         getIndexHttp();
     }
 

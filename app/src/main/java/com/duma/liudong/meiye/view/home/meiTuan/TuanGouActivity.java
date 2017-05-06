@@ -411,9 +411,9 @@ public class TuanGouActivity extends BaseActivity implements SwipeRefreshLayout.
                 .addParams("p", TuanGouAdapter.p + "")
                 .addParams("sort", sort)
                 .addParams("cate_id", cate_id)
-                .addParams("pick_city_name", MyApplication.getSpUtils().getString(Constants.city))
-                .addParams("lat", MyApplication.getSpUtils().getString(Constants.lat))
-                .addParams("lng", MyApplication.getSpUtils().getString(Constants.lng));
+                .addParams("pick_city_name", MyApplication.getSpUtils2().getString(Constants.city))
+                .addParams("lat", MyApplication.getSpUtils2().getString(Constants.lat))
+                .addParams("lng", MyApplication.getSpUtils2().getString(Constants.lng));
         if (pick_district_id.equals("")) {
             getBuilder.addParams("juli", pick_street_id);
         } else {
@@ -580,7 +580,7 @@ public class TuanGouActivity extends BaseActivity implements SwipeRefreshLayout.
                 .get()
                 .tag("getCityHttp")
                 .url(Api.address)
-                .addParams("name", MyApplication.getSpUtils().getString(Constants.city))
+                .addParams("name", MyApplication.getSpUtils2().getString(Constants.city))
                 .build()
                 .execute(new MyStringCallback() {
                     @Override

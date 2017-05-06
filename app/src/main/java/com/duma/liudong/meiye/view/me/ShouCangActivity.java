@@ -114,6 +114,11 @@ public class ShouCangActivity extends BaseActivity implements SwipeRefreshLayout
             protected void show_loading() {
                 swLoading.setRefreshing(true);
             }
+
+            @Override
+            protected void onitemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                StartUtil.toShangPingWeb(mActivity, Api.H5Url + mList.get(position).getGoods_id());
+            }
         };
         adapter.setKongView(layoutKong);
         adapter.setType(new TypeToken<ArrayList<ShouCangBean>>() {

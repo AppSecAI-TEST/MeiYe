@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.MyApplication;
+import com.duma.liudong.meiye.model.City;
 import com.duma.liudong.meiye.utils.Constants;
 
 import java.util.List;
@@ -61,9 +62,9 @@ public class SearchResultAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
 //                SharedPreferencesUtil.getInstance().set(SharedPreferencesUtil.dingweicity, mSearchList.get(position).getName());
-                MyApplication.getSpUtils().put(Constants.city, mSearchList.get(position).getName());
-                MyApplication.getSpUtils().put(Constants.lat, "");
-                MyApplication.getSpUtils().put(Constants.lng, "");
+                MyApplication.getSpUtils2().put(Constants.city, mSearchList.get(position).getName());
+                MyApplication.getSpUtils2().put(Constants.lat, "");
+                MyApplication.getSpUtils2().put(Constants.lng, "");
                 mContext.finish();
             }
         });

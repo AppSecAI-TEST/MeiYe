@@ -1,4 +1,4 @@
-package com.duma.liudong.meiye.widget.city;
+package com.duma.liudong.meiye.model;
 
 public class City {
 
