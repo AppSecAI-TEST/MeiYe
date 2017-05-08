@@ -4,14 +4,11 @@ import android.app.Activity;
 import android.view.View;
 
 import com.bigkoo.pickerview.OptionsPickerView;
-import com.duma.liudong.meiye.model.ProvinceBean;
 import com.duma.liudong.meiye.model.ShenShiQuBean;
 import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by 79953 on 2016/8/11.
@@ -21,11 +18,6 @@ public class ShenShiQuUtil implements Runnable {
     private OptionsPickerView pvOptions;
     private Activity activity;
 
-    List<ProvinceBean> options1Items;
-    List<List<ProvinceBean>> options2Items;
-    List<List<List<ProvinceBean>>> options3Items;
-    List<List<ProvinceBean>> options3Items_01;
-
     private ShenShiQuBean bean;
 
     public interface OnGetDiZhi {
@@ -34,14 +26,10 @@ public class ShenShiQuUtil implements Runnable {
         void hide();
     }
 
-
     public ShenShiQuUtil(OnGetDiZhi onGetDiZhi, OptionsPickerView pvOptions, Activity activity) {
         this.onGetDiZhi = onGetDiZhi;
         this.pvOptions = pvOptions;
         this.activity = activity;
-        options1Items = new ArrayList<>();
-        options2Items = new ArrayList<>();
-        options3Items = new ArrayList<>();
         initOption();
         Thread thread = new Thread(this);
         thread.start();
@@ -65,9 +53,9 @@ public class ShenShiQuUtil implements Runnable {
         pvOptions = new OptionsPickerView.Builder(activity, new OptionsPickerView.OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
-                onGetDiZhi.getDiZhi(options1Items.get(options1).getName(),
-                        options2Items.get(options1).get(options2).getName(),
-                        options3Items.get(options1).get(options2).get(options3).getName());
+                onGetDiZhi.getDiZhi(bean.getProvinceList().get(options1).getName(),
+                        bean.getCityList().get(options1).get(options2).getName(),
+                        bean.getCountryList().get(options1).get(options2).get(options3).getName());
             }
         })
                 .setSubmitText("确定")//确定按钮文字
