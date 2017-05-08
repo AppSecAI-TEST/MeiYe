@@ -237,7 +237,10 @@
                             android:id="@+id/tv_red_packet"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="..." />
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="..."
+                            android:textSize="12sp" />
 
                         <View
                             android:layout_width="match_parent"
@@ -262,7 +265,10 @@
                             android:id="@+id/tv_integral"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="..." />
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="..."
+                            android:textSize="12sp" />
 
                         <View
                             android:layout_width="match_parent"
@@ -287,7 +293,10 @@
                             android:id="@+id/tv_balance"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="..." />
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="..."
+                            android:textSize="12sp" />
 
                         <View
                             android:layout_width="match_parent"
@@ -312,7 +321,10 @@
                             android:id="@+id/tv_discount_coupon"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="..." />
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="..."
+                            android:textSize="12sp" />
 
                         <View
                             android:layout_width="match_parent"

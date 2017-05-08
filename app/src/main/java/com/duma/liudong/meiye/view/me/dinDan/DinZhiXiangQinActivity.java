@@ -18,6 +18,7 @@ import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.DialogUtil;
 import com.duma.liudong.meiye.utils.ImageLoader;
+import com.duma.liudong.meiye.utils.StartUtil;
 import com.google.gson.Gson;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
@@ -169,7 +170,7 @@ public class DinZhiXiangQinActivity extends BaseActivity {
         tvDanjia.setText("￥" + bean.getGoods_list().get(0).getMember_goods_price());
         tvShuliang.setText("x" + bean.getGoods_list().get(0).getGoods_num());
         double v = Integer.parseInt(bean.getGoods_list().get(0).getGoods_num()) * Double.parseDouble(bean.getGoods_list().get(0).getMember_goods_price());
-        tvJiage.setText(v + "");
+        tvJiage.setText(StartUtil.setNumOr00(v) + "");
         tvNum.setText(bean.getSupport().getMark().getSeller_up());
         timeDaojishi.start(bean.getSupport().getMark().getEnd_time() * 1000);
         tvCont.setText(bean.getSupport().getMark().getTips());

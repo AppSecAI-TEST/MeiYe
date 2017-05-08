@@ -34,14 +34,14 @@
                 android:id="@+id/tv_nickname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="liudong" />
+                android:text="加载中" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/tv_mobile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1877230600" />
+            android:text="" />
     </LinearLayout>
 
     <View style="@style/henxian" />

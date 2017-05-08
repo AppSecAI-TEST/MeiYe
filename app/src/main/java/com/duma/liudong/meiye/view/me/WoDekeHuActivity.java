@@ -18,13 +18,12 @@ import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
+import com.duma.liudong.meiye.utils.Ts;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.http.okhttp.OkHttpUtils;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,9 +45,18 @@ public class WoDekeHuActivity extends BaseActivity implements SwipeRefreshLayout
     RecyclerView rvShangping;
     @BindView(R.id.sw_loading)
     SwipeRefreshLayout swLoading;
+    @BindView(R.id.img_head_pic)
+    ImageView imgHeadPic;
+    @BindView(R.id.tv_nickname)
+    TextView tvNickname;
+    @BindView(R.id.tv_mobile)
+    TextView tvMobile;
+    @BindView(R.id.layout_shangji)
+    LinearLayout layoutShangji;
 
-    private CommonAdapter<WoDeKeHuBean> commonAdapter;
-    private List<WoDeKeHuBean> mList;
+    private CommonAdapter<WoDeKeHuBean.XiajiBean> commonAdapter;
+    private List<WoDeKeHuBean.XiajiBean> mList;
+    private WoDeKeHuBean bean;
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -62,18 +70,14 @@ public class WoDekeHuActivity extends BaseActivity implements SwipeRefreshLayout
         swLoading.setRefreshing(true);
         rvShangping.setLayoutManager(new LinearLayoutManager(mActivity));
         mList = new ArrayList<>();
-        commonAdapter = new CommonAdapter<WoDeKeHuBean>(mActivity, R.layout.rv_wodekehu, mList) {
+        commonAdapter = new CommonAdapter<WoDeKeHuBean.XiajiBean>(mActivity, R.layout.rv_wodekehu, mList) {
             @Override
-            protected void convert(ViewHolder holder, WoDeKeHuBean woDeKeHuBean, int position) {
+            protected void convert(ViewHolder holder, WoDeKeHuBean.XiajiBean woDeKeHuBean, int position) {
                 holder.setText(R.id.tv_mobile, woDeKeHuBean.getMobile());
                 holder.setText(R.id.tv_nickname, woDeKeHuBean.getNickname());
 
                 ImageView i = holder.getView(R.id.img_head_pic);
-                if (woDeKeHuBean.getHead_pic() == null) {
-                    ImageLoader.withYuan(R.drawable.touxiang, i);
-                } else {
-                    ImageLoader.withYuan(Api.url + woDeKeHuBean.getHead_pic(), i);
-                }
+                ImageLoader.withYuan(woDeKeHuBean.getHead_pic(), i);
             }
         };
         rvShangping.setAdapter(commonAdapter);
@@ -94,16 +98,15 @@ public class WoDekeHuActivity extends BaseActivity implements SwipeRefreshLayout
                     @Override
                     public void onMySuccess(String result) {
                         swLoading.setRefreshing(false);
-                        Type type = new TypeToken<ArrayList<WoDeKeHuBean>>() {
-                        }.getType();
-                        ArrayList<WoDeKeHuBean> list = new Gson().fromJson(result, type);
-                        if (list == null) {
+                        bean = new Gson().fromJson(result, WoDeKeHuBean.class);
+                        if (bean.getXiaji() == null) {
                             onError("");
                             return;
                         }
                         mList.clear();
-                        mList.addAll(list);
+                        mList.addAll(bean.getXiaji());
                         commonAdapter.notifyDataSetChanged();
+                        initRes();
                     }
 
                     @Override
@@ -115,6 +118,21 @@ public class WoDekeHuActivity extends BaseActivity implements SwipeRefreshLayout
                 });
     }
 
+    private void initRes() {
+        try {
+            if (bean.getShangji().size() != 0) {
+                layoutShangji.setVisibility(View.VISIBLE);
+                tvMobile.setText(bean.getShangji().get(0).getMobile());
+                tvNickname.setText(bean.getShangji().get(0).getNickname());
+                ImageLoader.withYuan(bean.getShangji().get(0).getHead_pic(), imgHeadPic);
+            } else {
+                layoutShangji.setVisibility(View.GONE);
+            }
+        } catch (Exception e) {
+            Ts.setText("服务器异常!");
+        }
+    }
+
     @OnClick(R.id.layout_back)
     public void onClick() {
         finish();
@@ -124,4 +142,5 @@ public class WoDekeHuActivity extends BaseActivity implements SwipeRefreshLayout
     public void onRefresh() {
         queryHttp();
     }
+
 }

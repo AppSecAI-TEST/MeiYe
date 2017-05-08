@@ -7,7 +7,8 @@ import com.duma.liudong.meiye.base.MyApplication;
  */
 
 public class Api {
-    public static String url = "http://my.duma-ivy.cn:81";
+    //    public static String url = "http://my.duma-ivy.cn:81";
+    public static String url = "http://meiye.duma-ivy.cn";
     /**
      * h5
      */
@@ -88,6 +89,8 @@ public class Api {
     public static String del = url + "/App/Goods/del";
     public static String sellStatement = url + "/App/seller/sellStatement";
     public static String sellerorderInfo = url + "/App/seller/orderInfo";
+
+    public static String phone = url + "/App/Index/phone";
     /**
      * Index
      */

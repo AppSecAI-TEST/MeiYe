@@ -105,7 +105,7 @@
                                         android:id="@+id/img_store_logo"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:src="@mipmap/ic_launcher_round" />
+                                        android:src="@drawable/touxiang" />
                                 </LinearLayout>
 
                                 <LinearLayout

@@ -1,66 +1,75 @@
 package com.duma.liudong.meiye.model;
 
+import java.util.List;
+
 /**
  * Created by liudong on 17/3/27.
  */
 
 public class WoDeKeHuBean {
 
-    @Override
-    public String toString() {
-        return "ResultBean{" +
-                "user_id='" + user_id + '\'' +
-                ", nickname=" + nickname +
-                ", head_pic=" + head_pic +
-                ", mobile='" + mobile + '\'' +
-                '}';
+    private List<XiajiBean> xiaji;
+    private List<XiajiBean> shangji;
+
+    public List<XiajiBean> getXiaji() {
+        return xiaji;
     }
 
-    /**
-     * user_id : 1
-     * nickname : null
-     * head_pic : null
-     * mobile : 16666666666
-     */
-
-
-    private String user_id;
-    private String nickname;
-    private String head_pic;
-    private String mobile;
-
-    public String getUser_id() {
-        return user_id;
+    public void setXiaji(List<XiajiBean> xiaji) {
+        this.xiaji = xiaji;
     }
 
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
+    public List<XiajiBean> getShangji() {
+        return shangji;
     }
 
-    public String getNickname() {
-        if (nickname == null) {
-            return "用户:" + mobile;
+    public void setShangji(List<XiajiBean> shangji) {
+        this.shangji = shangji;
+    }
+
+    public static class XiajiBean {
+        /**
+         * user_id : 6
+         * nickname :
+         * head_pic : http://meiye.duma-ivy.cn
+         * mobile : 15270001512
+         */
+
+        private String user_id;
+        private String nickname;
+        private String head_pic;
+        private String mobile;
+
+        public String getUser_id() {
+            return user_id;
         }
-        return nickname;
-    }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
+        public void setUser_id(String user_id) {
+            this.user_id = user_id;
+        }
 
-    public String getHead_pic() {
-        return head_pic;
-    }
+        public String getNickname() {
+            return nickname;
+        }
 
-    public void setHead_pic(String head_pic) {
-        this.head_pic = head_pic;
-    }
+        public void setNickname(String nickname) {
+            this.nickname = nickname;
+        }
 
-    public String getMobile() {
-        return mobile;
-    }
+        public String getHead_pic() {
+            return head_pic;
+        }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
+        public void setHead_pic(String head_pic) {
+            this.head_pic = head_pic;
+        }
+
+        public String getMobile() {
+            return mobile;
+        }
+
+        public void setMobile(String mobile) {
+            this.mobile = mobile;
+        }
     }
 }

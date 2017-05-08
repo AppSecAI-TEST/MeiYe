@@ -85,6 +85,7 @@ public class ChangePasswordActivity extends BaseActivity {
                     @Override
                     public void onMySuccess(String result) {
                         DialogUtil.hide();
+                        Ts.setText("修改成功!请重新登录!");
                         StartUtil.cancleLogin();
                         StartUtil.toMain(mActivity);
                     }

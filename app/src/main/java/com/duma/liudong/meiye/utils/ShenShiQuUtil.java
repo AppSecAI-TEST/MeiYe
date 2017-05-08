@@ -5,14 +5,13 @@ import android.view.View;
 
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.duma.liudong.meiye.model.ProvinceBean;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.duma.liudong.meiye.model.ShenShiQuBean;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by 79953 on 2016/8/11.
@@ -22,11 +21,12 @@ public class ShenShiQuUtil implements Runnable {
     private OptionsPickerView pvOptions;
     private Activity activity;
 
-    ArrayList<ProvinceBean> options1Items;
-    ArrayList<ArrayList<ProvinceBean>> options2Items;
-    ArrayList<ArrayList<ArrayList<ProvinceBean>>> options3Items;
-    ArrayList<ArrayList<ProvinceBean>> options3Items_01;
+    List<ProvinceBean> options1Items;
+    List<List<ProvinceBean>> options2Items;
+    List<List<List<ProvinceBean>>> options3Items;
+    List<List<ProvinceBean>> options3Items_01;
 
+    private ShenShiQuBean bean;
 
     public interface OnGetDiZhi {
         void getDiZhi(String province, String city, String district);
@@ -49,46 +49,15 @@ public class ShenShiQuUtil implements Runnable {
 
     @Override
     public void run() {
-        try {
-            String json = getText(activity);
-            if (json.equals("")) {
-                Ts.setText("读取省市区数据错误！");
-                return;
-            }
-            JSONObject jsonObject = new JSONObject(json);
-            JSONArray jsonArray = new JSONArray(jsonObject.getString("dataList"));
-            for (int i = 0; i < jsonArray.length(); i++) {
-                //获取省
-                JSONObject options1 = jsonArray.getJSONObject(i);
-                options1Items.add(new ProvinceBean(options1.getLong("id"), options1.getString("areaName"), options1.getString("areaCode")));
-                //获取市
-                JSONArray shiArray = new JSONArray(options1.getString("city"));
-                ArrayList<ProvinceBean> options2Items_01 = new ArrayList<>();
-                options3Items_01 = new ArrayList<>();
-                for (int j = 0; j < shiArray.length(); j++) {
-                    JSONObject options2 = shiArray.getJSONObject(j);
-                    options2Items_01.add(new ProvinceBean(
-                            options2.getLong("id"), options2.getString("areaName"), options2.getString("areaCode")));
-                    //获取县
-                    JSONArray xianArray = new JSONArray(options2.getString("country"));
-                    //该市所有的县
-                    ArrayList<ProvinceBean> options3Items_01_01 = new ArrayList<>();
-                    for (int n = 0; n < xianArray.length(); n++) {
-                        JSONObject options3 = xianArray.getJSONObject(n);
-                        options3Items_01_01.add(new ProvinceBean(
-                                options3.getLong("id"), options3.getString("areaName"), options3.getString("areaCode")));
-                    }
-                    options3Items_01.add(options3Items_01_01);
-                }
-                options3Items.add(options3Items_01);
-                options2Items.add(options2Items_01);
-            }
-            //三级联动效果
-            pvOptions.setPicker(options1Items, options2Items, options3Items);
-            onGetDiZhi.hide();
-        } catch (JSONException e) {
-            Ts.JsonErroy();
+        Lg.e("1");
+        String json = getText(activity);
+        if (json.equals("")) {
+            Ts.setText("读取省市区数据错误！");
+            return;
         }
+        bean = new Gson().fromJson(json, ShenShiQuBean.class);
+        pvOptions.setPicker(bean.getProvinceList(), bean.getCityList(), bean.getCountryList());
+        onGetDiZhi.hide();
     }
 
     //三级联动效果
@@ -115,7 +84,7 @@ public class ShenShiQuUtil implements Runnable {
 
     private String getText(Activity activity) {
         try {
-            InputStream is = activity.getAssets().open("city.txt");
+            InputStream is = activity.getAssets().open("cityjson.txt");
             int size = is.available();
 
             byte[] buffer = new byte[size];

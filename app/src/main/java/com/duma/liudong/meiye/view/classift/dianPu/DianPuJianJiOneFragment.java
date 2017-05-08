@@ -71,9 +71,9 @@ public class DianPuJianJiOneFragment extends BaseFragment {
         tvScName.setText(dianPubean.getSc_name());
 
         xxTurnBackRate.setText(dianPubean.getTurn_back_rate() + "%");
-        xxStoreDeliverycredit.setStarCount(dianPubean.getStore_deliverycredit());
-        xxStoreDesccredit.setStarCount(dianPubean.getStore_desccredit());
+        xxStoreDeliverycredit.setStarCount((int) dianPubean.getStore_deliverycredit());
+        xxStoreDesccredit.setStarCount((int) dianPubean.getStore_desccredit());
         xxStoreScore.setStarCount((int) dianPubean.getStore_score());
-        xxStoreServicecredit.setStarCount(dianPubean.getStore_servicecredit());
+        xxStoreServicecredit.setStarCount((int) dianPubean.getStore_servicecredit());
     }
 }

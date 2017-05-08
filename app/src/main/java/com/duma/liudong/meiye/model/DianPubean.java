@@ -56,9 +56,9 @@ public class DianPubean implements Serializable {
     private String store_address;
     private String store_name;
     private String turn_back_rate;
-    private int store_desccredit;
-    private int store_servicecredit;
-    private int store_deliverycredit;
+    private double store_desccredit;
+    private double store_servicecredit;
+    private double store_deliverycredit;
     private String store_logo;
     private String store_banner;
     private String store_avatar;
@@ -161,27 +161,27 @@ public class DianPubean implements Serializable {
         this.turn_back_rate = turn_back_rate;
     }
 
-    public int getStore_desccredit() {
+    public double getStore_desccredit() {
         return store_desccredit;
     }
 
-    public void setStore_desccredit(int store_desccredit) {
+    public void setStore_desccredit(double store_desccredit) {
         this.store_desccredit = store_desccredit;
     }
 
-    public int getStore_servicecredit() {
+    public double getStore_servicecredit() {
         return store_servicecredit;
     }
 
-    public void setStore_servicecredit(int store_servicecredit) {
+    public void setStore_servicecredit(double store_servicecredit) {
         this.store_servicecredit = store_servicecredit;
     }
 
-    public int getStore_deliverycredit() {
+    public double getStore_deliverycredit() {
         return store_deliverycredit;
     }
 
-    public void setStore_deliverycredit(int store_deliverycredit) {
+    public void setStore_deliverycredit(double store_deliverycredit) {
         this.store_deliverycredit = store_deliverycredit;
     }
 

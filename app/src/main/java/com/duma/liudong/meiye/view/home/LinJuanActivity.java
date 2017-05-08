@@ -76,7 +76,7 @@ public class LinJuanActivity extends BaseActivity {
     @Override
     protected void initData() {
         viewToumin.setVisibility(View.GONE);
-        tvTitle.setText("领卷中心");
+        tvTitle.setText("领券中心");
         mList = new ArrayList<>();
         getFenleiHttp();
         final View popipWindow_view = getLayoutInflater().inflate(R.layout.pop_linjuan, null, false);

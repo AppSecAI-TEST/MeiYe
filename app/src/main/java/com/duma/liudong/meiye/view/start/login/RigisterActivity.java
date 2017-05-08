@@ -132,11 +132,14 @@ public class RigisterActivity extends BaseActivity implements PublicPresenter.Ge
                     Ts.setText("请同意美业协议!");
                     return;
                 }
-
                 //注册
                 if (isPhone(editPhone)) return;
                 if (isPassword(editPassword)) return;
                 if (isCode(editCode)) return;
+                if (editInvitation.getText().toString().isEmpty()) {
+                    Ts.setText("邀请码不能为空!");
+                    return;
+                }
                 rigisterHttp();
                 break;
             case R.id.tv_login:
