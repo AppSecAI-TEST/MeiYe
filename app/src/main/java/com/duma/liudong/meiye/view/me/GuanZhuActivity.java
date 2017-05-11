@@ -15,6 +15,7 @@ import com.duma.liudong.meiye.base.BaseXiaLaRvPresenter;
 import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.base.MyStringCallback;
 import com.duma.liudong.meiye.model.DianZanBean;
+import com.duma.liudong.meiye.model.GuanZhuBean;
 import com.duma.liudong.meiye.model.TieziBean;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
@@ -99,8 +100,6 @@ public class GuanZhuActivity extends BaseActivity implements SwipeRefreshLayout.
 
             @Override
             protected void getView(final ViewHolder holder, final TieziBean zhiDingBean, int position) {
-                holder.setVisible(R.id.layout_guanzhu, false);
-                holder.setVisible(R.id.layout_hide, false);
                 holder.setText(R.id.tv_content, zhiDingBean.getContent());
                 holder.setText(R.id.tv_click_count, zhiDingBean.getClick_count());
                 holder.setText(R.id.tv_user_name, zhiDingBean.getUser_name());
@@ -138,28 +137,72 @@ public class GuanZhuActivity extends BaseActivity implements SwipeRefreshLayout.
 //                    img_zan.setImageDrawable(MyApplication.getInstance().getResources().getDrawable(R.drawable.img_79));
 //                }
 
+                holder.setVisible(R.id.layout_guanzhu, false);
+                holder.setVisible(R.id.layout_hide, false);
+                holder.setVisible(R.id.layout_shanchu, true);
+                holder.setOnClickListener(R.id.layout_shanchu, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (url.equals(Api.follow_bbs)) {
+                            QueRenUtilDialog dialog = new QueRenUtilDialog(mActivity, "", "是否要取消该收藏?", "否", "是");
+                            dialog.setYesClicklistener(new QueRenUtilDialog.OnYesClickListener() {
+                                @Override
+                                public void onYes() {
+                                    ShouCangHttp(zhiDingBean);
+                                }
+                            });
+                            dialog.show();
+                        } else {
+                            QueRenUtilDialog dialog = new QueRenUtilDialog(mActivity, "", "是否要删除该帖子?", "否", "是");
+                            dialog.setYesClicklistener(new QueRenUtilDialog.OnYesClickListener() {
+                                @Override
+                                public void onYes() {
+                                    shanChuHttp(zhiDingBean.getBbs_id());
+                                }
+                            });
+                            dialog.show();
+                        }
+
+                    }
+                });
             }
 
             @Override
             protected void onitemClick(View view, RecyclerView.ViewHolder holder, int position) {
                 StartUtil.toH5Web(mActivity, Api.LunTanH5Url + mlist.get(position).getBbs_id(), mlist.get(position).getTitle());
             }
-
-            @Override
-            protected void onitemLongClick(View view, RecyclerView.ViewHolder holder, final int position) {
-                QueRenUtilDialog dialog = new QueRenUtilDialog(mActivity, "", "是否要删除该帖子?", "否", "是");
-                dialog.setYesClicklistener(new QueRenUtilDialog.OnYesClickListener() {
-                    @Override
-                    public void onYes() {
-                        shanChuHttp(mlist.get(position).getBbs_id());
-                    }
-                });
-                dialog.show();
-            }
         };
         beanBaseXiaLaRvPresenter.setKongView(layoutKong);
         beanBaseXiaLaRvPresenter.setType(new TypeToken<ArrayList<TieziBean>>() {
         }.getType());
+    }
+
+    private void ShouCangHttp(final TieziBean zhiDingBean) {
+        if (!StartUtil.isLogin()) {
+            StartUtil.toLogin(mActivity);
+            return;
+        }
+        OkHttpUtils
+                .post()
+                .tag("ShouCangHttp")
+                .url(Api.follow)
+                .addParams("bbs_id", zhiDingBean.getBbs_id())
+                .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
+                .build()
+                .execute(new MyStringCallback() {
+                    @Override
+                    public void onMySuccess(String result) {
+                        GuanZhuBean bean = new Gson().fromJson(result, GuanZhuBean.class);
+                        if (bean.getIs_follow() == 1) {
+                            Ts.setText("收藏成功!");
+                        } else {
+                            Ts.setText("取消收藏成功!");
+                        }
+                        beanBaseXiaLaRvPresenter.Shuaxin();
+
+                    }
+                });
     }
 
     private void DianZanHttp(final TextView tv_zan_num, final ImageView img_zan, String Bbs_id) {

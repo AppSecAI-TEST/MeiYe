@@ -10,40 +10,41 @@ import java.util.List;
 public class DianPubean implements Serializable {
 
     /**
-     * store_collect : 0
-     * store_zy : 店铺一店铺一店铺一
+     * store_collect : 1
+     * store_zy : 服饰
      * sc_name : 店家(服务卖家)
-     * store_slide : /Public/upload/seller/2017/04-01/58df6756c5b33.jpg,/Public/upload/seller/2017/04-01/58df675f37e70.jpg,/Public/upload/seller/2017/04-01/58df6765942d3.jpg,,
-     * province_name : 北京市
-     * city_name : 北京市
-     * district_name : 北京市
-     * store_address : 12323
-     * store_name : 旗舰店
-     * turn_back_rate : 0
+     * store_slide : /Public/upload/seller/2017/05-10/5912b31cf38c7.jpg,/Public/upload/seller/2017/05-10/5912b322f0ee3.jpg,/Public/upload/seller/2017/05-10/5912b3296c6da.jpg,/Public/upload/seller/2017/05-10/5912b33b9b529.jpeg,/Public/upload/seller/2017/05-10/5912b341b55e8.jpeg
+     * province_name : 浙江省
+     * city_name : 杭州市
+     * district_name : 下城区
+     * store_address : 庆春路87-1号锦和大厦5楼
+     * store_name : 林俊的店铺
      * store_desccredit : 0
      * store_servicecredit : 0
      * store_deliverycredit : 0
-     * store_logo : http://meiye.duma-ivy.cn/Public/upload/seller/2017/03-29/58db723588613.jpg
-     * store_banner : http://meiye.duma-ivy.cn/Public/upload/seller/2017/03-28/58da0863b7ac1.jpg
+     * store_logo : http://api.myjd.cc/Public/upload/seller/2017/05-10/591274b268d11.jpg
+     * store_banner : http://api.myjd.cc/Public/images/meiye/group_2@2x.png
      * store_avatar :
-     * store_phone : 123123123
-     * store_time : 2017-03-14
-     * business_licence_number : null
-     * business_licence_cert : null
-     * business_scope : null
-     * reg_capital : null
-     * legal_person : null
-     * business_date_start : null
-     * business_date_end : null
-     * company_name : null
-     * contacts_name : null
-     * contacts_mobile : null
-     * company_type : null
+     * store_phone : 15270001511
+     * store_time : 2017-05-09
+     * business_licence_number :
+     * business_licence_cert : http://api.myjd.cc/Public/upload/store/cert/2017-05-09/5911a2157fc73.jpg
+     * business_scope :
+     * reg_capital :
+     * legal_person :
+     * business_date_start :
+     * business_date_end :
+     * company_name :
+     * contacts_name : 林俊
+     * contacts_mobile : 15270001512
+     * company_type :
+     * turn_back_rate : 48
      * store_score : 0
-     * store_slide_url : ["http://meiye.duma-ivy.cn/Public/upload/seller/2017/04-01/58df6756c5b33.jpg","http://meiye.duma-ivy.cn/Public/upload/seller/2017/04-01/58df675f37e70.jpg","http://meiye.duma-ivy.cn/Public/upload/seller/2017/04-01/58df6765942d3.jpg"]
+     * store_slide_url_com : [{"link_url":"http://jd.com","link_logo":"/Public/upload/seller/2017/05-10/5912b31cf38c7.jpg"},{"link_url":"http://baidu.com","link_logo":"/Public/upload/seller/2017/05-10/5912b322f0ee3.jpg"},{"link_url":"http://taobao.com","link_logo":"/Public/upload/seller/2017/05-10/5912b3296c6da.jpg"},{"link_url":"http://weibo.com","link_logo":"/Public/upload/seller/2017/05-10/5912b33b9b529.jpeg"},{"link_url":"http://qq.com","link_logo":"/Public/upload/seller/2017/05-10/5912b341b55e8.jpeg"}]
+     * store_slide_url : ["http://api.myjd.cc/Public/upload/seller/2017/05-10/5912b31cf38c7.jpg","http://api.myjd.cc/Public/upload/seller/2017/05-10/5912b322f0ee3.jpg","http://api.myjd.cc/Public/upload/seller/2017/05-10/5912b3296c6da.jpg","http://api.myjd.cc/Public/upload/seller/2017/05-10/5912b33b9b529.jpeg","http://api.myjd.cc/Public/upload/seller/2017/05-10/5912b341b55e8.jpeg"]
      * store_time_y : 1
-     * goods_num : 30
-     * order_num : 0
+     * goods_num : 5
+     * order_num : 21
      */
 
     private String store_collect;
@@ -55,7 +56,6 @@ public class DianPubean implements Serializable {
     private String district_name;
     private String store_address;
     private String store_name;
-    private String turn_back_rate;
     private double store_desccredit;
     private double store_servicecredit;
     private double store_deliverycredit;
@@ -75,10 +75,12 @@ public class DianPubean implements Serializable {
     private String contacts_name;
     private String contacts_mobile;
     private String company_type;
+    private double turn_back_rate;
     private double store_score;
     private String store_time_y;
     private String goods_num;
     private String order_num;
+    private List<StoreSlideUrlComBean> store_slide_url_com;
     private List<String> store_slide_url;
 
     public String getStore_collect() {
@@ -151,14 +153,6 @@ public class DianPubean implements Serializable {
 
     public void setStore_name(String store_name) {
         this.store_name = store_name;
-    }
-
-    public String getTurn_back_rate() {
-        return turn_back_rate;
-    }
-
-    public void setTurn_back_rate(String turn_back_rate) {
-        this.turn_back_rate = turn_back_rate;
     }
 
     public double getStore_desccredit() {
@@ -313,6 +307,14 @@ public class DianPubean implements Serializable {
         this.company_type = company_type;
     }
 
+    public double getTurn_back_rate() {
+        return turn_back_rate;
+    }
+
+    public void setTurn_back_rate(double turn_back_rate) {
+        this.turn_back_rate = turn_back_rate;
+    }
+
     public double getStore_score() {
         return store_score;
     }
@@ -345,11 +347,45 @@ public class DianPubean implements Serializable {
         this.order_num = order_num;
     }
 
+    public List<StoreSlideUrlComBean> getStore_slide_url_com() {
+        return store_slide_url_com;
+    }
+
+    public void setStore_slide_url_com(List<StoreSlideUrlComBean> store_slide_url_com) {
+        this.store_slide_url_com = store_slide_url_com;
+    }
+
     public List<String> getStore_slide_url() {
         return store_slide_url;
     }
 
     public void setStore_slide_url(List<String> store_slide_url) {
         this.store_slide_url = store_slide_url;
+    }
+
+    public static class StoreSlideUrlComBean {
+        /**
+         * link_url : http://jd.com
+         * link_logo : /Public/upload/seller/2017/05-10/5912b31cf38c7.jpg
+         */
+
+        private String link_url;
+        private String link_logo;
+
+        public String getLink_url() {
+            return link_url;
+        }
+
+        public void setLink_url(String link_url) {
+            this.link_url = link_url;
+        }
+
+        public String getLink_logo() {
+            return link_logo;
+        }
+
+        public void setLink_logo(String link_logo) {
+            this.link_logo = link_logo;
+        }
     }
 }

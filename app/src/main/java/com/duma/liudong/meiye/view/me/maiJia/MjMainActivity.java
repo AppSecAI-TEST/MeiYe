@@ -112,6 +112,14 @@ public class MjMainActivity extends BaseActivity implements SwipeRefreshLayout.O
     SwipeRefreshLayout swLoading;
     @BindView(R.id.layout_show)
     LinearLayout layoutShow;
+    @BindView(R.id.dian_shiwu_daifahuo)
+    TextView dianShiwuDaifahuo;
+    @BindView(R.id.layout_shiwu_daifahuo)
+    LinearLayout layoutShiwuDaifahuo;
+    @BindView(R.id.dian_dinzhi_daifahuo)
+    TextView dianDinzhiDaifahuo;
+    @BindView(R.id.layout_dinzhi_daifahuo)
+    LinearLayout layoutDinzhiDaifahuo;
     private SelletBean bean;
     private String type;
     private Intent intent;
@@ -138,6 +146,8 @@ public class MjMainActivity extends BaseActivity implements SwipeRefreshLayout.O
         dianDinzhiDaishoukuan.setVisibility(View.GONE);
         dianDinzhiDaishouhuan.setVisibility(View.GONE);
         dianDinzhiTuikuan.setVisibility(View.GONE);
+        dianShiwuDaifahuo.setVisibility(View.GONE);
+        dianDinzhiDaifahuo.setVisibility(View.GONE);
         onRefresh();
     }
 
@@ -211,20 +221,23 @@ public class MjMainActivity extends BaseActivity implements SwipeRefreshLayout.O
     }
 
 
-    @OnClick({R.id.tv_store_xinxi, R.id.tv_maijia, R.id.layout_shiwu_daishoukuan, R.id.layout_shiwu_daishouhuan, R.id.layout_shiwu_daipingjia, R.id.layout_shiwu_tuikuan, R.id.layout_shiwu, R.id.layout_tuangou_daishoukuan, R.id.layout_tuangou_daishouhuan, R.id.layout_tuangou_daipingjia, R.id.layout_tuangou_tuikuan, R.id.layout_tuangou, R.id.layout_dinzhi_daishoukuan, R.id.layout_dinzhi_daishouhuan, R.id.layout_dinzhi_daipingjia, R.id.layout_dinzhi_tuikuan, R.id.layout_dinzhi, R.id.layout_dindantixin, R.id.layout_shangxiajia, R.id.layout_baobiao, R.id.layout_xiaoxi})
+    @OnClick({R.id.layout_shiwu_daifahuo, R.id.layout_dinzhi_daifahuo, R.id.tv_store_xinxi, R.id.tv_maijia, R.id.layout_shiwu_daishoukuan, R.id.layout_shiwu_daishouhuan, R.id.layout_shiwu_daipingjia, R.id.layout_shiwu_tuikuan, R.id.layout_shiwu, R.id.layout_tuangou_daishoukuan, R.id.layout_tuangou_daishouhuan, R.id.layout_tuangou_daipingjia, R.id.layout_tuangou_tuikuan, R.id.layout_tuangou, R.id.layout_dinzhi_daishoukuan, R.id.layout_dinzhi_daishouhuan, R.id.layout_dinzhi_daipingjia, R.id.layout_dinzhi_tuikuan, R.id.layout_dinzhi, R.id.layout_dindantixin, R.id.layout_shangxiajia, R.id.layout_baobiao, R.id.layout_xiaoxi})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.layout_shiwu_daishoukuan:
                 StartUtil.toQuanBuDinDan(mActivity, "1", "1", bean.getStore_id());
                 break;
-            case R.id.layout_shiwu_daishouhuan:
+            case R.id.layout_shiwu_daifahuo:
                 StartUtil.toQuanBuDinDan(mActivity, "1", "2", bean.getStore_id());
                 break;
-            case R.id.layout_shiwu_daipingjia:
+            case R.id.layout_shiwu_daishouhuan:
                 StartUtil.toQuanBuDinDan(mActivity, "1", "3", bean.getStore_id());
                 break;
-            case R.id.layout_shiwu_tuikuan:
+            case R.id.layout_shiwu_daipingjia:
                 StartUtil.toQuanBuDinDan(mActivity, "1", "4", bean.getStore_id());
+                break;
+            case R.id.layout_shiwu_tuikuan:
+                StartUtil.toQuanBuDinDan(mActivity, "1", "5", bean.getStore_id());
                 break;
             case R.id.layout_shiwu:
                 StartUtil.toQuanBuDinDan(mActivity, "1", "0", bean.getStore_id());
@@ -247,14 +260,17 @@ public class MjMainActivity extends BaseActivity implements SwipeRefreshLayout.O
             case R.id.layout_dinzhi_daishoukuan:
                 StartUtil.toQuanBuDinDan(mActivity, "2", "1", bean.getStore_id());
                 break;
-            case R.id.layout_dinzhi_daishouhuan:
+            case R.id.layout_dinzhi_daifahuo:
                 StartUtil.toQuanBuDinDan(mActivity, "2", "2", bean.getStore_id());
                 break;
-            case R.id.layout_dinzhi_daipingjia:
+            case R.id.layout_dinzhi_daishouhuan:
                 StartUtil.toQuanBuDinDan(mActivity, "2", "3", bean.getStore_id());
                 break;
-            case R.id.layout_dinzhi_tuikuan:
+            case R.id.layout_dinzhi_daipingjia:
                 StartUtil.toQuanBuDinDan(mActivity, "2", "4", bean.getStore_id());
+                break;
+            case R.id.layout_dinzhi_tuikuan:
+                StartUtil.toQuanBuDinDan(mActivity, "2", "5", bean.getStore_id());
                 break;
             case R.id.layout_dinzhi:
                 StartUtil.toQuanBuDinDan(mActivity, "2", "0", bean.getStore_id());
@@ -291,6 +307,10 @@ public class MjMainActivity extends BaseActivity implements SwipeRefreshLayout.O
                 intent.putExtra("bean", bean.getStore_info());
                 startActivity(intent);
                 break;
+
+
         }
     }
+
+
 }

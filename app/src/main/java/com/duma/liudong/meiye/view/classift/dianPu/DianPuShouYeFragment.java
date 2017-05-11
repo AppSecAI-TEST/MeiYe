@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.LinearLayout;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
+import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseBannaer;
 import com.duma.liudong.meiye.base.BaseFragment;
@@ -31,7 +32,7 @@ import butterknife.BindView;
  * Created by liudong on 17/4/5.
  */
 
-public class DianPuShouYeFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
+public class DianPuShouYeFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, OnItemClickListener {
     @BindView(R.id.banner_shangping)
     ConvenientBanner bannerShangping;
     @BindView(R.id.layout_kong)
@@ -81,7 +82,7 @@ public class DianPuShouYeFragment extends BaseFragment implements SwipeRefreshLa
     }
 
     public void setBannerShangping() {
-        new BaseBannaer().setBanner(bannerShangping, dianPuActivity.dianPubean.getStore_slide_url());
+        new BaseBannaer().setBannerByDianpu(bannerShangping, dianPuActivity.dianPubean.getStore_slide_url_com(), this);
         bannerShangping.startTurning(BaseBannaer.time);
     }
 
@@ -142,5 +143,10 @@ public class DianPuShouYeFragment extends BaseFragment implements SwipeRefreshLa
     public void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        StartUtil.toShangPingWeb(mActivity, dianPuActivity.dianPubean.getStore_slide_url_com().get(position).getLink_url());
     }
 }

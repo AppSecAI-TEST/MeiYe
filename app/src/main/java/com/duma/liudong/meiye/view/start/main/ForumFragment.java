@@ -35,7 +35,7 @@ public class ForumFragment extends BaseFragment {
 
     public List<ForumBean> list;
     public boolean isOne = true;
-
+    public List<LunTanClassiftFragment> mList;
     public boolean isSuccess = false;
 
     @Override
@@ -45,7 +45,7 @@ public class ForumFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-
+        mList = new ArrayList<>();
     }
 
     @Override
@@ -68,6 +68,8 @@ public class ForumFragment extends BaseFragment {
                             initTab();
                         }
                     });
+        } else {
+            mList.get(0).onLazyLoad();
         }
 
     }
@@ -76,6 +78,7 @@ public class ForumFragment extends BaseFragment {
         MyViewPagerAdapter viewPagerAdapter = new MyViewPagerAdapter(mActivity.getSupportFragmentManager());
         for (int i = 0; i < list.size(); i++) {
             LunTanClassiftFragment fragment = new LunTanClassiftFragment();
+            mList.add(fragment);
             viewPagerAdapter.addFragment(fragment, list.get(i).getCat_name());
         }
         viewPaterBar.setOffscreenPageLimit(list.size());

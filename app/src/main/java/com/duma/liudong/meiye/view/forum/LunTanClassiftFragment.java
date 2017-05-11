@@ -152,6 +152,10 @@ public class LunTanClassiftFragment extends BaseFragment implements SwipeRefresh
                 holder.setOnClickListener(R.id.layout_guanzhu, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        if (!StartUtil.isLogin()) {
+                            StartUtil.toLogin(mActivity);
+                            return;
+                        }
                         //点击dialog
                         dialog.show();
                     }
@@ -235,7 +239,6 @@ public class LunTanClassiftFragment extends BaseFragment implements SwipeRefresh
                             Ts.setText("取消关注成功!");
                             tv_shoucan.setText("关注");
                         }
-
                     }
                 });
     }
@@ -303,12 +306,12 @@ public class LunTanClassiftFragment extends BaseFragment implements SwipeRefresh
     }
 
     @Override
-    protected void onLazyLoad() {
+    public void onLazyLoad() {
         isTop();
-        if (!beanBaseXiaLaRvPresenter.isOne) {
-            beanBaseXiaLaRvPresenter.clean();
-            beanBaseXiaLaRvPresenter.QueryHttp(getBuild());
-        }
+//        if (!beanBaseXiaLaRvPresenter.isOne) {
+        beanBaseXiaLaRvPresenter.clean();
+        beanBaseXiaLaRvPresenter.QueryHttp(getBuild());
+//        }
     }
 
 

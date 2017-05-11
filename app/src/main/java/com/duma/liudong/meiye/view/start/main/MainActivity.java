@@ -151,6 +151,9 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
         if (getHomeFragment().isVisible()) {
             getHomeFragment().onLazyLoad();
         }
+        if (getForumFragment().isVisible()) {
+            getForumFragment().onLazyLoad();
+        }
         if (StartUtil.isLogin()) {
             OkHttpUtils
                     .post()
