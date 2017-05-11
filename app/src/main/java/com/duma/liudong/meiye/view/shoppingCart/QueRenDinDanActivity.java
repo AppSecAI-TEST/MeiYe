@@ -392,6 +392,7 @@ public class QueRenDinDanActivity extends BaseActivity {
 
     @OnClick({R.id.layout_back, R.id.layout_xuanZeKuaiDi, R.id.layout_kefu, R.id.layout_youHuiJuan, R.id.layout_hongbao, R.id.tv_tijiaodindan})
     public void onClick(View view) {
+        Intent intent;
         switch (view.getId()) {
             case R.id.layout_back:
                 finish();
@@ -404,13 +405,16 @@ public class QueRenDinDanActivity extends BaseActivity {
                 dialog.Show();
                 break;
             case R.id.layout_youHuiJuan:
-                Intent intent = new Intent(mActivity, YouHuiJuanListActivity.class);
+                intent = new Intent(mActivity, YouHuiListActivity.class);
                 intent.putExtra("id", bean.getCart_list().get(0).getMark().getStore_id());
                 intent.putExtra("money", bean.getCart_list().get(0).getMark().getGoods_total());
                 startActivity(intent);
                 break;
             case R.id.layout_hongbao:
-
+//                intent = new Intent(mActivity, HongBaoListActivity.class);
+//                intent.putExtra("id", bean.getCart_list().get(0).getMark().getStore_id());
+//                intent.putExtra("money", bean.getCart_list().get(0).getMark().getGoods_total());
+//                startActivity(intent);
                 break;
             case R.id.tv_tijiaodindan:
                 if (!swithZiqu.isChecked() && addresId.equals("")) {
@@ -449,7 +453,7 @@ public class QueRenDinDanActivity extends BaseActivity {
                         DialogUtil.hide();
                         OridBean oridBean = new Gson().fromJson(result, OridBean.class);
                         if (bean.getTotal_price().getTotal_fee().equals("0")) {
-                            StartUtil.toZhiFuSuccess(mActivity, getType());
+                            StartUtil.toZhiFuSuccess(mActivity, getType(), oridBean.getOrder_id());
                         } else {
                             StartUtil.toZhiFu(mActivity, oridBean.getOrder_id(), bean.getTotal_price().getTotal_fee() + "", getType());
                         }

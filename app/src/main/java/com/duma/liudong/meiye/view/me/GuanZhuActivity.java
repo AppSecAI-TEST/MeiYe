@@ -13,11 +13,17 @@ import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.base.BaseXiaLaRvPresenter;
 import com.duma.liudong.meiye.base.MyApplication;
+import com.duma.liudong.meiye.base.MyStringCallback;
+import com.duma.liudong.meiye.model.DianZanBean;
 import com.duma.liudong.meiye.model.TieziBean;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
+import com.duma.liudong.meiye.utils.DialogUtil;
 import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
+import com.duma.liudong.meiye.utils.Ts;
+import com.duma.liudong.meiye.view.dialog.QueRenUtilDialog;
+import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -61,7 +67,7 @@ public class GuanZhuActivity extends BaseActivity implements SwipeRefreshLayout.
         StartUtil.setSw(swLoading, this);
         url = getIntent().getStringExtra("url");
         if (url.equals(Api.follow_bbs)) {
-            tvTitle.setText("我的关注");
+            tvTitle.setText("我的收藏");
         } else {
             tvTitle.setText("我的贴子");
         }
@@ -93,13 +99,17 @@ public class GuanZhuActivity extends BaseActivity implements SwipeRefreshLayout.
 
             @Override
             protected void getView(final ViewHolder holder, final TieziBean zhiDingBean, int position) {
+                holder.setVisible(R.id.layout_guanzhu, false);
+                holder.setVisible(R.id.layout_hide, false);
                 holder.setText(R.id.tv_content, zhiDingBean.getContent());
                 holder.setText(R.id.tv_click_count, zhiDingBean.getClick_count());
                 holder.setText(R.id.tv_user_name, zhiDingBean.getUser_name());
                 holder.setText(R.id.tv_add_time, zhiDingBean.getAdd_time());
-                holder.setText(R.id.tv_like_count, zhiDingBean.getLike_count());
-                holder.setText(R.id.tv_comment_count, zhiDingBean.getComment_count() + "条评论");
+                holder.setText(R.id.tv_zan_num, zhiDingBean.getLike_count());
+                holder.setText(R.id.tv_comment_count, zhiDingBean.getComment_count());
+                final TextView tv_zan_num = holder.getView(R.id.tv_zan_num);
                 ImageView img_img_json = holder.getView(R.id.img_img_json);
+                final ImageView img_zan = holder.getView(R.id.img_zan);
                 ImageView img_touxiang = holder.getView(R.id.img_touxiang);
                 ImageLoader.withYuan(zhiDingBean.getHead_pic(), img_touxiang);
                 img_img_json.setVisibility(View.GONE);
@@ -107,17 +117,99 @@ public class GuanZhuActivity extends BaseActivity implements SwipeRefreshLayout.
                     img_img_json.setVisibility(View.VISIBLE);
                     ImageLoader.with(zhiDingBean.getImg_json().get(0), img_img_json);
                 }
-                holder.setVisible(R.id.layout_guanzhu, false);
-                holder.setVisible(R.id.layout_hide, false);
+                holder.setOnClickListener(R.id.layout_zan, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DianZanHttp(tv_zan_num, img_zan, zhiDingBean.getBbs_id());
+                    }
+                });
+                holder.setOnClickListener(R.id.layout_share, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        StartUtil.toShare(mActivity, zhiDingBean.getUser_name() + "的帖子", Api.LunTanH5Url + zhiDingBean.getBbs_id());
+                    }
+                });
+//                if (zhiDingBean.getIs_like().equals("0")) {
+//                    //没点赞
+//                    tv_zan_num.setTextColor(MyApplication.getInstance().getResources().getColor(R.color.texthei));
+//                    img_zan.setImageDrawable(MyApplication.getInstance().getResources().getDrawable(R.drawable.img_80));
+//                } else {
+//                    tv_zan_num.setTextColor(MyApplication.getInstance().getResources().getColor(R.color.maincolor));
+//                    img_zan.setImageDrawable(MyApplication.getInstance().getResources().getDrawable(R.drawable.img_79));
+//                }
+
             }
 
             @Override
             protected void onitemClick(View view, RecyclerView.ViewHolder holder, int position) {
                 StartUtil.toH5Web(mActivity, Api.LunTanH5Url + mlist.get(position).getBbs_id(), mlist.get(position).getTitle());
             }
+
+            @Override
+            protected void onitemLongClick(View view, RecyclerView.ViewHolder holder, final int position) {
+                QueRenUtilDialog dialog = new QueRenUtilDialog(mActivity, "", "是否要删除该帖子?", "否", "是");
+                dialog.setYesClicklistener(new QueRenUtilDialog.OnYesClickListener() {
+                    @Override
+                    public void onYes() {
+                        shanChuHttp(mlist.get(position).getBbs_id());
+                    }
+                });
+                dialog.show();
+            }
         };
+        beanBaseXiaLaRvPresenter.setKongView(layoutKong);
         beanBaseXiaLaRvPresenter.setType(new TypeToken<ArrayList<TieziBean>>() {
         }.getType());
+    }
+
+    private void DianZanHttp(final TextView tv_zan_num, final ImageView img_zan, String Bbs_id) {
+        if (!StartUtil.isLogin()) {
+            StartUtil.toLogin(mActivity);
+            return;
+        }
+        OkHttpUtils
+                .get()
+                .tag("DianZanHttp")
+                .url(Api.like)
+                .addParams("bbs_id", Bbs_id)
+                .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
+                .build()
+                .execute(new MyStringCallback() {
+                    @Override
+                    public void onMySuccess(String result) {
+                        DianZanBean bean = new Gson().fromJson(result, DianZanBean.class);
+                        tv_zan_num.setText(bean.getLike_count());
+                        if (bean.getStatus() == 0) {
+                            //没点赞
+                            tv_zan_num.setTextColor(MyApplication.getInstance().getResources().getColor(R.color.texthei));
+                            img_zan.setImageDrawable(MyApplication.getInstance().getResources().getDrawable(R.drawable.img_80));
+                        } else {
+                            tv_zan_num.setTextColor(MyApplication.getInstance().getResources().getColor(R.color.maincolor));
+                            img_zan.setImageDrawable(MyApplication.getInstance().getResources().getDrawable(R.drawable.img_79));
+                        }
+                    }
+                });
+    }
+
+    private void shanChuHttp(String bbs_id) {
+        DialogUtil.show(mActivity);
+        OkHttpUtils
+                .get()
+                .url(Api.del_bbs)
+                .tag("base")
+                .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
+                .addParams("bbs_id", bbs_id)
+                .build()
+                .execute(new MyStringCallback() {
+                    @Override
+                    public void onMySuccess(String result) {
+                        DialogUtil.hide();
+                        Ts.setText("删除成功!");
+                        beanBaseXiaLaRvPresenter.Shuaxin();
+                    }
+                });
     }
 
     private RequestCall getBuild() {

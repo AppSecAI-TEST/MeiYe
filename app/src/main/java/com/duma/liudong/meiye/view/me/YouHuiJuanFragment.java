@@ -15,6 +15,7 @@ import com.duma.liudong.meiye.model.YouHuiJuanBean;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.StartUtil;
+import com.duma.liudong.meiye.view.shoppingCart.YouHuiListActivity;
 import com.google.gson.reflect.TypeToken;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -41,7 +42,7 @@ public class YouHuiJuanFragment extends BaseFragment implements SwipeRefreshLayo
     private BaseRvAdapter<YouHuiJuanBean> adapter;
     private YouHuiJuanActivity activity;
     private RequestCall build;
-
+    private YouHuiListActivity youHuiListActivity;
 
     @Override
     protected int setLayoutResouceId() {

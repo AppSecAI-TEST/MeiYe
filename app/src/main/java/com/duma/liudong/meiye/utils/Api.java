@@ -7,8 +7,8 @@ import com.duma.liudong.meiye.base.MyApplication;
  */
 
 public class Api {
-    //    public static String url = "http://my.duma-ivy.cn:81";
-    public static String url = "http://meiye.duma-ivy.cn";
+    public static String url = "http://api.myjd.cc";
+//    public static String url = "http://meiye.duma-ivy.cn";
     /**
      * h5
      */
@@ -55,6 +55,7 @@ public class Api {
     public static String pointsDetail = url + "/App/user/pointsDetail";
     public static String coupon = url + "/App/user/coupon";
     public static String packet = url + "/App/user/packet";
+    public static String red_pack = url + "/App/user/red_pack";
     public static String collectList = url + "/App/user/collectList";
     public static String editAddress = url + "/App/user/editAddress";
     public static String setDefaultAddr = url + "/App/user/setDefaultAddr";
@@ -147,6 +148,9 @@ public class Api {
     public static String follow_bbs = url + "/App/Bbs/follow_bbs";
     public static String my_add_bbs = url + "/App/Bbs/my_add_bbs";
     public static String follow = url + "/App/Bbs/follow";
+    public static String del_bbs = url + "/App/Bbs/del_bbs";
+    public static String user_follow = url + "/App/Bbs/user_follow";
+    public static String my_follow_list = url + "/App/Bbs/my_follow_list";
     /**
      * Tuangou - 团购列表
      */

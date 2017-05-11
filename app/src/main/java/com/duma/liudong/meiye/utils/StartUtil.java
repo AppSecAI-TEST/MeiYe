@@ -179,8 +179,9 @@ public class StartUtil {
     }
 
     //跳转支付成功
-    public static void toZhiFuSuccess(Activity activity, String type) {
+    public static void toZhiFuSuccess(Activity activity, String type, String order_id) {
         Intent intent = new Intent(activity, FuKuanChenGongActivity.class);
+        intent.putExtra("order_id", order_id);
         intent.putExtra("type", type);//判断是那种商品//1:实物,2:定制,3:团购
         activity.startActivity(intent);
     }

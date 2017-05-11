@@ -1,7 +1,7 @@
 package com.duma.liudong.meiye.view.me.dinDan;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -12,6 +12,7 @@ import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.base.MyStringCallback;
+import com.duma.liudong.meiye.presenter.PhotoSelectUtil;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.DialogUtil;
@@ -25,7 +26,6 @@ import java.io.File;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import me.iwf.photopicker.widget.MultiPickResultView;
 
 /**
  * Created by liudong on 17/4/14.
@@ -46,17 +46,18 @@ public class PingJiaActivity extends BaseActivity {
     LinearLayout layoutJiesuan;
     @BindView(R.id.edit_text)
     EditText editText;
-    @BindView(R.id.recycler_view)
-    MultiPickResultView recyclerView;
     @BindView(R.id.xx_store_desccredit)
     RatingBar xxStoreDesccredit;
     @BindView(R.id.xx_store_servicecredit)
     RatingBar xxStoreServicecredit;
     @BindView(R.id.xx_store_deliverycredit)
     RatingBar xxStoreDeliverycredit;
+    @BindView(R.id.rv_photo)
+    RecyclerView rvPhoto;
 
     private int num1, num2, num3, num4;
     private String goods_id, order_id;
+    private PhotoSelectUtil photoSelectUtil;
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -68,7 +69,6 @@ public class PingJiaActivity extends BaseActivity {
         goods_id = getIntent().getStringExtra("goods_id");
         order_id = getIntent().getStringExtra("order_id");
         ImageLoader.with(getIntent().getStringExtra("img"), imgHeadPic);
-        recyclerView.init(this, MultiPickResultView.ACTION_SELECT, null);
         xxPinfen.setOnRatingChangeListener(new RatingBar.OnRatingChangeListener() {
             @Override
             public void onRatingChange(float RatingCount) {
@@ -93,13 +93,9 @@ public class PingJiaActivity extends BaseActivity {
                 num4 = (int) Double.parseDouble(String.valueOf(RatingCount));
             }
         });
+        photoSelectUtil = new PhotoSelectUtil(mActivity, rvPhoto);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        recyclerView.onActivityResult(requestCode, resultCode, data);
-    }
 
     @OnClick({R.id.layout_back, R.id.layout_other})
     public void onClick(View view) {
@@ -134,8 +130,8 @@ public class PingJiaActivity extends BaseActivity {
                 .addParams("seller_score", xxStoreServicecredit + "")
                 .addParams("logistics_score", xxStoreDeliverycredit + "");
         File file;
-        for (int i = 0; i < recyclerView.getPhotos().size(); i++) {
-            file = new File(recyclerView.getPhotos().get(i));
+        for (int i = 0; i < photoSelectUtil.getmList().size(); i++) {
+            file = new File(photoSelectUtil.getmList().get(i).getPath());
             postFormBuilder.addFile("img_file[" + i + "]", file.getName(), file);
         }
         postFormBuilder.build().execute(new MyStringCallback() {
@@ -147,6 +143,7 @@ public class PingJiaActivity extends BaseActivity {
             }
         });
     }
+
 
 //    private String getNum() {
 //        switch (num1) {

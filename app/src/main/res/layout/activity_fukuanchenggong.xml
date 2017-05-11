@@ -7,53 +7,105 @@
 
     <include layout="@layout/include_top_bar" />
 
-    <LinearLayout
+    <View style="@style/henxian" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/sw_loading"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@color/white"
-        android:gravity="center">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/img_56"
-            android:drawablePadding="10dp"
-            android:gravity="center"
-            android:text="付款成功，感谢您的支持"
-            android:textColor="@color/maincolor"
-            android:textSize="20sp" />
-    </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
-        android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_shouye"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="15dp"
-            android:layout_weight="1"
-            android:background="@color/maincolor"
-            android:gravity="center"
-            android:text="回到首页"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@color/white"
+                    android:gravity="center">
 
-        <TextView
-            android:id="@+id/tv_chakanDinDan"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="30dp"
-            android:layout_weight="1"
-            android:background="@color/maincolor"
-            android:gravity="center"
-            android:text="查看订单"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
-    </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/img_56"
+                        android:drawablePadding="10dp"
+                        android:gravity="center"
+                        android:text="付款成功，感谢您的支持"
+                        android:textColor="@color/maincolor"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_fuwu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <View
+                        style="@style/henxian"
+                        android:layout_height="10dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:paddingLeft="10dp">
+
+                        <TextView
+                            android:id="@+id/tv_store_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:drawableLeft="@drawable/page_1"
+                            android:drawablePadding="6dp"
+                            android:gravity="center"
+                            android:text="子母扣商城"
+                            android:textColor="@color/texthei" />
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_fuwu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="55dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_shouye"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1"
+                        android:background="@color/maincolor"
+                        android:gravity="center"
+                        android:text="回到首页"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tv_chakanDinDan"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_weight="1"
+                        android:background="@color/maincolor"
+                        android:gravity="center"
+                        android:text="查看订单"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

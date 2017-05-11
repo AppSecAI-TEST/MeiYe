@@ -52,6 +52,15 @@ public class JifenBean {
         private String time;
         private String desc;
         private String points;
+        private String now_points;
+
+        public String getNow_points() {
+            return now_points;
+        }
+
+        public void setNow_points(String now_points) {
+            this.now_points = now_points;
+        }
 
         public String getTime() {
             return time;

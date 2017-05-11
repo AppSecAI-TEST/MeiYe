@@ -53,6 +53,7 @@ public abstract class MyStringCallback extends StringCallback {
                 onMySuccess("-1");
             } else {
                 if (jsonObject.getString("msg").equals("token错误,请重新登陆")) {
+                    Ts.setText("账号异常,请重新登录!");
                     StartUtil.cancleLogin();
                     return;
                 }

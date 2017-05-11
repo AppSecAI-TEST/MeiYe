@@ -2,6 +2,7 @@ package com.duma.liudong.meiye.view.home.meiTuan;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
@@ -28,6 +29,8 @@ import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.DialogUtil;
 import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
+import com.duma.liudong.meiye.utils.Ts;
+import com.duma.liudong.meiye.view.home.SouSuoActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.zhy.adapter.recyclerview.CommonAdapter;
@@ -52,7 +55,6 @@ import static com.duma.liudong.meiye.R.id.tv_fenlei;
  */
 
 public class TuanGouActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, com.duma.liudong.meiye.widget.ScrollableLayout.OnScrollListener {
-
     @BindView(R.id.layout_back)
     LinearLayout layoutBack;
     @BindView(R.id.tv_title)
@@ -129,7 +131,8 @@ public class TuanGouActivity extends BaseActivity implements SwipeRefreshLayout.
     protected void initData() {
         res = getIntent().getStringExtra("res");
         df = new DecimalFormat("0.0");
-        tvTitle.setText("服务团购");
+        tvTitle.setText("生活服务");
+        imgOther.setImageDrawable(MyApplication.getInstance().getResources().getDrawable(R.drawable.sousuo2));
         StartUtil.setSw(swLoading, this);
         mlist = new ArrayList<>();
         FenleiList = new LinkedList<>();
@@ -377,9 +380,8 @@ public class TuanGouActivity extends BaseActivity implements SwipeRefreshLayout.
             @Override
             protected void getView(ViewHolder holder, TuanGouBean tuanGouBean, int position) {
                 ImageLoader.with(tuanGouBean.getOriginal_img(), (ImageView) holder.getView(R.id.img_head_pic));
-                double distance = (double) tuanGouBean.getDistance() / 1000;
                 holder.setText(R.id.tv_goods_name, tuanGouBean.getGoods_name())
-                        .setText(R.id.tv_distance, df.format(distance) + "km")
+                        .setText(R.id.tv_distance, tuanGouBean.getDistance())
                         .setText(R.id.tv_store_name, tuanGouBean.getStore_name())
                         .setText(R.id.tv_market_price, "¥" + tuanGouBean.getMarket_price())
                         .setText(R.id.tv_price, tuanGouBean.getPrice())
@@ -443,7 +445,11 @@ public class TuanGouActivity extends BaseActivity implements SwipeRefreshLayout.
                         List<ClassifyBean> list = null;
                         list = new Gson().fromJson(result, type);
                         mlist.clear();
-                        mlist.addAll(list.subList(0, 8));
+                        try {
+                            mlist.addAll(list.subList(0, 8));
+                        } catch (Exception e) {
+                            Ts.setText("生活服务分类异常,请联系管理员!");
+                        }
                         FenleiList.clear();
                         FenleiList.addAll(list);
                         FenleiList.add(0, new ClassifyBean("", "全部"));
@@ -491,11 +497,14 @@ public class TuanGouActivity extends BaseActivity implements SwipeRefreshLayout.
         };
     }
 
-    @OnClick({R.id.layout_back, R.id.tv_refresh, R.id.layout_fenlei, R.id.layout_city, R.id.layout_paixu})
+    @OnClick({R.id.layout_other, R.id.layout_back, R.id.tv_refresh, R.id.layout_fenlei, R.id.layout_city, R.id.layout_paixu})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.layout_back:
                 finish();
+                break;
+            case R.id.layout_other:
+                startActivity(new Intent(mActivity, SouSuoActivity.class));
                 break;
             case R.id.tv_refresh:
                 initFenLeiHttp();
@@ -512,6 +521,7 @@ public class TuanGouActivity extends BaseActivity implements SwipeRefreshLayout.
                 onClick = 2;
                 dialogOrAnimStart();
                 break;
+
         }
     }
 

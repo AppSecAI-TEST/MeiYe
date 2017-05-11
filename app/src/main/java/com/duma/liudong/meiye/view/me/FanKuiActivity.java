@@ -3,6 +3,7 @@ package com.duma.liudong.meiye.view.me;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -34,6 +35,8 @@ public class FanKuiActivity extends BaseActivity {
     Button btnOk;
     @BindView(R.id.edit_qq)
     EditText editQq;
+    @BindView(R.id.checkBox)
+    CheckBox checkBox;
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -70,6 +73,7 @@ public class FanKuiActivity extends BaseActivity {
                 .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
                 .addParams("content", ediRes.getText().toString())
                 .addParams("relation", editQq.getText().toString())
+                .addParams("is_niming", checkBox.isChecked() == true ? "0" : "1")
                 .build()
                 .execute(new MyStringCallback() {
                     @Override

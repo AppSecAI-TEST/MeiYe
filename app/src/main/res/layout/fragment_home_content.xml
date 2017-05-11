@@ -241,6 +241,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:scaleType="centerInside"
                 android:src="@mipmap/ic_launcher" />
 
             <View style="@style/shuxian" />
@@ -250,6 +251,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:scaleType="centerInside"
                 android:src="@mipmap/ic_launcher" />
         </LinearLayout>
 
@@ -267,6 +269,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:scaleType="centerInside"
                 android:src="@mipmap/ic_launcher" />
 
             <View style="@style/shuxian" />
@@ -276,6 +279,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:scaleType="centerInside"
                 android:src="@mipmap/ic_launcher" />
 
             <View style="@style/shuxian" />
@@ -285,6 +289,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:scaleType="centerInside"
                 android:src="@mipmap/ic_launcher" />
 
             <View style="@style/shuxian" />
@@ -294,6 +299,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:scaleType="centerInside"
                 android:src="@mipmap/ic_launcher" />
 
         </LinearLayout>
@@ -329,7 +335,7 @@
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/img_1"
                 android:text="更多"
-                android:visibility="invisible" />
+                android:visibility="visible" />
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
@@ -369,7 +375,7 @@
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/img_1"
                 android:text="更多"
-                android:visibility="invisible" />
+                android:visibility="visible" />
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
@@ -409,7 +415,7 @@
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/img_1"
                 android:text="更多"
-                android:visibility="invisible" />
+                android:visibility="visible" />
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
@@ -449,7 +455,7 @@
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/img_1"
                 android:text="更多"
-                android:visibility="invisible" />
+                android:visibility="visible" />
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView

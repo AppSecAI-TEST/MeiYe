@@ -98,6 +98,14 @@ public class DinDanZhongXinActivity extends BaseActivity {
     TextView dianWanchen;
     @BindView(R.id.dian_jinxingzhong)
     TextView dianJinxingzhong;
+    @BindView(R.id.dian_shiwu_daifahuo)
+    TextView dianShiwuDaifahuo;
+    @BindView(R.id.layout_shiwu_daifahuo)
+    LinearLayout layoutShiwuDaifahuo;
+    @BindView(R.id.dian_dinzhi_daifahuo)
+    TextView dianDinzhiDaifahuo;
+    @BindView(R.id.layout_dinzhi_daifahuo)
+    LinearLayout layoutDinzhiDaifahuo;
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -107,7 +115,6 @@ public class DinDanZhongXinActivity extends BaseActivity {
     @Override
     protected void initData() {
         tvTitle.setText("订单中心");
-
         TipsView.create(mActivity).attach(dianDinzhiDaipingjia);
         TipsView.create(mActivity).attach(dianShiwuDaishoukuan);
         TipsView.create(mActivity).attach(dianShiwuDaishouhuo);
@@ -122,6 +129,8 @@ public class DinDanZhongXinActivity extends BaseActivity {
         TipsView.create(mActivity).attach(dianDinzhiTuikuan);
         TipsView.create(mActivity).attach(dianWanchen);
         TipsView.create(mActivity).attach(dianJinxingzhong);
+        TipsView.create(mActivity).attach(dianShiwuDaifahuo);
+        TipsView.create(mActivity).attach(dianDinzhiDaifahuo);
 
         dianDinzhiDaipingjia.setVisibility(View.GONE);
         dianShiwuDaishoukuan.setVisibility(View.GONE);
@@ -137,6 +146,8 @@ public class DinDanZhongXinActivity extends BaseActivity {
         dianDinzhiTuikuan.setVisibility(View.GONE);
         dianWanchen.setVisibility(View.GONE);
         dianJinxingzhong.setVisibility(View.GONE);
+        dianShiwuDaifahuo.setVisibility(View.GONE);
+        dianDinzhiDaifahuo.setVisibility(View.GONE);
 
         OkHttpUtils
                 .get()
@@ -179,7 +190,7 @@ public class DinDanZhongXinActivity extends BaseActivity {
         }
     }
 
-    @OnClick({R.id.layout_back, R.id.layout_other, R.id.layout_shiwu_daishoukuan, R.id.layout_shiwu_daishouhuan, R.id.layout_shiwu_daipingjia, R.id.layout_shiwu_tuikuan, R.id.layout_shiwu, R.id.layout_tuangou_daishoukuan, R.id.layout_tuangou_daishouhuan, R.id.layout_tuangou_daipingjia, R.id.layout_tuangou_tuikuan, R.id.layout_tuangou, R.id.layout_dinzhi_daishoukuan, R.id.layout_dinzhi_daishouhuan, R.id.layout_dinzhi_daipingjia, R.id.layout_dinzhi_tuikuan, R.id.layout_dinzhi, R.id.layout_wanchen, R.id.layout_jinxin, R.id.layout_dingzhi})
+    @OnClick({R.id.layout_shiwu_daifahuo, R.id.layout_dinzhi_daifahuo, R.id.layout_back, R.id.layout_other, R.id.layout_shiwu_daishoukuan, R.id.layout_shiwu_daishouhuan, R.id.layout_shiwu_daipingjia, R.id.layout_shiwu_tuikuan, R.id.layout_shiwu, R.id.layout_tuangou_daishoukuan, R.id.layout_tuangou_daishouhuan, R.id.layout_tuangou_daipingjia, R.id.layout_tuangou_tuikuan, R.id.layout_tuangou, R.id.layout_dinzhi_daishoukuan, R.id.layout_dinzhi_daishouhuan, R.id.layout_dinzhi_daipingjia, R.id.layout_dinzhi_tuikuan, R.id.layout_dinzhi, R.id.layout_wanchen, R.id.layout_jinxin, R.id.layout_dingzhi})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.layout_back:
@@ -190,14 +201,17 @@ public class DinDanZhongXinActivity extends BaseActivity {
             case R.id.layout_shiwu_daishoukuan:
                 StartUtil.toQuanBuDinDan(mActivity, "1", "1");
                 break;
-            case R.id.layout_shiwu_daishouhuan:
+            case R.id.layout_shiwu_daifahuo:
                 StartUtil.toQuanBuDinDan(mActivity, "1", "2");
                 break;
-            case R.id.layout_shiwu_daipingjia:
+            case R.id.layout_shiwu_daishouhuan:
                 StartUtil.toQuanBuDinDan(mActivity, "1", "3");
                 break;
-            case R.id.layout_shiwu_tuikuan:
+            case R.id.layout_shiwu_daipingjia:
                 StartUtil.toQuanBuDinDan(mActivity, "1", "4");
+                break;
+            case R.id.layout_shiwu_tuikuan:
+                StartUtil.toQuanBuDinDan(mActivity, "1", "5");
                 break;
             case R.id.layout_shiwu:
                 StartUtil.toQuanBuDinDan(mActivity, "1");
@@ -220,14 +234,17 @@ public class DinDanZhongXinActivity extends BaseActivity {
             case R.id.layout_dinzhi_daishoukuan:
                 StartUtil.toQuanBuDinDan(mActivity, "2", "1");
                 break;
-            case R.id.layout_dinzhi_daishouhuan:
+            case R.id.layout_dinzhi_daifahuo:
                 StartUtil.toQuanBuDinDan(mActivity, "2", "2");
                 break;
-            case R.id.layout_dinzhi_daipingjia:
+            case R.id.layout_dinzhi_daishouhuan:
                 StartUtil.toQuanBuDinDan(mActivity, "2", "3");
                 break;
-            case R.id.layout_dinzhi_tuikuan:
+            case R.id.layout_dinzhi_daipingjia:
                 StartUtil.toQuanBuDinDan(mActivity, "2", "4");
+                break;
+            case R.id.layout_dinzhi_tuikuan:
+                StartUtil.toQuanBuDinDan(mActivity, "2", "5");
                 break;
             case R.id.layout_dinzhi:
                 StartUtil.toQuanBuDinDan(mActivity, "2");
@@ -241,6 +258,8 @@ public class DinDanZhongXinActivity extends BaseActivity {
             case R.id.layout_dingzhi:
                 StartUtil.toWoDiDinZhi(mActivity);
                 break;
+
+
         }
     }
 

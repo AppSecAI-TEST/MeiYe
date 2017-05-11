@@ -17,7 +17,7 @@
             android:background="@color/bg_hui"
             android:orientation="vertical">
 
-            <include layout="@layout/include_img_kong" />
+            <include layout="@layout/include_dianpu_kong" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_shangping"

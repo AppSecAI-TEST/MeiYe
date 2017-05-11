@@ -69,6 +69,7 @@
                 android:paddingTop="20dp">
 
                 <TextView
+                    android:id="@+id/tv_guize"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"

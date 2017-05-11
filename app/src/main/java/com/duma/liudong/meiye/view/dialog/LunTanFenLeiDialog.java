@@ -18,6 +18,7 @@ import com.duma.liudong.meiye.model.ForumBean;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -35,7 +36,13 @@ public class LunTanFenLeiDialog extends Dialog {
 
     public LunTanFenLeiDialog(@NonNull Activity context, List<ForumBean> list) {
         super(context, R.style.PopupDialog);
-        this.mList = list;
+        mList = new LinkedList<>();
+        mList.addAll(list);
+        for (int i = 0; i < mList.size(); i++) {
+            if (mList.get(i).getCat_name().equals("所有动态")) {
+                mList.remove(i);
+            }
+        }
         this.mActivity = context;
     }
 

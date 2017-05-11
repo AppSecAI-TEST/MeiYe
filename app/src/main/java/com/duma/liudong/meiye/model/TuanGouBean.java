@@ -34,7 +34,7 @@ public class TuanGouBean {
     private String lat;
     private String goods_url;
     private String store_logo;
-    private int distance;
+    private String distance;
     private String store_name;
 
     public String getStore_name() {
@@ -141,11 +141,11 @@ public class TuanGouBean {
         this.store_logo = store_logo;
     }
 
-    public int getDistance() {
+    public String getDistance() {
         return distance;
     }
 
-    public void setDistance(int distance) {
+    public void setDistance(String distance) {
         this.distance = distance;
     }
 }

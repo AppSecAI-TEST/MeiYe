@@ -25,6 +25,21 @@ public class ImageLoader {
                 .into(imageView);
     }
 
+    public static void with_p(Object url, ImageView imageView) {
+        Glide.with(MyApplication.getInstance())
+                .load(url)
+                .error(R.drawable.zu)//load失敗的Drawable
+                .placeholder(R.drawable.zu)//loading時候的Drawable
+
+//                .an//設置load完的動畫
+
+//                .centerCrop()//中心切圖, 會填滿
+                .dontAnimate()
+//                .fitCenter()//中心fit, 以原本圖片的長寬為主
+
+                .into(imageView);
+    }
+
     public static void withYuan(Object url, ImageView imageView) {
         Glide.with(MyApplication.getInstance())
                 .load(url)

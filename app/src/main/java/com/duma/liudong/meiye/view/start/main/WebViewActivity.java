@@ -19,8 +19,10 @@ import android.widget.TextView;
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.base.MyApplication;
+import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.StartUtil;
+import com.duma.liudong.meiye.view.shoppingCart.fuwu.FuWuQueRenDinDanActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -164,7 +166,6 @@ public class WebViewActivity extends BaseActivity implements SwipeRefreshLayout.
 
 
     class webJs {
-
         //返回userid 没有登录返回为空
         @JavascriptInterface
         public String getuserId() {
@@ -183,16 +184,47 @@ public class WebViewActivity extends BaseActivity implements SwipeRefreshLayout.
             StartUtil.toLogin(mActivity);
         }
 
-        //跳转登录
+        //跳转店铺
         @JavascriptInterface
         public void goDianPu(String id) {
             StartUtil.toDianPu(mActivity, id);
         }
 
+        //跳转TuanGou
+        @JavascriptInterface
+        public void goTuanGou(String goods_id) {
+            Intent intent = new Intent(mActivity, FuWuQueRenDinDanActivity.class);
+            intent.putExtra("goods_id", goods_id);
+            startActivity(intent);
+        }
+
+        //跳转ShiWu
+        @JavascriptInterface
+        public void goShiwu(String goods_id, String cart_id) {
+            StartUtil.toQueRenDinDan(mActivity, "goods_id", goods_id, "", "", cart_id);
+        }
+
+        //跳转会员
+        @JavascriptInterface
+        public void goHuiYuan() {
+            StartUtil.toH5Web(mActivity, Api.HuiYuanH5, "会员升级");
+        }
+
+        //跳转shiWuDinZhi  开团
+        @JavascriptInterface
+        public void goShiWuDinZhi(String goods_id, String cart_id) {
+            StartUtil.toQueRenDinDan(mActivity, "goods_id", goods_id, "1", "", cart_id);
+        }
+
+        @JavascriptInterface
+        public void goCanTuan(String goods_id, String spell_id, String cart_id) {
+            StartUtil.toQueRenDinDan(mActivity, "goods_id", goods_id, "", spell_id, cart_id);
+        }
+
         //跳转分享
         @JavascriptInterface
         public void goShare(String title, String url) {
-            StartUtil.toShare(mActivity, title, title);
+            StartUtil.toShare(mActivity, title, url);
         }
 
     }

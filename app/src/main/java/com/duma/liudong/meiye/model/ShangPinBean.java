@@ -35,7 +35,7 @@ public class ShangPinBean {
     private String lng;
     private String lat;
     private String store_count;
-    private int distance;
+    private String distance;
     private String goods_url;
 
     public String getStore_count() {
@@ -150,11 +150,11 @@ public class ShangPinBean {
         this.goods_url = goods_url;
     }
 
-    public int getDistance() {
+    public String getDistance() {
         return distance;
     }
 
-    public void setDistance(int distance) {
+    public void setDistance(String distance) {
         this.distance = distance;
     }
 }

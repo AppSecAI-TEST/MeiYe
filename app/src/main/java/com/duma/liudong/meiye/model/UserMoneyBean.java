@@ -42,6 +42,15 @@ public class UserMoneyBean {
         private String time;
         private String desc;
         private String user_money;
+        private String now_money;
+
+        public String getNow_money() {
+            return now_money;
+        }
+
+        public void setNow_money(String now_money) {
+            this.now_money = now_money;
+        }
 
         public String getTime() {
             return time;

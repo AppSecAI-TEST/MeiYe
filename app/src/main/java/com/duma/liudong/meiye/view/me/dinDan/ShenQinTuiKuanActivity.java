@@ -1,7 +1,7 @@
 package com.duma.liudong.meiye.view.me.dinDan;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +13,7 @@ import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.base.MyStringCallback;
+import com.duma.liudong.meiye.presenter.PhotoSelectUtil;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.DialogUtil;
@@ -25,7 +26,6 @@ import java.io.File;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import me.iwf.photopicker.widget.MultiPickResultView;
 
 /**
  * Created by liudong on 17/4/24.
@@ -62,12 +62,13 @@ public class ShenQinTuiKuanActivity extends BaseActivity {
     TextView tvJiage;
     @BindView(R.id.edit_text)
     EditText editText;
-    @BindView(R.id.recycler_view)
-    MultiPickResultView recyclerView;
     @BindView(R.id.btn_tijiao)
     Button btnTijiao;
+    @BindView(R.id.rv_photo)
+    RecyclerView rvPhoto;
 
     private String order_id, order_sn, goods_id, storName, name, img, num, danjia, spec_key;
+    private PhotoSelectUtil photoSelectUtil;
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -77,7 +78,6 @@ public class ShenQinTuiKuanActivity extends BaseActivity {
     @Override
     protected void initData() {
         tvTitle.setText("申请退款");
-        recyclerView.init(this, MultiPickResultView.ACTION_SELECT, null);
         order_id = getIntent().getStringExtra("order_id");
         order_sn = getIntent().getStringExtra("order_sn");
         goods_id = getIntent().getStringExtra("goods_id");
@@ -95,6 +95,7 @@ public class ShenQinTuiKuanActivity extends BaseActivity {
         tvShangpingTitle.setText(name);
         tvStoreName.setText(storName);
         ImageLoader.with(Api.url + img, imgHeadPic);
+        photoSelectUtil = new PhotoSelectUtil(mActivity, rvPhoto);
     }
 
     @OnClick({R.id.layout_back, R.id.btn_tijiao})
@@ -113,11 +114,6 @@ public class ShenQinTuiKuanActivity extends BaseActivity {
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        recyclerView.onActivityResult(requestCode, resultCode, data);
-    }
 
     private void okHttp() {
         DialogUtil.show(mActivity);
@@ -135,8 +131,8 @@ public class ShenQinTuiKuanActivity extends BaseActivity {
                 .addParams("spec_key", spec_key)
                 .addParams("reason", editText.getText().toString());
         File file;
-        for (int i = 0; i < recyclerView.getPhotos().size(); i++) {
-            file = new File(recyclerView.getPhotos().get(i));
+        for (int i = 0; i < photoSelectUtil.getmList().size(); i++) {
+            file = new File(photoSelectUtil.getmList().get(i).getPath());
             postFormBuilder.addFile("img_file[" + i + "]", file.getName(), file);
         }
         postFormBuilder.build().execute(new MyStringCallback() {

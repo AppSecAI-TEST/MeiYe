@@ -35,10 +35,36 @@ public class TieziBean {
     private String user_name;
     private String like_count;
     private String comment_count;
-    private int is_follow;
-    private int is_like;
+    private String is_follow;
+    private String is_like;
+    private String is_user_follow;
     private List<String> img_json;
     private List<BbsCommentBean> bbs_comment;
+
+
+    public String getIs_follow() {
+        return is_follow;
+    }
+
+    public void setIs_follow(String is_follow) {
+        this.is_follow = is_follow;
+    }
+
+    public String getIs_like() {
+        return is_like;
+    }
+
+    public void setIs_like(String is_like) {
+        this.is_like = is_like;
+    }
+
+    public String getIs_user_follow() {
+        return is_user_follow;
+    }
+
+    public void setIs_user_follow(String is_user_follow) {
+        this.is_user_follow = is_user_follow;
+    }
 
     public String getHead_pic() {
         return head_pic;
@@ -120,21 +146,6 @@ public class TieziBean {
         this.comment_count = comment_count;
     }
 
-    public int getIs_follow() {
-        return is_follow;
-    }
-
-    public void setIs_follow(int is_follow) {
-        this.is_follow = is_follow;
-    }
-
-    public int getIs_like() {
-        return is_like;
-    }
-
-    public void setIs_like(int is_like) {
-        this.is_like = is_like;
-    }
 
     public List<String> getImg_json() {
         return img_json;

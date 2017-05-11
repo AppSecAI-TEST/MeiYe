@@ -87,7 +87,15 @@ public class JiFenActivity extends BaseActivity implements SwipeRefreshLayout.On
             protected void getView(ViewHolder holder, JifenBean.DetailBean detailBean, int position) {
                 holder.setText(R.id.tv_name, detailBean.getDesc());
                 holder.setText(R.id.tv_shijian, detailBean.getTime());
-                holder.setText(R.id.tv_qian, detailBean.getPoints());
+                holder.setText(R.id.tv_yue, "积分: " + detailBean.getNow_points());
+
+                TextView view = holder.getView(R.id.tv_qian);
+                view.setText(detailBean.getPoints());
+                if (Double.parseDouble(detailBean.getPoints()) < 0) {
+                    view.setTextColor(MyApplication.getInstance().getResources().getColor(R.color.main_red));
+                } else {
+                    view.setTextColor(MyApplication.getInstance().getResources().getColor(R.color.texthei));
+                }
             }
 
             @Override

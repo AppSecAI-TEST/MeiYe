@@ -188,8 +188,8 @@
                 android:padding="15dp"
                 android:text="问题照片" />
 
-            <me.iwf.photopicker.widget.MultiPickResultView
-                android:id="@+id/recycler_view"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_photo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

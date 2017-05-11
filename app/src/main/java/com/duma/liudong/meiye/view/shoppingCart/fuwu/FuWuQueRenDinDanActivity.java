@@ -14,6 +14,7 @@ import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.base.MyStringCallback;
 import com.duma.liudong.meiye.model.FuWuQuRenDinDanBean;
+import com.duma.liudong.meiye.model.OridBean;
 import com.duma.liudong.meiye.model.YouHuiJuanBean;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
@@ -302,10 +303,11 @@ public class FuWuQueRenDinDanActivity extends BaseActivity {
                     @Override
                     public void onMySuccess(String result) {
                         DialogUtil.hide();
+                        OridBean oridBean = new Gson().fromJson(result, OridBean.class);
                         if (bean.getTotal() == 0) {
-                            StartUtil.toZhiFuSuccess(mActivity, "3");
+                            StartUtil.toZhiFuSuccess(mActivity, "3", oridBean.getOrder_id());
                         } else {
-                            StartUtil.toZhiFu(mActivity, result, bean.getTotal() + "", "3");
+                            StartUtil.toZhiFu(mActivity, oridBean.getOrder_id(), bean.getTotal() + "", "3");
                         }
                     }
                 });

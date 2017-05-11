@@ -1,155 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/white">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-
-        <LinearLayout
-            android:id="@+id/layout_back"
-            android:layout_width="48dp"
+        <android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="0dp"
-            android:gravity="center"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_constraintLeft_creator="1"
-            tools:layout_constraintRight_creator="1"
-            tools:layout_constraintTop_creator="1">
+            android:background="@color/white">
 
-            <ImageView
+
+            <LinearLayout
+                android:id="@+id/layout_back"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="0dp"
+                android:gravity="center"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_constraintLeft_creator="1"
+                tools:layout_constraintRight_creator="1"
+                tools:layout_constraintTop_creator="1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_19" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/title_text_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/img_19" />
-        </LinearLayout>
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:text="我要发帖"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_title"
-            style="@style/title_text_size"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
-            android:text="我要发帖"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
+            <LinearLayout
+                android:id="@+id/layout_other"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintLeft_toLeftOf="@+id/layout_back"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.51"
+                tools:layout_conversion_absoluteHeight="48dp"
+                tools:layout_conversion_absoluteWidth="48dp"
+                tools:layout_conversion_absoluteX="312dp"
+                tools:layout_conversion_absoluteY="0dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="发送"
+                    android:textColor="@color/text_hui" />
+            </LinearLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
+        <View style="@style/henxian" />
 
         <LinearLayout
-            android:id="@+id/layout_other"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:gravity="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintLeft_toLeftOf="@+id/layout_back"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.51"
-            tools:layout_conversion_absoluteHeight="48dp"
-            tools:layout_conversion_absoluteWidth="48dp"
-            tools:layout_conversion_absoluteX="312dp"
-            tools:layout_conversion_absoluteY="0dp">
+            android:id="@+id/layout_fenlei"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="发送"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="话题分类:" />
+
+            <TextView
+                android:id="@+id/tv_fenlei_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4dp"
+                android:gravity="center"
+                android:text="请选择话题分类"
                 android:textColor="@color/text_hui" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center|right">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/r" />
+            </LinearLayout>
         </LinearLayout>
 
-    </android.support.constraint.ConstraintLayout>
-
-    <View style="@style/henxian" />
-
-    <LinearLayout
-        android:id="@+id/layout_fenlei"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="话题分类:" />
-
-        <TextView
-            android:id="@+id/tv_fenlei_name"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="4dp"
-            android:gravity="center"
-            android:text="请选择话题分类"
-            android:textColor="@color/text_hui" />
+        <View style="@style/henxian" />
 
         <LinearLayout
+            android:id="@+id/layout_fatie"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center|right">
+            android:layout_height="60dp"
+            android:gravity="center|left"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
 
             <ImageView
+                android:id="@+id/img_head_pic"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/touxiang" />
+
+            <TextView
+                android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/r" />
+                android:layout_marginLeft="10dp"
+                android:text="昵称" />
+
+
         </LinearLayout>
+
+        <View style="@style/henxian" />
+
+        <EditText
+            android:id="@+id/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_margin="20dp"
+            android:background="@null"
+            android:gravity="start"
+            android:hint="说点什么吧..."
+            android:textColor="@color/texthei"
+            android:textColorHint="@color/text_hui"
+            android:textSize="14sp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
-
-    <View style="@style/henxian" />
-
-    <LinearLayout
-        android:id="@+id/layout_fatie"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center|left"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp">
-
-        <ImageView
-            android:id="@+id/img_head_pic"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/touxiang" />
-
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="昵称" />
-
-
-    </LinearLayout>
-
-    <View style="@style/henxian" />
-
-    <EditText
-        android:id="@+id/edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_margin="20dp"
-        android:background="@null"
-        android:gravity="start"
-        android:hint="说点什么吧..."
-        android:textColor="@color/texthei"
-        android:textColorHint="@color/text_hui"
-        android:textSize="14sp" />
-
-    <me.iwf.photopicker.widget.MultiPickResultView
-        android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+</ScrollView>

@@ -253,7 +253,7 @@ public class ZhiFuActivity extends BaseActivity {
 
     private void ZhiFuSuccess() {
         Ts.setText("支付成功！");
-        StartUtil.toZhiFuSuccess(mActivity, type);
+        StartUtil.toZhiFuSuccess(mActivity, type, id);
         finish();
 //        isTiaoZhuan();
     }

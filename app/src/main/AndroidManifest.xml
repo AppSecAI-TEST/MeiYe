@@ -58,6 +58,16 @@
             android:value="a832b199ce53f952ac9311ad2b825ef9" />
         <service android:name="com.amap.api.location.APSService" />
 
+        <!--图片选择器-->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
         <!--微信的选择器activity-->
         <activity
             android:name="me.iwf.photopicker.PhotoPickerActivity"
@@ -136,6 +146,8 @@
         <activity android:name=".widget.demo.DemoActivity" />
         <activity android:name=".view.start.main.MainActivity" />
         <activity android:name=".view.start.main.ViewPaterActivity" />
+        <activity android:name=".view.shoppingCart.HongBaoListActivity" />
+        <activity android:name=".view.shoppingCart.YouHuiListActivity" />
     </application>
 
 </manifest>

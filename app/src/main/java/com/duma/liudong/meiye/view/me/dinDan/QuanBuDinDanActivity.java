@@ -55,10 +55,12 @@ public class QuanBuDinDanActivity extends BaseActivity {
         viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "待付款");
         switch (type) {
             case "1":
+                viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "待发货");
                 viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "待收货");
                 tvTitle.setText("实物订单");
                 break;
             case "2":
+                viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "待发货");
                 viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "待收货");
                 tvTitle.setText("定制订单");
                 break;
@@ -86,19 +88,37 @@ public class QuanBuDinDanActivity extends BaseActivity {
     }
 
     public String getfenlei_Type() {
-        //0: 全部 1:待付款,2:待收货3.待评价4退款
-        switch (viewPaterBar.getCurrentItem()) {
-            case 0:
-                return "";
-            case 1:
-                return "WAITPAY";
-            case 2:
-                return "WAITRECEIVE";
-            case 3:
-                return "WAITCCOMMENT";
-            default:
-                return "RETURNED";
+        //0: 全部 1:待付款2.待发货,3:待收货4.待评价5退款
+        if (!type.equals("3")) {
+            switch (viewPaterBar.getCurrentItem()) {
+                case 0:
+                    return "";
+                case 1:
+                    return "WAITPAY";
+                case 2:
+                    return "WAITSEND";
+                case 3:
+                    return "WAITRECEIVE";
+                case 4:
+                    return "WAITCCOMMENT";
+                default:
+                    return "RETURNED";
+            }
+        } else {
+            switch (viewPaterBar.getCurrentItem()) {
+                case 0:
+                    return "";
+                case 1:
+                    return "WAITPAY";
+                case 2:
+                    return "WAITRECEIVE";
+                case 3:
+                    return "WAITCCOMMENT";
+                default:
+                    return "RETURNED";
+            }
         }
+
     }
 
     @Override

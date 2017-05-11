@@ -585,7 +585,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="帖子" />
+                            android:text="收藏" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -635,7 +635,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="我的论坛" />
+                            android:text="我的帖子" />
                     </LinearLayout>
                 </LinearLayout>
 

@@ -1,7 +1,7 @@
 package com.duma.liudong.meiye.view.forum;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -14,6 +14,7 @@ import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.base.MyStringCallback;
 import com.duma.liudong.meiye.model.ForumBean;
 import com.duma.liudong.meiye.model.ImgUrlBean;
+import com.duma.liudong.meiye.presenter.PhotoSelectUtil;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.DialogUtil;
@@ -30,7 +31,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import me.iwf.photopicker.widget.MultiPickResultView;
 import okhttp3.Call;
 
 /**
@@ -48,8 +48,6 @@ public class FaTieActivity extends BaseActivity {
     TextView tvName;
     @BindView(R.id.layout_fatie)
     LinearLayout layoutFatie;
-    @BindView(R.id.recycler_view)
-    MultiPickResultView recyclerView;
     @BindView(R.id.tv_fenlei_name)
     TextView tvFenleiName;
     @BindView(R.id.layout_fenlei)
@@ -60,11 +58,15 @@ public class FaTieActivity extends BaseActivity {
     EditText editText;
 
     public List<ForumBean> list;
+    @BindView(R.id.rv_photo)
+    RecyclerView rvPhoto;
 
     private LunTanFenLeiDialog dialog;
     private ForumBean bean;
     int num = 0;
     private List<String> mImgUrlList;
+
+    private PhotoSelectUtil photoSelectUtil;
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -75,7 +77,6 @@ public class FaTieActivity extends BaseActivity {
     protected void initData() {
         list = (List<ForumBean>) getIntent().getSerializableExtra("list");
         mImgUrlList = new ArrayList<>();
-        recyclerView.init(this, MultiPickResultView.ACTION_SELECT, null);
         dialog = new LunTanFenLeiDialog(mActivity, list);
         dialog.setOnFenLeiOnlick(new LunTanFenLeiDialog.OnFenLeiOnlick() {
             @Override
@@ -86,6 +87,8 @@ public class FaTieActivity extends BaseActivity {
         });
         ImageLoader.withYuan(Api.url + MyApplication.getSpUtils().getString(Constants.head_pic), imgHeadPic);
         tvName.setText(MyApplication.getSpUtils().getString(Constants.nickname));
+
+        photoSelectUtil = new PhotoSelectUtil(mActivity, rvPhoto);
     }
 
     @OnClick({R.id.layout_back, R.id.layout_other, R.id.layout_fenlei})
@@ -103,7 +106,7 @@ public class FaTieActivity extends BaseActivity {
                     Ts.setText("说点什么吧...");
                     return;
                 }
-                if (recyclerView.getPhotos().size() == 0) {
+                if (photoSelectUtil.getmList().size() == 0) {
                     FaTei();
                 }
                 addTu();
@@ -117,10 +120,15 @@ public class FaTieActivity extends BaseActivity {
     private void addTu() {
         DialogUtil.show(mActivity);
         num = 0;
-        final int size = recyclerView.getPhotos().size();
+        final int size = photoSelectUtil.getmList().size();
         mImgUrlList = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            File file = new File(recyclerView.getPhotos().get(i));
+            File file;
+            if (photoSelectUtil.getmList().get(i).isCompressed() || (photoSelectUtil.getmList().get(i).isCut() && photoSelectUtil.getmList().get(i).isCompressed())) {
+                file = new File(photoSelectUtil.getmList().get(i).getCompressPath());
+            } else {
+                file = new File(photoSelectUtil.getmList().get(i).getPath());
+            }
             OkHttpUtils.getInstance().cancelTag(i);
             OkHttpUtils
                     .post()
@@ -137,8 +145,13 @@ public class FaTieActivity extends BaseActivity {
                         @Override
                         public void onResponse(String response, int id) {
                             ImgUrlBean imgUrlBean = new Gson().fromJson(response, ImgUrlBean.class);
-                            mImgUrlList.add(imgUrlBean.getResult().getPath());
-                            initRes(size);
+                            if (imgUrlBean.getStatus().equals("1")) {
+                                mImgUrlList.add(imgUrlBean.getResult().getPath());
+                                initRes(size);
+                            } else {
+                                Ts.setText(imgUrlBean.getMsg());
+                            }
+
                         }
                     });
         }
@@ -171,10 +184,5 @@ public class FaTieActivity extends BaseActivity {
                 });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        //onActivityResult里一行代码回调
-        recyclerView.onActivityResult(requestCode, resultCode, data);
-    }
+
 }

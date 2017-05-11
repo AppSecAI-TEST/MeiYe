@@ -20,6 +20,7 @@ import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
+import com.duma.liudong.meiye.utils.Ts;
 import com.duma.liudong.meiye.view.home.LinJuanActivity;
 import com.duma.liudong.meiye.view.home.MiaoShaActivity;
 import com.duma.liudong.meiye.view.home.TouTiaoActivity;
@@ -276,12 +277,16 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
         new BaseBannaer().setBanner(bannerHome, friendLinkBeanList, this);
         bannerHome.startTurning(BaseBannaer.time);
         ImageLoader.with(bean.getAd().getAd_code(), imgAd);
-        ImageLoader.with(bean.getGoods_cat().get(0).getPic_url(), imgMiaosha);
-        ImageLoader.with(bean.getGoods_cat().get(1).getPic_url(), imgXinpin);
-        ImageLoader.with(bean.getGoods_cat().get(2).getPic_url(), imgWeihuo);
-        ImageLoader.with(bean.getGoods_cat().get(3).getPic_url(), imgYoupin);
-        ImageLoader.with(bean.getGoods_cat().get(4).getPic_url(), imgRexiao);
-        ImageLoader.with(bean.getGoods_cat().get(5).getPic_url(), imgHaohuo);
+        try {
+            ImageLoader.with_p(bean.getGoods_cat().get(0).getPic_url(), imgMiaosha);
+            ImageLoader.with_p(bean.getGoods_cat().get(1).getPic_url(), imgXinpin);
+            ImageLoader.with_p(bean.getGoods_cat().get(2).getPic_url(), imgWeihuo);
+            ImageLoader.with_p(bean.getGoods_cat().get(3).getPic_url(), imgYoupin);
+            ImageLoader.with_p(bean.getGoods_cat().get(4).getPic_url(), imgRexiao);
+            ImageLoader.with_p(bean.getGoods_cat().get(5).getPic_url(), imgHaohuo);
+        } catch (Exception e) {
+            Ts.setText("首页分类异常 请联系管理员!");
+        }
         dianPuAdapter.setmList(bean.getStore());
         dingzhiAdapter.setmList(bean.getDingzhi());
         shangpingAdapter.setmList(bean.getShiwu());
@@ -293,6 +298,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.layout_shangping:
+                StartUtil.toShangPingLieBiao(mActivity, Constants.keyword, "", "全部商品", "");
                 break;
             case R.id.layout_toutiao:
                 startActivity(new Intent(mActivity, TouTiaoActivity.class));
@@ -306,6 +312,8 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
                 StartUtil.toShangPingLieBiao(mActivity, "", "", "定制", "2");
                 break;
             case R.id.layout_tuijian:
+                //推荐店铺
+                StartUtil.toDianPuList(mActivity, "");
                 break;
             case R.id.layout_guanlian:
                 break;

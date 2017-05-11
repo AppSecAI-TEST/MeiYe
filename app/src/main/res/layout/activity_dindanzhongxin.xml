@@ -10,6 +10,30 @@
     <View style="@style/henxian" />
 
     <LinearLayout
+        android:id="@+id/layout_shiwu"
+        style="@style/wode_bianju"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center|start"
+            android:text="实物订单" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/r" />
+    </LinearLayout>
+
+    <View style="@style/henxian" />
+
+    <LinearLayout
         style="@style/wode_bianju2"
         android:layout_width="match_parent"
         android:background="@color/white"
@@ -50,6 +74,43 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="待付款" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_shiwu_daifahuo"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/fahuo" />
+
+                <TextView
+                    android:id="@+id/dian_shiwu_daifahuo"
+                    style="@style/text_yuandian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1" />
+            </FrameLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="待发货" />
         </LinearLayout>
 
         <LinearLayout
@@ -163,20 +224,67 @@
                 android:text="退款" />
         </LinearLayout>
 
-        <View style="@style/shuxian" />
+    </LinearLayout>
+
+    <View
+        style="@style/henxian"
+        android:layout_height="10dp" />
+
+    <LinearLayout
+        android:id="@+id/layout_dinzhi"
+        style="@style/wode_bianju"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center|start"
+            android:text="定制订单" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/r" />
+    </LinearLayout>
+
+    <View style="@style/henxian" />
+
+    <LinearLayout
+        style="@style/wode_bianju2"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:id="@+id/layout_shiwu"
+            android:id="@+id/layout_dinzhi_daishoukuan"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/img_95" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/img_111" />
+
+                <TextView
+                    android:id="@+id/dian_dinzhi_daishoukuan"
+                    style="@style/text_yuandian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1" />
+            </FrameLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -186,13 +294,185 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="实物订单" />
+                android:text="待付款" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_dinzhi_daifahuo"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/fahuo" />
+
+                <TextView
+                    android:id="@+id/dian_dinzhi_daifahuo"
+                    style="@style/text_yuandian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1" />
+            </FrameLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="待发货" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_dinzhi_daishouhuan"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/img_112" />
+
+                <TextView
+                    android:id="@+id/dian_dinzhi_daishouhuan"
+                    style="@style/text_yuandian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1" />
+            </FrameLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="待收货" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_dinzhi_daipingjia"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/img_113" />
+
+                <TextView
+                    android:id="@+id/dian_dinzhi_daipingjia"
+                    style="@style/text_yuandian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1" />
+            </FrameLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="待评价" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_dinzhi_tuikuan"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/img_114" />
+
+                <TextView
+                    android:id="@+id/dian_dinzhi_tuikuan"
+                    style="@style/text_yuandian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1" />
+            </FrameLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="退款" />
         </LinearLayout>
     </LinearLayout>
 
     <View
         style="@style/henxian"
         android:layout_height="10dp" />
+
+    <LinearLayout
+        android:id="@+id/layout_tuangou"
+        style="@style/wode_bianju"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center|start"
+            android:text="团购订单" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/r" />
+    </LinearLayout>
+
+    <View style="@style/henxian" />
 
     <LinearLayout
         style="@style/wode_bianju2"
@@ -348,32 +628,6 @@
                 android:layout_height="wrap_content"
                 android:text="退款" />
         </LinearLayout>
-
-        <View style="@style/shuxian" />
-
-        <LinearLayout
-            android:id="@+id/layout_tuangou"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/img_96" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="团购订单" />
-        </LinearLayout>
     </LinearLayout>
 
     <View
@@ -381,226 +635,34 @@
         android:layout_height="10dp" />
 
     <LinearLayout
-        style="@style/wode_bianju2"
+        android:id="@+id/layout_dingzhi"
+        style="@style/wode_bianju"
         android:layout_width="match_parent"
+        android:layout_height="40dp"
         android:background="@color/white"
+        android:gravity="center"
         android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/layout_dinzhi_daishoukuan"
+        <TextView
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:gravity="center|start"
+            android:text="我的定制" />
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/img_111" />
-
-                <TextView
-                    android:id="@+id/dian_dinzhi_daishoukuan"
-                    style="@style/text_yuandian"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1" />
-            </FrameLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="待付款" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layout_dinzhi_daishouhuan"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/img_112" />
-
-                <TextView
-                    android:id="@+id/dian_dinzhi_daishouhuan"
-                    style="@style/text_yuandian"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1" />
-            </FrameLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="待收货" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layout_dinzhi_daipingjia"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/img_113" />
-
-                <TextView
-                    android:id="@+id/dian_dinzhi_daipingjia"
-                    style="@style/text_yuandian"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1" />
-            </FrameLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="待评价" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layout_dinzhi_tuikuan"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/img_114" />
-
-                <TextView
-                    android:id="@+id/dian_dinzhi_tuikuan"
-                    style="@style/text_yuandian"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1" />
-            </FrameLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="退款" />
-        </LinearLayout>
-
-        <View style="@style/shuxian" />
-
-        <LinearLayout
-            android:id="@+id/layout_dinzhi"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/img_97" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="定制订单" />
-        </LinearLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/r" />
     </LinearLayout>
 
-    <View
-        style="@style/henxian"
-        android:layout_height="10dp" />
+    <View style="@style/henxian" />
 
     <LinearLayout
         style="@style/wode_bianju2"
         android:layout_width="match_parent"
         android:background="@color/white"
         android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/layout_wanchen"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:orientation="vertical">
-
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="已完成" />
-
-                <TextView
-                    android:id="@+id/dian_wanchen"
-                    style="@style/text_yuandian"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginRight="40dp"
-                    android:text="1" />
-            </FrameLayout>
-
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/layout_jinxin"
@@ -635,28 +697,36 @@
         <View style="@style/shuxian" />
 
         <LinearLayout
-            android:id="@+id/layout_dingzhi"
+            android:id="@+id/layout_wanchen"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:gravity="center"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/img_98" />
 
-            <View
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="我的定制" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="已完成" />
+
+                <TextView
+                    android:id="@+id/dian_wanchen"
+                    style="@style/text_yuandian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="40dp"
+                    android:text="1" />
+            </FrameLayout>
+
         </LinearLayout>
+
     </LinearLayout>
 
     <View

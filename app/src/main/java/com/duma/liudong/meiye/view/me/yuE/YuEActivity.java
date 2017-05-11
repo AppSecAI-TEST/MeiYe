@@ -19,6 +19,7 @@ import com.duma.liudong.meiye.model.UserMoneyBean;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.StartUtil;
+import com.duma.liudong.meiye.utils.Ts;
 import com.google.gson.Gson;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -86,7 +87,19 @@ public class YuEActivity extends BaseActivity implements SwipeRefreshLayout.OnRe
             protected void getView(ViewHolder holder, UserMoneyBean.DetailBean detailBean, int position) {
                 holder.setText(R.id.tv_name, detailBean.getDesc());
                 holder.setText(R.id.tv_shijian, detailBean.getTime());
-                holder.setText(R.id.tv_qian, detailBean.getUser_money());
+                holder.setText(R.id.tv_yue, "余额: " + detailBean.getNow_money());
+
+                TextView view = holder.getView(R.id.tv_qian);
+                view.setText(detailBean.getUser_money());
+                try {
+                    if (Double.parseDouble(detailBean.getUser_money()) < 0) {
+                        view.setTextColor(MyApplication.getInstance().getResources().getColor(R.color.main_red));
+                    } else {
+                        view.setTextColor(MyApplication.getInstance().getResources().getColor(R.color.texthei));
+                    }
+                } catch (Exception e) {
+                    Ts.setText("服务器金额异常,请联系管理员!");
+                }
             }
 
             @Override

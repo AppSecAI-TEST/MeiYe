@@ -264,19 +264,24 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
                 break;
             case R.id.layout_guanzhuan:
                 //关注
+                intent = new Intent(mActivity, FenSiActivity.class);
+                intent.putExtra("type", "0");
+                startActivity(intent);
+                break;
+            case R.id.layout_tiezi:
+                //贴子
+//                this.intent = new Intent(mActivity, GuanZhuActivity.class);
+//                this.intent.putExtra("url", Api.my_add_bbs);
+//                startActivity(this.intent);
                 this.intent = new Intent(mActivity, GuanZhuActivity.class);
                 this.intent.putExtra("url", Api.follow_bbs);
                 startActivity(this.intent);
                 break;
-            case R.id.layout_tiezi:
-                //贴子
-                this.intent = new Intent(mActivity, GuanZhuActivity.class);
-                this.intent.putExtra("url", Api.my_add_bbs);
-                startActivity(this.intent);
-                break;
             case R.id.layout_fensi:
                 //粉丝
-                startActivity(new Intent(mActivity, FenSiActivity.class));
+                intent = new Intent(mActivity, FenSiActivity.class);
+                intent.putExtra("type", "1");
+                startActivity(intent);
                 break;
             case R.id.layout_luntan:
                 //我的论坛
@@ -370,7 +375,7 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
             tvRedPacket.setText(meBean.getPacket());//红包
             tvDiscountCoupon.setText(meBean.getCoupon());//优惠券
             imgHuiyuan.setVisibility(View.VISIBLE);
-            ImageLoader.with(Api.url + meBean.getLevel_img(), imgHuiyuan);
+            ImageLoader.with_p(Api.url + meBean.getLevel_img(), imgHuiyuan);
         }
     }
 
