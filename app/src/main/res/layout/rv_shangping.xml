@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/img_original_img"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="185dp"
         android:scaleType="centerCrop" />
 
     <LinearLayout

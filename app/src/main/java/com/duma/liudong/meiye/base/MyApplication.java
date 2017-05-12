@@ -4,7 +4,9 @@ package com.duma.liudong.meiye.base;
 import android.app.Application;
 
 import com.blankj.utilcode.util.Utils;
+import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.SPUtils;
+import com.orhanobut.logger.Logger;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.log.LoggerInterceptor;
 
@@ -24,8 +26,9 @@ public class MyApplication extends Application {
         super.onCreate();
         instance = this;
         Utils.init(this);
+        Logger.init(Constants.TAG);
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(new LoggerInterceptor("okhttp"))
+                .addInterceptor(new LoggerInterceptor(Constants.TAG))
                 //其他配置
                 .build();
         OkHttpUtils.initClient(okHttpClient);

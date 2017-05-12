@@ -21,7 +21,7 @@ import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.DialogUtil;
 import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
-import com.duma.liudong.meiye.view.shoppingCart.YouHuiJuanListActivity;
+import com.duma.liudong.meiye.view.shoppingCart.YouHuiListActivity;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 
@@ -235,7 +235,7 @@ public class FuWuQueRenDinDanActivity extends BaseActivity {
         if (youHuiJuanBean != null) {
             tvYouhuijuan.setText("满" + youHuiJuanBean.getCondition() + "减" + youHuiJuanBean.getMoney() + "元");
         } else {
-            tvYouhuijuan.setText("不使用优惠券");
+            tvYouhuijuan.setText("不使用优惠/红包");
         }
     }
 
@@ -259,7 +259,7 @@ public class FuWuQueRenDinDanActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.layout_youHuiJuan:
-                Intent intent = new Intent(mActivity, YouHuiJuanListActivity.class);
+                Intent intent = new Intent(mActivity, YouHuiListActivity.class);
                 intent.putExtra("id", bean.getStore_id());
                 intent.putExtra("money", getMoney() + "");
                 startActivity(intent);

@@ -156,7 +156,7 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
                 holder.setOnClickListener(R.id.layout_onClick, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        StartUtil.toShangPingWeb(mActivity, Api.H5Url + shiwuBean.getGoods_id());
+                        StartUtil.toShangPingWeb(mActivity, Api.H5Url() + shiwuBean.getGoods_id());
                     }
                 });
 
@@ -211,7 +211,7 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
                 break;
             case R.id.layout_ref_num:
                 //二维码
-                StartUtil.toH5Web(mActivity, Api.erweima, "我的推广码");
+                StartUtil.toH5Web(mActivity, Api.erweima(), "我的推广码");
                 break;
             case R.id.layout_red_packet:
                 //红包

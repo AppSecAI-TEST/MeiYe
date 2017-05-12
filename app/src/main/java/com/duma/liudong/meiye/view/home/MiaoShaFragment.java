@@ -155,7 +155,7 @@ public class MiaoShaFragment extends BaseFragment implements SwipeRefreshLayout.
                     @Override
                     public void onClick(View v) {
                         if (activity_time.equals(Now_time)) {
-                            StartUtil.toShangPingWeb(mActivity, Api.H5Url + shangPinBean.getGoods_id());
+                            StartUtil.toShangPingWeb(mActivity, Api.H5Url() + shangPinBean.getGoods_id());
                         } else {
                             Ts.setText("还没到时间呢~不要着急哦");
                         }

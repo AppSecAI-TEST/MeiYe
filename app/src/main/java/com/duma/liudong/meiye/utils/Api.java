@@ -9,19 +9,27 @@ import com.duma.liudong.meiye.base.MyApplication;
 public class Api {
     public static String url = "http://api.myjd.cc";
 //    public static String url = "http://meiye.duma-ivy.cn";
+
     /**
      * h5
      */
     //商品详情
-    public static String H5Url = Api.url + "/index.php/Mobile/Goods/goodsdetail?" + Constants.user_id + "=" + MyApplication.getSpUtils().getString(Constants.user_id) + "&goods_id=";
+    public static String H5Url() {
+        return Api.url + "/index.php/Mobile/Goods/goodsdetail?" + Constants.user_id + "=" + MyApplication.getSpUtils().getString(Constants.user_id) + "&goods_id=";
+    }
+
     //论坛详情
     public static String LunTanH5Url = Api.url + "/index.php/Mobile/Forum/detail?bbs_id=";
     //签到
     public static String QianDaoH5Url = Api.url + "/index.php/Mobile/User/sign.html";
     //头条
     public static String TouTiaoH5Url = Api.url + "/index.php/Mobile/Toutiao/detail.html?article_id=";
+
     //二维码
-    public static String erweima = Api.url + "/index.php/Mobile/User/qrcode?user_id=" + MyApplication.getSpUtils().getString(Constants.user_id) + "&token=" + MyApplication.getSpUtils().getString(Constants.token);
+    public static String erweima() {
+        return Api.url + "/index.php/Mobile/User/qrcode?user_id=" + MyApplication.getSpUtils().getString(Constants.user_id) + "&token=" + MyApplication.getSpUtils().getString(Constants.token);
+    }
+
     //赚钱
     public static String zhuanQianH5 = Api.url + "/index.php/Mobile/User/makeMoney";
     //入驻
@@ -160,5 +168,7 @@ public class Api {
     /**
      * pay
      */
-    public static String PayserverOrder = url + "/App/Pay/makeAlipay";
+    public static String huoqudindanwx = url + "/index.php?m=Api&c=Wxpay&a=get_code";
+    public static String PayserverOrder = url + "/index.php?m=Api&c=Alipay&a=get_code1";
+    public static String yinlian = url + "/index.php/Api/Union/get_code";
 }

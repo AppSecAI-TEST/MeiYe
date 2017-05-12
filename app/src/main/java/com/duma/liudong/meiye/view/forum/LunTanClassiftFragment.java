@@ -114,7 +114,6 @@ public class LunTanClassiftFragment extends BaseFragment implements SwipeRefresh
 
             @Override
             protected void getView(final ViewHolder holder, final TieziBean zhiDingBean, int position) {
-
                 holder.setText(R.id.tv_content, zhiDingBean.getContent());
                 holder.setText(R.id.tv_click_count, zhiDingBean.getClick_count());
                 holder.setText(R.id.tv_user_name, zhiDingBean.getUser_name());
@@ -308,10 +307,11 @@ public class LunTanClassiftFragment extends BaseFragment implements SwipeRefresh
     @Override
     public void onLazyLoad() {
         isTop();
-//        if (!beanBaseXiaLaRvPresenter.isOne) {
-        beanBaseXiaLaRvPresenter.clean();
-        beanBaseXiaLaRvPresenter.QueryHttp(getBuild());
-//        }
+        if (!beanBaseXiaLaRvPresenter.isOne) {
+            beanBaseXiaLaRvPresenter.QueryHttp(getBuild());
+        } else {
+            onRefresh();
+        }
     }
 
 

@@ -363,7 +363,7 @@ public class DianPubean implements Serializable {
         this.store_slide_url = store_slide_url;
     }
 
-    public static class StoreSlideUrlComBean {
+    public static class StoreSlideUrlComBean implements Serializable {
         /**
          * link_url : http://jd.com
          * link_logo : /Public/upload/seller/2017/05-10/5912b31cf38c7.jpg

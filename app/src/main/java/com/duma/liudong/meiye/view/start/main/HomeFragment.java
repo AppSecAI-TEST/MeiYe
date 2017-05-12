@@ -158,7 +158,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
                 holder.setOnClickListener(R.id.layout_onClick, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        StartUtil.toShangPingWeb(mActivity, Api.H5Url + dingzhiBean.getGoods_id());
+                        StartUtil.toShangPingWeb(mActivity, Api.H5Url() + dingzhiBean.getGoods_id());
                     }
                 });
             }
@@ -181,7 +181,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
                 holder.setOnClickListener(R.id.layout_onClick, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        StartUtil.toShangPingWeb(mActivity, Api.H5Url + shiwuBean.getGoods_id());
+                        StartUtil.toShangPingWeb(mActivity, Api.H5Url() + shiwuBean.getGoods_id());
                     }
                 });
             }
@@ -204,7 +204,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
                 holder.setOnClickListener(R.id.layout_onClick, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        StartUtil.toShangPingWeb(mActivity, Api.H5Url + tuangouBean.getGoods_id());
+                        StartUtil.toShangPingWeb(mActivity, Api.H5Url() + tuangouBean.getGoods_id());
                     }
                 });
             }
@@ -227,7 +227,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
                 holder.setOnClickListener(R.id.layout_onClick, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        StartUtil.toShangPingWeb(mActivity, Api.H5Url + tuijianBean.getGoods_id());
+                        StartUtil.toShangPingWeb(mActivity, Api.H5Url() + tuijianBean.getGoods_id());
                     }
                 });
             }

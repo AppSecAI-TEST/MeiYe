@@ -111,7 +111,7 @@ public class ShangPinLieBiaoPresenter extends BaseXiaLaRvPresenter<ShangPinBean>
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    StartUtil.toShangPingWeb(mActivity, Api.H5Url + shangPinBean.getGoods_id());
+                    StartUtil.toShangPingWeb(mActivity, Api.H5Url() + shangPinBean.getGoods_id());
                 }
             });
         }
@@ -120,7 +120,7 @@ public class ShangPinLieBiaoPresenter extends BaseXiaLaRvPresenter<ShangPinBean>
 
     @Override
     protected void onitemClick(View view, RecyclerView.ViewHolder holder, int position) {
-        StartUtil.toShangPingWeb(mActivity, Api.H5Url + mlist.get(position).getGoods_id());
+        StartUtil.toShangPingWeb(mActivity, Api.H5Url() + mlist.get(position).getGoods_id());
     }
 
     @Override

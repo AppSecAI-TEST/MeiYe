@@ -34,7 +34,7 @@ public class ShangPinAdapter {
                 holder.setOnClickListener(R.id.layout_onClick, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        StartUtil.toShangPingWeb(mActivity, Api.H5Url + shangPinBean.getGoods_id());
+                        StartUtil.toShangPingWeb(mActivity, Api.H5Url() + shangPinBean.getGoods_id());
                     }
                 });
             }

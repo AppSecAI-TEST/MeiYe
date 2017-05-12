@@ -57,7 +57,28 @@
             android:name="com.amap.api.v2.apikey"
             android:value="a832b199ce53f952ac9311ad2b825ef9" />
         <service android:name="com.amap.api.location.APSService" />
-
+        <!--支付宝支付-->
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind" />
+        <activity
+            android:name="com.alipay.sdk.auth.AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind" />
+        <!--微信-->
+        <!--<activity-->
+        <!--android:name=".wxapi.WXEntryActivity"-->
+        <!--android:configChanges="keyboardHidden|orientation|screenSize"-->
+        <!--android:exported="true"-->
+        <!--android:screenOrientation="portrait"-->
+        <!--android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
         <!--图片选择器-->
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -68,14 +89,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-        <!--微信的选择器activity-->
-        <activity
-            android:name="me.iwf.photopicker.PhotoPickerActivity"
-            android:theme="@style/customTheme" />
 
-        <activity
-            android:name="me.iwf.photopicker.PhotoPagerActivity"
-            android:theme="@style/customTheme" />
         <activity android:name=".view.start.main.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

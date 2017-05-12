@@ -21,6 +21,7 @@ import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
+import com.duma.liudong.meiye.utils.Lg;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.view.shoppingCart.fuwu.FuWuQueRenDinDanActivity;
 
@@ -59,6 +60,7 @@ public class WebViewActivity extends BaseActivity implements SwipeRefreshLayout.
     protected void initData() {
 //        StartUtil.setSw(swLoading, this);
         url = getIntent().getStringExtra("url");
+        Lg.e("跳转商品详情页url:   " + url);
         title = getIntent().getStringExtra("title");
         tvTitle.setText(title);
         imgOther.setImageDrawable(mActivity.getResources().getDrawable(R.drawable.img_81));
@@ -225,6 +227,12 @@ public class WebViewActivity extends BaseActivity implements SwipeRefreshLayout.
         @JavascriptInterface
         public void goShare(String title, String url) {
             StartUtil.toShare(mActivity, title, url);
+        }
+
+        //跳转商品详情
+        @JavascriptInterface
+        public void goShangPinH5(String url) {
+            StartUtil.toShangPingWeb(mActivity, url);
         }
 
     }

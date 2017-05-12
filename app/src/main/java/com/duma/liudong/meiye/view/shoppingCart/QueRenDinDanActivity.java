@@ -336,7 +336,7 @@ public class QueRenDinDanActivity extends BaseActivity {
         if (youHuiJuanBean != null) {
             tvYouhuijuan.setText("满" + youHuiJuanBean.getCondition() + "减" + youHuiJuanBean.getMoney() + "元");
         } else {
-            tvYouhuijuan.setText("不使用优惠券");
+            tvYouhuijuan.setText("不使用优惠券/红包");
         }
         //自取地址隐藏效果
         lp = layoutPeisong.getLayoutParams();

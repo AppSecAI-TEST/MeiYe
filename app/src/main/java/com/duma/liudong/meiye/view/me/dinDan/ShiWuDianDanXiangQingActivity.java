@@ -280,7 +280,7 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
                 if (bean.getOrder_status_code().equals("WAITCCOMMENT")) {
                     tv_pingjia.setVisibility(View.VISIBLE);
                 }
-                if (bean.getOrder_status_code().equals("WAITSEND") || bean.getOrder_status_code().equals("WAITRECEIVE") || bean.getOrder_status_code().equals("WAITCCOMMENT")) {
+                if (bean.getOrder_status_code().equals("WAITSEND") || bean.getOrder_status_code().equals("WAITRECEIVE")) {
                     tv_shouhou.setVisibility(View.VISIBLE);
                 }
 

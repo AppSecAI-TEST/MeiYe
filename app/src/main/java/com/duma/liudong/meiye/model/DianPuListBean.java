@@ -17,6 +17,15 @@ public class DianPuListBean {
     private String store_name;
     private String store_logo;
     private String store_avatar;
+    private String store_banner;
+
+    public String getStore_banner() {
+        return store_banner;
+    }
+
+    public void setStore_banner(String store_banner) {
+        this.store_banner = store_banner;
+    }
 
     public String getStore_id() {
         return store_id;

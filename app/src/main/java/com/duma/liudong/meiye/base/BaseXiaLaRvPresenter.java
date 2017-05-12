@@ -128,7 +128,7 @@ public abstract class BaseXiaLaRvPresenter<T> implements LoadMoreWrapper.OnLoadM
         mAdapter.notifyDataSetChanged();
     }
 
-    public void clean() {
+    private void clean() {
         hide_Kong();
         p = 0;
         mlist.clear();

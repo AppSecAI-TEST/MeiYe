@@ -32,7 +32,7 @@
                 android:id="@+id/tv_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ld"
+                android:text="张凯"
                 android:textSize="18sp" />
 
             <TextView
@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="男"
+                android:text="保密"
                 android:textColor="@color/text_hui"
                 android:textSize="12sp" />
         </LinearLayout>

@@ -17,6 +17,7 @@ import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.base.MyStringCallback;
+import com.duma.liudong.meiye.model.WeiXinBean;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.DialogUtil;
@@ -25,15 +26,17 @@ import com.duma.liudong.meiye.utils.PayResult;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.utils.Ts;
 import com.duma.liudong.meiye.view.dialog.QueRenUtilDialog;
+import com.google.gson.Gson;
+import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+import com.unionpay.UPPayAssistEx;
 import com.zhy.http.okhttp.OkHttpUtils;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import okhttp3.Call;
 
 /**
  * Created by 79953 on 2016/10/26.
@@ -88,7 +91,6 @@ public class ZhiFuActivity extends BaseActivity {
         money = getIntent().getStringExtra("money");
         type = getIntent().getStringExtra("type");
         tvMoney.setText(money + "元");
-
     }
 
 
@@ -138,34 +140,34 @@ public class ZhiFuActivity extends BaseActivity {
     }
 
     private void getYinLianHttp() {
-//        DialogUtil.show(this);
-//        OkHttpUtils
-//                .get()
-//                .tag(this)
-//                .url(Api.yinlian)
-//                .addParams("order_id", id)
-//                .build()
-//                .execute(new MyStringCallback() {
-//                    @Override
-//                    public void onMySuccess(String result) {
-//                        DialogUtil.hide();
-////                        YinLianBean bean = new Gson().fromJson(result, YinLianBean.class);
-//                        String serverMode = "00";
-//                        int i = UPPayAssistEx.startPay(ZhiFuActivity.this, null, null, result, serverMode);
-//                        switch (i) {
-//                            case UPPayAssistEx.PLUGIN_VALID:
-//                                break;
-//                            case UPPayAssistEx.PLUGIN_NOT_FOUND:
-//                                Ts.setText("请安装银联支付控件!");
-//                                break;
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onError(String result) {
-//                        DialogUtil.hide();
-//                    }
-//                });
+        DialogUtil.show(this);
+        OkHttpUtils
+                .get()
+                .tag(this)
+                .url(Api.yinlian)
+                .addParams("order_id", id)
+                .build()
+                .execute(new MyStringCallback() {
+                    @Override
+                    public void onMySuccess(String result) {
+                        DialogUtil.hide();
+//                        YinLianBean bean = new Gson().fromJson(result, YinLianBean.class);
+                        String serverMode = "00";
+                        int i = UPPayAssistEx.startPay(ZhiFuActivity.this, null, null, result, serverMode);
+                        switch (i) {
+                            case UPPayAssistEx.PLUGIN_VALID:
+                                break;
+                            case UPPayAssistEx.PLUGIN_NOT_FOUND:
+                                Ts.setText("请安装银联支付控件!");
+                                break;
+                        }
+                    }
+
+                    @Override
+                    public void onError(String result) {
+                        DialogUtil.hide();
+                    }
+                });
 
     }
 
@@ -275,37 +277,37 @@ public class ZhiFuActivity extends BaseActivity {
 
     //微信
     private void getWeiXinHttp() {
-//
-//        DialogUtil.show(this, false);
-//        OkHttpUtils
-//                .get()
-//                .tag(this)
-//                .url(Api.huoqudindanwx)
-//                .addParams("order_id", id)
-//                .build()
-//                .execute(new StringCallback() {
-//                    @Override
-//                    public void onError(Call call, Exception e, int id) {
-//                        DialogUtil.hide();
-//
-//                    }
-//
-//                    @Override
-//                    public void onResponse(String response, int id) {
-//                        DialogUtil.hide();
-//                        WeiXinBean weiXinBean = new Gson().fromJson(response, WeiXinBean.class);
-//                        PayReq req = new PayReq();
-//                        req.appId = weiXinBean.getAppid();
-//                        req.partnerId = weiXinBean.getPartnerid();
-//                        req.prepayId = weiXinBean.getPrepayid();
-//                        req.nonceStr = weiXinBean.getNoncestr();
-//                        req.timeStamp = weiXinBean.getTimestamp();
-//                        req.packageValue = "Sign=WXPay";
-//                        req.sign = weiXinBean.getPaySign();
-////                        req.extData = "app data"; // optional
-//                        wxapi.sendReq(req);
-//                    }
-//                });
+
+        DialogUtil.show(this, false);
+        OkHttpUtils
+                .get()
+                .tag(this)
+                .url(Api.huoqudindanwx)
+                .addParams("order_id", id)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        DialogUtil.hide();
+
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        DialogUtil.hide();
+                        WeiXinBean weiXinBean = new Gson().fromJson(response, WeiXinBean.class);
+                        PayReq req = new PayReq();
+                        req.appId = weiXinBean.getAppid();
+                        req.partnerId = weiXinBean.getPartnerid();
+                        req.prepayId = weiXinBean.getPrepayid();
+                        req.nonceStr = weiXinBean.getNoncestr();
+                        req.timeStamp = weiXinBean.getTimestamp();
+                        req.packageValue = "Sign=WXPay";
+                        req.sign = weiXinBean.getPaySign();
+//                        req.extData = "app data"; // optional
+                        wxapi.sendReq(req);
+                    }
+                });
 
 
     }
@@ -325,13 +327,13 @@ public class ZhiFuActivity extends BaseActivity {
                     @Override
                     public void onMySuccess(String result) {
                         DialogUtil.hide();
-                        String code = "";
-                        try {
-                            code = new JSONObject(result).getString("code");
-                        } catch (JSONException e) {
-                            Ts.JsonErroy();
-                        }
-                        goZhiFuBao(code);
+//                        String code = "";
+//                        try {
+//                            code = new JSONObject(result).getString("code");
+//                        } catch (JSONException e) {
+//                            Ts.JsonErroy();
+//                        }
+                        goZhiFuBao(result);
                     }
 
                     @Override

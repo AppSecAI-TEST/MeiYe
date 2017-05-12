@@ -4,6 +4,7 @@ import com.duma.liudong.meiye.utils.DialogUtil;
 import com.duma.liudong.meiye.utils.Lg;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.utils.Ts;
+import com.orhanobut.logger.Logger;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
@@ -39,7 +40,7 @@ public abstract class MyStringCallback extends StringCallback {
 
     @Override
     public void onResponse(String response, int id) {
-        Lg.e("json: " + response);
+        Logger.json(response);
         try {
             JSONObject jsonObject = new JSONObject(response);
             String status = jsonObject.getString("status");

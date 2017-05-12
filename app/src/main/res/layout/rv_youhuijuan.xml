@@ -65,7 +65,6 @@
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:text="优惠券使用规则优惠券使用规则优惠券使用规则优惠券使用规则优惠券使用规则优惠券使用规则优惠券使用规则优惠券使用规则优惠券使用规则优惠券使用规则"
                 android:textSize="12sp" />
 
             <TextView

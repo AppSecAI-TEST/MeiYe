@@ -44,7 +44,7 @@ public class YouHuiListActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        tvTitle.setText("我的优惠");
+        tvTitle.setText("我的优惠券");
         MyViewPagerAdapter viewPagerAdapter = new MyViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragment(new YouHuiJuanFragment(), "优惠券");
         viewPagerAdapter.addFragment(new HongBaoFragment(), "红包");

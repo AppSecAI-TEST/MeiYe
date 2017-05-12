@@ -3,6 +3,9 @@ package com.duma.liudong.meiye.view.classift;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -76,6 +79,20 @@ public class ShangPingXiangQinWeb extends BaseActivity {
         }
     }
 
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.arg1) {
+                case 0:
+                    imgBack.setVisibility(View.GONE);
+                    break;
+                case 1:
+                    imgBack.setVisibility(View.VISIBLE);
+                    break;
+            }
+        }
+    };
+
     @OnClick(R.id.img_back)
     public void onClick() {
         back();
@@ -142,6 +159,28 @@ public class ShangPingXiangQinWeb extends BaseActivity {
         @JavascriptInterface
         public void goShare(String title, String url) {
             StartUtil.toShare(mActivity, title, url);
+        }
+
+        //跳转商品详情
+        @JavascriptInterface
+        public void goShangPinH5(String url) {
+            StartUtil.toShangPingWeb(mActivity, url);
+        }
+
+        //隐藏
+        @JavascriptInterface
+        public void backGone() {
+            Message msg = new Message();
+            msg.arg1 = 0;
+            handler.sendMessage(msg);
+        }
+
+        //显示
+        @JavascriptInterface
+        public void backVisible() {
+            Message msg = new Message();
+            msg.arg1 = 1;
+            handler.sendMessage(msg);
         }
     }
 }
