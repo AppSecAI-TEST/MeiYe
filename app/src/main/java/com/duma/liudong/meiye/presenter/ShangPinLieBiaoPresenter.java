@@ -99,9 +99,16 @@ public class ShangPinLieBiaoPresenter extends BaseXiaLaRvPresenter<ShangPinBean>
             holder.setText(R.id.tv_market_price, shangPinBean.getMarket_price());
             holder.setText(R.id.tv_distance, shangPinBean.getDistance());
             holder.setText(R.id.tv_shop_price, "¥" + shangPinBean.getPrice());
-            double num1 = Double.parseDouble(shangPinBean.getSales_sum());
-            double num2 = Double.parseDouble(shangPinBean.getStore_count()) + num1;
-            String res = numberFormat.format((num1 / num2) * 100);
+            double num1 = 0;
+            double num2 = 0;
+            String res = "0";
+            try {
+                num1 = Double.parseDouble(shangPinBean.getSales_sum());
+                num2 = Double.parseDouble(shangPinBean.getStore_count()) + num1;
+                res = numberFormat.format((num1 / num2) * 100);
+            } catch (Exception e) {
+            }
+
             holder.setText(R.id.tv_sales_sum, "已付" + res + "%");
             ProgressBar progressBar = holder.getView(R.id.progressBar_sum);
             progressBar.setMax((int) num2);

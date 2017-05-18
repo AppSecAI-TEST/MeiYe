@@ -69,7 +69,7 @@ public class HongBaoFragment extends BaseFragment implements SwipeRefreshLayout.
             @Override
             protected void getView(ViewHolder holder, YouHuiJuanBean hongBaoBean, int position) {
                 holder.setText(R.id.tv_money, hongBaoBean.getMoney());
-                holder.setText(R.id.tv_guize, hongBaoBean.getCondition());
+                holder.setText(R.id.tv_guize, hongBaoBean.getName());
                 holder.setText(R.id.tv_time, "使用日期:" + StartUtil.getTime(Long.parseLong(hongBaoBean.getUse_start_time()) * 1000) + " - " + StartUtil.getTime(Long.parseLong(hongBaoBean.getUse_end_time()) * 1000));
                 TextView tv_type = holder.getView(R.id.tv_type);
                 tv_type.setText("未使用");
