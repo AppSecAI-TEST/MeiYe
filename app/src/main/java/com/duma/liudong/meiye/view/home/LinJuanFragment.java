@@ -67,7 +67,7 @@ public class LinJuanFragment extends BaseFragment implements SwipeRefreshLayout.
         rvShangping.setLayoutManager(new LinearLayoutManager(mActivity));
         adapter = new BaseRvAdapter<LinJuanBean>(mActivity, R.layout.rv_juan, rvShangping) {
             @Override
-            protected void getView(ViewHolder holder, final LinJuanBean linJuanBean, int position) {
+            protected void getView(ViewHolder holder, final LinJuanBean linJuanBean, final int position) {
                 ImageView img_head_img = holder.getView(R.id.img_head_img);
                 ImageLoader.with(Api.url + linJuanBean.getHead_img(), img_head_img);
                 holder.setText(R.id.tv_name, linJuanBean.getName());
@@ -83,6 +83,9 @@ public class LinJuanFragment extends BaseFragment implements SwipeRefreshLayout.
                 holder.setText(R.id.tv_progressbar, "已抢" + StartUtil.setNum((progress / max) * 100) + "%");
 
                 TextView tv_lingqu = holder.getView(R.id.tv_lingqu);
+                if (linJuanBean.getIs_use().equals("1")) {
+                    tv_lingqu.setText("去使用");
+                }
                 tv_lingqu.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -90,8 +93,13 @@ public class LinJuanFragment extends BaseFragment implements SwipeRefreshLayout.
                             StartUtil.toLogin(mActivity);
                             return;
                         }
-                        DialogUtil.show(mActivity);
-                        publicPresenter.getYouHuiJuan(linJuanBean.getId());
+                        if (linJuanBean.getIs_use().equals("1")) {
+                            StartUtil.toDianPu(mActivity, linJuanBean.getStore_id());
+                        } else {
+                            DialogUtil.show(mActivity);
+                            publicPresenter.getYouHuiJuan(linJuanBean.getId(), adapter, position);
+                        }
+
                     }
                 });
             }

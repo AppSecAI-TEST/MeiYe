@@ -1,6 +1,7 @@
 package com.duma.liudong.meiye.view.me;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,7 +26,7 @@ import code.qiao.com.tipsview.TipsView;
  * Created by liudong on 17/4/20.
  */
 
-public class DinDanZhongXinActivity extends BaseActivity {
+public class DinDanZhongXinActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
     @BindView(R.id.layout_back)
     LinearLayout layoutBack;
     @BindView(R.id.tv_title)
@@ -106,6 +107,8 @@ public class DinDanZhongXinActivity extends BaseActivity {
     TextView dianDinzhiDaifahuo;
     @BindView(R.id.layout_dinzhi_daifahuo)
     LinearLayout layoutDinzhiDaifahuo;
+    @BindView(R.id.sw_loading)
+    SwipeRefreshLayout swLoading;
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -115,6 +118,7 @@ public class DinDanZhongXinActivity extends BaseActivity {
     @Override
     protected void initData() {
         tvTitle.setText("订单中心");
+        StartUtil.setSw(swLoading, this);
         TipsView.create(mActivity).attach(dianDinzhiDaipingjia);
         TipsView.create(mActivity).attach(dianShiwuDaishoukuan);
         TipsView.create(mActivity).attach(dianShiwuDaishouhuo);
@@ -132,36 +136,10 @@ public class DinDanZhongXinActivity extends BaseActivity {
         TipsView.create(mActivity).attach(dianShiwuDaifahuo);
         TipsView.create(mActivity).attach(dianDinzhiDaifahuo);
 
-        dianDinzhiDaipingjia.setVisibility(View.GONE);
-        dianShiwuDaishoukuan.setVisibility(View.GONE);
-        dianShiwuDaishouhuo.setVisibility(View.GONE);
-        dianShiwuDaipingjia.setVisibility(View.GONE);
-        dianShiwuTuikuan.setVisibility(View.GONE);
-        dianTuangouDaishoukuan.setVisibility(View.GONE);
-        dianTuangouDaishouhuan.setVisibility(View.GONE);
-        dianTuangouDaipingjia.setVisibility(View.GONE);
-        dianTuangouTuikuan.setVisibility(View.GONE);
-        dianDinzhiDaishoukuan.setVisibility(View.GONE);
-        dianDinzhiDaishouhuan.setVisibility(View.GONE);
-        dianDinzhiTuikuan.setVisibility(View.GONE);
-        dianWanchen.setVisibility(View.GONE);
-        dianJinxingzhong.setVisibility(View.GONE);
-        dianShiwuDaifahuo.setVisibility(View.GONE);
-        dianDinzhiDaifahuo.setVisibility(View.GONE);
 
-        OkHttpUtils
-                .get()
-                .url(Api.orderNum)
-                .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
-                .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
-                .build()
-                .execute(new MyStringCallback() {
-                    @Override
-                    public void onMySuccess(String result) {
-                        DinDanNumBean bean = new Gson().fromJson(result, DinDanNumBean.class);
-                        setRes(bean);
-                    }
-                });
+        swLoading.setRefreshing(true);
+        onRefresh();
+
     }
 
     private void setRes(DinDanNumBean bean) {
@@ -169,11 +147,13 @@ public class DinDanZhongXinActivity extends BaseActivity {
         setTest(dianDinzhiDaishoukuan, bean.getCustom().getWp());
         setTest(dianDinzhiDaishouhuan, bean.getCustom().getWr());
         setTest(dianDinzhiTuikuan, bean.getCustom().getRe());
+        setTest(dianDinzhiDaifahuo, bean.getCustom().getSd());
 
         setTest(dianShiwuDaishoukuan, bean.getIndeed().getWp());
         setTest(dianShiwuDaishouhuo, bean.getIndeed().getWr());
         setTest(dianShiwuDaipingjia, bean.getIndeed().getWc());
         setTest(dianShiwuTuikuan, bean.getIndeed().getRe());
+        setTest(dianShiwuDaifahuo, bean.getCustom().getSd());
 
         setTest(dianTuangouDaishoukuan, bean.getServer().getWp());
         setTest(dianTuangouDaishouhuan, bean.getServer().getWr());
@@ -263,4 +243,44 @@ public class DinDanZhongXinActivity extends BaseActivity {
         }
     }
 
+    @Override
+    public void onRefresh() {
+        dianDinzhiDaipingjia.setVisibility(View.GONE);
+        dianShiwuDaishoukuan.setVisibility(View.GONE);
+        dianShiwuDaishouhuo.setVisibility(View.GONE);
+        dianShiwuDaipingjia.setVisibility(View.GONE);
+        dianShiwuTuikuan.setVisibility(View.GONE);
+        dianTuangouDaishoukuan.setVisibility(View.GONE);
+        dianTuangouDaishouhuan.setVisibility(View.GONE);
+        dianTuangouDaipingjia.setVisibility(View.GONE);
+        dianTuangouTuikuan.setVisibility(View.GONE);
+        dianDinzhiDaishoukuan.setVisibility(View.GONE);
+        dianDinzhiDaishouhuan.setVisibility(View.GONE);
+        dianDinzhiTuikuan.setVisibility(View.GONE);
+        dianWanchen.setVisibility(View.GONE);
+        dianJinxingzhong.setVisibility(View.GONE);
+        dianShiwuDaifahuo.setVisibility(View.GONE);
+        dianDinzhiDaifahuo.setVisibility(View.GONE);
+
+        OkHttpUtils
+                .get()
+                .url(Api.orderNum)
+                .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
+                .build()
+                .execute(new MyStringCallback() {
+                    @Override
+                    public void onMySuccess(String result) {
+                        swLoading.setRefreshing(false);
+                        DinDanNumBean bean = new Gson().fromJson(result, DinDanNumBean.class);
+                        setRes(bean);
+                    }
+
+                    @Override
+                    protected void onError(String result) {
+                        super.onError(result);
+                        swLoading.setRefreshing(false);
+                    }
+                });
+    }
 }

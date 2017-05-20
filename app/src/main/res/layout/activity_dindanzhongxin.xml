@@ -5,109 +5,128 @@
     android:background="@color/bg_hui"
     android:orientation="vertical">
 
-    <include layout="@layout/include_top_bar" />
-
-    <View style="@style/henxian" />
-
-    <include layout="@layout/include_dindan" />
-
-    <LinearLayout
-        android:id="@+id/layout_dingzhi"
-        style="@style/wode_bianju"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/sw_loading"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/white"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center|start"
-            android:text="我的定制" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/r" />
-    </LinearLayout>
-
-    <View style="@style/henxian" />
-
-    <LinearLayout
-        style="@style/wode_bianju2"
-        android:layout_width="match_parent"
-        android:background="@color/white"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/layout_jinxin"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:orientation="vertical">
-
-
-            <FrameLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="进行中" />
+                <include layout="@layout/include_top_bar" />
 
-                <TextView
-                    android:id="@+id/dian_jinxingzhong"
-                    style="@style/text_yuandian"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginRight="40dp"
-                    android:text="1" />
-            </FrameLayout>
-        </LinearLayout>
+                <View style="@style/henxian" />
 
-        <View style="@style/shuxian" />
+                <include layout="@layout/include_dindan" />
 
-        <LinearLayout
-            android:id="@+id/layout_wanchen"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/layout_dingzhi"
+                    style="@style/wode_bianju"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center|start"
+                        android:text="我的定制" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/r" />
+                </LinearLayout>
+
+                <View style="@style/henxian" />
+
+                <LinearLayout
+                    style="@style/wode_bianju2"
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/layout_jinxin"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="已完成" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="进行中" />
 
-                <TextView
-                    android:id="@+id/dian_wanchen"
-                    style="@style/text_yuandian"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginRight="40dp"
-                    android:text="1" />
-            </FrameLayout>
+                            <TextView
+                                android:id="@+id/dian_jinxingzhong"
+                                style="@style/text_yuandian"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:layout_marginRight="40dp"
+                                android:text="1" />
+                        </FrameLayout>
+                    </LinearLayout>
 
-        </LinearLayout>
+                    <View style="@style/shuxian" />
 
-    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/layout_wanchen"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-    <View
-        style="@style/henxian"
-        android:layout_height="10dp" />
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="已完成" />
+
+                            <TextView
+                                android:id="@+id/dian_wanchen"
+                                style="@style/text_yuandian"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:layout_marginRight="40dp"
+                                android:text="1" />
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    style="@style/henxian"
+                    android:layout_height="10dp" />
+
+            </LinearLayout>
+        </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 
 </LinearLayout>

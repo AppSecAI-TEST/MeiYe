@@ -89,6 +89,7 @@ public class FaTieActivity extends BaseActivity {
         tvName.setText(MyApplication.getSpUtils().getString(Constants.nickname));
 
         photoSelectUtil = new PhotoSelectUtil(mActivity, rvPhoto);
+        photoSelectUtil.isShowDialog(true);
     }
 
     @OnClick({R.id.layout_back, R.id.layout_other, R.id.layout_fenlei})

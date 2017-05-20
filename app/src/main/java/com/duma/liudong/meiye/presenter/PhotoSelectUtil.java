@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.utils.ImageLoader;
+import com.duma.liudong.meiye.view.dialog.PaiZhaoDialog;
 import com.luck.picture.lib.model.FunctionOptions;
 import com.luck.picture.lib.model.PictureConfig;
 import com.yalantis.ucrop.entity.LocalMedia;
@@ -34,6 +35,8 @@ public class PhotoSelectUtil {
     private PictureConfig.OnSelectResultCallback resultCall;
     private int max = 9;
 
+    private PaiZhaoDialog dialog;
+
     public PhotoSelectUtil(Activity activity, RecyclerView recyclerView) {
         this.mActivity = activity;
         this.mRecyclerView = recyclerView;
@@ -48,6 +51,23 @@ public class PhotoSelectUtil {
 
 
         setPhotoList(new ArrayList<LocalMedia>());
+    }
+
+    public void isShowDialog(boolean isShow) {
+        if (isShow) {
+            dialog = new PaiZhaoDialog(mActivity, "上传图片");
+            dialog.setClicklistener(new PaiZhaoDialog.ClickListenerInterface() {
+                @Override
+                public void paiZhao() {
+                    PictureConfig.getInstance().init(options).startOpenCamera(mActivity, resultCall);
+                }
+
+                @Override
+                public void xiangce() {
+                    PictureConfig.getInstance().init(options).openPhoto(mActivity, resultCall);
+                }
+            });
+        }
     }
 
     public List<LocalMedia> getmList() {
@@ -129,7 +149,12 @@ public class PhotoSelectUtil {
                     public void onClick(View v) {
                         if (localMedia.getPath().equals("0")) {
                             //跳转
-                            PictureConfig.getInstance().init(options).openPhoto(mActivity, resultCall);
+                            if (dialog == null) {
+                                PictureConfig.getInstance().init(options).openPhoto(mActivity, resultCall);
+                            } else {
+                                dialog.show();
+                            }
+
                         } else {
                             PictureConfig.getInstance().externalPicturePreview(mActivity, position, mList);
                         }

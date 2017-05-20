@@ -9,7 +9,7 @@ import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseFragment;
 import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.utils.Constants;
-import com.duma.liudong.meiye.view.home.SouSuoActivity;
+import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.widget.city.ShouYeDingWeiActivity;
 
 import butterknife.BindView;
@@ -54,6 +54,6 @@ public class SearchBarFragment extends BaseFragment {
 
     @OnClick(R.id.layout_sousuo)
     public void onClick() {
-        startActivity(new Intent(mActivity, SouSuoActivity.class));
+        StartUtil.toSousuo(mActivity);
     }
 }

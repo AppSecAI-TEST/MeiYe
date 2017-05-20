@@ -39,6 +39,24 @@ public class WoDeKeHuBean {
         private String nickname;
         private String head_pic;
         private String mobile;
+        private String reg_time;
+        private String level;
+
+        public String getReg_time() {
+            return reg_time;
+        }
+
+        public void setReg_time(String reg_time) {
+            this.reg_time = reg_time;
+        }
+
+        public String getLevel() {
+            return level;
+        }
+
+        public void setLevel(String level) {
+            this.level = level;
+        }
 
         public String getUser_id() {
             return user_id;

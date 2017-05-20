@@ -1,7 +1,11 @@
 package com.duma.liudong.meiye.utils;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.widget.TextView;
 
@@ -12,6 +16,8 @@ import com.duma.liudong.meiye.view.classift.ShangPingLieBiaoActivity;
 import com.duma.liudong.meiye.view.classift.ShangPingXiangQinWeb;
 import com.duma.liudong.meiye.view.classift.dianPu.DianPuActivity;
 import com.duma.liudong.meiye.view.classift.dianPu.DianPuListActivity;
+import com.duma.liudong.meiye.view.home.MessageContentActivity;
+import com.duma.liudong.meiye.view.home.SouSuoActivity;
 import com.duma.liudong.meiye.view.home.meiTuan.TuanGouActivity;
 import com.duma.liudong.meiye.view.me.dinDan.FuWuXiangQinActivity;
 import com.duma.liudong.meiye.view.me.dinDan.QuanBuDinDanActivity;
@@ -29,6 +35,8 @@ import com.duma.liudong.meiye.view.start.main.WebViewActivity;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 
+import static android.content.Context.NOTIFICATION_SERVICE;
+
 /**
  * Created by liudong on 17/3/20.
  */
@@ -36,9 +44,15 @@ import java.text.SimpleDateFormat;
 public class StartUtil {
     //跳转登录页面
     public static void toLogin(Activity activity) {
+        toLogin(activity, "no");
+    }
+
+    //跳转登录在跳注册页面
+    public static void toLogin(Activity activity, String a) {
         Intent intent = new Intent(activity, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.putExtra("type", a);
         activity.startActivity(intent);
         activity.overridePendingTransition(R.anim.out_to_left2, R.anim.in_from_right);
     }
@@ -175,6 +189,18 @@ public class StartUtil {
         intent.putExtra("money", money);
         intent.putExtra("id", id);
         intent.putExtra("type", type);//判断是那种商品//1:实物,2:定制,3:团购
+        activity.startActivity(intent);
+    }
+
+    //搜索
+    public static void toSousuo(Activity activity) {
+        toSousuo(activity, "宝贝");
+    }
+
+    //搜索
+    public static void toSousuo(Activity activity, String type) {
+        Intent intent = new Intent(activity, SouSuoActivity.class);
+        intent.putExtra("type", type);
         activity.startActivity(intent);
     }
 
@@ -342,5 +368,25 @@ public class StartUtil {
             return true;
         }
         return false;
+    }
+
+    public static void sendNotification(Activity activity) {
+        Intent intent = new Intent(activity, MessageContentActivity.class);
+        intent.putExtra("type", "3");
+        intent.putExtra("title", "订单提醒");
+        PendingIntent resultPendingIntent = PendingIntent.getActivity(
+                activity, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        Notification build = new NotificationCompat.Builder(activity)
+                .setSmallIcon(R.mipmap.icon)
+                .setContentTitle("美帝购物")
+                .setContentText("尊敬的商家,您有新的订单通知!")
+                .setContentIntent(resultPendingIntent)
+                .setPriority(2)
+                .setDefaults(Notification.DEFAULT_SOUND)
+                .setAutoCancel(true)
+                .build();
+        NotificationManager mNotifyMgr =
+                (NotificationManager) activity.getSystemService(NOTIFICATION_SERVICE);
+        mNotifyMgr.notify(001, build);
     }
 }

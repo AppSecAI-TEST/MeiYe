@@ -2,8 +2,10 @@ package com.duma.liudong.meiye.presenter;
 
 import android.app.Activity;
 
+import com.duma.liudong.meiye.base.BaseRvAdapter;
 import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.base.MyStringCallback;
+import com.duma.liudong.meiye.model.LinJuanBean;
 import com.duma.liudong.meiye.model.MeBean;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
@@ -86,7 +88,7 @@ public class PublicPresenter {
 
 
     //领取优惠券
-    public void getYouHuiJuan(String id) {
+    public void getYouHuiJuan(String id, final BaseRvAdapter<LinJuanBean> adapter, final int p) {
         OkHttpUtils.getInstance().cancelTag("getYouHuiJuan");
         OkHttpUtils
                 .post()
@@ -101,6 +103,8 @@ public class PublicPresenter {
                     public void onMySuccess(String result) {
                         DialogUtil.hide();
                         Ts.setText("领卷成功!");
+                        adapter.mList.get(p).setIs_use("1");
+                        adapter.commonAdapter.notifyDataSetChanged();
                     }
                 });
     }

@@ -121,6 +121,8 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
     RecyclerView rvShangping;
     @BindView(R.id.img_huiyuan)
     ImageView imgHuiyuan;
+    @BindView(R.id.tv_denglu)
+    TextView tvDenglu;
     private Intent intent;
     private BaseAdAdapter<IndexBean.ShiwuBean> shangpingAdapter;
     private TuiJianBean bean;
@@ -194,7 +196,7 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
         refresh();
     }
 
-    @OnClick({R.id.tv_level_up, R.id.layout_wode_kehu, R.id.img_head_pic, R.id.layout_account, R.id.layout_ref_num, R.id.layout_red_packet, R.id.layout_integral, R.id.layout_balance, R.id.layout_discount_coupon, R.id.layout_asset, R.id.layout_shiwu_dindan, R.id.layout_tuangou_dindan, R.id.layout_dinzhi_dindan, R.id.layout_wode_dinzhi, R.id.layout_wode_dindan, R.id.img_ad, R.id.layout_qiandao, R.id.layout_guanzhuan, R.id.layout_tiezi, R.id.layout_fensi, R.id.layout_luntan, R.id.layout_tequan, R.id.layout_fankui, R.id.layout_zuji, R.id.layout_shoucang})
+    @OnClick({R.id.tv_denglu, R.id.tv_level_up, R.id.layout_wode_kehu, R.id.img_head_pic, R.id.layout_account, R.id.layout_ref_num, R.id.layout_red_packet, R.id.layout_integral, R.id.layout_balance, R.id.layout_discount_coupon, R.id.layout_asset, R.id.layout_shiwu_dindan, R.id.layout_tuangou_dindan, R.id.layout_dinzhi_dindan, R.id.layout_wode_dinzhi, R.id.layout_wode_dindan, R.id.img_ad, R.id.layout_qiandao, R.id.layout_guanzhuan, R.id.layout_tiezi, R.id.layout_fensi, R.id.layout_luntan, R.id.layout_tequan, R.id.layout_fankui, R.id.layout_zuji, R.id.layout_shoucang})
     public void onClick(View view) {
         if (!StartUtil.isLogin()) {
             StartUtil.toLogin(mActivity);
@@ -343,7 +345,7 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
         swLoading.setRefreshing(false);
         if (meBean == null) {
             ImageLoader.withYuan(R.drawable.touxiang, imgHeadPic);
-            tvNickName.setText("登录/注册");
+            tvNickName.setText("注册");
             tvRefNum.setText("我的推广码:...");//推广码
             tvBalance.setText("...");//余额
             tvDiscountCoupon.setText("...");//优惠券
@@ -354,7 +356,9 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
             tvTotalClient.setText("我的客户:...");
             tvRedPacket.setText("...");//红包
             imgHuiyuan.setVisibility(View.GONE);
+            tvDenglu.setVisibility(View.VISIBLE);
         } else {
+            tvDenglu.setVisibility(View.GONE);
             if (StartUtil.isEmpty(meBean.getNickname())) {
                 tvNickName.setText("用户" + MyApplication.getSpUtils().getString(Constants.phone));
             } else {
@@ -379,4 +383,14 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
         }
     }
 
+
+    @OnClick(R.id.tv_nick_name)
+    public void onClick() {
+        //昵称 注册的那个字
+        if (!StartUtil.isLogin()) {
+            StartUtil.toLogin(mActivity, "ok");
+            return;
+        }
+
+    }
 }

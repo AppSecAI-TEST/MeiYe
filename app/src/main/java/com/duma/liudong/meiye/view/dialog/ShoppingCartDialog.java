@@ -46,7 +46,7 @@ public class ShoppingCartDialog extends Dialog {
         mList.clear();
         mList.addAll(list);
         for (int i = 0; i < mList.size(); i++) {
-            if (mList.get(i).getMark().getTotal().equals("0")) {
+            if (mList.get(i).getMark().getGoods_nums_select().equals("0")) {
                 mList.remove(i);
                 i--;
             }
@@ -106,7 +106,7 @@ public class ShoppingCartDialog extends Dialog {
             protected void convert(ViewHolder holder, final GouWuCheBean.CartListBean cartListBean, int position) {
                 holder.setText(R.id.tv_store_name, cartListBean.getMark().getStore_name());
                 holder.setText(R.id.tv_total, "￥" + cartListBean.getMark().getTotal());
-                holder.setText(R.id.tv_num, "共" + "2" + "件,合集:");
+                holder.setText(R.id.tv_num, "共" + cartListBean.getMark().getGoods_nums_select() + "件,合集:");
                 holder.setOnClickListener(R.id.tv_jiesuan, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

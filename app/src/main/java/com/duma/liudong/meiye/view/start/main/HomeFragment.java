@@ -339,6 +339,10 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
                 break;
             case R.id.layout_coupons:
                 //领卷
+                if (!StartUtil.isLogin()) {
+                    StartUtil.toLogin(mActivity);
+                    return;
+                }
                 startActivity(new Intent(mActivity, LinJuanActivity.class));
                 break;
             case R.id.layout_makeMoney:

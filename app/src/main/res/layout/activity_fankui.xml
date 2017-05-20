@@ -30,6 +30,17 @@
             android:textSize="14sp" />
     </LinearLayout>
 
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:checked="true"
+        android:text="实名发送"
+        android:textColor="@color/texthei" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="32dp"
@@ -53,16 +64,6 @@
             android:textSize="14sp" />
     </LinearLayout>
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="20dp"
-        android:checked="true"
-        android:text="实名发送"
-        android:textColor="@color/texthei" />
 
     <Button
         android:id="@+id/btn_ok"

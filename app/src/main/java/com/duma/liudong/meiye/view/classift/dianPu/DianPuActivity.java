@@ -23,9 +23,9 @@ import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.DialogUtil;
 import com.duma.liudong.meiye.utils.ImageLoader;
+import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.utils.Ts;
 import com.duma.liudong.meiye.view.dialog.ServiceDialog;
-import com.duma.liudong.meiye.view.home.SouSuoActivity;
 import com.duma.liudong.meiye.widget.ScrollableLayout;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -183,7 +183,7 @@ public class DianPuActivity extends BaseActivity implements ScrollableLayout.OnS
                 finish();
                 break;
             case R.id.layout_sousuo:
-                startActivity(new Intent(mActivity, SouSuoActivity.class));
+                StartUtil.toSousuo(mActivity);
                 break;
             case R.id.layout_shoucang:
                 ShouCangHttp();

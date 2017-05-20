@@ -70,11 +70,14 @@ public class SouSuoActivity extends BaseActivity implements QueRenUtilDialog.OnY
         queRenUtilDialog.setYesClicklistener(this);
         layout_baobei = (LinearLayout) basePopWindos.getView().findViewById(R.id.layout_baobei);
         layout_dianpu = (LinearLayout) basePopWindos.getView().findViewById(R.id.layout_dianpu);
+        final TextView tv_name = (TextView) basePopWindos.getView().findViewById(R.id.tv_name);
+        tv_name.setText(getIntent().getStringExtra("type"));
+        tvType.setText(tv_name.getText());
         layout_baobei.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 basePopWindos.disMiss();
-                tvType.setText("宝贝");
+                tvType.setText(tv_name.getText());
             }
         });
         layout_dianpu.setOnClickListener(new View.OnClickListener() {
@@ -146,6 +149,8 @@ public class SouSuoActivity extends BaseActivity implements QueRenUtilDialog.OnY
     private void sousuo() {
         if (tvType.getText().toString().equals("宝贝")) {
             StartUtil.toShangPingLieBiao(mActivity, Constants.keyword, editRes.getText().toString(), editRes.getText().toString(), "");
+        } else if (tvType.getText().toString().equals("服务")) {
+            StartUtil.toShangPingLieBiao(mActivity, Constants.keyword, editRes.getText().toString(), editRes.getText().toString(), "3");
         } else {
             //搜索店铺
             StartUtil.toDianPuList(mActivity, editRes.getText().toString());

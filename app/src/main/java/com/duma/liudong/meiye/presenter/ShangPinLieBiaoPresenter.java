@@ -108,7 +108,6 @@ public class ShangPinLieBiaoPresenter extends BaseXiaLaRvPresenter<ShangPinBean>
                 res = numberFormat.format((num1 / num2) * 100);
             } catch (Exception e) {
             }
-
             holder.setText(R.id.tv_sales_sum, "已付" + res + "%");
             ProgressBar progressBar = holder.getView(R.id.progressBar_sum);
             progressBar.setMax((int) num2);
@@ -122,7 +121,6 @@ public class ShangPinLieBiaoPresenter extends BaseXiaLaRvPresenter<ShangPinBean>
                 }
             });
         }
-
     }
 
     @Override

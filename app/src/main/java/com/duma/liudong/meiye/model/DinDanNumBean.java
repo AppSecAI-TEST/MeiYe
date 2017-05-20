@@ -53,7 +53,16 @@ public class DinDanNumBean {
         private String wr;
         private String wc;
         private String re;
+        private String sd;
         private int total;
+
+        public String getSd() {
+            return sd;
+        }
+
+        public void setSd(String sd) {
+            this.sd = sd;
+        }
 
         public String getWp() {
             return wp;
@@ -109,7 +118,16 @@ public class DinDanNumBean {
         private String wr;
         private String wc;
         private String re;
+        private String sd;
         private int total;
+
+        public String getSd() {
+            return sd;
+        }
+
+        public void setSd(String sd) {
+            this.sd = sd;
+        }
 
         public String getWp() {
             return wp;
@@ -165,7 +183,16 @@ public class DinDanNumBean {
         private String wr;
         private String wc;
         private String re;
+        private String sd;
         private int total;
+
+        public String getSd() {
+            return sd;
+        }
+
+        public void setSd(String sd) {
+            this.sd = sd;
+        }
 
         public String getWp() {
             return wp;

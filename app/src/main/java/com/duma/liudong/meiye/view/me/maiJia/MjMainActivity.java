@@ -120,6 +120,8 @@ public class MjMainActivity extends BaseActivity implements SwipeRefreshLayout.O
     TextView dianDinzhiDaifahuo;
     @BindView(R.id.layout_dinzhi_daifahuo)
     LinearLayout layoutDinzhiDaifahuo;
+    @BindView(R.id.tv_huiyuan)
+    TextView tvHuiyuan;
     private SelletBean bean;
     private String type;
     private Intent intent;
@@ -157,7 +159,7 @@ public class MjMainActivity extends BaseActivity implements SwipeRefreshLayout.O
         tvShoucang.setText(bean.getStore_collect());
         tvShijian.setText(bean.getStore_info().getStore_time_y() + "年");
         tvXiaoliang.setText("成交" + bean.getStore_info().getOrder_num() + "笔");
-
+        tvHuiyuan.setText(bean.getStore_info().getGoods_num());
 
         setTest(dianDinzhiDaipingjia, bean.getOrder_count().getCustom().getWc());
         setTest(dianDinzhiDaishoukuan, bean.getOrder_count().getCustom().getWp());
@@ -311,6 +313,5 @@ public class MjMainActivity extends BaseActivity implements SwipeRefreshLayout.O
 
         }
     }
-
 
 }

@@ -28,9 +28,10 @@ import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.DialogUtil;
 import com.duma.liudong.meiye.utils.ImageLoader;
+import com.duma.liudong.meiye.utils.Lg;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.utils.Ts;
-import com.duma.liudong.meiye.view.home.SouSuoActivity;
+import com.duma.liudong.meiye.view.home.MessageActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.zhy.adapter.recyclerview.CommonAdapter;
@@ -48,8 +49,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static com.duma.liudong.meiye.R.id.tv_fenlei;
-
 /**
  * Created by liudong on 17/4/17.
  */
@@ -57,20 +56,12 @@ import static com.duma.liudong.meiye.R.id.tv_fenlei;
 public class TuanGouActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, com.duma.liudong.meiye.widget.ScrollableLayout.OnScrollListener {
     @BindView(R.id.layout_back)
     LinearLayout layoutBack;
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.img_other)
-    ImageView imgOther;
-    @BindView(R.id.layout_other)
-    LinearLayout layoutOther;
     @BindView(R.id.tv_refresh)
     TextView tvRefresh;
     @BindView(R.id.layout_404)
     LinearLayout layout404;
     @BindView(R.id.rv_fenlei)
     RecyclerView rvFenlei;
-    @BindView(tv_fenlei)
-    TextView tvFenlei;
     @BindView(R.id.layout_fenlei)
     LinearLayout layoutFenlei;
     @BindView(R.id.tv_city)
@@ -93,6 +84,12 @@ public class TuanGouActivity extends BaseActivity implements SwipeRefreshLayout.
     View viewToumin;
     @BindView(R.id.layout_show)
     View layoutShow;
+    @BindView(R.id.layout_message)
+    LinearLayout layoutMessage;
+    @BindView(R.id.tv_fenlei)
+    TextView tvFenlei;
+    @BindView(R.id.layout_ss)
+    LinearLayout layoutSs;
 
     private ClassifyBean bean;
 
@@ -131,8 +128,6 @@ public class TuanGouActivity extends BaseActivity implements SwipeRefreshLayout.
     protected void initData() {
         res = getIntent().getStringExtra("res");
         df = new DecimalFormat("0.0");
-        tvTitle.setText("生活服务");
-        imgOther.setImageDrawable(MyApplication.getInstance().getResources().getDrawable(R.drawable.sousuo2));
         StartUtil.setSw(swLoading, this);
         mlist = new ArrayList<>();
         FenleiList = new LinkedList<>();
@@ -497,14 +492,11 @@ public class TuanGouActivity extends BaseActivity implements SwipeRefreshLayout.
         };
     }
 
-    @OnClick({R.id.layout_other, R.id.layout_back, R.id.tv_refresh, R.id.layout_fenlei, R.id.layout_city, R.id.layout_paixu})
+    @OnClick({R.id.layout_message, R.id.layout_back, R.id.tv_refresh, R.id.layout_fenlei, R.id.layout_city, R.id.layout_paixu})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.layout_back:
                 finish();
-                break;
-            case R.id.layout_other:
-                startActivity(new Intent(mActivity, SouSuoActivity.class));
                 break;
             case R.id.tv_refresh:
                 initFenLeiHttp();
@@ -520,6 +512,15 @@ public class TuanGouActivity extends BaseActivity implements SwipeRefreshLayout.
             case R.id.layout_paixu:
                 onClick = 2;
                 dialogOrAnimStart();
+                break;
+            case R.id.layout_message:
+                if (!StartUtil.isLogin()) {
+                    StartUtil.toLogin(mActivity);
+                    return;
+                }
+                Intent intent = new Intent(mActivity, MessageActivity.class);
+                intent.putExtra("store_id", "");
+                startActivity(intent);
                 break;
 
         }
@@ -606,5 +607,12 @@ public class TuanGouActivity extends BaseActivity implements SwipeRefreshLayout.
                         QuYuPopWindos.Show(layoutShow);
                     }
                 });
+    }
+
+
+    @OnClick(R.id.layout_ss)
+    public void onClick() {
+        Lg.e("???");
+        StartUtil.toSousuo(mActivity, "服务");
     }
 }

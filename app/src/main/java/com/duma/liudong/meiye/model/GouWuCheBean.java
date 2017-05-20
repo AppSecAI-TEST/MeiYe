@@ -106,6 +106,24 @@ public class GouWuCheBean {
             private String total;
             private String postage;
             private String coupon;
+            private String goods_nums;
+            private String goods_nums_select;
+
+            public String getGoods_nums_select() {
+                return goods_nums_select;
+            }
+
+            public void setGoods_nums_select(String goods_nums_select) {
+                this.goods_nums_select = goods_nums_select;
+            }
+
+            public String getGoods_nums() {
+                return goods_nums;
+            }
+
+            public void setGoods_nums(String goods_nums) {
+                this.goods_nums = goods_nums;
+            }
 
             public String getCoupon() {
                 return coupon;

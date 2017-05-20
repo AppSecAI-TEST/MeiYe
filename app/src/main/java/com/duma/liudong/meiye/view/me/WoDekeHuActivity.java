@@ -75,6 +75,8 @@ public class WoDekeHuActivity extends BaseActivity implements SwipeRefreshLayout
             protected void convert(ViewHolder holder, WoDeKeHuBean.XiajiBean woDeKeHuBean, int position) {
                 holder.setText(R.id.tv_mobile, woDeKeHuBean.getMobile());
                 holder.setText(R.id.tv_nickname, woDeKeHuBean.getNickname());
+                holder.setText(R.id.tv_time, woDeKeHuBean.getReg_time());
+                holder.setText(R.id.tv_huiyuan, woDeKeHuBean.getLevel());
 
                 ImageView i = holder.getView(R.id.img_head_pic);
                 ImageLoader.withYuan(woDeKeHuBean.getHead_pic(), i);

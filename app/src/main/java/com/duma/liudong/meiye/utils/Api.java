@@ -88,6 +88,8 @@ public class Api {
     public static String isComment = url + "/App/user/isComment";
     public static String isReturnGoods = url + "/App/user/isReturnGoods";
     public static String orderNum = url + "/App/user/orderNum";
+
+    public static String tixing_order = url + "/App/user/tixing_order";
     /**
      * seller-个人中心
      */

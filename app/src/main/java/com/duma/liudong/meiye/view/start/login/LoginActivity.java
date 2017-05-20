@@ -64,6 +64,9 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void initData() {
         serviceDialog = new ServiceDialog(mActivity);
+        if (getIntent().getStringExtra("type").equals("ok")) {
+            startActivity(new Intent(mActivity, RigisterActivity.class));
+        }
     }
 
     @Override

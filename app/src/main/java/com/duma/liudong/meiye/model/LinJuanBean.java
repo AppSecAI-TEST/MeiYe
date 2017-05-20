@@ -25,6 +25,15 @@ public class LinJuanBean {
     private String createnum;
     private String send_num;
     private String store_id;
+    private String is_use;
+
+    public String getIs_use() {
+        return is_use;
+    }
+
+    public void setIs_use(String is_use) {
+        this.is_use = is_use;
+    }
 
     public String getId() {
         return id;

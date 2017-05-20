@@ -21,9 +21,10 @@ import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.ActivityCollector;
 import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.base.BaseFragment;
-import com.duma.liudong.meiye.model.MessageBean;
 import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.base.MyStringCallback;
+import com.duma.liudong.meiye.model.MessageBean;
+import com.duma.liudong.meiye.model.MjXIaoXiBean;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.StartUtil;
@@ -106,6 +107,7 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
             }
         });
         MyApplication.getSpUtils2().put(Constants.city, "");
+
     }
 
     private void initGps() {
@@ -202,6 +204,24 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
                                 }
                             } catch (JSONException e) {
                                 Ts.JsonErroy();
+                            }
+                        }
+                    });
+
+
+            OkHttpUtils
+                    .get()
+                    .tag(this)
+                    .url(Api.tixing_order)
+                    .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
+                    .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
+                    .build()
+                    .execute(new MyStringCallback() {
+                        @Override
+                        public void onMySuccess(String result) {
+                            MjXIaoXiBean mjXIaoXiBean = new Gson().fromJson(result, MjXIaoXiBean.class);
+                            if (!mjXIaoXiBean.getCount().equals("0")) {
+                                StartUtil.sendNotification(mActivity);
                             }
                         }
                     });

@@ -15,6 +15,7 @@ import com.duma.liudong.meiye.base.MyStringCallback;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.DialogUtil;
+import com.duma.liudong.meiye.utils.Ts;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 import butterknife.BindView;
@@ -55,8 +56,10 @@ public class FanKuiActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.btn_ok:
+                if (checkBox.isChecked()) {
+                    if (isText(editQq, "请填写您的联系方式!")) return;
+                }
                 if (isText(ediRes, "请填写要反馈的内容!")) return;
-                if (isText(editQq, "请填写您的联系方式!")) return;
                 sendResHttp();
                 break;
         }
@@ -78,6 +81,7 @@ public class FanKuiActivity extends BaseActivity {
                 .execute(new MyStringCallback() {
                     @Override
                     public void onMySuccess(String result) {
+                        Ts.setText("反馈成功!");
                         DialogUtil.hide();
                         finish();
                     }
