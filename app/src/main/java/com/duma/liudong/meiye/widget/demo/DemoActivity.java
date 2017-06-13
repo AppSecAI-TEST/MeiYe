@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
@@ -80,6 +81,12 @@ public class DemoActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                         holder.setText(R.id.tv_distance, shangPinBean.getDistance() + "m");
                     }
                 });
+        adapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+            @Override
+            public void onLoadMoreRequested() {
+
+            }
+        }, rvShangping);
     }
 
 

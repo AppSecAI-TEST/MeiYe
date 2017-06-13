@@ -110,6 +110,9 @@ public class GouWuCheBean {
             private String goods_nums_select;
 
             public String getGoods_nums_select() {
+                if (goods_nums_select == null) {
+                    goods_nums_select = "0";
+                }
                 return goods_nums_select;
             }
 

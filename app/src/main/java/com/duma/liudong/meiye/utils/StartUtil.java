@@ -16,6 +16,7 @@ import com.duma.liudong.meiye.view.classift.ShangPingLieBiaoActivity;
 import com.duma.liudong.meiye.view.classift.ShangPingXiangQinWeb;
 import com.duma.liudong.meiye.view.classift.dianPu.DianPuActivity;
 import com.duma.liudong.meiye.view.classift.dianPu.DianPuListActivity;
+import com.duma.liudong.meiye.view.classift.dianPu.JuBaoActivity;
 import com.duma.liudong.meiye.view.home.MessageContentActivity;
 import com.duma.liudong.meiye.view.home.SouSuoActivity;
 import com.duma.liudong.meiye.view.home.meiTuan.TuanGouActivity;
@@ -218,6 +219,24 @@ public class StartUtil {
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, StartUtil.getShare(title, url));
         activity.startActivity(Intent.createChooser(intent, "分享到"));
+    }
+
+    //跳转举报
+    public static void toJubao_sp(Activity activity, String id) {
+        toJubao(activity, "商品", id);
+    }
+
+    //跳转举报
+    public static void toJubao_dp(Activity activity, String id) {
+        toJubao(activity, "店铺", id);
+    }
+
+    //跳转举报
+    public static void toJubao(Activity activity, String type, String id) {
+        Intent intent = new Intent(activity, JuBaoActivity.class);
+        intent.putExtra("type", type);
+        intent.putExtra("id", id);
+        activity.startActivity(intent);
     }
 
     //跳转退款

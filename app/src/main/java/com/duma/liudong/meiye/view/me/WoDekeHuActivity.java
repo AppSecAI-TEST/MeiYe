@@ -53,6 +53,10 @@ public class WoDekeHuActivity extends BaseActivity implements SwipeRefreshLayout
     TextView tvMobile;
     @BindView(R.id.layout_shangji)
     LinearLayout layoutShangji;
+    @BindView(R.id.tv_time)
+    TextView tvTime;
+    @BindView(R.id.tv_huiyuan)
+    TextView tvHuiyuan;
 
     private CommonAdapter<WoDeKeHuBean.XiajiBean> commonAdapter;
     private List<WoDeKeHuBean.XiajiBean> mList;
@@ -127,6 +131,8 @@ public class WoDekeHuActivity extends BaseActivity implements SwipeRefreshLayout
                 tvMobile.setText(bean.getShangji().get(0).getMobile());
                 tvNickname.setText(bean.getShangji().get(0).getNickname());
                 ImageLoader.withYuan(bean.getShangji().get(0).getHead_pic(), imgHeadPic);
+                tvHuiyuan.setText(bean.getShangji().get(0).getLevel());
+                tvTime.setText(bean.getShangji().get(0).getReg_time());
             } else {
                 layoutShangji.setVisibility(View.GONE);
             }
@@ -144,5 +150,4 @@ public class WoDekeHuActivity extends BaseActivity implements SwipeRefreshLayout
     public void onRefresh() {
         queryHttp();
     }
-
 }

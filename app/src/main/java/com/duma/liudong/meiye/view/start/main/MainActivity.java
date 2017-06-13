@@ -30,6 +30,7 @@ import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.utils.Ts;
 import com.duma.liudong.meiye.view.home.MessageActivity;
+import com.duma.liudong.meiye.view.start.LunTanFragment;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 
@@ -76,6 +77,8 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
     ForumBarFragment forumBarFragment;
     ShoppingCartBarFragment shoppingCartBarFragment;
     MeBarFragment meBarFragment;
+
+    LunTanFragment lunTanFragment;
 
     //声明AMapLocationClient类对象
     public AMapLocationClient mLocationClient = null;
@@ -143,7 +146,6 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
             //启动定位
             mLocationClient.startLocation();
         }
-
         if (getMeFragment().isVisible()) {
             getMeFragment().refresh();
         }
@@ -363,6 +365,13 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
             forumBarFragment = new ForumBarFragment();
         }
         return forumBarFragment;
+    }
+
+    LunTanFragment getLunTanFragment() {
+        if (lunTanFragment == null) {
+            lunTanFragment = new LunTanFragment();
+        }
+        return lunTanFragment;
     }
 
     ShoppingCartBarFragment getShoppingCart_BarFragment() {

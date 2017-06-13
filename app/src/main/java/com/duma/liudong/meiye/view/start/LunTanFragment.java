@@ -1,10 +1,12 @@
-package com.duma.liudong.meiye.view.start.main;
+package com.duma.liudong.meiye.view.start;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 
 import com.duma.liudong.meiye.R;
-import com.duma.liudong.meiye.base.BaseFragment;
+import com.duma.liudong.meiye.base.BaseFragmentNew;
 import com.duma.liudong.meiye.base.MyStringCallback;
 import com.duma.liudong.meiye.base.MyViewPagerAdapter;
 import com.duma.liudong.meiye.model.ForumBean;
@@ -25,7 +27,7 @@ import butterknife.BindView;
  * Created by liudong on 17/3/14.
  */
 
-public class ForumFragment extends BaseFragment {
+public class LunTanFragment extends BaseFragmentNew {
     @BindView(R.id.tabLayout_bar)
     TabLayout tabLayoutBar;
     @BindView(R.id.viewPater_bar)
@@ -36,10 +38,6 @@ public class ForumFragment extends BaseFragment {
     public List<LunTanClassiftFragment> mList;
     public boolean isSuccess = false;
 
-    @Override
-    protected int setLayoutResouceId() {
-        return R.layout.fragment_forum;
-    }
 
     @Override
     protected void initData() {
@@ -47,7 +45,13 @@ public class ForumFragment extends BaseFragment {
     }
 
     @Override
-    protected void onLazyLoad() {
+    protected int getLayoutId() {
+        return R.layout.fragment_forum;
+    }
+
+    @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
         if (!isSuccess) {
             DialogUtil.show(mActivity);
             OkHttpUtils.getInstance().cancelTag(this);
@@ -69,7 +73,6 @@ public class ForumFragment extends BaseFragment {
         } else {
             mList.get(0).onLazyLoad();
         }
-
     }
 
     private void initTab() {

@@ -22,6 +22,7 @@ import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
+import com.duma.liudong.meiye.utils.Ts;
 import com.duma.liudong.meiye.view.dialog.ShoppingCartDialog;
 import com.google.gson.Gson;
 import com.zhy.adapter.recyclerview.CommonAdapter;
@@ -366,13 +367,17 @@ public class ShoppingCartFragment extends BaseFragment implements SwipeRefreshLa
                 tvYijian.setText("已减" + gouWuCheBean.getTotal_price().getCut_fee());
                 refreshType();
                 int c = 0;
-                for (int i = 0; i < gouWuCheBean.getCart_list().size(); i++) {
-                    for (int j = 0; j < gouWuCheBean.getCart_list().get(i).getGoods_list().size(); j++) {
-                        if (gouWuCheBean.getCart_list().get(i).getGoods_list().get(j).getSelected().equals("0")) {
-                            c++;
-                            break;
+                try {
+                    for (int i = 0; i < gouWuCheBean.getCart_list().size(); i++) {
+                        for (int j = 0; j < gouWuCheBean.getCart_list().get(i).getGoods_list().size(); j++) {
+                            if (gouWuCheBean.getCart_list().get(i).getGoods_list().get(j).getSelected().equals("0")) {
+                                c++;
+                                break;
+                            }
                         }
                     }
+                } catch (Exception e) {
+                    Ts.setText("服务器错误,请联系管理员!");
                 }
                 if (c == 0) {
                     cbQuanXuan.setChecked(true);

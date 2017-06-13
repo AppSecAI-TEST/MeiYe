@@ -161,6 +161,8 @@ public class Api {
     public static String del_bbs = url + "/App/Bbs/del_bbs";
     public static String user_follow = url + "/App/Bbs/user_follow";
     public static String my_follow_list = url + "/App/Bbs/my_follow_list";
+
+    public static String jubao = url + "/App/Store/jubao";
     /**
      * Tuangou - 团购列表
      */

@@ -27,7 +27,6 @@ public class LoadineDialog extends Dialog {
         setContentView(R.layout.dialog_loadine);
         this.setCancelable(isBack);
 
-//        ImageLoader.withGif((ImageView) findViewById(R.id.img_gif));
     }
 
 }

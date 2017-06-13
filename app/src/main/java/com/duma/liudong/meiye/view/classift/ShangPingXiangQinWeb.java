@@ -182,5 +182,10 @@ public class ShangPingXiangQinWeb extends BaseActivity {
             msg.arg1 = 1;
             handler.sendMessage(msg);
         }
+
+        @JavascriptInterface
+        public void toJubao(String id) {
+            StartUtil.toJubao_sp(mActivity, id);
+        }
     }
 }

@@ -307,6 +307,7 @@ public class MjMainActivity extends BaseActivity implements SwipeRefreshLayout.O
                 //商家信息
                 intent = new Intent(mActivity, DianPuJianJieActivity.class);
                 intent.putExtra("bean", bean.getStore_info());
+                intent.putExtra("id", bean.getStore_id());
                 startActivity(intent);
                 break;
 

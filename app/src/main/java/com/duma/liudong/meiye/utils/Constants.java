@@ -50,6 +50,6 @@ public class Constants {
     public static final int jiesuan = 0;
     public static final int shanchu = 1;
 
-    //微信的appid
-    public static final String Weixin = "wxa8dce5196935ec34";
+    //    //微信的appid
+    public static final String Weixin = "wx930e2bae777602b9";
 }

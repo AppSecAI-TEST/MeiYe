@@ -38,6 +38,7 @@ public abstract class BasePullAdapter<T> extends BaseQuickAdapter<T, BaseViewHol
         mRecyclerView.setLayoutManager(layoutManager);
     }
 
+
     /**
      * 添加空布局
      */

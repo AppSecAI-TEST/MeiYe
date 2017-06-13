@@ -65,7 +65,6 @@ public class PaiZhaoDialog extends Dialog {
     private class clickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            // TODO Auto-generated method stub
             int id = v.getId();
             switch (id) {
                 case R.id.paizhao_onClick:

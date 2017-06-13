@@ -3,7 +3,7 @@ package com.duma.liudong.meiye.view.classift.dianPu;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.widget.ImageView;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -11,6 +11,7 @@ import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
 import com.duma.liudong.meiye.base.MyViewPagerAdapter;
 import com.duma.liudong.meiye.model.DianPubean;
+import com.duma.liudong.meiye.utils.StartUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -24,8 +25,6 @@ public class DianPuJianJieActivity extends BaseActivity {
     LinearLayout layoutBack;
     @BindView(R.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.img_other)
-    ImageView imgOther;
     @BindView(R.id.layout_other)
     LinearLayout layoutOther;
     @BindView(R.id.tabLayout_bar)
@@ -34,6 +33,10 @@ public class DianPuJianJieActivity extends BaseActivity {
     ViewPager viewPaterBar;
 
     public DianPubean dianPubean;
+    @BindView(R.id.tv_jubao)
+    TextView tvJubao;
+
+    private String id;
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
@@ -44,12 +47,19 @@ public class DianPuJianJieActivity extends BaseActivity {
     protected void initData() {
         tvTitle.setText("店铺简介");
         dianPubean = (DianPubean) getIntent().getSerializableExtra("bean");
+        id = getIntent().getStringExtra("id");
         MyViewPagerAdapter viewPagerAdapter = new MyViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragment(new DianPuJianJiOneFragment(), "基本信息");
         viewPagerAdapter.addFragment(new DianPuJianJiTwoFragment(), "认证信息");
         viewPaterBar.setAdapter(viewPagerAdapter);
         tabLayoutBar.setupWithViewPager(viewPaterBar);
 
+        tvJubao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StartUtil.toJubao_dp(mActivity, id);
+            }
+        });
     }
 
 
@@ -57,4 +67,5 @@ public class DianPuJianJieActivity extends BaseActivity {
     public void onClick() {
         finish();
     }
+
 }

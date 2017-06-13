@@ -153,7 +153,7 @@ public class DinDanZhongXinActivity extends BaseActivity implements SwipeRefresh
         setTest(dianShiwuDaishouhuo, bean.getIndeed().getWr());
         setTest(dianShiwuDaipingjia, bean.getIndeed().getWc());
         setTest(dianShiwuTuikuan, bean.getIndeed().getRe());
-        setTest(dianShiwuDaifahuo, bean.getCustom().getSd());
+        setTest(dianShiwuDaifahuo, bean.getIndeed().getSd());
 
         setTest(dianTuangouDaishoukuan, bean.getServer().getWp());
         setTest(dianTuangouDaishouhuan, bean.getServer().getWr());

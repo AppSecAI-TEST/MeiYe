@@ -196,6 +196,7 @@ public class DianPuActivity extends BaseActivity implements ScrollableLayout.OnS
             case R.id.btn_jianjie:
                 Intent intent1 = new Intent(mActivity, DianPuJianJieActivity.class);
                 intent1.putExtra("bean", dianPubean);
+                intent1.putExtra("id", store_id);
                 startActivity(intent1);
                 break;
             case R.id.btn_maijia:

@@ -162,6 +162,7 @@
         <activity android:name=".view.start.main.ViewPaterActivity" />
         <activity android:name=".view.shoppingCart.HongBaoListActivity" />
         <activity android:name=".view.shoppingCart.YouHuiListActivity" />
+        <activity android:name=".view.classift.dianPu.JuBaoActivity" />
     </application>
 
 </manifest>
