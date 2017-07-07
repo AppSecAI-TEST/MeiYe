@@ -24,6 +24,7 @@ import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.Lg;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.duma.liudong.meiye.view.shoppingCart.fuwu.FuWuQueRenDinDanActivity;
+import com.duma.liudong.meiye.view.start.login.RigisterActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -235,6 +236,17 @@ public class WebViewActivity extends BaseActivity implements SwipeRefreshLayout.
             StartUtil.toShangPingWeb(mActivity, url);
         }
 
+        //跳转注册
+        @JavascriptInterface
+        public void goZhuCe() {
+            startActivity(new Intent(mActivity, RigisterActivity.class));
+        }
+
+        //跳转搜索
+        @JavascriptInterface
+        public void goSouSuo() {
+            StartUtil.toSousuo(mActivity);
+        }
     }
 
 }

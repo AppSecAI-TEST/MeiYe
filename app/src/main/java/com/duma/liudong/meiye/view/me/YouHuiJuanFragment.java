@@ -103,6 +103,8 @@ public class YouHuiJuanFragment extends BaseFragment implements SwipeRefreshLayo
                 if (activity == null) {
                     mActivity.finish();
                     EventBus.getDefault().post(mList.get(position));
+                } else {
+                    StartUtil.toDianPu(mActivity, mList.get(position).getStore_id());
                 }
             }
 

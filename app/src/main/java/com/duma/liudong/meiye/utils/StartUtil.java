@@ -313,7 +313,11 @@ public class StartUtil {
     }
 
     public static void setBirthday(String Birthday) {
-        MyApplication.getSpUtils().put(Constants.birthday, getTime(Long.parseLong(Birthday) * 1000));
+        if (Birthday.equals("") || Birthday == null) {
+            Birthday = "0";
+        }
+        long l = Long.parseLong(Birthday);
+        MyApplication.getSpUtils().put(Constants.birthday, getTime(l * 1000));
     }
 
     public static String setNum(double Birthday) {

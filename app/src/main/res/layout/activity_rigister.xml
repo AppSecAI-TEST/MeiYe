@@ -179,7 +179,7 @@
             android:id="@+id/tv_agreement"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="《美业基地用户协议》"
+            android:text="《美帝购物用户协议》"
             android:textColor="@color/main_red"
             android:textSize="12sp" />
     </LinearLayout>

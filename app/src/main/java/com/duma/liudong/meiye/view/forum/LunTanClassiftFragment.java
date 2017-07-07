@@ -309,9 +309,10 @@ public class LunTanClassiftFragment extends BaseFragment implements SwipeRefresh
         isTop();
         if (!beanBaseXiaLaRvPresenter.isOne) {
             beanBaseXiaLaRvPresenter.QueryHttp(getBuild());
-        } else {
-            onRefresh();
         }
+//        else {
+//            onRefresh();
+//        }
     }
 
 

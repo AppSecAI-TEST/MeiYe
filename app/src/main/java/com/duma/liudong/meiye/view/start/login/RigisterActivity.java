@@ -125,7 +125,7 @@ public class RigisterActivity extends BaseActivity implements PublicPresenter.Ge
                 }
                 break;
             case R.id.tv_agreement:
-                // TODO: 17/3/22 跳转到美业协议
+                StartUtil.toH5Web(mActivity, Api.xieyi, "用户协议");
                 break;
             case R.id.btn_rigister:
                 if (!checkboxAgreement.isChecked()) {

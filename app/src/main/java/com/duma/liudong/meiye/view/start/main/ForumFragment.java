@@ -10,7 +10,7 @@ import com.duma.liudong.meiye.base.MyViewPagerAdapter;
 import com.duma.liudong.meiye.model.ForumBean;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.DialogUtil;
-import com.duma.liudong.meiye.view.forum.LunTanClassiftFragment;
+import com.duma.liudong.meiye.view.forum.LunTanClassiftFragmentNew;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -33,7 +33,8 @@ public class ForumFragment extends BaseFragment {
 
     public List<ForumBean> list;
     public boolean isOne = true;
-    public List<LunTanClassiftFragment> mList;
+    //    public List<LunTanClassiftFragment> mList;
+    public List<LunTanClassiftFragmentNew> mList;
     public boolean isSuccess = false;
 
     @Override
@@ -66,16 +67,18 @@ public class ForumFragment extends BaseFragment {
                             initTab();
                         }
                     });
-        } else {
-            mList.get(0).onLazyLoad();
         }
+//        else {
+//            mList.get(0).onLazyLoad();
+//        }
 
     }
 
     private void initTab() {
         MyViewPagerAdapter viewPagerAdapter = new MyViewPagerAdapter(mActivity.getSupportFragmentManager());
         for (int i = 0; i < list.size(); i++) {
-            LunTanClassiftFragment fragment = new LunTanClassiftFragment();
+//            LunTanClassiftFragment fragment = new LunTanClassiftFragment();
+            LunTanClassiftFragmentNew fragment = new LunTanClassiftFragmentNew();
             mList.add(fragment);
             viewPagerAdapter.addFragment(fragment, list.get(i).getCat_name());
         }

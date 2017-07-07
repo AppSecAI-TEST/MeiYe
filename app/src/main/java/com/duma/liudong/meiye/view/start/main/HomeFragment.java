@@ -276,7 +276,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
         friendLinkBeanList = bean.getFriend_link();
         new BaseBannaer().setBanner(bannerHome, friendLinkBeanList, this);
         bannerHome.startTurning(BaseBannaer.time);
-        ImageLoader.with(bean.getAd().getAd_code(), imgAd);
+        ImageLoader.with_p(bean.getAd().getAd_code(), imgAd);
         try {
             ImageLoader.with_p(bean.getGoods_cat().get(0).getPic_url(), imgMiaosha);
             ImageLoader.with_p(bean.getGoods_cat().get(1).getPic_url(), imgXinpin);

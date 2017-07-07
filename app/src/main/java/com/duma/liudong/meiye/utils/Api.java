@@ -13,6 +13,8 @@ public class Api {
     /**
      * h5
      */
+    public static String xieyi = Api.url + "/index.php/Mobile/index/agreement.html";
+
     //商品详情
     public static String H5Url() {
         return Api.url + "/index.php/Mobile/Goods/goodsdetail?" + Constants.user_id + "=" + MyApplication.getSpUtils().getString(Constants.user_id) + "&goods_id=";
