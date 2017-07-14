@@ -331,7 +331,7 @@ public class StartUtil {
     }
 
     public static String getShare(String title, String url) {
-        return "【" + title + "】" + url + "  (分享自美业基地)";
+        return "【" + title + "】" + url + "  (分享自美帝基地)";
     }
 
     public static void setNickName(String nickName) {

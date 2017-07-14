@@ -40,7 +40,7 @@ public class TouTiaoActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        tvTitle.setText("美业头条");
+        tvTitle.setText("美帝头条");
         MyViewPagerAdapter viewPagerAdapter = new MyViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragment(new TouTiaoFragment(), "文章推荐");
         viewPagerAdapter.addFragment(new WenJuanFragment(), "问卷调查");

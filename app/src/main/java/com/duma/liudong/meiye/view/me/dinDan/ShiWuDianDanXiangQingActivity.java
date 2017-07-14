@@ -30,6 +30,7 @@ import com.duma.liudong.meiye.view.dialog.QueRenUtilDialog;
 import com.duma.liudong.meiye.view.dialog.ServiceDialog;
 import com.google.gson.Gson;
 import com.zhy.adapter.recyclerview.CommonAdapter;
+import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.request.RequestCall;
@@ -375,6 +376,17 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
             }
         };
         rvShangping.setAdapter(adapter);
+        adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                StartUtil.toShangPingWeb(mActivity, Api.H5Url() + mlist.get(position).getGoods_id());
+            }
+
+            @Override
+            public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
+                return false;
+            }
+        });
     }
 
     @OnClick({R.id.layout_back, R.id.tv_hei, R.id.tv_hong})

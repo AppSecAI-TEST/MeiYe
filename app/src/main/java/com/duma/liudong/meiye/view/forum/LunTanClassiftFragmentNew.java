@@ -174,6 +174,13 @@ public class LunTanClassiftFragmentNew extends BaseFragment implements SwipeRefr
                                 });
                     }
                 }).setSwLoading(swLoading);
+        baseLoadAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                List<TieziBean> data = baseLoadAdapter.getData();
+                StartUtil.toH5Web(mActivity, Api.LunTanH5Url + data.get(position).getBbs_id(), data.get(position).getUser_name() + "的帖子");
+            }
+        });
         View view = baseLoadAdapter.getView(R.layout.inclde_luntan_herd);
         baseLoadAdapter.setHeaderView(view);
         rvTop = (RecyclerView) view.findViewById(R.id.rv_zhidin);

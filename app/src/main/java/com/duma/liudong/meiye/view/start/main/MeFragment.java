@@ -1,6 +1,7 @@
 package com.duma.liudong.meiye.view.start.main;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -14,13 +15,16 @@ import com.duma.liudong.meiye.base.MyApplication;
 import com.duma.liudong.meiye.base.MyStringCallback;
 import com.duma.liudong.meiye.model.IndexBean;
 import com.duma.liudong.meiye.model.MeBean;
+import com.duma.liudong.meiye.model.PhoneBean;
 import com.duma.liudong.meiye.model.TuiJianBean;
 import com.duma.liudong.meiye.presenter.BaseAdAdapter;
 import com.duma.liudong.meiye.presenter.PublicPresenter;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
+import com.duma.liudong.meiye.utils.DialogUtil;
 import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
+import com.duma.liudong.meiye.utils.Ts;
 import com.duma.liudong.meiye.view.me.DinDanZhongXinActivity;
 import com.duma.liudong.meiye.view.me.FanKuiActivity;
 import com.duma.liudong.meiye.view.me.FenSiActivity;
@@ -34,6 +38,7 @@ import com.duma.liudong.meiye.view.me.WoDekeHuActivity;
 import com.duma.liudong.meiye.view.me.YouHuiJuanActivity;
 import com.duma.liudong.meiye.view.me.yuE.YuEActivity;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.http.okhttp.OkHttpUtils;
 
@@ -123,6 +128,8 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
     ImageView imgHuiyuan;
     @BindView(R.id.tv_denglu)
     TextView tvDenglu;
+    @BindView(R.id.tv_dianhua)
+    TextView tvDianhua;
     private Intent intent;
     private BaseAdAdapter<IndexBean.ShiwuBean> shangpingAdapter;
     private TuiJianBean bean;
@@ -165,6 +172,30 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
             }
         };
 
+        tvDianhua.setText("加载中...");
+        OkHttpUtils
+                .get()
+                .url(Api.phone)
+                .build()
+                .execute(new MyStringCallback() {
+                    @Override
+                    public void onMySuccess(String result) {
+                        DialogUtil.hide();
+                        final PhoneBean phoneBean = new Gson().fromJson(result, PhoneBean.class);
+                        tvDianhua.setText(phoneBean.getPhone());
+                    }
+                });
+        tvDianhua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (tvDianhua.getText().toString().equals("加载中...")) {
+                    Ts.setText("加载中...");
+                } else {
+                    mActivity.startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tvDianhua.getText().toString())));
+                }
+
+            }
+        });
     }
 
     private void tuiJianHttp() {
@@ -176,9 +207,13 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
                 .execute(new MyStringCallback() {
                     @Override
                     public void onMySuccess(String result) {
-                        bean = new Gson().fromJson(result, TuiJianBean.class);
-                        shangpingAdapter.setmList(bean.getGoods());
-                        ImageLoader.with(bean.getAd().getAd_code(), imgAd);
+                        try {
+                            bean = new Gson().fromJson(result, TuiJianBean.class);
+                            shangpingAdapter.setmList(bean.getGoods());
+                            ImageLoader.with(bean.getAd().getAd_code(), imgAd);
+                        } catch (JsonSyntaxException e) {
+                            Ts.JsonErroy();
+                        }
                     }
                 });
     }

@@ -129,7 +129,7 @@ public class RigisterActivity extends BaseActivity implements PublicPresenter.Ge
                 break;
             case R.id.btn_rigister:
                 if (!checkboxAgreement.isChecked()) {
-                    Ts.setText("请同意美业协议!");
+                    Ts.setText("请同意美帝协议!");
                     return;
                 }
                 //注册

@@ -97,7 +97,7 @@ public class FuKuanChenGongActivity extends BaseActivity implements SwipeRefresh
 
     @Override
     protected void OnBack() {
-        StartUtil.toQuanBuDinDan(mActivity, type, "", "", "1");
+//        StartUtil.toQuanBuDinDan(mActivity, type, "", "", "1");
     }
 
     @OnClick({R.id.layout_back, R.id.tv_shouye, R.id.tv_chakanDinDan})

@@ -21,6 +21,7 @@ import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.StartUtil;
 import com.google.gson.Gson;
 import com.zhy.adapter.recyclerview.CommonAdapter;
+import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.http.okhttp.OkHttpUtils;
 
@@ -138,6 +139,17 @@ public class DinZhiXiangQinActivity extends BaseActivity {
             }
         };
         rvUser.setAdapter(mUserAdapter);
+        mUserAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                StartUtil.toShangPingWeb(mActivity, Api.H5Url() + mList.get(position).getGoods_id());
+            }
+
+            @Override
+            public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
+                return false;
+            }
+        });
     }
 
     public void onRefresh() {
