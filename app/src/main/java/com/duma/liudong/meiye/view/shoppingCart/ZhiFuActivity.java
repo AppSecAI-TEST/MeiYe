@@ -34,6 +34,9 @@ import com.unionpay.UPPayAssistEx;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import okhttp3.Call;
@@ -133,8 +136,8 @@ public class ZhiFuActivity extends BaseActivity {
                 isCheck();
                 break;
             case R.id.layout_yinlian:
-                ClickType = "2";
-                isCheck();
+//                ClickType = "2";
+//                isCheck();
                 break;
         }
     }
@@ -327,13 +330,13 @@ public class ZhiFuActivity extends BaseActivity {
                     @Override
                     public void onMySuccess(String result) {
                         DialogUtil.hide();
-//                        String code = "";
-//                        try {
-//                            code = new JSONObject(result).getString("code");
-//                        } catch (JSONException e) {
-//                            Ts.JsonErroy();
-//                        }
-                        goZhiFuBao(result);
+                        String code = "";
+                        try {
+                            code = new JSONObject(result).getString("code");
+                        } catch (JSONException e) {
+                            Ts.JsonErroy();
+                        }
+                        goZhiFuBao(code);
                     }
 
                     @Override

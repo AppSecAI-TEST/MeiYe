@@ -2,7 +2,6 @@ package com.duma.liudong.meiye.view.start.main;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 
 import com.duma.liudong.meiye.R;
 import com.duma.liudong.meiye.base.BaseActivity;
@@ -23,18 +22,23 @@ public class StartActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (MyApplication.getSpUtils2().getString(Constants.isOne).equals(Constants.isOne)) {
-                    StartUtil.toMain(mActivity);
-                } else {
-                    startActivity(new Intent(mActivity, ViewPaterActivity.class));
-                    MyApplication.getSpUtils2().put(Constants.isOne, Constants.isOne);
-                }
-                finish();
-            }
-        }, 500);
+        StartUtil.goOridService(mActivity);
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                gogogo();
+//            }
+//        }, 500);
+        gogogo();
+    }
 
+    private void gogogo() {
+        if (MyApplication.getSpUtils2().getString(Constants.isOne).equals(Constants.isOne)) {
+            StartUtil.toMain(mActivity);
+        } else {
+            startActivity(new Intent(mActivity, ViewPaterActivity.class));
+            MyApplication.getSpUtils2().put(Constants.isOne, Constants.isOne);
+        }
+        finish();
     }
 }

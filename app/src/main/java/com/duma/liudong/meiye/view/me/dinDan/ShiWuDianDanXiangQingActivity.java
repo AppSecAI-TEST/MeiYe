@@ -169,7 +169,7 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
     }
 
     private void initRes() {
-        tvJifen.setText("￥" + bean.getIntegral_money());
+        tvJifen.setText("-￥" + bean.getIntegral_money());
         tvLiuyan.setText(bean.getUser_note());
         tvKuaidiType.setText("快递");
         tvType.setText(bean.getOrder_status_desc());
@@ -223,7 +223,7 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
                 break;
             case "COMMENTED":
                 //已评价==已完成
-                tvHei.setVisibility(View.VISIBLE);
+                tvHei.setVisibility(View.GONE);
                 tvHong.setVisibility(View.GONE);
                 tvHei.setText("删除订单");
                 break;
@@ -233,7 +233,7 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
                 break;
             default:
                 //交易关闭
-                tvHei.setVisibility(View.VISIBLE);
+                tvHei.setVisibility(View.GONE);
                 tvHong.setVisibility(View.GONE);
                 tvHei.setText("删除订单");
                 break;

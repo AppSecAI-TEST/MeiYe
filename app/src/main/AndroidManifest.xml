@@ -163,6 +163,8 @@
         <activity android:name=".view.shoppingCart.HongBaoListActivity" />
         <activity android:name=".view.shoppingCart.YouHuiListActivity" />
         <activity android:name=".view.classift.dianPu.JuBaoActivity" />
+
+        <service android:name=".view.start.OrideService" />
     </application>
 
 </manifest>

@@ -116,6 +116,13 @@ public class DinDanZhongXinActivity extends BaseActivity implements SwipeRefresh
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        swLoading.setRefreshing(true);
+        onRefresh();
+    }
+
+    @Override
     protected void initData() {
         tvTitle.setText("订单中心");
         StartUtil.setSw(swLoading, this);
@@ -136,9 +143,6 @@ public class DinDanZhongXinActivity extends BaseActivity implements SwipeRefresh
         TipsView.create(mActivity).attach(dianShiwuDaifahuo);
         TipsView.create(mActivity).attach(dianDinzhiDaifahuo);
 
-
-        swLoading.setRefreshing(true);
-        onRefresh();
 
     }
 

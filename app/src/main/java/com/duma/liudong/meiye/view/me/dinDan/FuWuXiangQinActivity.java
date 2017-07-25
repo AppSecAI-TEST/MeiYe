@@ -169,7 +169,7 @@ public class FuWuXiangQinActivity extends BaseActivity implements SwipeRefreshLa
     }
 
     private void initRes() {
-        tvJifen.setText("￥" + bean.getIntegral_money());
+        tvJifen.setText("-￥" + bean.getIntegral_money());
         tvMobile.setText("购买手机号:" + bean.getMobile());
         tvType.setText(bean.getOrder_status_desc());
         tvYouHuiJuan.setText("-￥" + bean.getCoupon_price());
@@ -207,7 +207,7 @@ public class FuWuXiangQinActivity extends BaseActivity implements SwipeRefreshLa
                 break;
             case "COMMENTED":
                 //已评价==已完成
-                tvHei.setVisibility(View.VISIBLE);
+                tvHei.setVisibility(View.GONE);
                 tvHong.setVisibility(View.GONE);
                 tvHei.setText("删除订单");
                 break;
@@ -217,7 +217,7 @@ public class FuWuXiangQinActivity extends BaseActivity implements SwipeRefreshLa
                 break;
             default:
                 //交易关闭
-                tvHei.setVisibility(View.VISIBLE);
+                tvHei.setVisibility(View.GONE);
                 tvHong.setVisibility(View.GONE);
                 tvHei.setText("删除订单");
                 break;

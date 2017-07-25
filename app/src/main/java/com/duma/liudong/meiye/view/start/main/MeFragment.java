@@ -381,16 +381,17 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
         if (meBean == null) {
             ImageLoader.withYuan(R.drawable.touxiang, imgHeadPic);
             tvNickName.setText("注册");
-            tvRefNum.setText("我的推广码:...");//推广码
-            tvBalance.setText("...");//余额
-            tvDiscountCoupon.setText("...");//优惠券
-            tvDistributMoney.setText("总收益:...");//总收益
-            tvIntegral.setText("...");//积分
-            tvNewClient.setText("今日新增:...");
-            tvNewMoney.setText("今日收益:...");
-            tvTotalClient.setText("我的客户:...");
-            tvRedPacket.setText("...");//红包
-            imgHuiyuan.setVisibility(View.GONE);
+            tvRefNum.setText("我的推广码:xxxxxxxxxxx");//推广码
+            tvBalance.setText("0");//余额
+            tvDiscountCoupon.setText("0");//优惠券
+            tvDistributMoney.setText("总收益:0");//总收益
+            tvIntegral.setText("0");//积分
+            tvNewClient.setText("今日新增:0");
+            tvNewMoney.setText("今日收益:0");
+            tvTotalClient.setText("我的客户:0");
+            tvRedPacket.setText("0");//红包
+            imgHuiyuan.setVisibility(View.VISIBLE);
+            ImageLoader.with_p(R.drawable.huiyuan, imgHuiyuan);
             tvDenglu.setVisibility(View.VISIBLE);
         } else {
             tvDenglu.setVisibility(View.GONE);

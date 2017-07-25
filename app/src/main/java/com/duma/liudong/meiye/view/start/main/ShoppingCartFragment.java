@@ -26,6 +26,7 @@ import com.duma.liudong.meiye.utils.Ts;
 import com.duma.liudong.meiye.view.dialog.ShoppingCartDialog;
 import com.google.gson.Gson;
 import com.zhy.adapter.recyclerview.CommonAdapter;
+import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.builder.GetBuilder;
@@ -346,6 +347,17 @@ public class ShoppingCartFragment extends BaseFragment implements SwipeRefreshLa
                         layout_guige.setOnClickListener(listener);
                     }
                 };
+                commonAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                        StartUtil.toShangPingWeb(mActivity, Api.H5Url() + cartListBean.getGoods_list().get(position).getGoods_id());
+                    }
+
+                    @Override
+                    public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
+                        return false;
+                    }
+                });
                 recyclerView.setAdapter(commonAdapter);
 
             }

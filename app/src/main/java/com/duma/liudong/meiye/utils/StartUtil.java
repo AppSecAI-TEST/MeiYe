@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -29,6 +30,7 @@ import com.duma.liudong.meiye.view.me.dinDan.WoDeDinZhiActivity;
 import com.duma.liudong.meiye.view.shoppingCart.FuKuanChenGongActivity;
 import com.duma.liudong.meiye.view.shoppingCart.QueRenDinDanActivity;
 import com.duma.liudong.meiye.view.shoppingCart.ZhiFuActivity;
+import com.duma.liudong.meiye.view.start.OrideService;
 import com.duma.liudong.meiye.view.start.login.LoginActivity;
 import com.duma.liudong.meiye.view.start.main.MainActivity;
 import com.duma.liudong.meiye.view.start.main.WebViewActivity;
@@ -393,7 +395,7 @@ public class StartUtil {
         return false;
     }
 
-    public static void sendNotification(Activity activity) {
+    public static void sendNotification(Context activity) {
         Intent intent = new Intent(activity, MessageContentActivity.class);
         intent.putExtra("type", "3");
         intent.putExtra("title", "订单提醒");
@@ -411,5 +413,12 @@ public class StartUtil {
         NotificationManager mNotifyMgr =
                 (NotificationManager) activity.getSystemService(NOTIFICATION_SERVICE);
         mNotifyMgr.notify(001, build);
+    }
+
+    /**
+     * 开始一个服务
+     */
+    public static void goOridService(Activity activity) {
+        activity.startService(new Intent(activity, OrideService.class));
     }
 }

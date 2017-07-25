@@ -234,7 +234,7 @@ public class ShiWuDinDanFragment extends BaseFragment implements SwipeRefreshLay
                             break;
                         case "COMMENTED":
                             //已评价==已完成
-                            tv_hei_one.setVisibility(View.VISIBLE);
+                            tv_hei_one.setVisibility(View.GONE);
                             tv_hei_two.setVisibility(View.VISIBLE);
                             tv_hong.setVisibility(View.GONE);
                             tv_hei_one.setText("删除订单");
@@ -250,7 +250,7 @@ public class ShiWuDinDanFragment extends BaseFragment implements SwipeRefreshLay
                         default:
                             //交易关闭
                             tv_hei_one.setVisibility(View.GONE);
-                            tv_hei_two.setVisibility(View.VISIBLE);
+                            tv_hei_two.setVisibility(View.GONE);
                             tv_hong.setVisibility(View.GONE);
                             tv_hei_two.setText("删除订单");
                             break;

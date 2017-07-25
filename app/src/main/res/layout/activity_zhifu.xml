@@ -35,52 +35,6 @@
     <View style="@style/henxian" />
 
     <LinearLayout
-        android:id="@+id/layout_zhifubao"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/white"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp">
-
-        <LinearLayout
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/img_52" />
-        </LinearLayout>
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:drawablePadding="10dp"
-            android:gravity="center"
-            android:text="支付宝" />
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-        <RadioButton
-            android:id="@+id/rdoBtn_zhifubao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:gravity="center|left"
-            android:textColor="@color/maincolor" />
-    </LinearLayout>
-
-    <View style="@style/henxian" />
-
-    <LinearLayout
         android:id="@+id/layout_weixin"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -119,6 +73,53 @@
             android:id="@+id/rdoBtn_weixin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:checked="true"
+            android:gravity="center|left"
+            android:textColor="@color/maincolor" />
+    </LinearLayout>
+
+
+    <View style="@style/henxian" />
+
+    <LinearLayout
+        android:id="@+id/layout_zhifubao"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_52" />
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:text="支付宝" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <RadioButton
+            android:id="@+id/rdoBtn_zhifubao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center|left"
             android:textColor="@color/maincolor" />
     </LinearLayout>
@@ -155,7 +156,7 @@
             android:layout_marginLeft="10dp"
             android:drawablePadding="10dp"
             android:gravity="center"
-            android:text="银联" />
+            android:text="银联(暂不支持本支付)" />
 
         <Space
             android:layout_width="0dp"
@@ -166,6 +167,7 @@
             android:id="@+id/rdoBtn_yinlian"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:gravity="center|left"
             android:textColor="@color/maincolor" />
     </LinearLayout>
