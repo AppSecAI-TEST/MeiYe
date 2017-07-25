@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="注:提现到账时间1-2个工作日(限周六,周日))"
+        android:text="注:提现到账时间1-2个工作日(限每周二提现)"
         android:textColor="@color/yellow"
         android:textSize="12sp" />
 
