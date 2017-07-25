@@ -100,6 +100,8 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
     TextView tvStoreName;
     @BindView(R.id.sw_loading)
     SwipeRefreshLayout swLoading;
+    @BindView(R.id.tv_zhifu)
+    TextView tvZhifu;
 
     private ShiWuDinDanBean bean;
 
@@ -170,6 +172,7 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
 
     private void initRes() {
         tvJifen.setText("-￥" + bean.getIntegral_money());
+        tvZhifu.setText("-￥" + bean.getOrder_amount());
         tvLiuyan.setText(bean.getUser_note());
         tvKuaidiType.setText("快递");
         tvType.setText(bean.getOrder_status_desc());
@@ -179,7 +182,7 @@ public class ShiWuDianDanXiangQingActivity extends BaseActivity implements Swipe
         tvYouHuiJuan.setText("-￥" + bean.getCoupon_price());
         tvYue.setText("-￥" + bean.getUser_money());
         tvShangPingZongJiaGe.setText("￥" + bean.getTotal_amount());
-        tvShifu.setText(bean.getOrder_amount());
+        tvShifu.setText(bean.getTotal_amount());
         tvYunfei.setText("￥" + bean.getShipping_price());
         tvShijian.setText(StartUtil.getShiJian(Long.parseLong(bean.getAdd_time())));
         tvCode.setText("订单编号:" + bean.getOrder_sn());

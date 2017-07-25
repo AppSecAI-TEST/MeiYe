@@ -92,6 +92,8 @@ public class FuWuXiangQinActivity extends BaseActivity implements SwipeRefreshLa
     View viewHenxian;
     @BindView(R.id.rv_juanma)
     RecyclerView rvJuanma;
+    @BindView(R.id.tv_zhifu)
+    TextView tvZhifu;
 
     private FuWuBean bean;
 
@@ -169,13 +171,14 @@ public class FuWuXiangQinActivity extends BaseActivity implements SwipeRefreshLa
     }
 
     private void initRes() {
+        tvZhifu.setText("-￥" + bean.getOrder_amount());
         tvJifen.setText("-￥" + bean.getIntegral_money());
         tvMobile.setText("购买手机号:" + bean.getMobile());
         tvType.setText(bean.getOrder_status_desc());
         tvYouHuiJuan.setText("-￥" + bean.getCoupon_price());
         tvYue.setText("-￥" + bean.getUser_money());
         tvShangPingZongJiaGe.setText("￥" + bean.getTotal_amount());
-        tvShifu.setText(bean.getOrder_amount());
+        tvShifu.setText(bean.getTotal_amount());
         tvShijian.setText(StartUtil.getShiJian(Long.parseLong(bean.getAdd_time())));
         tvCode.setText("订单编号:" + bean.getOrder_sn());
         tvStoreName.setText(bean.getStore_name());
@@ -387,7 +390,7 @@ public class FuWuXiangQinActivity extends BaseActivity implements SwipeRefreshLa
             }
         };
         rvJuanma.setAdapter(JuanMaAdapter);
-        JuanMaAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                 StartUtil.toShangPingWeb(mActivity, Api.H5Url() + mlist.get(position).getGoods_id());
@@ -425,7 +428,7 @@ public class FuWuXiangQinActivity extends BaseActivity implements SwipeRefreshLa
                         break;
                     case "提醒发货":
                         Ts.setText("已提醒卖家~请耐心等待!");
-                         break;
+                        break;
                     case "确认收货":
                         ShouHuoDialog.show();
                         break;

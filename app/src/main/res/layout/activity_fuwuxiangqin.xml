@@ -247,6 +247,39 @@
                 <View style="@style/henxian" />
 
                 <LinearLayout
+                    style="@style/layout_querendindan"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingRight="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="第三方支付"
+                        android:textColor="@color/texthei" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center|right"
+                        android:paddingRight="10dp">
+
+                        <TextView
+                            android:id="@+id/tv_zhifu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="￥0.00"
+                            android:textColor="@color/maincolor" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View style="@style/henxian" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:gravity="center|right"
@@ -263,7 +296,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="实付："
+                            android:text="合计："
                             android:textColor="@color/texthei"
                             android:textSize="16sp" />
 

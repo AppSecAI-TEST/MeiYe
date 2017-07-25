@@ -323,62 +323,68 @@ public class QueRenDinDanActivity extends BaseActivity {
     }
 
     private void initRes() {
-        tvYunfei.setText("￥" + bean.getCart_list().get(0).getMark().getFreight());
-        tvZongji.setText(bean.getTotal_price().getTotal_fee() + "");
-        tvShifu.setText(bean.getTotal_price().getTotal_fee() + "");
-        tvJifen.setText(bean.getCart_list().get(0).getMark().getReward_points());
-        tvYue.setText(bean.getCart_list().get(0).getMark().getUser_money());
-        tvStoreName.setText(bean.getCart_list().get(0).getMark().getStore_name());
-        tvZonge.setText("￥" + bean.getCart_list().get(0).getMark().getGoods_total());
-        swithJifen.setChecked(getRes(isJifen));
-        swithYue.setChecked(getRes(isYue));
-        swithZiqu.setChecked(getRes(isZiQu));
-        if (youHuiJuanBean != null) {
-            tvYouhuijuan.setText("满" + youHuiJuanBean.getCondition() + "减" + youHuiJuanBean.getMoney() + "元");
-        } else {
-            tvYouhuijuan.setText("不使用优惠券/红包");
-        }
-        //自取地址隐藏效果
-        lp = layoutPeisong.getLayoutParams();
-        if (swithZiqu.isChecked()) {
-            if (layoutPeisong.getHeight() != 0) {
-                ValueAnimator anim = ValueAnimator.ofInt(height, 0);
-                anim.setDuration(300);
-                anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator animation) {
-                        lp.height = (int) animation.getAnimatedValue();
-                        layoutPeisong.setLayoutParams(lp);
-                    }
-                });
-                anim.start();
+        try {
+            tvYunfei.setText("￥" + bean.getCart_list().get(0).getMark().getFreight());
+            tvZongji.setText(bean.getTotal_price().getTotal_fee() + "");
+            int res = Integer.parseInt(bean.getCart_list().get(0).getMark().getGoods_total()) + Integer.parseInt(bean.getCart_list().get(0).getMark().getFreight());
+            tvShifu.setText(res + "");
+            tvJifen.setText(bean.getCart_list().get(0).getMark().getReward_points());
+            tvYue.setText(bean.getCart_list().get(0).getMark().getUser_money());
+            tvStoreName.setText(bean.getCart_list().get(0).getMark().getStore_name());
+            tvZonge.setText("￥" + bean.getCart_list().get(0).getMark().getGoods_total());
+            swithJifen.setChecked(getRes(isJifen));
+            swithYue.setChecked(getRes(isYue));
+            swithZiqu.setChecked(getRes(isZiQu));
+            if (youHuiJuanBean != null) {
+                tvYouhuijuan.setText("满" + youHuiJuanBean.getCondition() + "减" + youHuiJuanBean.getMoney() + "元");
+            } else {
+                tvYouhuijuan.setText("不使用优惠券/红包");
             }
+            //自取地址隐藏效果
+            lp = layoutPeisong.getLayoutParams();
+            if (swithZiqu.isChecked()) {
+                if (layoutPeisong.getHeight() != 0) {
+                    ValueAnimator anim = ValueAnimator.ofInt(height, 0);
+                    anim.setDuration(300);
+                    anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public void onAnimationUpdate(ValueAnimator animation) {
+                            lp.height = (int) animation.getAnimatedValue();
+                            layoutPeisong.setLayoutParams(lp);
+                        }
+                    });
+                    anim.start();
+                }
 
-        } else {
-            if (layoutPeisong.getHeight() == 0) {
-                ValueAnimator anim = ValueAnimator.ofInt(0, height);
-                anim.setDuration(300);
-                anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator animation) {
-                        lp.height = (int) animation.getAnimatedValue();
-                        layoutPeisong.setLayoutParams(lp);
-                    }
-                });
-                anim.start();
+            } else {
+                if (layoutPeisong.getHeight() == 0) {
+                    ValueAnimator anim = ValueAnimator.ofInt(0, height);
+                    anim.setDuration(300);
+                    anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public void onAnimationUpdate(ValueAnimator animation) {
+                            lp.height = (int) animation.getAnimatedValue();
+                            layoutPeisong.setLayoutParams(lp);
+                        }
+                    });
+                    anim.start();
+                }
             }
+            if (bean.getAddress() == null) {
+                layoutKuaiDiKong.setVisibility(View.VISIBLE);
+                layoutKuaiDi.setVisibility(View.GONE);
+            } else {
+                layoutKuaiDiKong.setVisibility(View.GONE);
+                layoutKuaiDi.setVisibility(View.VISIBLE);
+                initDiZhi(bean.getAddress());
+            }
+            mlist.clear();
+            mlist.addAll(bean.getCart_list().get(0).getGoods_list());
+            adapter.notifyDataSetChanged();
+        } catch (NumberFormatException e) {
+            finish();
+            Ts.JsonErroy();
         }
-        if (bean.getAddress() == null) {
-            layoutKuaiDiKong.setVisibility(View.VISIBLE);
-            layoutKuaiDi.setVisibility(View.GONE);
-        } else {
-            layoutKuaiDiKong.setVisibility(View.GONE);
-            layoutKuaiDi.setVisibility(View.VISIBLE);
-            initDiZhi(bean.getAddress());
-        }
-        mlist.clear();
-        mlist.addAll(bean.getCart_list().get(0).getGoods_list());
-        adapter.notifyDataSetChanged();
     }
 
     public boolean getRes(int i) {

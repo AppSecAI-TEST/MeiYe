@@ -137,7 +137,7 @@ public class ShiWuDinDanFragment extends BaseFragment implements SwipeRefreshLay
                 holder.setText(R.id.tv_store_name, shiWuBean.getStore_name())
                         .setText(R.id.tv_type, shiWuBean.getOrder_status_desc())
                         .setText(R.id.tv_num, shiWuBean.getGoods_list().size() + "")
-                        .setText(R.id.tv_jiage, shiWuBean.getOrder_amount());
+                        .setText(R.id.tv_jiage, shiWuBean.getTotal_amount());
 
                 RecyclerView recyclerView = holder.getView(R.id.rv_shangping);
                 recyclerView.setFocusable(false);

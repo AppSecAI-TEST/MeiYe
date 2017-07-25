@@ -223,7 +223,7 @@ public class FuWuQueRenDinDanActivity extends BaseActivity {
         tvShangpingTitle.setText(bean.getGoods_name());
         tvJiage.setText(bean.getMember_price());
         tvZonge.setText("￥" + getMoney() + "");
-        tvShifu.setText(bean.getTotal() + "");
+        tvShifu.setText(getMoney() + "");
         tvZongji.setText("" + bean.getTotal());
         tvJifen.setText(bean.getReward_points());
         tvYue.setText(bean.getBalance());
