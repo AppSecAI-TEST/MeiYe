@@ -326,8 +326,8 @@ public class QueRenDinDanActivity extends BaseActivity {
         try {
             tvYunfei.setText("￥" + bean.getCart_list().get(0).getMark().getFreight());
             tvZongji.setText(bean.getTotal_price().getTotal_fee() + "");
-            int res = Integer.parseInt(bean.getCart_list().get(0).getMark().getGoods_total()) + Integer.parseInt(bean.getCart_list().get(0).getMark().getFreight());
-            tvShifu.setText(res + "");
+            double res = Double.parseDouble(bean.getCart_list().get(0).getMark().getGoods_total()) + Double.parseDouble(bean.getCart_list().get(0).getMark().getFreight());
+            tvShifu.setText(StartUtil.setNumOr00(res) + "");
             tvJifen.setText(bean.getCart_list().get(0).getMark().getReward_points());
             tvYue.setText(bean.getCart_list().get(0).getMark().getUser_money());
             tvStoreName.setText(bean.getCart_list().get(0).getMark().getStore_name());

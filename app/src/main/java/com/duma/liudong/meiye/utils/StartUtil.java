@@ -421,4 +421,9 @@ public class StartUtil {
     public static void goOridService(Activity activity) {
         activity.startService(new Intent(activity, OrideService.class));
     }
+
+    public static String setNumOr00(float Birthday) {
+        DecimalFormat df = new DecimalFormat("0.00");
+        return df.format(Birthday);
+    }
 }

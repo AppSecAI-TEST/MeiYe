@@ -22,6 +22,7 @@ import com.duma.liudong.meiye.utils.ImageLoader;
 import com.duma.liudong.meiye.utils.Ts;
 import com.duma.liudong.meiye.view.dialog.LunTanFenLeiDialog;
 import com.google.gson.Gson;
+import com.orhanobut.logger.Logger;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -32,6 +33,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import okhttp3.Call;
+
+import static com.zhy.http.okhttp.OkHttpUtils.post;
 
 /**
  * Created by liudong on 17/4/11.
@@ -64,8 +67,8 @@ public class FaTieActivity extends BaseActivity {
     private LunTanFenLeiDialog dialog;
     private ForumBean bean;
     int num = 0;
-    private List<String> mImgUrlList;
-
+    //    private List<String> mImgUrlList;
+    private List<ImageUrlList> mImgUrlList;
     private PhotoSelectUtil photoSelectUtil;
 
     @Override
@@ -124,6 +127,7 @@ public class FaTieActivity extends BaseActivity {
         final int size = photoSelectUtil.getmList().size();
         mImgUrlList = new ArrayList<>();
         for (int i = 0; i < size; i++) {
+            final int index = i;
             File file;
             if (photoSelectUtil.getmList().get(i).isCompressed() || (photoSelectUtil.getmList().get(i).isCut() && photoSelectUtil.getmList().get(i).isCompressed())) {
                 file = new File(photoSelectUtil.getmList().get(i).getCompressPath());
@@ -131,8 +135,7 @@ public class FaTieActivity extends BaseActivity {
                 file = new File(photoSelectUtil.getmList().get(i).getPath());
             }
             OkHttpUtils.getInstance().cancelTag(i);
-            OkHttpUtils
-                    .post()
+            post()
                     .tag(i)
                     .url(Api.upload)
                     .addFile("pic", file.getName(), file)
@@ -147,7 +150,7 @@ public class FaTieActivity extends BaseActivity {
                         public void onResponse(String response, int id) {
                             ImgUrlBean imgUrlBean = new Gson().fromJson(response, ImgUrlBean.class);
                             if (imgUrlBean.getStatus().equals("1")) {
-                                mImgUrlList.add(imgUrlBean.getResult().getPath());
+                                mImgUrlList.add(new ImageUrlList(imgUrlBean.getResult().getPath(), index));
                                 initRes(size);
                             } else {
                                 Ts.setText(imgUrlBean.getMsg());
@@ -166,6 +169,23 @@ public class FaTieActivity extends BaseActivity {
     }
 
     private void FaTei() {
+        Logger.e("排序前:" + mImgUrlList.toString());
+        ImageUrlList imageUrlList;
+        int size = mImgUrlList.size();
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = 0; j < size - 1 - i; j++) {
+                if (mImgUrlList.get(j).getIndex() > mImgUrlList.get(j + 1).getIndex()) {
+                    imageUrlList = mImgUrlList.get(j);
+                    mImgUrlList.set(j, mImgUrlList.get(j + 1));
+                    mImgUrlList.set(j + 1, imageUrlList);
+                }
+            }
+        }
+        Logger.e("排序后:" + mImgUrlList.toString());
+        List<String> gsonImageList = new ArrayList<>();
+        for (int i = 0; i < mImgUrlList.size(); i++) {
+            gsonImageList.add(mImgUrlList.get(i).getImageUrl());
+        }
         OkHttpUtils
                 .post()
                 .url(Api.add)
@@ -173,7 +193,7 @@ public class FaTieActivity extends BaseActivity {
                 .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
                 .addParams("cat_id", bean.getCat_id())
                 .addParams("content", editText.getText().toString())
-                .addParams("img_json", new Gson().toJson(mImgUrlList))
+                .addParams("img_json", new Gson().toJson(gsonImageList))
                 .build()
                 .execute(new MyStringCallback() {
                     @Override
@@ -185,5 +205,37 @@ public class FaTieActivity extends BaseActivity {
                 });
     }
 
+    class ImageUrlList {
+        private String imageUrl;
+        private int index;
 
+        @Override
+        public String toString() {
+            return "ImageUrlList{" +
+                    "imageUrl='" + imageUrl + '\'' +
+                    ", index=" + index +
+                    '}';
+        }
+
+        public ImageUrlList(String imageUrl, int index) {
+            this.imageUrl = imageUrl;
+            this.index = index;
+        }
+
+        public String getImageUrl() {
+            return imageUrl;
+        }
+
+        public void setImageUrl(String imageUrl) {
+            this.imageUrl = imageUrl;
+        }
+
+        public int getIndex() {
+            return index;
+        }
+
+        public void setIndex(int index) {
+            this.index = index;
+        }
+    }
 }
