@@ -38,6 +38,7 @@ public class ViewPaterActivity extends BaseActivity {
         fragmentList.add(new ViewPagerOneFragment());
         fragmentList.add(new ViewPagerTwoFragment());
         fragmentList.add(new ViewPagerThreeFragment());
+        fragmentList.add(new ViewPagerThreeOneFragment());
         fragmentList.add(new ViewPagerFourFragment());
 
         FragAdapter adapter = new FragAdapter(getSupportFragmentManager(), fragmentList);

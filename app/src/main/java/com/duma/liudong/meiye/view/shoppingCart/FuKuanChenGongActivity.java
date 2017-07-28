@@ -1,5 +1,6 @@
 package com.duma.liudong.meiye.view.shoppingCart;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import com.duma.liudong.meiye.model.FuWuBean;
 import com.duma.liudong.meiye.utils.Api;
 import com.duma.liudong.meiye.utils.Constants;
 import com.duma.liudong.meiye.utils.StartUtil;
+import com.duma.liudong.meiye.view.me.dinDan.DinZhiXiangQinActivity;
 import com.google.gson.Gson;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
@@ -104,14 +106,25 @@ public class FuKuanChenGongActivity extends BaseActivity implements SwipeRefresh
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.layout_back:
-                StartUtil.toQuanBuDinDan(mActivity, type, "", "", "1");
+                gogogo();
                 break;
             case R.id.tv_shouye:
                 StartUtil.toMain(mActivity);
                 break;
             case R.id.tv_chakanDinDan:
-                StartUtil.toQuanBuDinDan(mActivity, type, "", "", "1");
+                gogogo();
                 break;
+        }
+    }
+
+    private void gogogo() {
+        if (type.equals("2")) {
+            Intent intent = new Intent(mActivity, DinZhiXiangQinActivity.class);
+            intent.putExtra("id", order_id);
+            intent.putExtra("DinZhitype", "1");
+            startActivity(intent);
+        } else {
+            StartUtil.toQuanBuDinDan(mActivity, type, "", "", "1");
         }
     }
 

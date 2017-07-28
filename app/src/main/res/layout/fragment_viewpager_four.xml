@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff7791"
-    android:gravity="center"
+    android:background="@drawable/beij"
+    android:gravity="center|bottom"
     android:orientation="vertical">
 
     <FrameLayout
@@ -14,7 +14,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/ff7791" />
+            android:layout_marginTop="50dp"
+            android:src="@drawable/bb5" />
 
         <TextView
             android:id="@+id/tv_start"
@@ -22,7 +23,7 @@
             android:layout_height="30dp"
             android:layout_gravity="center|bottom"
             android:layout_marginBottom="40dp"
-            android:background="@drawable/bianxian_bai_shape"
+            android:background="@drawable/leirong_red_shape2"
             android:gravity="center"
             android:text="立即开启"
             android:textColor="@color/white"

@@ -112,7 +112,7 @@ public class PaiXuFragment extends BaseFragment implements SwipeRefreshLayout.On
         GetBuilder getBuilder = shangPinPresenter.getBuild();
         getBuilder
                 .addParams(mActivity_shangping.key, mActivity_shangping.Value)//跳转过来的功能字段
-                .addParams("goods_type", mActivity_shangping.goods_type)//商品分类 默认1 1实物商品2定制商品3团购商品（必填）
+                .addParams("goods_type", mActivity_shangping.goods_type)//商品分类 默认1 1实物商品2定制商品3服务商品（必填）
                 .addParams(paixuName, paixu);//单个排序
 
         if (mActivity_shangping.goods_type.equals("2")) {

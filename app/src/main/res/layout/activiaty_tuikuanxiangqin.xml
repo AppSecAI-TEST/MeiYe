@@ -53,7 +53,6 @@
 
             <View style="@style/henxian" />
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -198,7 +197,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="售后信息:  " />
+                        android:text="售后状态:  " />
 
                     <TextView
                         android:id="@+id/tv_shouhou"
@@ -209,14 +208,38 @@
                         android:textColor="@color/main_red" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="售后信息:  " />
+
+                    <TextView
+                        android:id="@+id/tv_xinxi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="查询中.." />
+                </LinearLayout>
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="@color/white"
+                android:padding="8dp"
+                android:text="问题图片" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_img"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
                 android:background="@color/white" />
 
         </LinearLayout>

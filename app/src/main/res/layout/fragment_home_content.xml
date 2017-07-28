@@ -54,7 +54,7 @@
                     android:drawablePadding="6dp"
                     android:drawableTop="@drawable/tuangou"
                     android:gravity="center"
-                    android:text="团购" />
+                    android:text="服务" />
             </LinearLayout>
 
             <LinearLayout

@@ -275,7 +275,7 @@ public class MeFragment extends BaseFragment implements SwipeRefreshLayout.OnRef
                 StartUtil.toQuanBuDinDan(mActivity, "1");
                 break;
             case R.id.layout_tuangou_dindan:
-                //团购订单
+                //服务订单
                 StartUtil.toQuanBuDinDan(mActivity, "3");
                 break;
             case R.id.layout_dinzhi_dindan:

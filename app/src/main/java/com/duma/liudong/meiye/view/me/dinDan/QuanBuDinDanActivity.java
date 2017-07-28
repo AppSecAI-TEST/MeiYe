@@ -34,7 +34,7 @@ public class QuanBuDinDanActivity extends BaseActivity {
     ViewPager viewPaterBar;
 
     public boolean isOne = true;
-    public String type = "1";//1:实物,2:定制,3:团购
+    public String type = "1";//1:实物,2:定制,3:服务
     public int position = 0;
     public String store_id = "";
     public String isFinish = "";
@@ -66,7 +66,7 @@ public class QuanBuDinDanActivity extends BaseActivity {
                 break;
             case "3":
                 viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "待使用");
-                tvTitle.setText("团购订单");
+                tvTitle.setText("服务订单");
                 break;
         }
         viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "待评价");

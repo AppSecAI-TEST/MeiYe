@@ -66,7 +66,7 @@ public class FuWuBean {
      * store_name : 旗舰店
      * store_qq : 123123123
      * store_phone : 123123123
-     * goods_list : [{"rec_id":"27","order_id":"28","goods_id":"34","goods_name":"团购商品","goods_sn":"团购商品","goods_num":"3","market_price":"0.10","goods_price":"0.03","cost_price":"0.00","member_goods_price":"0.02","give_integral":"0","spec_key":"","spec_key_name":"","bar_code":"","is_comment":"0","prom_type":"0","prom_id":"0","is_send":"0","delivery_id":"0","sku":"","store_id":"4","commission":"0","is_checkout":"0","deleted":"0","original_img":"/Public/upload/goods/2017/04-21/58f9d3564d06c.jpg","type":"3"}]
+     * goods_list : [{"rec_id":"27","order_id":"28","goods_id":"34","goods_name":"服务商品","goods_sn":"服务商品","goods_num":"3","market_price":"0.10","goods_price":"0.03","cost_price":"0.00","member_goods_price":"0.02","give_integral":"0","spec_key":"","spec_key_name":"","bar_code":"","is_comment":"0","prom_type":"0","prom_id":"0","is_send":"0","delivery_id":"0","sku":"","store_id":"4","commission":"0","is_checkout":"0","deleted":"0","original_img":"/Public/upload/goods/2017/04-21/58f9d3564d06c.jpg","type":"3"}]
      * support : [{"id":"16","card_num":"200198733793","order_id":"28","is_use":"0"},{"id":"17","card_num":"177086661170","order_id":"28","is_use":"0"},{"id":"18","card_num":"585458471470","order_id":"28","is_use":"0"}]
      */
 

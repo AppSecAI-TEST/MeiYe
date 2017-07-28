@@ -304,7 +304,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
                 startActivity(new Intent(mActivity, TouTiaoActivity.class));
                 break;
             case R.id.layout_tuangou:
-                //团购
+                //服务
                 StartUtil.toTuanGou(mActivity, "null");
                 break;
             case R.id.layout_dingzhi:
@@ -322,7 +322,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
                 startActivity(new Intent(mActivity, MiaoShaActivity.class));
                 break;
             case R.id.layout_group:
-                //团购
+                //服务
                 StartUtil.toTuanGou(mActivity, "");
                 break;
             case R.id.layout_customization:
@@ -351,7 +351,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
                 break;
             case R.id.layout_enter:
                 //入驻
-                StartUtil.toH5Web(mActivity, Api.ruzhuH5, "赚钱");
+                StartUtil.toH5Web(mActivity, Api.ruzhuH5, "入驻");
                 break;
             case R.id.img_ad:
                 //中间的广告图

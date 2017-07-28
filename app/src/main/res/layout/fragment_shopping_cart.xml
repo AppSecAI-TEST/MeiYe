@@ -85,7 +85,7 @@
                                 android:text="已减200"
                                 android:textColor="@color/main_red"
                                 android:textSize="10sp"
-                                android:visibility="visible" />
+                                android:visibility="gone" />
                         </LinearLayout>
 
                         <TextView

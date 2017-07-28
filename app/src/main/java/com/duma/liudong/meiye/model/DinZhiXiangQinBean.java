@@ -638,7 +638,7 @@ public class DinZhiXiangQinBean {
              */
 
             @SerializedName("short")
-            private int shortX;
+            private String shortX;
             private long end_time;
             private String content;
             private String tips;
@@ -652,11 +652,11 @@ public class DinZhiXiangQinBean {
                 this.seller_up = seller_up;
             }
 
-            public int getShortX() {
+            public String getShortX() {
                 return shortX;
             }
 
-            public void setShortX(int shortX) {
+            public void setShortX(String shortX) {
                 this.shortX = shortX;
             }
 

@@ -1,5 +1,6 @@
 package com.duma.liudong.meiye.model;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -55,7 +56,7 @@ public class QueRenDinDanBean {
         private String num;
 
         public String getTotal_fee() {
-            return total_fee;
+            return new BigDecimal(total_fee).toPlainString();
         }
 
         public void setTotal_fee(String total_fee) {

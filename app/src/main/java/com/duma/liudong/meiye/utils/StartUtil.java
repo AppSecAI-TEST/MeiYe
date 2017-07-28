@@ -96,7 +96,7 @@ public class StartUtil {
         activity.startActivity(intent);
     }
 
-    //跳转团购
+    //跳转服务
     public static void toTuanGou(Activity activity, String res) {
         Intent intent = new Intent(activity, TuanGouActivity.class);
         intent.putExtra("res", res);
@@ -191,7 +191,7 @@ public class StartUtil {
         Intent intent = new Intent(activity, ZhiFuActivity.class);
         intent.putExtra("money", money);
         intent.putExtra("id", id);
-        intent.putExtra("type", type);//判断是那种商品//1:实物,2:定制,3:团购
+        intent.putExtra("type", type);//判断是那种商品//1:实物,2:定制,3:服务
         activity.startActivity(intent);
     }
 
@@ -211,7 +211,7 @@ public class StartUtil {
     public static void toZhiFuSuccess(Activity activity, String type, String order_id) {
         Intent intent = new Intent(activity, FuKuanChenGongActivity.class);
         intent.putExtra("order_id", order_id);
-        intent.putExtra("type", type);//判断是那种商品//1:实物,2:定制,3:团购
+        intent.putExtra("type", type);//判断是那种商品//1:实物,2:定制,3:服务
         activity.startActivity(intent);
     }
 
@@ -275,7 +275,7 @@ public class StartUtil {
 
     //跳转详情页
     public static void toXiangQin(Activity activity, String type, String id, String fenlei_type, String store_id) {
-        //判断是那种商品//1:实物,2:定制,3:团购
+        //判断是那种商品//1:实物,2:定制,3:服务
         Intent intent;
         switch (type) {
             case "1":
@@ -298,7 +298,7 @@ public class StartUtil {
 //                activity.startActivity(intent);
                 break;
             case "3":
-                //团购->就是服务 带卷码的
+                //服务->就是服务 带卷码的
                 intent = new Intent(activity, FuWuXiangQinActivity.class);
                 intent.putExtra("id", id);
                 intent.putExtra("fenlei_type", fenlei_type);

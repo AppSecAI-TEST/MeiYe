@@ -347,7 +347,7 @@ public class TuanGouActivity extends BaseActivity implements SwipeRefreshLayout.
     }
 
 
-    //团购列表
+    //服务列表
     private void initTuanGouAdapter() {
         TuanGouAdapter = new BaseXiaLaRvPresenter<TuanGouBean>(mActivity, R.layout.rv_tuangou, rvShangping) {
             @Override

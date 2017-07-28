@@ -71,6 +71,8 @@ public class TuiKuanXiangQinActivity extends BaseActivity {
     TextView tvShouhou;
     @BindView(R.id.rv_img)
     RecyclerView rvImg;
+    @BindView(R.id.tv_xinxi)
+    TextView tvXinxi;
 
     private String order_id, order_sn, goods_id, storName, name, img, num, danjia, spec_key;
     private TuiKuanXiangQinBean bean;
@@ -145,18 +147,19 @@ public class TuiKuanXiangQinActivity extends BaseActivity {
     }
 
     private void initRes() {
+        tvXinxi.setText(bean.getSupport().getRemark() + "");
         tvTime.setText("申请时间:" + StartUtil.getShiJian(Long.parseLong(bean.getSupport().getAddtime())));
-        tvYuanyin.setText("原因:" + bean.getSupport().getAddtime());
+        tvYuanyin.setText("退款原因:" + bean.getSupport().getAddtime());
         //0:待确认 1：审核中 2：已完成
         switch (bean.getSupport().getStatus()) {
             case "0":
-                tvShouhou.setText("待确认");
+                tvShouhou.setText("申请中");
                 break;
             case "1":
-                tvShouhou.setText("审核中");
+                tvShouhou.setText("退款拒绝");
                 break;
             case "2":
-                tvShouhou.setText("已完成");
+                tvShouhou.setText("退款完成");
                 break;
 
         }
@@ -169,4 +172,5 @@ public class TuiKuanXiangQinActivity extends BaseActivity {
     public void onClick() {
         finish();
     }
+
 }
