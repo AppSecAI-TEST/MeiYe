@@ -111,22 +111,22 @@ public class StartUtil {
         activity.startActivity(intent);
     }
 
-    //实物/定制 订单
+    //实物/拼团 订单
     public static void toQuanBuDinDan(Activity activity, String type) {
         toQuanBuDinDan(activity, type, "");
     }
 
-    //实物/定制 订单
+    //实物/拼团 订单
     public static void toQuanBuDinDan(Activity activity, String type, String position) {
         toQuanBuDinDan(activity, type, position, "");
     }
 
-    //实物/定制 订单
+    //实物/拼团 订单
     public static void toQuanBuDinDan(Activity activity, String type, String position, String store_id) {
         toQuanBuDinDan(activity, type, position, store_id, "");
     }
 
-    //实物/定制 订单
+    //实物/拼团 订单
     public static void toQuanBuDinDan(Activity activity, String type, String position, String store_id, String isFinish) {
         Intent intent = new Intent(activity, QuanBuDinDanActivity.class);
         intent.putExtra("type", type);
@@ -136,14 +136,14 @@ public class StartUtil {
         activity.startActivity(intent);
     }
 
-    //我的定制
+    //我的拼团
     public static void toWoDiDinZhi(Activity activity, String position) {
         Intent intent = new Intent(activity, WoDeDinZhiActivity.class);
         intent.putExtra("position", position);
         activity.startActivity(intent);
     }
 
-    //我的定制
+    //我的拼团
     public static void toWoDiDinZhi(Activity activity) {
         Intent intent = new Intent(activity, WoDeDinZhiActivity.class);
         intent.putExtra("position", "0");
@@ -191,7 +191,7 @@ public class StartUtil {
         Intent intent = new Intent(activity, ZhiFuActivity.class);
         intent.putExtra("money", money);
         intent.putExtra("id", id);
-        intent.putExtra("type", type);//判断是那种商品//1:实物,2:定制,3:服务
+        intent.putExtra("type", type);//判断是那种商品//1:实物,2:拼团,3:服务
         activity.startActivity(intent);
     }
 
@@ -211,7 +211,7 @@ public class StartUtil {
     public static void toZhiFuSuccess(Activity activity, String type, String order_id) {
         Intent intent = new Intent(activity, FuKuanChenGongActivity.class);
         intent.putExtra("order_id", order_id);
-        intent.putExtra("type", type);//判断是那种商品//1:实物,2:定制,3:服务
+        intent.putExtra("type", type);//判断是那种商品//1:实物,2:拼团,3:服务
         activity.startActivity(intent);
     }
 
@@ -275,7 +275,7 @@ public class StartUtil {
 
     //跳转详情页
     public static void toXiangQin(Activity activity, String type, String id, String fenlei_type, String store_id) {
-        //判断是那种商品//1:实物,2:定制,3:服务
+        //判断是那种商品//1:实物,2:拼团,3:服务
         Intent intent;
         switch (type) {
             case "1":
@@ -287,7 +287,7 @@ public class StartUtil {
                 activity.startActivity(intent);
                 break;
             case "2":
-                //定制  ->就是开团
+                //拼团  ->就是开团
                 intent = new Intent(activity, ShiWuDianDanXiangQingActivity.class);
                 intent.putExtra("id", id);
                 intent.putExtra("fenlei_type", fenlei_type);

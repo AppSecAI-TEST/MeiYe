@@ -85,10 +85,10 @@ public class TiXianYHActivity extends BaseActivity {
                 .addParams("user_id", MyApplication.getSpUtils().getString(Constants.user_id))
                 .addParams("token", MyApplication.getSpUtils().getString(Constants.token))
                 .addParams("money", money)
-                .addParams("bank_name", editType.getText().toString())
+                .addParams("bank_name", editYhName.getText().toString())
                 .addParams("account_name", editName.getText().toString())
                 .addParams("account_bank", editNum.getText().toString())
-                .addParams("remark", editYhName.getText().toString())
+                .addParams("remark", editType.getText().toString())
                 .build()
                 .execute(new MyStringCallback() {
                     @Override

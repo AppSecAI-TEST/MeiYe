@@ -308,8 +308,8 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
                 StartUtil.toTuanGou(mActivity, "null");
                 break;
             case R.id.layout_dingzhi:
-                //定制
-                StartUtil.toShangPingLieBiao(mActivity, "", "", "定制", "2");
+                //拼团
+                StartUtil.toShangPingLieBiao(mActivity, "", "", "拼团", "2");
                 break;
             case R.id.layout_tuijian:
                 //推荐店铺
@@ -326,8 +326,8 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
                 StartUtil.toTuanGou(mActivity, "");
                 break;
             case R.id.layout_customization:
-                //定制
-                StartUtil.toShangPingLieBiao(mActivity, "", "", "定制", "2");
+                //拼团
+                StartUtil.toShangPingLieBiao(mActivity, "", "", "拼团", "2");
                 break;
             case R.id.layout_train:
                 //培训

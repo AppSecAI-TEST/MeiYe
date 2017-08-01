@@ -193,7 +193,7 @@ public class ShiWuDinDanFragment extends BaseFragment implements SwipeRefreshLay
                             }
                             break;
                         case "WAITRECEIVE":
-                            //1:实物,2:定制,3:服务
+                            //1:实物,2:拼团,3:服务
                             //待收货->待使用
                             if (activity.type.equals("3")) {
                                 tv_hei_one.setVisibility(View.VISIBLE);

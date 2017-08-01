@@ -68,7 +68,7 @@ public class DinZhiXiangQinBean {
      * store_name : 旗舰店
      * store_qq : 123123123
      * store_phone : 123123123
-     * goods_list : [{"rec_id":"42","order_id":"43","goods_id":"1","goods_name":"定制商品","goods_sn":"定制商品","goods_num":"20","market_price":"0.10","goods_price":"0.03","cost_price":"0.00","member_goods_price":"0.02","give_integral":"0","spec_key":"","spec_key_name":"","bar_code":"","is_comment":"0","prom_type":"0","prom_id":"0","is_send":"0","delivery_id":"0","sku":"","store_id":"4","commission":"0","is_checkout":"0","deleted":"0","original_img":"/Public/upload/goods/2017/04-21/58f9d3564d06c.jpg","type":"2"}]
+     * goods_list : [{"rec_id":"42","order_id":"43","goods_id":"1","goods_name":"拼团商品","goods_sn":"拼团商品","goods_num":"20","market_price":"0.10","goods_price":"0.03","cost_price":"0.00","member_goods_price":"0.02","give_integral":"0","spec_key":"","spec_key_name":"","bar_code":"","is_comment":"0","prom_type":"0","prom_id":"0","is_send":"0","delivery_id":"0","sku":"","store_id":"4","commission":"0","is_checkout":"0","deleted":"0","original_img":"/Public/upload/goods/2017/04-21/58f9d3564d06c.jpg","type":"2"}]
      * support : {"user":[{"spell_id":"4","order_id":"43","user_id":"9","is_master":"1","goods_id":"1","goods_num":"20","add_time":"1492842208","end_time":"1492844008","nickname":"liudong ","head_pic":"/Public/upload/head_pic/2017-03-27/58d8701391de5.jpg","state":"2017-04-22 14:23:28 开团"}],"mark":{"short":0,"end_time":0,"content":"拼团已过期,商家正在发货中","tips":"10成团,数量不足自动退款"}}
      */
 
@@ -807,8 +807,8 @@ public class DinZhiXiangQinBean {
          * rec_id : 42
          * order_id : 43
          * goods_id : 1
-         * goods_name : 定制商品
-         * goods_sn : 定制商品
+         * goods_name : 拼团商品
+         * goods_sn : 拼团商品
          * goods_num : 20
          * market_price : 0.10
          * goods_price : 0.03

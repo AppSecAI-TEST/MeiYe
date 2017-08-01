@@ -110,7 +110,7 @@ public class ShangPingLieBiaoActivity extends BaseActivity {
         paiXuFragmentList = new ArrayList<>();
         tabLayoutBar.setVisibility(View.GONE);
         if (goods_type.equals("2")) {
-            //定制  有tab
+            //拼团  有tab
             tabLayoutBar.setVisibility(View.VISIBLE);
             initClassift();
         } else {

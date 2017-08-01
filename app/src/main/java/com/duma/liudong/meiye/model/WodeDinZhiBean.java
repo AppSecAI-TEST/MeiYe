@@ -10,8 +10,8 @@ public class WodeDinZhiBean {
      * rec_id : 28
      * order_id : 29
      * goods_id : 1
-     * goods_name : 定制商品
-     * goods_sn : 定制商品
+     * goods_name : 拼团商品
+     * goods_sn : 拼团商品
      * goods_num : 10
      * market_price : 0.10
      * goods_price : 0.03

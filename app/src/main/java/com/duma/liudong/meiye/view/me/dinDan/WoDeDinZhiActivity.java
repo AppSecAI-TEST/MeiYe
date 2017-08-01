@@ -42,7 +42,7 @@ public class WoDeDinZhiActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        tvTitle.setText("我的定制");
+        tvTitle.setText("我的拼团");
         position = Integer.parseInt(getIntent().getStringExtra("position"));
         MyViewPagerAdapter viewPagerAdapter = new MyViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragment(new DinZhiFragment(), "进行中");

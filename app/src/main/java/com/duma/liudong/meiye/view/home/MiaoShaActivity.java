@@ -45,7 +45,7 @@ public class MiaoShaActivity extends BaseActivity {
         tvTitle.setText("周日秒杀");
         MyViewPagerAdapter viewPagerAdapter = new MyViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragment(new MiaoShaFragment(), "实物商品");
-        viewPagerAdapter.addFragment(new MiaoShaFragment(), "定制商品");
+        viewPagerAdapter.addFragment(new MiaoShaFragment(), "拼团商品");
         viewPagerAdapter.addFragment(new MiaoShaFragment(), "服务商品");
         viewPaterBar.setOffscreenPageLimit(3);
         viewPaterBar.setAdapter(viewPagerAdapter);
@@ -59,7 +59,7 @@ public class MiaoShaActivity extends BaseActivity {
 
     public String getType() {
         Lg.e(viewPaterBar.getCurrentItem() + "");
-        //0: 实物商品 1: 定制商品,2:服务商品
+        //0: 实物商品 1: 拼团商品,2:服务商品
         switch (viewPaterBar.getCurrentItem()) {
             case 0:
                 return "1";

@@ -9,7 +9,7 @@ public class ShangXiaJiaBean {
     /**
      * original_img : http://meiye.duma-ivy.cn/Public/upload/goods/2017/04-19/58f72166e9559.jpg
      * goods_id : 1
-     * goods_name : 定制商品
+     * goods_name : 拼团商品
      * market_price : 1000.00
      * shop_price : 900.00
      * is_on_sale : 1
