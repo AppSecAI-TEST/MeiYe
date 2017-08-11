@@ -62,7 +62,7 @@ public class QuanBuDinDanActivity extends BaseActivity {
             case "2":
                 viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "待发货");
                 viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "待收货");
-                tvTitle.setText("拼团订单");
+                tvTitle.setText("定制订单");
                 break;
             case "3":
                 viewPagerAdapter.addFragment(new ShiWuDinDanFragment(), "待使用");

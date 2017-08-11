@@ -39,7 +39,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center|start"
-                        android:text="我的拼团" />
+                        android:text="我的拼团订单" />
 
                     <ImageView
                         android:layout_width="wrap_content"

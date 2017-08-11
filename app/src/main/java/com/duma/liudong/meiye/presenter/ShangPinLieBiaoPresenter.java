@@ -51,6 +51,7 @@ public class ShangPinLieBiaoPresenter extends BaseXiaLaRvPresenter<ShangPinBean>
                 .get()
                 .tag("base")
                 .url(Api.goodindex)
+                .addParams("app_type", "android")
                 .addParams("lat", MyApplication.getSpUtils2().getString(Constants.lat))
                 .addParams("lng", MyApplication.getSpUtils2().getString(Constants.lng))
                 .addParams("p", p + "");

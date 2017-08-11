@@ -405,6 +405,7 @@ public class TuanGouActivity extends BaseActivity implements SwipeRefreshLayout.
                 .url(Api.Tuangouindex)
                 .tag("base")
                 .addParams("type", "3")
+                .addParams("app_type", "android")
                 .addParams("p", TuanGouAdapter.p + "")
                 .addParams("sort", sort)
                 .addParams("cate_id", cate_id)

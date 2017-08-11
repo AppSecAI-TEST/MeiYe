@@ -327,7 +327,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, S
                 break;
             case R.id.layout_customization:
                 //拼团
-                StartUtil.toShangPingLieBiao(mActivity, "", "", "拼团", "2");
+                StartUtil.toShangPingLieBiao(mActivity, "", "", "定制商品", "2");
                 break;
             case R.id.layout_train:
                 //培训

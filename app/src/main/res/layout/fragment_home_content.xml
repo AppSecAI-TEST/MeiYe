@@ -71,7 +71,7 @@
                     android:drawablePadding="6dp"
                     android:drawableTop="@drawable/dingzhi"
                     android:gravity="center"
-                    android:text="拼团" />
+                    android:text="定制" />
             </LinearLayout>
 
             <LinearLayout
