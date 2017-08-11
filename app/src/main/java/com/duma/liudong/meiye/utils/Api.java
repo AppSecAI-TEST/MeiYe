@@ -165,6 +165,8 @@ public class Api {
     public static String my_follow_list = url + "/App/Bbs/my_follow_list";
 
     public static String jubao = url + "/App/Store/jubao";
+
+    private static String demo = "demo";
     /**
      * Tuangou - 服务列表
      */
